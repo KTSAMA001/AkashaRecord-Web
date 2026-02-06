@@ -1,0 +1,17 @@
+node_modules/
+.vitepress/cache/
+.vitepress/dist/
+content/
+.akasha-repo/
+.DS_Store
+*.log
+.env
+
+# 同步的内容文件（由 sync-content.mjs 生成）
+experiences/*/
+knowledge/*/
+ideas/*/
+!experiences/index.md
+!knowledge/index.md
+!ideas/index.md
+public/api/

@@ -1,0 +1,129 @@
+/**
+ * 自定义样式 - 阿卡西记录主题
+ */
+
+/* ======= 品牌色 ======= */
+:root {
+  --vp-c-brand-1: #7c3aed;
+  --vp-c-brand-2: #6d28d9;
+  --vp-c-brand-3: #5b21b6;
+  --vp-c-brand-soft: rgba(124, 58, 237, 0.14);
+}
+
+.dark {
+  --vp-c-brand-1: #a78bfa;
+  --vp-c-brand-2: #8b5cf6;
+  --vp-c-brand-3: #7c3aed;
+  --vp-c-brand-soft: rgba(167, 139, 250, 0.14);
+}
+
+/* ======= 首页 Hero ======= */
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #7c3aed 30%,
+    #2563eb 70%
+  );
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    #7c3aed 50%,
+    #2563eb 50%
+  );
+  --vp-home-hero-image-filter: blur(44px);
+}
+
+.dark {
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    #a78bfa 50%,
+    #60a5fa 50%
+  );
+}
+
+/* ======= 按钮品牌色 ======= */
+:root {
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-text: #fff;
+  --vp-button-brand-bg: #7c3aed;
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-hover-text: #fff;
+  --vp-button-brand-hover-bg: #6d28d9;
+  --vp-button-brand-active-border: transparent;
+  --vp-button-brand-active-text: #fff;
+  --vp-button-brand-active-bg: #5b21b6;
+}
+
+/* ======= 代码块 ======= */
+:root {
+  --vp-code-tab-divider: var(--vp-c-brand-soft);
+  --vp-code-copy-code-hover-border-color: var(--vp-c-brand-2);
+}
+
+/* ======= 侧边栏增强 ======= */
+.VPSidebar .VPSidebarItem .text {
+  font-size: 0.9rem;
+}
+
+/* 侧边栏分类图标间距 */
+.VPSidebar .VPSidebarItem.level-0 > .item > .text {
+  font-weight: 600;
+}
+
+/* ======= 内容区域 ======= */
+.vp-doc h1 {
+  background: linear-gradient(120deg, #7c3aed, #2563eb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 表格样式优化 */
+.vp-doc table {
+  width: 100%;
+}
+
+.vp-doc table th {
+  background: var(--vp-c-brand-soft);
+}
+
+/* ======= 搜索框 ======= */
+.DocSearch-Button {
+  border-radius: 8px !important;
+}
+
+/* ======= 响应式优化 ======= */
+@media (max-width: 768px) {
+  .VPContent .container {
+    padding: 0 1rem;
+  }
+}
+
+/* ======= 动画 ======= */
+.stat-card,
+.tag-item {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ======= 自定义容器 ======= */
+.custom-block.tip {
+  border-color: var(--vp-c-brand-1);
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vp-c-brand-soft);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-brand-2);
+}
