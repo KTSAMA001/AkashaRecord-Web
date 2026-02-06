@@ -7,6 +7,7 @@ import type { Theme } from 'vitepress'
 import Dashboard from './components/Dashboard.vue'
 import TagCloud from './components/TagCloud.vue'
 import StatusBadge from './components/StatusBadge.vue'
+import Mermaid from './components/Mermaid.vue'
 import './styles/custom.css'
 
 export default {
@@ -16,5 +17,6 @@ export default {
     app.component('Dashboard', Dashboard)
     app.component('TagCloud', TagCloud)
     app.component('StatusBadge', StatusBadge)
+    app.component('Mermaid', Mermaid)
   },
 } satisfies Theme
