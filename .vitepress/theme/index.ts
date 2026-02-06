@@ -8,6 +8,7 @@ import Dashboard from './components/Dashboard.vue'
 import TagCloud from './components/TagCloud.vue'
 import StatusBadge from './components/StatusBadge.vue'
 import Mermaid from './components/Mermaid.vue'
+import MermaidRenderer from './components/MermaidRenderer.vue'
 import './styles/custom.css'
 
 export default {
@@ -18,5 +19,6 @@ export default {
     app.component('TagCloud', TagCloud)
     app.component('StatusBadge', StatusBadge)
     app.component('Mermaid', Mermaid)
+    app.component('MermaidRenderer', MermaidRenderer)
   },
 } satisfies Theme

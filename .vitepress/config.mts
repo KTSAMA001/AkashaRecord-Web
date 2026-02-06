@@ -96,6 +96,18 @@ export default defineConfig({
     lineNumbers: true,
     // 支持数学公式
     math: true,
+    // Mermaid 图表支持：将 ```mermaid 代码块转为 <MermaidRenderer> 组件
+    config: (md) => {
+      const defaultFence = md.renderer.rules.fence!.bind(md.renderer.rules)
+      md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+        const token = tokens[idx]
+        if (token.info.trim() === 'mermaid') {
+          const encoded = Buffer.from(token.content.trim()).toString('base64')
+          return `<MermaidRenderer encoded="${encoded}" />\n`
+        }
+        return defaultFence(tokens, idx, options, env, self)
+      }
+    },
   },
 
   // Head

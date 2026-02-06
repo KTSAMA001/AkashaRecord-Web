@@ -71,7 +71,7 @@ async function runBuild() {
 
     // Step 2: 构建 VitePress
     console.log('🔨 Step 2/2: 构建 VitePress 站点...')
-    execSync('npx vitepress build', {
+    execSync('./node_modules/.bin/vitepress build', {
       cwd: PROJECT_DIR,
       stdio: 'inherit',
       timeout: 120000, // 120 秒超时
