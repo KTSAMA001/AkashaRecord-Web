@@ -36,18 +36,21 @@ function syncRepo() {
 
     console.log(`📥 正在拉取阿卡西记录最新内容...${GITHUB_MIRROR ? '（镜像: ' + GITHUB_MIRROR + '）' : ''}`)
     try {
-      execSync('git pull --ff-only', { cwd: AKASHA_LOCAL, stdio: 'pipe', timeout: 30000 })
+      execSync('git pull --ff-only', { cwd: AKASHA_LOCAL, stdio: 'pipe', timeout: 60000 })
       console.log('✅ 拉取完成')
     } catch (e) {
-      console.warn('⚠️ 拉取失败，尝试 reset...')
+      console.warn(`⚠️ 拉取失败: ${e.stderr?.toString().trim() || e.message}`)
+      console.warn('⚠️ 尝试 fetch + reset...')
       try {
         execSync('git fetch origin && git reset --hard origin/main', {
           cwd: AKASHA_LOCAL,
           stdio: 'pipe',
-          timeout: 30000,
+          timeout: 60000,
         })
+        console.log('✅ reset 成功')
       } catch (e2) {
-        console.warn('⚠️ 网络同步完全失败，将使用本地缓存继续...')
+        console.warn(`⚠️ 网络同步完全失败: ${e2.stderr?.toString().trim() || e2.message}`)
+        console.warn('⚠️ 将使用本地缓存继续...')
       }
     }
   } else {
