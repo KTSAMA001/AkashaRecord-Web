@@ -1,34 +1,42 @@
 /**
- * 自定义样式 - 阿卡西记录主题
+ * 自定义样式 - 阿卡西记录主题（明日方舟工业风）
  */
 
-/* ======= 品牌色 ======= */
+/* ======= 品牌色（工业橙/琥珀） ======= */
 :root {
-  --vp-c-brand-1: #7c3aed;
-  --vp-c-brand-2: #6d28d9;
-  --vp-c-brand-3: #5b21b6;
-  --vp-c-brand-soft: rgba(124, 58, 237, 0.14);
+  --vp-c-brand-1: #FF6B2B;
+  --vp-c-brand-2: #E85D1A;
+  --vp-c-brand-3: #D14E0E;
+  --vp-c-brand-soft: rgba(255, 107, 43, 0.12);
+  --ak-accent: #FF6B2B;
+  --ak-accent-dim: rgba(255, 107, 43, 0.25);
+  --ak-border: #d0d0d0;
+  --ak-bg-grid: rgba(0, 0, 0, 0.02);
 }
 
 .dark {
-  --vp-c-brand-1: #a78bfa;
-  --vp-c-brand-2: #8b5cf6;
-  --vp-c-brand-3: #7c3aed;
-  --vp-c-brand-soft: rgba(167, 139, 250, 0.14);
+  --vp-c-brand-1: #FF8A50;
+  --vp-c-brand-2: #FF6B2B;
+  --vp-c-brand-3: #E85D1A;
+  --vp-c-brand-soft: rgba(255, 138, 80, 0.12);
+  --ak-accent: #FF8A50;
+  --ak-accent-dim: rgba(255, 138, 80, 0.2);
+  --ak-border: #3a3a3a;
+  --ak-bg-grid: rgba(255, 255, 255, 0.02);
 }
 
-/* ======= 首页 Hero ======= */
+/* ======= 首页 Hero（工业风渐变） ======= */
 :root {
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(
     120deg,
-    #7c3aed 30%,
-    #2563eb 70%
+    #FF6B2B 30%,
+    #F49F0A 70%
   );
   --vp-home-hero-image-background-image: linear-gradient(
     -45deg,
-    #7c3aed 50%,
-    #2563eb 50%
+    #FF6B2B 50%,
+    #F49F0A 50%
   );
   --vp-home-hero-image-filter: blur(44px);
 }
@@ -36,22 +44,41 @@
 .dark {
   --vp-home-hero-image-background-image: linear-gradient(
     -45deg,
-    #a78bfa 50%,
-    #60a5fa 50%
+    #FF8A50 50%,
+    #FBBF24 50%
   );
 }
 
-/* ======= 按钮品牌色 ======= */
+/* ======= 按钮品牌色（工业橙） ======= */
 :root {
   --vp-button-brand-border: transparent;
   --vp-button-brand-text: #fff;
-  --vp-button-brand-bg: #7c3aed;
+  --vp-button-brand-bg: #FF6B2B;
   --vp-button-brand-hover-border: transparent;
   --vp-button-brand-hover-text: #fff;
-  --vp-button-brand-hover-bg: #6d28d9;
+  --vp-button-brand-hover-bg: #E85D1A;
   --vp-button-brand-active-border: transparent;
   --vp-button-brand-active-text: #fff;
-  --vp-button-brand-active-bg: #5b21b6;
+  --vp-button-brand-active-bg: #D14E0E;
+}
+
+/* ======= 工业风按钮（直角切角） ======= */
+.VPButton.brand,
+.VPButton.alt {
+  border-radius: 0 !important;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  font-weight: 700 !important;
+}
+
+.VPButton.alt {
+  border: 1px solid var(--ak-accent) !important;
+  color: var(--ak-accent) !important;
+}
+
+.VPButton.alt:hover {
+  background: var(--ak-accent-dim) !important;
 }
 
 /* ======= 代码块 ======= */
@@ -65,14 +92,13 @@
   font-size: 0.9rem;
 }
 
-/* 侧边栏分类图标间距 */
 .VPSidebar .VPSidebarItem.level-0 > .item > .text {
   font-weight: 600;
 }
 
-/* ======= 内容区域 ======= */
+/* ======= 内容区域（工业风标题） ======= */
 .vp-doc h1 {
-  background: linear-gradient(120deg, #7c3aed, #2563eb);
+  background: linear-gradient(120deg, #FF6B2B, #F49F0A);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -89,7 +115,33 @@
 
 /* ======= 搜索框 ======= */
 .DocSearch-Button {
-  border-radius: 8px !important;
+  border-radius: 0 !important;
+}
+
+/* ======= Feature 卡片（工业风切角） ======= */
+.VPFeature {
+  border-radius: 0 !important;
+  border: 1px solid var(--ak-border) !important;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)) !important;
+  transition: all 0.25s ease !important;
+  position: relative !important;
+}
+
+.VPFeature:hover {
+  border-color: var(--ak-accent) !important;
+  box-shadow: 0 0 16px var(--ak-accent-dim),
+              inset 0 0 16px var(--ak-accent-dim) !important;
+}
+
+.VPFeatures .VPFeature .title {
+  color: var(--ak-accent) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* ======= 导航栏（工业风） ======= */
+.VPNavBar {
+  border-bottom: 1px solid var(--ak-border) !important;
 }
 
 /* ======= 响应式优化 ======= */
@@ -110,7 +162,7 @@
   border-color: var(--vp-c-brand-1);
 }
 
-/* 滚动条样式 */
+/* ======= 滚动条样式 ======= */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -121,7 +173,7 @@
 
 ::-webkit-scrollbar-thumb {
   background: var(--vp-c-brand-soft);
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
