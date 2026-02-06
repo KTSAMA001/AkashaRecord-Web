@@ -30,10 +30,14 @@ function syncRepo() {
       console.log('✅ 拉取完成')
     } catch (e) {
       console.warn('⚠️ 拉取失败，尝试 reset...')
-      execSync('git fetch origin && git reset --hard origin/main', {
-        cwd: AKASHA_LOCAL,
-        stdio: 'pipe',
-      })
+      try {
+        execSync('git fetch origin && git reset --hard origin/main', {
+          cwd: AKASHA_LOCAL,
+          stdio: 'pipe',
+        })
+      } catch (e2) {
+        console.warn('⚠️ 网络同步完全失败，将使用本地缓存继续...')
+      }
     }
   } else {
     console.log('📦 首次克隆阿卡西记录仓库...')
@@ -99,6 +103,9 @@ function copyContent() {
       if (indexContent) {
         fs.writeFileSync(indexFile, indexContent)
       }
+
+      // 递归为没有 index.md 的子目录生成默认索引页，解决 Nginx 403 问题
+      generateMissingIndexesRecursive(dest)
     }
   }
 
@@ -130,6 +137,45 @@ function copyDirRecursive(src, dest, skipIndex = false) {
     }
   }
 }
+
+/**
+ * 递归检查目录，如果缺少 index.md 则自动生成
+ * 为了解决 Nginx 无法访问无 index.html 目录的问题
+ */
+function generateMissingIndexesRecursive(dirPath) {
+  if (!fs.existsSync(dirPath)) return
+
+  const entries = fs.readdirSync(dirPath, { withFileTypes: true })
+  const hasIndex = entries.some(e => e.name === 'index.md')
+
+  if (!hasIndex) {
+    const dirName = path.basename(dirPath)
+    // 首字母大写
+    const title = dirName.charAt(0).toUpperCase() + dirName.slice(1)
+    
+    const links = entries
+      .filter(e => e.isFile() && e.name.endsWith('.md') && e.name !== 'index.md')
+      .map(e => {
+         const name = e.name.replace(/\.md$/, '')
+         return `- [${name}](./${name})` 
+      })
+      .join('\n')
+
+    const content = `---\ntitle: ${title}\n---\n\n# ${title}\n\n> 🤖 自动生成的目录页\n\n${links || '*暂无文档*'}\n`
+    
+    const indexFile = path.join(dirPath, 'index.md')
+    fs.writeFileSync(indexFile, content)
+    console.log(`P  +Auto-Index: ${path.relative(CONTENT_DIR, indexFile)}`)
+  }
+
+  // 递归处理子目录
+  for (const entry of entries) {
+    if (entry.isDirectory() && !entry.name.startsWith('.')) {
+      generateMissingIndexesRecursive(path.join(dirPath, entry.name))
+    }
+  }
+}
+
 
 /**
  * 确保 Markdown 文件有合法的 frontmatter
