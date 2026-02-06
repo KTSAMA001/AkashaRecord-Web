@@ -34,26 +34,77 @@ npm run build
 npm run preview
 ```
 
-## 服务器部署
+## 服务器部署（从零开始指南）
 
-### 一键部署（宝塔面板）
+本指南假设你使用的是 **阿里云/腾讯云轻量服务器**，并已安装 **宝塔面板**。
+
+### 1. 环境准备
+
+首先通过终端（SSH）登录你的服务器（root 用户）。
+
+**检查并安装 Git**（必须步骤，否则无法下载代码）：
+```bash
+# CentOS / Alibaba Cloud Linux
+yum install git -y
+
+# Ubuntu / Debian
+apt-get update && apt-get install git -y
+```
+
+### 2. 获取代码与一键部署
+
+复制以下命令在服务器终端执行，脚本会自动完成 Node.js 安装、依赖下载、站点构建和 Nginx 配置。
 
 ```bash
-# SSH 登录服务器后执行
-git clone https://github.com/KTSAMA001/AkashaRecord-Web.git /www/wwwroot/AkashaRecord-Web
-cd /www/wwwroot/AkashaRecord-Web
+# 1. 进入 Web 目录（如果还没有，建一个）
+mkdir -p /www/wwwroot
+cd /www/wwwroot
+
+# 2. 删除可能存在的旧目录（如果是重装）
+rm -rf AkashaRecord-Web
+
+# 3. 克隆仓库
+git clone https://github.com/KTSAMA001/AkashaRecord-Web.git AkashaRecord-Web
+
+# 4. 进入目录并运行部署脚本
+cd AkashaRecord-Web
 bash deploy/deploy.sh
 ```
 
-### 部署后配置
+**部署脚本会自动执行以下操作：**
+- ✅ 检查并安装 Node.js (v18+) 和 PM2
+- ✅ 拉取最新的阿卡西记录数据
+- ✅ 构建 VitePress 静态站点
+- ✅ 生成 Nginx 配置文件并测试
+- ✅ 启动 Webhook 服务（用于自动更新）
 
-1. **DNS 解析**：`akasha.ktsama.top` → 服务器 IP（A 记录）
-2. **SSL 证书**：宝塔面板中为域名申请免费证书
-3. **GitHub Webhook**：
-   - 打开 [AgentSkill-Akasha-KT 仓库设置](https://github.com/KTSAMA001/AgentSkill-Akasha-KT/settings/hooks)
-   - Payload URL: `https://akasha.ktsama.top/webhook`
-   - Content type: `application/json`
-   - Events: `Just the push event`
+### 3. 配置域名访问
+
+1. **DNS 解析**：
+   - 前往域名服务商控制台（如阿里云 DNS）。
+   - 添加 `A` 记录：主机记录 `akasha`，记录值填 `服务器公网 IP`。
+
+2. **SSL 证书（HTTPS）**：
+   - 登录 **宝塔面板**。
+   - 进入 `网站` -> 找到 `akasha.ktsama.top`（脚本可能已帮你创建站点，或手动添加）。
+   - 点击 `配置` -> `SSL` -> `Let's Encrypt` -> 申请并开启 HTTPS。
+   - 开启 `强制 HTTPS` 以获得更安全的访问体验。
+
+### 4. 配置自动化更新 (Webhook)
+
+让网站在你更新知识库时自动重建。
+
+1. 打开 [AgentSkill-Akasha-KT 仓库设置](https://github.com/KTSAMA001/AgentSkill-Akasha-KT/settings/hooks)（注意是数据仓库，不是这个 Web 仓库）。
+2. 点击 **Add webhook**：
+   - **Payload URL**: `https://akasha.ktsama.top/webhook` (确保是 HTTPS)
+   - **Content type**: `application/json`
+   - **Secret**: (留空，或根据 `server/webhook.mjs` 中的配置填写)
+   - **Which events**: 选择 `Just the push event`。
+3. 点击 **Add webhook** 保存。
+
+现在，每当你向阿卡西记录 push 新的笔记，网站就会在 1-2 分钟内自动更新。
+
+### 常用运维命令
 
 ### 常用运维命令
 
