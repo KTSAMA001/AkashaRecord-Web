@@ -108,4 +108,5 @@ export default withMermaid(defineConfig({
 
   // 清理 URL
   cleanUrls: true,
-})
+}))
+
