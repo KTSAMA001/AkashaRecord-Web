@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B2B"/>
+      <stop offset="100%" stop-color="#F49F0A"/>
+    </linearGradient>
+  </defs>
+  <!-- 工业风底板：切角六边形 -->
+  <polygon points="4,0 28,0 32,4 32,28 28,32 4,32 0,28 0,4" fill="#1a1a1a"/>
+  <!-- 内框 -->
+  <polygon points="5,1.5 27,1.5 30.5,5 30.5,27 27,30.5 5,30.5 1.5,27 1.5,5" fill="none" stroke="url(#g)" stroke-width="0.8" opacity="0.6"/>
+  <!-- A 字母（Akasha）- 工业风格 -->
+  <path d="M10,25 L16,6 L22,25 M12,19 L20,19" fill="none" stroke="url(#g)" stroke-width="2.5" stroke-linecap="square" stroke-linejoin="miter"/>
+  <!-- 右上角装饰三角 -->
+  <polygon points="26,2 30,2 30,6" fill="#FF6B2B" opacity="0.5"/>
+  <!-- 左下角装饰三角 -->
+  <polygon points="2,26 2,30 6,30" fill="#F49F0A" opacity="0.4"/>
+  <!-- 网点装饰 -->
+  <circle cx="6" cy="7" r="0.6" fill="#FF6B2B" opacity="0.3"/>
+  <circle cx="9" cy="7" r="0.6" fill="#FF6B2B" opacity="0.3"/>
+  <circle cx="6" cy="10" r="0.6" fill="#FF6B2B" opacity="0.3"/>
+</svg>
