@@ -1,41 +1,61 @@
 /**
  * 自动从 content/ 目录结构生成 VitePress 侧边栏配置
  * 支持经验(experiences)、知识(knowledge)、灵感(ideas) 三大分类
+ * 
+ * 分类名自动从目录下 index.md 的 frontmatter title 或 h1 标题推断，
+ * 仅对无法自动推断的特殊名称（缩写、顶级分类 emoji）保留硬编码映射。
  */
 
 import fs from 'node:fs'
 import path from 'node:path'
 
-// 分类中文映射
-const CATEGORY_LABELS: Record<string, string> = {
-  // 顶级分类
+// 仅保留无法从 index.md 自动推断的特殊映射
+// - 顶级分类带 emoji 前缀
+// - 技术缩写（全大写 / 特殊符号）目录名无法通过首字母大写还原
+const SPECIAL_LABELS: Record<string, string> = {
   experiences: '📝 经验',
   knowledge: '📚 知识',
   ideas: '💡 灵感',
-  // 子分类
   ai: 'AI',
-  anthropic: 'Anthropic',
   csharp: 'C#',
-  general: '通用',
-  git: 'Git',
-  python: 'Python',
-  shader: 'Shader',
-  tools: '工具',
-  unity: 'Unity',
-  vscode: 'VS Code',
-  graphics: '图形学',
   hlsl: 'HLSL',
-  programming: '编程',
-  social: '社交',
-  'warm-daily': '温暖日常',
-  smart_furniture: '智能家居',
+  vscode: 'VS Code',
 }
 
 /**
  * 获取分类的显示名称
+ * 优先级：特殊映射 → index.md 标题 → 目录名美化
  */
-function getCategoryLabel(dirName: string): string {
-  return CATEGORY_LABELS[dirName] || dirName.charAt(0).toUpperCase() + dirName.slice(1)
+function getCategoryLabel(dirName: string, dirPath?: string): string {
+  // 1. 特殊映射（顶级分类、缩写等）
+  if (SPECIAL_LABELS[dirName]) return SPECIAL_LABELS[dirName]
+
+  // 2. 从目录下的 index.md 读取标题
+  if (dirPath) {
+    const indexFile = path.join(dirPath, 'index.md')
+    if (fs.existsSync(indexFile)) {
+      try {
+        const content = fs.readFileSync(indexFile, 'utf-8')
+        // frontmatter title
+        const fmMatch = content.match(/^---[\s\S]*?title:\s*["']?(.+?)["']?\s*\n[\s\S]*?---/m)
+        if (fmMatch) {
+          const title = fmMatch[1].trim()
+          // 排除自动生成的首字母大写目录名（和 fallback 一样），优先用有意义的中文标题
+          if (title !== dirName.charAt(0).toUpperCase() + dirName.slice(1)) {
+            return title
+          }
+        }
+        // h1 标题
+        const h1Match = content.match(/^#\s+(.+)$/m)
+        if (h1Match) return h1Match[1].trim()
+      } catch { /* ignore */ }
+    }
+  }
+
+  // 3. 回退：目录名美化（连字符/下划线 → 空格，首字母大写）
+  return dirName
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, c => c.toUpperCase())
 }
 
 /**
@@ -90,7 +110,7 @@ function scanDirectory(dirPath: string, basePath: string): SidebarItem[] {
       const children = scanDirectory(fullPath, `${basePath}/${entry.name}`)
       if (children.length > 0) {
         items.push({
-          text: getCategoryLabel(entry.name),
+          text: getCategoryLabel(entry.name, fullPath),
           collapsed: true,
           items: children,
         })
@@ -123,7 +143,7 @@ export function generateSidebar(contentDir: string): Record<string, SidebarItem[
     if (items.length > 0) {
       sidebar[`/${dir}/`] = [
         {
-          text: getCategoryLabel(dir),
+          text: getCategoryLabel(dir, dirPath),
           items,
         },
       ]
