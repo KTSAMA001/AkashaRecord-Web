@@ -28,6 +28,11 @@ const AKASHA_LOCAL = path.join(PROJECT_ROOT, '.akasha-repo')
 
 // ====== 1. 克隆 / 拉取阿卡西记录仓库 ======
 function syncRepo() {
+  // 自动添加 safe.directory，避免 dubious ownership 错误（服务器 root 用户 + www 目录常见）
+  try {
+    execSync(`git config --global --add safe.directory "${AKASHA_LOCAL}"`, { stdio: 'pipe' })
+  } catch {}
+
   if (fs.existsSync(path.join(AKASHA_LOCAL, '.git'))) {
     // 每次同步前更新 remote URL（兼容镜像切换）
     try {
