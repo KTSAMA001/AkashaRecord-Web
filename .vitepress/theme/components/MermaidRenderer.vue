@@ -11,8 +11,10 @@ const error = ref('')
 
 onMounted(async () => {
   try {
-    // 解码 Base64
-    const code = atob(props.encoded)
+    // 解码 Base64（支持 UTF-8 中文字符）
+    const binary = atob(props.encoded)
+    const bytes = Uint8Array.from(binary, c => c.charCodeAt(0))
+    const code = new TextDecoder('utf-8').decode(bytes)
     
     const mermaid = (await import('mermaid')).default
     mermaid.initialize({
