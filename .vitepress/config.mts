@@ -1,10 +1,11 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar, generateNav } from './utils/sidebar'
+import { withMermaid } from 'vitepress-plugin-mermaid'
 import path from 'node:path'
 
 const contentDir = path.resolve(__dirname, '../content')
 
-export default defineConfig({
+export default withMermaid(defineConfig({
   // 站点基础信息
   title: '阿卡西记录',
   description: 'KT 的知识与经验记忆中枢',
