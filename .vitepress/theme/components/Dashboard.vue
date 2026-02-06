@@ -36,9 +36,9 @@ onMounted(async () => {
   } catch {
     // 静态模式：使用默认数据
     stats.value = [
-      { label: '经验记录', count: 0, icon: '📝', link: '/experiences/', color: '#7c3aed' },
-      { label: '知识文档', count: 0, icon: '📚', link: '/knowledge/', color: '#2563eb' },
-      { label: '灵感火花', count: 0, icon: '💡', link: '/ideas/', color: '#f59e0b' },
+      { label: '经验记录', count: 0, icon: '📝', link: '/experiences/', color: '#FF6B2B' },
+      { label: '知识文档', count: 0, icon: '📚', link: '/knowledge/', color: '#F49F0A' },
+      { label: '灵感火花', count: 0, icon: '💡', link: '/ideas/', color: '#E85D1A' },
     ]
   }
 })
@@ -46,6 +46,11 @@ onMounted(async () => {
 
 <template>
   <div class="dashboard">
+    <!-- 分隔线装饰 -->
+    <div class="section-divider">
+      <span class="divider-label">// SYSTEM_STATUS</span>
+    </div>
+
     <div class="stats-grid">
       <a
         v-for="stat in stats"
@@ -59,11 +64,14 @@ onMounted(async () => {
           <span class="stat-count">{{ stat.count }}</span>
           <span class="stat-label">{{ stat.label }}</span>
         </div>
+        <span class="stat-corner"></span>
       </a>
     </div>
 
     <div v-if="recentItems.length" class="recent-section">
-      <h3>🕐 最近更新</h3>
+      <div class="section-divider">
+        <span class="divider-label">// RECENT_UPDATES</span>
+      </div>
       <ul class="recent-list">
         <li v-for="item in recentItems" :key="item.link">
           <a :href="item.link">
@@ -84,6 +92,29 @@ onMounted(async () => {
   padding: 2rem 1rem;
 }
 
+.section-divider {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--ak-accent, #FF6B2B), transparent);
+}
+
+.divider-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: var(--ak-accent, #FF6B2B);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -96,18 +127,20 @@ onMounted(async () => {
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
-  border-radius: 12px;
+  border-radius: 0;
   background: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-border);
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   cursor: pointer;
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
 }
 
 .stat-card:hover {
   border-color: var(--accent-color);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(255, 107, 43, 0.15),
+              inset 0 0 20px rgba(255, 107, 43, 0.05);
 }
 
 .stat-icon {
@@ -124,11 +157,14 @@ onMounted(async () => {
   font-weight: 700;
   color: var(--accent-color);
   line-height: 1.2;
+  font-family: 'Courier New', monospace;
 }
 
 .stat-label {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--vp-c-text-2);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .recent-section h3 {
@@ -156,20 +192,24 @@ onMounted(async () => {
   padding: 0.75rem 0.5rem;
   text-decoration: none;
   transition: background 0.2s;
-  border-radius: 6px;
+  border-radius: 0;
+  border-left: 2px solid transparent;
 }
 
 .recent-list a:hover {
   background: var(--vp-c-bg-soft);
+  border-left-color: var(--ak-accent, #FF6B2B);
 }
 
 .recent-category {
   font-size: 0.75rem;
   padding: 0.15rem 0.5rem;
-  border-radius: 4px;
+  border-radius: 0;
   background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-1);
   white-space: nowrap;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
 }
 
 .recent-title {
@@ -182,6 +222,7 @@ onMounted(async () => {
   font-size: 0.8rem;
   color: var(--vp-c-text-3);
   white-space: nowrap;
+  font-family: 'Courier New', monospace;
 }
 
 @media (max-width: 640px) {
