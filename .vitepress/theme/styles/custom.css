@@ -275,6 +275,15 @@ body::after {
   -webkit-backdrop-filter: blur(12px) saturate(1.2) !important;
 }
 
+/* ======= 修复 VPBackdrop 断点不匹配 ======= */
+/* VitePress 的 sidebar 在 960px 进入桌面模式，但 backdrop 在 1280px 才隐藏 */
+/* 窗口从窄变宽时 backdrop 残留覆盖内容区域，将隐藏断点对齐到 960px */
+@media (min-width: 960px) {
+  .VPBackdrop {
+    display: none !important;
+  }
+}
+
 /* ======= 暗角效果（首页 Vignette） ======= */
 .VPHome::after {
   content: '';
