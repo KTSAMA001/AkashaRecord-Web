@@ -41,6 +41,8 @@ function syncRepo() {
 
     console.log(`📥 正在拉取阿卡西记录最新内容...${GITHUB_MIRROR ? '（镜像: ' + GITHUB_MIRROR + '）' : ''}`)
     try {
+      // 丢弃本地修改，避免 pull 时冲突
+      execSync('git checkout . && git clean -fd', { cwd: AKASHA_LOCAL, stdio: 'pipe' })
       execSync('git pull --ff-only', { cwd: AKASHA_LOCAL, stdio: 'pipe', timeout: 60000 })
       console.log('✅ 拉取完成')
     } catch (e) {
