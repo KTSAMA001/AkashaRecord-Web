@@ -64,7 +64,6 @@ onMounted(async () => {
           <span class="stat-count">{{ stat.count }}</span>
           <span class="stat-label">{{ stat.label }}</span>
         </div>
-        <span class="stat-corner"></span>
       </a>
     </div>
 
