@@ -14,6 +14,9 @@ hero:
     - theme: alt
       text: 📚 查看知识
       link: /knowledge/
+    - theme: alt
+      text: 📺 B站主页
+      link: https://space.bilibili.com/487337638
   image:
     src: /logo.svg
     alt: 阿卡西记录

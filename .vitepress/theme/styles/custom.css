@@ -1,34 +1,50 @@
 /**
  * 自定义样式 - 阿卡西记录主题
+ * Arknights-Inspired Industrial Design
  */
 
-/* ======= 品牌色 ======= */
+/* ======= 品牌色 - Industrial Theme ======= */
 :root {
-  --vp-c-brand-1: #7c3aed;
-  --vp-c-brand-2: #6d28d9;
-  --vp-c-brand-3: #5b21b6;
-  --vp-c-brand-soft: rgba(124, 58, 237, 0.14);
+  /* Arknights-style orange/yellow accent */
+  --vp-c-brand-1: #ff9800;
+  --vp-c-brand-2: #f57c00;
+  --vp-c-brand-3: #e65100;
+  --vp-c-brand-soft: rgba(255, 152, 0, 0.14);
+  
+  /* Industrial grayscale palette */
+  --vp-c-bg: #fafafa;
+  --vp-c-bg-soft: #f5f5f5;
+  --vp-c-bg-mute: #e0e0e0;
+  --vp-c-divider: #333333;
+  --vp-c-border: #424242;
 }
 
 .dark {
-  --vp-c-brand-1: #a78bfa;
-  --vp-c-brand-2: #8b5cf6;
-  --vp-c-brand-3: #7c3aed;
-  --vp-c-brand-soft: rgba(167, 139, 250, 0.14);
+  /* Dark industrial theme */
+  --vp-c-brand-1: #ffb74d;
+  --vp-c-brand-2: #ffa726;
+  --vp-c-brand-3: #ff9800;
+  --vp-c-brand-soft: rgba(255, 183, 77, 0.14);
+  
+  --vp-c-bg: #1a1a1a;
+  --vp-c-bg-soft: #252525;
+  --vp-c-bg-mute: #2f2f2f;
+  --vp-c-divider: #616161;
+  --vp-c-border: #757575;
 }
 
-/* ======= 首页 Hero ======= */
+/* ======= 首页 Hero - Industrial Style ======= */
 :root {
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: -webkit-linear-gradient(
     120deg,
-    #7c3aed 30%,
-    #2563eb 70%
+    #ff9800 30%,
+    #333333 70%
   );
   --vp-home-hero-image-background-image: linear-gradient(
     -45deg,
-    #7c3aed 50%,
-    #2563eb 50%
+    #ff9800 50%,
+    #424242 50%
   );
   --vp-home-hero-image-filter: blur(44px);
 }
@@ -36,22 +52,29 @@
 .dark {
   --vp-home-hero-image-background-image: linear-gradient(
     -45deg,
-    #a78bfa 50%,
-    #60a5fa 50%
+    #ffb74d 50%,
+    #616161 50%
   );
 }
 
-/* ======= 按钮品牌色 ======= */
+/* ======= 按钮品牌色 - Industrial Style ======= */
 :root {
-  --vp-button-brand-border: transparent;
-  --vp-button-brand-text: #fff;
-  --vp-button-brand-bg: #7c3aed;
-  --vp-button-brand-hover-border: transparent;
-  --vp-button-brand-hover-text: #fff;
-  --vp-button-brand-hover-bg: #6d28d9;
-  --vp-button-brand-active-border: transparent;
-  --vp-button-brand-active-text: #fff;
-  --vp-button-brand-active-bg: #5b21b6;
+  --vp-button-brand-border: #ff9800;
+  --vp-button-brand-text: #000;
+  --vp-button-brand-bg: #ff9800;
+  --vp-button-brand-hover-border: #f57c00;
+  --vp-button-brand-hover-text: #000;
+  --vp-button-brand-hover-bg: #f57c00;
+  --vp-button-brand-active-border: #e65100;
+  --vp-button-brand-active-text: #000;
+  --vp-button-brand-active-bg: #e65100;
+}
+
+.dark {
+  --vp-button-brand-text: #000;
+  --vp-button-brand-bg: #ffb74d;
+  --vp-button-brand-hover-bg: #ffa726;
+  --vp-button-brand-active-bg: #ff9800;
 }
 
 /* ======= 代码块 ======= */
@@ -70,12 +93,26 @@
   font-weight: 600;
 }
 
-/* ======= 内容区域 ======= */
+/* ======= 内容区域 - Industrial Headers ======= */
 .vp-doc h1 {
-  background: linear-gradient(120deg, #7c3aed, #2563eb);
+  background: linear-gradient(120deg, #ff9800, #424242);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.vp-doc h1::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 60px;
+  height: 3px;
+  background: #ff9800;
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 100%, 0 100%);
 }
 
 /* 表格样式优化 */
@@ -126,4 +163,185 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--vp-c-brand-2);
+}
+
+/* ======= Arknights-Inspired Industrial Design ======= */
+
+/* Sharp angular corners */
+.VPButton,
+.stat-card,
+.VPFeature,
+.vp-doc div[class*='language-'],
+.VPNavBar,
+.VPLocalNav,
+.VPSidebar {
+  border-radius: 0 !important;
+}
+
+/* Tech-style borders and dividers */
+.VPFeature {
+  border: 2px solid var(--vp-c-border) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.VPFeature::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--vp-c-brand-1);
+}
+
+/* Angular clipped corners for cards */
+.stat-card {
+  clip-path: polygon(
+    0 8px, 8px 0, 
+    100% 0, 100% calc(100% - 8px), 
+    calc(100% - 8px) 100%, 0 100%
+  );
+  border: 2px solid var(--vp-c-border) !important;
+  position: relative;
+}
+
+.stat-card::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 20px;
+  height: 20px;
+  background: var(--vp-c-brand-1);
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+}
+
+/* Tech grid overlay for hero section */
+.VPHero {
+  position: relative;
+}
+
+.VPHero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 152, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 152, 0, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* Industrial font styling */
+.VPHero .name,
+.VPHero .text {
+  font-weight: 900 !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Sharp button styling */
+.VPButton {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  border: 2px solid currentColor !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.VPButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 152, 0, 0.2);
+  transition: left 0.3s ease;
+}
+
+.VPButton:hover::before {
+  left: 100%;
+}
+
+/* Monospace tech font for code */
+.vp-doc code {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+}
+
+/* Industrial sidebar styling */
+.VPSidebar {
+  border-right: 3px solid var(--vp-c-border) !important;
+}
+
+.VPSidebarItem .text {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Tech-style nav bar */
+.VPNavBar {
+  border-bottom: 3px solid var(--vp-c-border) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Warning/danger accents */
+.custom-block.warning {
+  border-left: 4px solid #f57c00;
+}
+
+.custom-block.danger {
+  border-left: 4px solid #d32f2f;
+}
+
+/* Table industrial styling */
+.vp-doc table {
+  border: 2px solid var(--vp-c-border);
+}
+
+.vp-doc table th {
+  background: var(--vp-c-brand-1);
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid var(--vp-c-border);
+}
+
+.vp-doc table td {
+  border: 1px solid var(--vp-c-border);
+}
+
+/* Angular decorative elements */
+.VPDoc .container::before {
+  content: '';
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 100px;
+  height: 100px;
+  border: 2px solid var(--vp-c-brand-1);
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%);
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Search box industrial style */
+.DocSearch-Button {
+  border: 2px solid var(--vp-c-border) !important;
+  font-weight: 600;
+}
+
+/* Footer industrial touch */
+.VPFooter {
+  border-top: 3px solid var(--vp-c-border);
 }
