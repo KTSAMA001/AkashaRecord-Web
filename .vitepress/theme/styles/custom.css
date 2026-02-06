@@ -1,5 +1,6 @@
 /**
  * 自定义样式 - 阿卡西记录主题（明日方舟工业风）
+ * 视觉元素：网点(Halftone) · 网格(Grid) · 噪点(Noise) · 切角(Clip-path) · 亚克力(Acrylic)
  */
 
 /* ======= 品牌色（工业橙/琥珀） ======= */
@@ -11,7 +12,11 @@
   --ak-accent: #FF6B2B;
   --ak-accent-dim: rgba(255, 107, 43, 0.25);
   --ak-border: #d0d0d0;
-  --ak-bg-grid: rgba(0, 0, 0, 0.02);
+  --ak-bg-grid: rgba(0, 0, 0, 0.03);
+  --ak-bg-dot: rgba(0, 0, 0, 0.06);
+  --ak-noise-opacity: 0.03;
+  --ak-scanline-opacity: 0.015;
+  --ak-grid-color: rgba(255, 107, 43, 0.06);
 }
 
 .dark {
@@ -22,7 +27,11 @@
   --ak-accent: #FF8A50;
   --ak-accent-dim: rgba(255, 138, 80, 0.2);
   --ak-border: #3a3a3a;
-  --ak-bg-grid: rgba(255, 255, 255, 0.02);
+  --ak-bg-grid: rgba(255, 255, 255, 0.03);
+  --ak-bg-dot: rgba(255, 255, 255, 0.06);
+  --ak-noise-opacity: 0.04;
+  --ak-scanline-opacity: 0.02;
+  --ak-grid-color: rgba(255, 138, 80, 0.06);
 }
 
 /* ======= 首页 Hero（工业风渐变） ======= */
@@ -178,4 +187,150 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--vp-c-brand-2);
+}
+
+/* ======= 全局噪点纹理叠加层 ======= */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: var(--ak-noise-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ======= 全局扫描线（CRT 效果） ======= */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: var(--ak-scanline-opacity);
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 1px,
+    rgba(0, 0, 0, 0.3) 1px,
+    rgba(0, 0, 0, 0.3) 2px
+  );
+}
+
+/* ======= 网格底纹（蓝图感） - 首页 ======= */
+.VPHome {
+  position: relative;
+}
+
+.VPHome::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, var(--ak-grid-color), var(--ak-grid-color) 1px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(90deg, var(--ak-grid-color), var(--ak-grid-color) 1px, transparent 1px, transparent 60px);
+}
+
+/* ======= 网点/半色调纹理（Feature 卡片） ======= */
+.VPFeature::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: radial-gradient(circle, var(--ak-bg-dot) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+.VPFeature > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ======= 警戒斜线装饰（Hero 顶部） ======= */
+.VPHero {
+  position: relative;
+}
+
+.VPHero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 10;
+  opacity: 0.6;
+  background: repeating-linear-gradient(-45deg, var(--ak-accent), var(--ak-accent) 4px, transparent 4px, transparent 8px);
+}
+
+/* ======= 亚克力/毛玻璃（导航栏） ======= */
+.VPNavBar .wrapper {
+  backdrop-filter: blur(12px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(1.2) !important;
+}
+
+/* ======= 暗角效果（首页 Vignette） ======= */
+.VPHome::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.08) 100%);
+}
+
+.dark .VPHome::after {
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+/* ======= Feature 区块标注 ======= */
+.VPFeatures {
+  position: relative;
+}
+
+.VPFeatures::before {
+  content: '// MODULES';
+  display: block;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: var(--ak-accent);
+  opacity: 0.5;
+  letter-spacing: 0.15em;
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ======= 代码块切角 ======= */
+.vp-doc div[class*='language-'] {
+  border-radius: 0 !important;
+  border: 1px solid var(--ak-border);
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+}
+
+/* ======= 自定义容器切角 ======= */
+.vp-doc .custom-block {
+  border-radius: 0 !important;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+
+/* ======= h2 左侧装饰线 ======= */
+.vp-doc h2 {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.vp-doc h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--ak-accent), transparent);
 }
