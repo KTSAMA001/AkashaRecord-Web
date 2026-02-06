@@ -100,38 +100,146 @@ function copyContent() {
     const src = path.join(CONTENT_DIR, dir)
     const dest = path.join(PROJECT_ROOT, dir)
     if (fs.existsSync(src)) {
-      // 保留 index.md（手写的分类首页）
-      const indexFile = path.join(dest, 'index.md')
-      let indexContent = null
-      if (fs.existsSync(indexFile)) {
-        indexContent = fs.readFileSync(indexFile, 'utf-8')
-      }
-
-      // 清除旧文件（但保留根目录）
+      // 清除旧文件（完全重建，index.md 将由 generateCategoryIndexes 动态生成）
       if (fs.existsSync(dest)) {
-        for (const entry of fs.readdirSync(dest, { withFileTypes: true })) {
-          if (entry.name === 'index.md') continue
-          const p = path.join(dest, entry.name)
-          fs.rmSync(p, { recursive: true })
-        }
-      } else {
-        fs.mkdirSync(dest, { recursive: true })
+        fs.rmSync(dest, { recursive: true })
       }
+      fs.mkdirSync(dest, { recursive: true })
 
       // 复制内容文件
       copyDirRecursive(src, dest, true)
-
-      // 恢复 index.md
-      if (indexContent) {
-        fs.writeFileSync(indexFile, indexContent)
-      }
 
       // 递归为没有 index.md 的子目录生成默认索引页，解决 Nginx 403 问题
       generateMissingIndexesRecursive(dest)
     }
   }
 
+  // 从 INDEX.md 解析元数据，动态生成分类首页
+  generateCategoryIndexes()
+
   console.log('✅ 内容同步完成')
+}
+
+// ====== 2.5 解析 INDEX.md 并动态生成分类首页 ======
+
+// 三大分类的页面配置
+const SECTION_CONFIG = {
+  experiences: {
+    icon: '📝',
+    title: '经验记录',
+    desc: '收录在各技术领域实践中积累的解决方案、踩坑记录和最佳实践。',
+    footer: '> 从左侧导航栏选择分类，或使用搜索功能查找特定内容。',
+  },
+  knowledge: {
+    icon: '📚',
+    title: '知识文档',
+    desc: '系统整理的理论知识、概念解析和技术参考文档。',
+    footer: '> 知识文档提供理论支撑，与经验记录交叉引用形成完整知识网络。',
+  },
+  ideas: {
+    icon: '💡',
+    title: '灵感火花',
+    desc: '随时记录的创意灵感和项目构想。',
+    footer: '> 灵感不设限制，随想随记。',
+  },
+}
+
+/**
+ * 解析 INDEX.md，提取每个分类下子目录的元数据（中文名、描述）
+ * 表格格式：| 目录 | 中文名 | 描述 | 文件 |
+ * 返回 { experiences: [{dir, label, desc, files}], knowledge: [...], ideas: [...] }
+ */
+function parseIndexMd() {
+  const indexPath = path.join(AKASHA_LOCAL, 'references', 'INDEX.md')
+  if (!fs.existsSync(indexPath)) {
+    console.warn('⚠️ 未找到 references/INDEX.md，跳过元数据解析')
+    return {}
+  }
+
+  const content = fs.readFileSync(indexPath, 'utf-8')
+  const result = {}
+
+  // 匹配 "## xxx section_name/" 格式的标题，然后解析其后的表格
+  const sectionRegex = /^## .+ (experiences|knowledge|ideas)\/\s*$/gm
+  let match
+  while ((match = sectionRegex.exec(content)) !== null) {
+    const sectionName = match[1]
+    const startPos = match.index + match[0].length
+
+    // 找到下一个 ## 标题或文件末尾
+    const nextSection = content.indexOf('\n## ', startPos)
+    const block = content.substring(startPos, nextSection === -1 ? undefined : nextSection)
+
+    // 解析表格行：| 目录 | 中文名 | 描述 | 文件 |
+    const rows = []
+    const lines = block.split('\n')
+    for (const line of lines) {
+      // 跳过表头和分隔线
+      if (!line.startsWith('|')) continue
+      if (line.includes('---')) continue
+      if (line.includes('目录')) continue // 表头行
+
+      const cols = line.split('|').map(c => c.trim()).filter(c => c.length > 0)
+      if (cols.length >= 3) {
+        rows.push({
+          dir: cols[0].replace(/\/$/, ''), // 去掉尾部 /
+          label: cols[1],
+          desc: cols[2],
+          files: cols[3] || '',
+        })
+      }
+    }
+
+    result[sectionName] = rows
+  }
+
+  return result
+}
+
+/**
+ * 根据 INDEX.md 元数据，动态生成三大分类的 index.md 首页
+ */
+function generateCategoryIndexes() {
+  const meta = parseIndexMd()
+
+  for (const [section, config] of Object.entries(SECTION_CONFIG)) {
+    const destDir = path.join(PROJECT_ROOT, section)
+    if (!fs.existsSync(destDir)) continue
+
+    const categories = meta[section] || []
+
+    // 如果 INDEX.md 里没有该分类的元数据，回退扫描目录自动生成
+    let tableRows
+    if (categories.length > 0) {
+      tableRows = categories.map(c => `| [${c.label}](./${c.dir}/) | ${c.desc} |`).join('\n')
+      console.log(`📄 ${section}/index.md ← INDEX.md 元数据（${categories.length} 个子分类）`)
+    } else {
+      // 回退：扫描目录自动生成（无描述）
+      const entries = fs.readdirSync(destDir, { withFileTypes: true })
+        .filter(e => e.isDirectory() && !e.name.startsWith('.'))
+        .sort((a, b) => a.name.localeCompare(b.name))
+      tableRows = entries.map(e => `| [${e.name}](./${e.name}/) | - |`).join('\n')
+      console.log(`📄 ${section}/index.md ← 目录扫描（${entries.length} 个子分类，无 INDEX.md 元数据）`)
+    }
+
+    const indexContent = `---
+title: ${config.icon} ${config.title}
+---
+
+# ${config.icon} ${config.title}
+
+${config.desc}
+
+## 分类一览
+
+| 分类 | 说明 |
+|------|------|
+${tableRows}
+
+${config.footer}
+`
+    fs.writeFileSync(path.join(destDir, 'index.md'), indexContent)
+  }
 }
 
 /**
