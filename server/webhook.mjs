@@ -61,20 +61,38 @@ async function runBuild() {
   console.log('='.repeat(50))
 
   try {
-    // Step 1: 同步内容
-    console.log('📥 Step 1/2: 同步阿卡西记录内容...')
+    // Step 0: 拉取网站仓库最新代码（favicon、脚本、配置等变更）
+    console.log('📥 Step 0/3: 拉取网站仓库最新代码...')
+    try {
+      execSync('git checkout . && git clean -fd && git pull --ff-only', {
+        cwd: PROJECT_DIR,
+        stdio: 'inherit',
+        timeout: 60000,
+      })
+    } catch (pullErr) {
+      console.warn('⚠️ git pull 失败，尝试 fetch + reset...')
+      execSync('git fetch origin && git reset --hard origin/main', {
+        cwd: PROJECT_DIR,
+        stdio: 'inherit',
+        timeout: 60000,
+      })
+    }
+
+    // Step 1: 同步阿卡西记录内容
+    console.log('📥 Step 1/3: 同步阿卡西记录内容...')
     execSync('node scripts/sync-content.mjs', {
       cwd: PROJECT_DIR,
       stdio: 'inherit',
-      timeout: 60000, // 60 秒超时
+      timeout: 120000, // 同步可能需要拉取远程仓库
+      env: { ...process.env, GITHUB_MIRROR: process.env.GITHUB_MIRROR || '' },
     })
 
     // Step 2: 构建 VitePress
-    console.log('🔨 Step 2/2: 构建 VitePress 站点...')
+    console.log('🔨 Step 2/3: 构建 VitePress 站点...')
     execSync('./node_modules/.bin/vitepress build', {
       cwd: PROJECT_DIR,
       stdio: 'inherit',
-      timeout: 120000, // 120 秒超时
+      timeout: 120000,
       env: { ...process.env, NODE_OPTIONS: '--max-old-space-size=1024' },
     })
 
