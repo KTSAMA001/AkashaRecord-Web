@@ -18,15 +18,25 @@ const PUBLIC_DIR = path.join(PROJECT_ROOT, 'public')
 const API_DIR = path.join(PUBLIC_DIR, 'api')
 
 // 阿卡西记录数据仓库
-const AKASHA_REPO = 'https://github.com/KTSAMA001/AgentSkill-Akasha-KT.git'
+// 支持通过环境变量 GITHUB_MIRROR 配置镜像前缀（如 https://ghfast.top/）
+const GITHUB_MIRROR = process.env.GITHUB_MIRROR || ''
+const AKASHA_REPO_ORIGIN = 'https://github.com/KTSAMA001/AgentSkill-Akasha-KT.git'
+const AKASHA_REPO = GITHUB_MIRROR
+  ? AKASHA_REPO_ORIGIN.replace('https://github.com/', GITHUB_MIRROR)
+  : AKASHA_REPO_ORIGIN
 const AKASHA_LOCAL = path.join(PROJECT_ROOT, '.akasha-repo')
 
 // ====== 1. 克隆 / 拉取阿卡西记录仓库 ======
 function syncRepo() {
   if (fs.existsSync(path.join(AKASHA_LOCAL, '.git'))) {
-    console.log('📥 正在拉取阿卡西记录最新内容...')
+    // 每次同步前更新 remote URL（兼容镜像切换）
     try {
-      execSync('git pull --ff-only', { cwd: AKASHA_LOCAL, stdio: 'pipe' })
+      execSync(`git remote set-url origin "${AKASHA_REPO}"`, { cwd: AKASHA_LOCAL, stdio: 'pipe' })
+    } catch {}
+
+    console.log(`📥 正在拉取阿卡西记录最新内容...${GITHUB_MIRROR ? '（镜像: ' + GITHUB_MIRROR + '）' : ''}`)
+    try {
+      execSync('git pull --ff-only', { cwd: AKASHA_LOCAL, stdio: 'pipe', timeout: 30000 })
       console.log('✅ 拉取完成')
     } catch (e) {
       console.warn('⚠️ 拉取失败，尝试 reset...')
@@ -34,15 +44,17 @@ function syncRepo() {
         execSync('git fetch origin && git reset --hard origin/main', {
           cwd: AKASHA_LOCAL,
           stdio: 'pipe',
+          timeout: 30000,
         })
       } catch (e2) {
         console.warn('⚠️ 网络同步完全失败，将使用本地缓存继续...')
       }
     }
   } else {
-    console.log('📦 首次克隆阿卡西记录仓库...')
+    console.log(`📦 首次克隆阿卡西记录仓库...${GITHUB_MIRROR ? '（镜像: ' + GITHUB_MIRROR + '）' : ''}`)
     execSync(`git clone --depth 1 ${AKASHA_REPO} "${AKASHA_LOCAL}"`, {
       stdio: 'pipe',
+      timeout: 60000,
     })
     console.log('✅ 克隆完成')
   }
