@@ -273,7 +273,7 @@
 
 /* Monospace tech font for code */
 .vp-doc code {
-  font-family: 'Courier New', monospace;
+  font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
   font-weight: 600;
 }
 

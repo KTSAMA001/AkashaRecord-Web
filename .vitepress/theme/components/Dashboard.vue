@@ -169,7 +169,7 @@ onMounted(async () => {
   color: var(--accent-color);
   line-height: 1.2;
   letter-spacing: 1px;
-  font-family: 'Courier New', monospace;
+  font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
 }
 
 .stat-label {
@@ -269,7 +269,7 @@ onMounted(async () => {
   font-size: 0.8rem;
   color: var(--vp-c-text-3);
   white-space: nowrap;
-  font-family: 'Courier New', monospace;
+  font-family: 'Courier New', 'Consolas', 'Monaco', monospace;
   font-weight: 600;
 }
 
