@@ -284,6 +284,12 @@ body::after {
   }
 }
 
+/* Safari 拉伸窗口时 fixed 元素重绘有延迟，遮罩边缘漏出内容 */
+/* 用 100vw/100vh + 超大 outset 的 box-shadow 取代 inset，无论拉多快都能覆盖 */
+.VPBackdrop {
+  box-shadow: 0 0 0 200vmax var(--vp-backdrop-bg-color) !important;
+}
+
 /* ======= 暗角效果（首页 Vignette） ======= */
 .VPHome::after {
   content: '';
