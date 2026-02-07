@@ -1,5 +1,5 @@
 ---
-title: python-web-scraping-antibot.md
+title: nodriver 用法（推荐，无 Selenium 依赖）
 tags:
   - python
   - experience
@@ -8,16 +8,23 @@ tags:
   - anti-bot
 status: ✅ 已验证
 description: 网页抓取与反爬虫绕过
+sourceDate: '2026-02-01'
+recordDate: '2026-02-01'
+version: nodriver 0.48+ / playwright-stealth 2.0.1 / undetected-chromedriver 3.5.5
 ---
 ---
 
 ## 网页抓取与反爬虫绕过
 
-**收录日期**：2026-02-01
-**来源日期**：2026-02-01
-**标签**：#python #experience #playwright #selenium #anti-bot
-**状态**：✅ 已验证
-**适用版本**：nodriver 0.48+ / playwright-stealth 2.0.1 / undetected-chromedriver 3.5.5
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-01</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=python" class="meta-tag">Python</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=playwright" class="meta-tag">Playwright</a> <a href="/records/?tag=selenium" class="meta-tag">Selenium</a> <a href="/records/?tag=anti-bot" class="meta-tag">反爬虫</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">nodriver 0.48+ / playwright-stealth 2.0.1 / undetected-chromedriver 3.5.5</span></div>
+</div>
+
 
 **问题/场景**：
 

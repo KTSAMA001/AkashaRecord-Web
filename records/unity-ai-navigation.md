@@ -1,5 +1,5 @@
 ---
-title: unity-ai-navigation.md
+title: Unity AI Navigation 知识
 tags:
   - unity
   - knowledge
@@ -7,6 +7,10 @@ tags:
   - ai-navigation
 status: "\U0001F4D8 有效"
 description: Unity AI Navigation 知识
+source: Unity 官方文档 / 社区验证
+sourceDate: '2026-02-05'
+recordDate: '2026-02-05'
+credibility: ⭐⭐⭐⭐ (官方文档+实践验证)
 ---
 # Unity AI Navigation 知识
 
@@ -16,12 +20,16 @@ description: Unity AI Navigation 知识
 
 ## 多场景独立烘焙与运行时连接机制
 
-**标签**：#unity #knowledge #nav-mesh #ai-navigation
-**来源**：Unity 官方文档 / 社区验证
-**来源日期**：2026-02-05
-**收录日期**：2026-02-05
-**可信度**：⭐⭐⭐⭐ (官方文档+实践验证)
-**状态**：📘 有效
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=nav-mesh" class="meta-tag">NavMesh</a> <a href="/records/?tag=ai-navigation" class="meta-tag">AI 寻路</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 / 社区验证</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-05</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-05</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (官方文档+实践验证)</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+</div>
+
 
 ### 定义/概念
 

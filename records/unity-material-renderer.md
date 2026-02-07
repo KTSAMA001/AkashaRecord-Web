@@ -1,5 +1,5 @@
 ---
-title: unity-material-renderer.md
+title: Unity 渲染相关知识
 tags:
   - unity
   - knowledge
@@ -7,17 +7,25 @@ tags:
   - material
 status: "\U0001F4D8 有效"
 description: Unity 渲染相关知识
+source: Unity 官方文档
+sourceDate: '2026-01-31'
+recordDate: '2026-02-02'
+credibility: ⭐⭐⭐⭐⭐(官方)
 ---
 # Unity 渲染相关知识
 
 ## Renderer.material 与 Renderer.materials 的实例化行为
 
-**标签**：#unity #knowledge #rendering #material
-**来源**：Unity 官方文档
-**来源日期**：2026-01-31
-**收录日期**：2026-02-02
-**可信度**：⭐⭐⭐⭐⭐(官方)
-**状态**：📘 有效
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering" class="meta-tag">渲染</a> <a href="/records/?tag=material" class="meta-tag">材质</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-02</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐(官方)</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+</div>
+
 
 ### 定义/概念
 

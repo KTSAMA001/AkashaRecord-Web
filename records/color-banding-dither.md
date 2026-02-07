@@ -1,5 +1,5 @@
 ---
-title: color-banding-dither.md
+title: 色带（Color Banding）与抖动（Dithering）知识
 tags:
   - graphics
   - knowledge
@@ -8,6 +8,13 @@ tags:
   - hdr
 status: "\U0001F4D8 有效"
 description: 色带（Color Banding）与抖动（Dithering）知识
+source: Wikipedia（Colour banding / Dither）、FrostKiwi（LUT 文章）
+sourceDate: >-
+  2026-01-15（Dither 页面最后编辑时间） / 2026-01-04（Colour banding 页面最后编辑时间） /
+  2024-02-29（FrostKiwi LUT 文章最后编辑时间）
+recordDate: '2026-02-05'
+updateDate: '2026-02-05'
+credibility: ⭐⭐⭐（社区科普 + 工程广泛实践）
 ---
 # 色带（Color Banding）与抖动（Dithering）知识
 
@@ -17,13 +24,17 @@ description: 色带（Color Banding）与抖动（Dithering）知识
 
 ## Color Banding（色带）是什么
 
-**标签**：#graphics #knowledge #color-banding #dither #hdr
-**来源**：Wikipedia（Colour banding / Dither）、FrostKiwi（LUT 文章）
-**来源日期**：2026-01-15（Dither 页面最后编辑时间） / 2026-01-04（Colour banding 页面最后编辑时间） / 2024-02-29（FrostKiwi LUT 文章最后编辑时间）
-**收录日期**：2026-02-05
-**更新日期**：2026-02-05
-**可信度**：⭐⭐⭐（社区科普 + 工程广泛实践）
-**状态**：📘 有效
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=color-banding" class="meta-tag">色带</a> <a href="/records/?tag=dither" class="meta-tag">抖动</a> <a href="/records/?tag=hdr" class="meta-tag">HDR</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Wikipedia（Colour banding / Dither）、FrostKiwi（LUT 文章）</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-15（Dither 页面最后编辑时间） / 2026-01-04（Colour banding 页面最后编辑时间） / 2024-02-29（FrostKiwi LUT 文章最后编辑时间）</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-05</span></div>
+<div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-05</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐（社区科普 + 工程广泛实践）</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+</div>
+
 
 ### 定义/概念
 

@@ -1,11 +1,13 @@
 ---
-title: agent-skills-spec.md
+title: Agent Skills 规范
 tags:
   - ai
   - knowledge
   - agent-skills
 status: ''
 description: Agent Skills 规范
+source: '[agentskills.io](https://agentskills.io/specification)'
+credibility: ⭐⭐⭐⭐⭐ (官方规范)
 ---
 # Agent Skills 规范
 
@@ -15,9 +17,13 @@ description: Agent Skills 规范
 
 ## Agent Skills 概述
 
-**标签**：#ai #knowledge #agent-skills
-**来源**：[agentskills.io](https://agentskills.io/specification)
-**可信度**：⭐⭐⭐⭐⭐ (官方规范)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=agent-skills" class="meta-tag">Agent Skills</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value"><a href="https://agentskills.io/specification" target="_blank" rel="noopener">agentskills.io</a></span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (官方规范)</span></div>
+</div>
+
 
 ### 定义/概念
 

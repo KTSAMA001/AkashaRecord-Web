@@ -1,5 +1,5 @@
 ---
-title: compute-shader-gpu-parallel.md
+title: ComputeShader 与 GPU 并行计算
 tags:
   - graphics
   - shader
@@ -8,6 +8,10 @@ tags:
   - gpgpu
 status: "\U0001F4D8 有效"
 description: GPU 通用计算 (GPGPU) 相关原理与概念
+source: Unity_URP_Learning 仓库实践 + Unity 官方文档
+sourceDate: '2024-08-08'
+recordDate: '2026-02-07'
+credibility: ⭐⭐⭐⭐ (官方文档 + 实践验证)
 ---
 # ComputeShader 与 GPU 并行计算
 
@@ -17,12 +21,16 @@ description: GPU 通用计算 (GPGPU) 相关原理与概念
 
 ## ComputeShader 基础概念 {#compute-shader-basics}
 
-**标签**：#graphics #shader #knowledge #compute-shader #gpgpu
-**来源**：Unity_URP_Learning 仓库实践 + Unity 官方文档
-**来源日期**：2024-08-08
-**收录日期**：2026-02-07
-**可信度**：⭐⭐⭐⭐ (官方文档 + 实践验证)
-**状态**：📘 有效
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=compute-shader" class="meta-tag">计算着色器</a> <a href="/records/?tag=gpgpu" class="meta-tag">GPGPU</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity_URP_Learning 仓库实践 + Unity 官方文档</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (官方文档 + 实践验证)</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -121,12 +129,16 @@ void FrustumCulling(uint3 id : SV_DispatchThreadID)
 
 ## GPU 视锥剔除 (Frustum Culling) {#gpu-frustum-culling}
 
-**标签**：#graphics #shader #knowledge #compute-shader #gpgpu
-**来源**：Unity_URP_Learning 仓库实践
-**来源日期**：2024-08-08
-**收录日期**：2026-02-07
-**可信度**：⭐⭐⭐ (个人实践验证)
-**状态**：📘 有效
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=compute-shader" class="meta-tag">计算着色器</a> <a href="/records/?tag=gpgpu" class="meta-tag">GPGPU</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity_URP_Learning 仓库实践</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐ (个人实践验证)</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+</div>
+
 
 ### 定义/概念
 

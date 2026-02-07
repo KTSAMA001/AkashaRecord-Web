@@ -1,5 +1,5 @@
 ---
-title: color-space-gamma-linear.md
+title: 色彩空间知识
 tags:
   - graphics
   - knowledge
@@ -8,6 +8,10 @@ tags:
   - linear
 status: ''
 description: 色彩空间知识
+source: TaTa 仓库 - ColorSpace/Gamma&Linear.md
+sourceDate: '2021-01-06'
+recordDate: '2026-01-31'
+credibility: ⭐⭐⭐⭐ (技术博客 + 实践验证)
 ---
 # 色彩空间知识
 
@@ -17,11 +21,15 @@ description: 色彩空间知识
 
 ## Gamma 与 Linear 色彩空间基础
 
-**标签**：#graphics #knowledge #color-space #gamma #linear
-**来源**：TaTa 仓库 - ColorSpace/Gamma&Linear.md
-**来源日期**：2021-01-06
-**收录日期**：2026-01-31
-**可信度**：⭐⭐⭐⭐ (技术博客 + 实践验证)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=color-space" class="meta-tag">色彩空间</a> <a href="/records/?tag=gamma" class="meta-tag">Gamma</a> <a href="/records/?tag=linear" class="meta-tag">线性空间</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - ColorSpace/Gamma&Linear.md</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2021-01-06</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (技术博客 + 实践验证)</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -51,11 +59,15 @@ description: 色彩空间知识
 
 ## Unity 色彩空间设置
 
-**标签**：#graphics #knowledge #color-space #gamma #linear
-**来源**：TaTa 仓库 - ColorSpace/Gamma&Linear.md
-**来源日期**：2021-01-06
-**收录日期**：2026-01-31
-**可信度**：⭐⭐⭐⭐ (技术博客 + 实践验证)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=color-space" class="meta-tag">色彩空间</a> <a href="/records/?tag=gamma" class="meta-tag">Gamma</a> <a href="/records/?tag=linear" class="meta-tag">线性空间</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - ColorSpace/Gamma&Linear.md</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2021-01-06</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (技术博客 + 实践验证)</span></div>
+</div>
+
 
 ### Gamma 空间
 
@@ -88,11 +100,15 @@ description: 色彩空间知识
 
 ## Linear 空间下的 LUT 处理
 
-**标签**：#graphics #knowledge #color-space #gamma #linear
-**来源**：TaTa 仓库 - ColorSpace/Gamma&Linear.md
-**来源日期**：2021-01-06
-**收录日期**：2026-01-31
-**可信度**：⭐⭐⭐⭐ (技术博客 + 实践验证)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=color-space" class="meta-tag">色彩空间</a> <a href="/records/?tag=gamma" class="meta-tag">Gamma</a> <a href="/records/?tag=linear" class="meta-tag">线性空间</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - ColorSpace/Gamma&Linear.md</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2021-01-06</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (技术博客 + 实践验证)</span></div>
+</div>
+
 
 ### 问题背景
 

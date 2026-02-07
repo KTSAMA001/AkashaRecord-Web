@@ -1,5 +1,5 @@
 ---
-title: unity-editor-api.md
+title: Unity Editor 开发知识
 tags:
   - unity
   - knowledge
@@ -7,18 +7,27 @@ tags:
   - custom-editor
 status: "\U0001F4D8 有效"
 description: Unity Editor 开发知识
+source: Unity Scripting API
+sourceDate: '2026-02-02'
+recordDate: '2026-02-02'
+updateDate: '2026-02-02'
+credibility: ⭐⭐⭐⭐⭐(官方)
 ---
 # Unity Editor 开发知识
 
 ## [CustomEditor] 对子类的继承支持
 
-**标签**：#unity #knowledge #editor #custom-editor
-**来源**：Unity Scripting API
-**来源日期**：2026-02-02
-**收录日期**：2026-02-02
-**更新日期**：2026-02-02
-**可信度**：⭐⭐⭐⭐⭐(官方)
-**状态**：📘 有效
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=editor" class="meta-tag">编辑器</a> <a href="/records/?tag=custom-editor" class="meta-tag">自定义编辑器</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity Scripting API</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-02</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-02</span></div>
+<div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-02</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐(官方)</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+</div>
+
 
 ### 定义/概念
 

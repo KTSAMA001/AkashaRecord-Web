@@ -1,5 +1,5 @@
 ---
-title: cicd-vitepress-deploy.md
+title: CI/CD 经验
 tags:
   - tools
   - experience
@@ -8,6 +8,10 @@ tags:
   - github-actions
 status: ✅ 已验证
 description: 持续集成/持续部署相关经验
+sourceDate: '2026-02-07'
+recordDate: '2026-02-07'
+updateDate: '2026-02-07'
+version: VitePress 1.x + Nginx 1.26 + 宝塔面板 9.x + Alibaba Cloud Linux 3
 ---
 # CI/CD 经验
 
@@ -19,12 +23,16 @@ description: 持续集成/持续部署相关经验
 
 ## VitePress（静态站）在宝塔 Nginx 部署：403/404、路径迁移、Webhook 自动更新踩坑记录
 
-**收录日期**：2026-02-07
-**来源日期**：2026-02-07
-**更新日期**：2026-02-07
-**标签**：#tools #experience #cicd #vitepress #github-actions
-**状态**：✅ 已验证
-**适用版本**：VitePress 1.x + Nginx 1.26 + 宝塔面板 9.x + Alibaba Cloud Linux 3
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=cicd" class="meta-tag">CI/CD</a> <a href="/records/?tag=vitepress" class="meta-tag">VitePress</a> <a href="/records/?tag=github-actions" class="meta-tag">GitHub Actions</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">VitePress 1.x + Nginx 1.26 + 宝塔面板 9.x + Alibaba Cloud Linux 3</span></div>
+</div>
+
 
 **问题/场景**：
 

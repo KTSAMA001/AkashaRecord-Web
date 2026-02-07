@@ -1,21 +1,28 @@
 ---
-title: mcp-protocol-agent-dev.md
+title: MCP 服务启动示例
 tags:
   - ai
   - experience
   - mcp
 status: ✅ 已验证
 description: MCP 协议与 Agent 服务开发经验
+sourceDate: 2026-01-30 ~ 2026-02-01
+recordDate: '2026-02-01'
+version: MCP 0.3+ / FastMCP 0.2+ / AstrBot v4.13.2+
 ---
 ---
 
 ## MCP 协议与 Agent 服务开发经验
 
-**收录日期**：2026-02-01
-**来源日期**：2026-01-30 ~ 2026-02-01
-**标签**：#ai #experience #mcp
-**状态**：✅ 已验证
-**适用版本**：MCP 0.3+ / FastMCP 0.2+ / AstrBot v4.13.2+
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-30 ~ 2026-02-01</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=mcp" class="meta-tag">MCP 协议</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">MCP 0.3+ / FastMCP 0.2+ / AstrBot v4.13.2+</span></div>
+</div>
+
 
 **问题/场景**：
 

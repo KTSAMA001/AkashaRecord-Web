@@ -1,5 +1,5 @@
 ---
-title: search-api-services.md
+title: 搜索 API 服务对比
 tags:
   - tools
   - knowledge
@@ -7,15 +7,21 @@ tags:
   - serp
 status: ✅ 已验证
 description: 搜索 API 服务对比
+sourceDate: '2026-02-01'
+recordDate: '2026-02-01'
 ---
 ---
 
 ## 搜索 API 服务对比
 
-**收录日期**：2026-02-01
-**来源日期**：2026-02-01
-**标签**：#tools #knowledge #search-api #serp
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-01</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=search-api" class="meta-tag">搜索 API</a> <a href="/records/?tag=serp" class="meta-tag">SERP</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 **适用场景**：MCP 服务、AI Agent、SEO 分析、数据采集
 
 **概述**：

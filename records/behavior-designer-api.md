@@ -1,5 +1,5 @@
 ---
-title: behavior-designer-api.md
+title: BehaviorDesigner 相关知识
 tags:
   - unity
   - knowledge
@@ -7,6 +7,12 @@ tags:
   - ai
 status: "\U0001F4D8 有效"
 description: Behavior Designer 行为树插件的技术规范、API 和原理
+source: >-
+  [Opsive
+  官方文档](https://opsive.com/support/documentation/behavior-designer/task-attributes/)
+sourceDate: '2026-02-03'
+recordDate: '2026-02-03'
+credibility: ⭐⭐⭐⭐⭐(官方)
 ---
 # BehaviorDesigner 相关知识
 
@@ -18,12 +24,16 @@ description: Behavior Designer 行为树插件的技术规范、API 和原理
 
 ## BehaviorDesigner Task Attributes 系统
 
-**标签**：#unity #knowledge #behavior-designer #ai
-**来源**：[Opsive 官方文档](https://opsive.com/support/documentation/behavior-designer/task-attributes/)
-**来源日期**：2026-02-03
-**收录日期**：2026-02-03
-**可信度**：⭐⭐⭐⭐⭐(官方)
-**状态**：📘 有效
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=behavior-designer" class="meta-tag">行为树</a> <a href="/records/?tag=ai" class="meta-tag">AI</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value"><a href="https://opsive.com/support/documentation/behavior-designer/task-attributes/" target="_blank" rel="noopener">Opsive 官方文档</a></span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-03</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-03</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐(官方)</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -66,12 +76,16 @@ BehaviorDesigner 提供一系列 Attribute 用于定义 Task 的元数据和显�
 
 ## BehaviorDesigner ObjectDrawer 系统
 
-**标签**：#unity #knowledge #behavior-designer #ai
-**来源**：[Opsive 官方文档](https://opsive.com/support/documentation/behavior-designer/object-drawers/)
-**来源日期**：2026-02-03
-**收录日期**：2026-02-03
-**可信度**：⭐⭐⭐⭐⭐(官方)
-**状态**：📘 有效
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=behavior-designer" class="meta-tag">行为树</a> <a href="/records/?tag=ai" class="meta-tag">AI</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value"><a href="https://opsive.com/support/documentation/behavior-designer/object-drawers/" target="_blank" rel="noopener">Opsive 官方文档</a></span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-03</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-03</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐(官方)</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+</div>
+
 
 ### 定义/概念
 

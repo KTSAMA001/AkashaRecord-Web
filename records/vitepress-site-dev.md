@@ -1,5 +1,5 @@
 ---
-title: vitepress-site-dev.md
+title: VitePress 站点开发经验
 tags:
   - tools
   - web
@@ -7,6 +7,7 @@ tags:
   - vitepress
 status: ✅ 已验证
 description: VitePress 静态站点生成器相关经验
+recordDate: '2026-02-07'
 ---
 # VitePress 站点开发经验
 
@@ -18,9 +19,13 @@ description: VitePress 静态站点生成器相关经验
 
 ## VitePress 动态侧边栏标签 + 分类索引页自动生成
 
-**收录日期**：2026-02-07
-**标签**：#tools #web #experience #vitepress
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=vitepress" class="meta-tag">VitePress</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -54,9 +59,13 @@ sync-content.mjs 中新增：
 
 ## Safari SVG Favicon 兼容性
 
-**收录日期**：2026-02-07
-**标签**：#tools #web #experience #vitepress
-**状态**：⚠️ 待验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=vitepress" class="meta-tag">VitePress</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">⚠️ 待验证</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -82,9 +91,13 @@ Safari 对 SVG favicon 支持不佳，特别是 HTTP（非 HTTPS）站点。需�
 
 ## VitePress SPA 路由中 position:fixed 伪元素泄漏
 
-**收录日期**：2026-02-07
-**标签**：#tools #web #experience #vitepress
-**状态**：⚠️ 待验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=vitepress" class="meta-tag">VitePress</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">⚠️ 待验证</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -104,9 +117,13 @@ Safari 对 SVG favicon 支持不佳，特别是 HTTP（非 HTTPS）站点。需�
 
 ## 全站 Emoji 替换为 SVG 图标的完整流程 {#emoji-to-svg}
 
-**收录日期**：2026-02-07
-**标签**：#tools #web #experience #vitepress
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=vitepress" class="meta-tag">VitePress</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -144,9 +161,13 @@ Safari 对 SVG favicon 支持不佳，特别是 HTTP（非 HTTPS）站点。需�
 
 ## img 标签的 SVG 无法继承 CSS color，需用 filter 着色 {#img-svg-color-filter}
 
-**收录日期**：2026-02-07
-**标签**：#tools #web #experience #vitepress
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=vitepress" class="meta-tag">VitePress</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -182,9 +203,13 @@ filter: invert(48%) sepia(89%) saturate(1600%) hue-rotate(3deg) brightness(101%)
 
 ## VitePress VPFeature 图标 HTML 结构（无 .icon 包裹层） {#vpfeature-icon-structure}
 
-**收录日期**：2026-02-07
-**标签**：#tools #web #experience #vitepress
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=vitepress" class="meta-tag">VitePress</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -221,9 +246,13 @@ VitePress 对 `{ src: '...' }` 格式的 feature icon 生成的 HTML 结构是�
 
 ## 侧边栏自定义高亮竖条与文字间距 {#sidebar-padding-left}
 
-**收录日期**：2026-02-07
-**标签**：#tools #web #experience #vitepress
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=vitepress" class="meta-tag">VitePress</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 
 **问题/场景**：
 

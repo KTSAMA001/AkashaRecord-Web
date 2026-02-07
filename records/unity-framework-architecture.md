@@ -1,5 +1,5 @@
 ---
-title: unity-framework-architecture.md
+title: Unity C# 编程经验
 tags:
   - unity
   - csharp
@@ -7,6 +7,7 @@ tags:
   - architecture
 status: ''
 description: Unity 中的 C# 脚本编程相关经验
+recordDate: '2026-01-28'
 ---
 # Unity C# 编程经验
 
@@ -20,8 +21,12 @@ description: Unity 中的 C# 脚本编程相关经验
 
 ## KT_Core 框架架构设计经验总结
 
-**日期**：2026-01-28  
-**标签**：#unity #csharp #experience #architecture
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-28</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=csharp" class="meta-tag">C#</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=architecture" class="meta-tag">架构设计</a></span></div>
+</div>
+
 **问题/场景**：
 
 审查 ProjectKT 项目的 KT_Core 框架，总结其架构设计模式和最佳实践。

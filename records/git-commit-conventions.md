@@ -1,11 +1,12 @@
 ---
-title: git-commit-conventions.md
+title: Git 工作流经验
 tags:
   - git
   - reference
   - conventional-commits
 status: ✅ 已验证
 description: Git 团队协作工作流相关经验
+recordDate: '2026-01-30'
 ---
 # Git 工作流经验
 
@@ -17,9 +18,13 @@ description: Git 团队协作工作流相关经验
 
 ## Git 提交消息规范 - Conventional Commits
 
-**日期**：2026-01-30
-**标签**：#git #reference #conventional-commits
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=git" class="meta-tag">Git</a> <a href="/records/?tag=reference" class="meta-tag">参考</a> <a href="/records/?tag=conventional-commits" class="meta-tag">提交规范</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 **参考**：[conventionalcommits.org](https://www.conventionalcommits.org/)
 
 **问题/场景**：

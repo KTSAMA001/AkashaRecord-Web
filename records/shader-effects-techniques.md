@@ -1,11 +1,14 @@
 ---
-title: shader-effects-techniques.md
+title: Shader 特效实现经验
 tags:
   - shader
   - experience
   - effects
 status: ✅ 已验证
 description: 具体特效实现相关经验
+sourceDate: '2024-08-08'
+recordDate: '2026-02-07'
+version: Unity 2022.3+ / URP 14.0+
 ---
 # Shader 特效实现经验
 
@@ -17,11 +20,15 @@ description: 具体特效实现相关经验
 
 ## 遮挡透视效果实现方案 {#occlusion-vision}
 
-**收录日期**：2026-02-07
-**来源日期**：2024-08-08
-**标签**：#shader #experience #effects
-**状态**：✅ 已验证
-**适用版本**：Unity 2022.3+ / URP 14.0+
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=effects" class="meta-tag">特效</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Unity 2022.3+ / URP 14.0+</span></div>
+</div>
+
 
 **问题/场景**：
 

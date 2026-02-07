@@ -891,3 +891,107 @@ body::after {
 .vp-doc .content-container {
   max-width: 1200px;
 }
+
+/* ======= 记录元数据块（sync 脚本注入的结构化 HTML） ======= */
+.vp-doc .record-meta-block {
+  margin: 0.75rem 0 1.5rem;
+  padding: 0.6rem 1rem 0.6rem 0.85rem;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-border);
+  border-left: 3px solid var(--ak-accent, #FF6B2B);
+  font-family: 'Courier New', Consolas, monospace;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+}
+
+.vp-doc .record-meta-block::before {
+  content: '// META';
+  position: absolute;
+  top: 0.3rem;
+  right: 0.65rem;
+  font-size: 0.55rem;
+  color: var(--ak-accent, #FF6B2B);
+  opacity: 0.35;
+  letter-spacing: 0.12em;
+  font-family: 'Courier New', monospace;
+}
+
+/* 单行元数据项 */
+.vp-doc .meta-item {
+  display: flex;
+  align-items: baseline;
+  padding: 0.15rem 0;
+  gap: 0.5rem;
+}
+
+.vp-doc .meta-label {
+  color: var(--vp-c-text-3);
+  min-width: 5em;
+  flex-shrink: 0;
+  text-align: right;
+  user-select: none;
+}
+
+.vp-doc .meta-label::after {
+  content: ' │';
+  color: var(--vp-c-border);
+  margin-left: 0.3em;
+}
+
+.vp-doc .meta-value {
+  color: var(--vp-c-text-1);
+  word-break: break-word;
+}
+
+.vp-doc .meta-value a:not(.meta-tag) {
+  color: var(--vp-c-brand-1);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+
+/* 标签 pill */
+.vp-doc .meta-tag {
+  display: inline-block;
+  padding: 0.05rem 0.45rem;
+  margin: 0.1rem 0.15rem;
+  background: var(--vp-c-brand-soft);
+  border: 1px solid var(--ak-accent-dim, rgba(255, 107, 43, 0.25));
+  color: var(--vp-c-brand-1);
+  font-size: 0.82em;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  line-height: 1.5;
+}
+
+.vp-doc .meta-tag:hover {
+  background: var(--ak-accent, #FF6B2B);
+  color: #fff;
+  border-color: var(--ak-accent, #FF6B2B);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(255, 107, 43, 0.25);
+}
+
+/* 标签行特殊处理：允许换行 */
+.vp-doc .meta-item--tags .meta-value {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem;
+}
+
+/* 移动端响应 */
+@media (max-width: 640px) {
+  .vp-doc .meta-item {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .vp-doc .meta-label {
+    text-align: left;
+    min-width: unset;
+  }
+  .vp-doc .meta-label::after {
+    content: '：';
+  }
+}

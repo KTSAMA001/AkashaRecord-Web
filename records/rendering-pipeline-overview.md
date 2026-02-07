@@ -1,5 +1,5 @@
 ---
-title: rendering-pipeline-overview.md
+title: 渲染管线知识
 tags:
   - graphics
   - knowledge
@@ -7,6 +7,10 @@ tags:
   - draw-call
 status: ''
 description: 渲染管线知识
+source: 《Unity Shader 入门精要》（冯乐乐著）
+sourceDate: 2016 年（书籍出版）
+recordDate: '2026-01-30'
+credibility: ⭐⭐⭐⭐⭐ (经典著作 + 广泛认可)
 ---
 # 渲染管线知识
 
@@ -16,11 +20,15 @@ description: 渲染管线知识
 
 ## 渲染管线三大阶段
 
-**标签**：#graphics #knowledge #rendering-pipeline #draw-call
-**来源**：《Unity Shader 入门精要》（冯乐乐著）
-**来源日期**：2016 年（书籍出版）
-**收录日期**：2026-01-30
-**可信度**：⭐⭐⭐⭐⭐ (经典著作 + 广泛认可)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tag=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Unity Shader 入门精要》（冯乐乐著）</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2016 年（书籍出版）</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (经典著作 + 广泛认可)</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -84,9 +92,13 @@ DrawCall 图元 → 顶点着色器 → 曲面细分着色器 → 几何着色�
 
 ## 渲染管线中的缓冲对象
 
-**标签**：#graphics #knowledge #rendering-pipeline #draw-call
-**来源**：OpenGL 官方规范、关于 SRP/URP 的研究
-**可信度**：⭐⭐⭐⭐⭐ (官方规范 + 实践验证)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tag=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">OpenGL 官方规范、关于 SRP/URP 的研究</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (官方规范 + 实践验证)</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -132,9 +144,13 @@ VAO (管理者)
 <a id="vertex-shader"></a>
 ## 顶点着色器（Vertex Shader）
 
-**标签**：#graphics #knowledge #rendering-pipeline #draw-call
-**来源**：《Unity Shader 入门精要》（冯乐乐著）
-**可信度**：⭐⭐⭐⭐⭐ (经典著作 + 广泛认可)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tag=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Unity Shader 入门精要》（冯乐乐著）</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (经典著作 + 广泛认可)</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -156,9 +172,13 @@ VAO (管理者)
 <a id="fragment-shader"></a>
 ## 片元着色器（Fragment Shader）
 
-**标签**：#graphics #knowledge #rendering-pipeline #draw-call
-**来源**：《Unity Shader 入门精要》（冯乐乐著）
-**可信度**：⭐⭐⭐⭐⭐ (经典著作 + 广泛认可)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tag=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Unity Shader 入门精要》（冯乐乐著）</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (经典著作 + 广泛认可)</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -181,9 +201,13 @@ VAO (管理者)
 <a id="depthstencil"></a>
 ## 深度测试与模板测试（Depth/Stencil）
 
-**标签**：#graphics #knowledge #rendering-pipeline #draw-call
-**来源**：《Unity Shader 入门精要》（冯乐乐著）、Unity 官方文档
-**可信度**：⭐⭐⭐⭐⭐ (经典著作 + 官方文档)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tag=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Unity Shader 入门精要》（冯乐乐著）、Unity 官方文档</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (经典著作 + 官方文档)</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -202,9 +226,13 @@ VAO (管理者)
 <a id="per-fragment-operations"></a>
 ## 逐片元操作（Per-Fragment Operations）
 
-**标签**：#graphics #knowledge #rendering-pipeline #draw-call
-**来源**：《Unity Shader 入门精要》（冯乐乐著）
-**可信度**：⭐⭐⭐⭐⭐ (经典著作 + 广泛认可)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tag=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Unity Shader 入门精要》（冯乐乐著）</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (经典著作 + 广泛认可)</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -220,9 +248,13 @@ VAO (管理者)
 <a id="performance-keywords"></a>
 ## 性能关键词：Draw Call / Batching / Instancing
 
-**标签**：#graphics #knowledge #rendering-pipeline #draw-call
-**来源**：Unity 官方文档 - Optimizing draw calls、TA 工程实践经验整理
-**可信度**：⭐⭐⭐⭐ (官方文档 + 实践验证)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tag=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - Optimizing draw calls、TA 工程实践经验整理</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (官方文档 + 实践验证)</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -240,9 +272,13 @@ VAO (管理者)
 <a id="cbuffer"></a>
 ## CBUFFER 与 SRP Batcher
 
-**标签**：#graphics #knowledge #rendering-pipeline #draw-call
-**来源**：Unity 官方博客 - SRP Batcher: Speed up your rendering、关于 SRP/URP 的研究
-**可信度**：⭐⭐⭐⭐ (官方博客 + 实践验证)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tag=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方博客 - SRP Batcher: Speed up your rendering、关于 SRP/URP 的研究</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (官方博客 + 实践验证)</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -261,9 +297,13 @@ CBUFFER（Constant Buffer）可以理解为 GPU 侧的“常量数据块”，�
 <a id="shader-variants"></a>
 ## Shader 变体（Variants）与关键字（Keywords）
 
-**标签**：#graphics #knowledge #rendering-pipeline #draw-call
-**来源**：Unity 官方文档 - Shader variants and keywords、TA 工程实践经验整理
-**可信度**：⭐⭐⭐⭐⭐ (官方文档 + 实践验证)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tag=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - Shader variants and keywords、TA 工程实践经验整理</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (官方文档 + 实践验证)</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -280,9 +320,13 @@ Shader 变体是“同一个 shader 因关键字组合不同而生成的多份�
 <a id="srp-urp"></a>
 ## SRP/URP 与 Renderer Feature
 
-**标签**：#graphics #knowledge #rendering-pipeline #draw-call
-**来源**：Unity 官方文档 - Universal Render Pipeline、关于 SRP/URP 的研究
-**可信度**：⭐⭐⭐⭐⭐ (官方文档 + 实践验证)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tag=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - Universal Render Pipeline、关于 SRP/URP 的研究</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (官方文档 + 实践验证)</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -300,9 +344,13 @@ Shader 变体是“同一个 shader 因关键字组合不同而生成的多份�
 <a id="command-buffer"></a>
 ## CommandBuffer 与渲染命令录制
 
-**标签**：#graphics #knowledge #rendering-pipeline #draw-call
-**来源**：Unity 官方文档 - CommandBuffer、关于 SRP/URP 的研究
-**可信度**：⭐⭐⭐⭐⭐ (官方文档 + 实践验证)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tag=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - CommandBuffer、关于 SRP/URP 的研究</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (官方文档 + 实践验证)</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -318,9 +366,13 @@ CommandBuffer（命令缓冲）可以理解为“把要做的 GPU 绘制/状态�
 <a id="lighting-models"></a>
 ## 光照模型：Lambert / Phong / Blinn-Phong
 
-**标签**：#graphics #knowledge #rendering-pipeline #draw-call
-**来源**：《Real-Time Rendering》、图形学基础课程
-**可信度**：⭐⭐⭐⭐⭐ (权威著作 + 学术标准)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tag=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Real-Time Rendering》、图形学基础课程</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (权威著作 + 学术标准)</span></div>
+</div>
+
 
 ### Lambert（漫反射）
 
@@ -342,9 +394,13 @@ CommandBuffer（命令缓冲）可以理解为“把要做的 GPU 绘制/状态�
 <a id="pbr-brdf"></a>
 ## PBR / BRDF 基本要点
 
-**标签**：#graphics #knowledge #rendering-pipeline #draw-call
-**来源**：《Physically Based Rendering》、《Real-Time Rendering》
-**可信度**：⭐⭐⭐⭐⭐ (权威著作 + 学术标准)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tag=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Physically Based Rendering》、《Real-Time Rendering》</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (权威著作 + 学术标准)</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -362,9 +418,13 @@ CommandBuffer（命令缓冲）可以理解为“把要做的 GPU 绘制/状态�
 <a id="tbdr-overdraw"></a>
 ## 移动端：TBDR 与 Overdraw
 
-**标签**：#graphics #knowledge #rendering-pipeline #draw-call
-**来源**：ARM/Qualcomm GPU 官方文档、图形学/移动端渲染笔记
-**可信度**：⭐⭐⭐⭐ (厂商文档 + 实践验证)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tag=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">ARM/Qualcomm GPU 官方文档、图形学/移动端渲染笔记</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (厂商文档 + 实践验证)</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -381,9 +441,13 @@ CommandBuffer（命令缓冲）可以理解为“把要做的 GPU 绘制/状态�
 <a id="opaque-transparent"></a>
 ## 不透明/透明：排序与代价
 
-**标签**：#graphics #knowledge #rendering-pipeline #draw-call
-**来源**：Unity 官方文档、《Unity Shader 入门精要》
-**可信度**：⭐⭐⭐⭐⭐ (官方文档 + 经典著作)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tag=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档、《Unity Shader 入门精要》</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (官方文档 + 经典著作)</span></div>
+</div>
+
 
 ### 不透明（Opaque）
 

@@ -1,5 +1,5 @@
 ---
-title: urp-srp-architecture.md
+title: URP / SRP 知识
 tags:
   - unity
   - graphics
@@ -8,6 +8,10 @@ tags:
   - srp
 status: ''
 description: URP / SRP 知识
+source: Unity 官方文档 - Scriptable Render Pipeline
+sourceDate: '-'
+recordDate: '2026-01-30'
+credibility: ⭐⭐⭐⭐⭐ (官方文档)
 ---
 # URP / SRP 知识
 本文档记录 Unity SRP/URP 的核心概念与常用扩展点，偏"原理 + 工程要点"。
@@ -16,11 +20,15 @@ description: URP / SRP 知识
 
 ## SRP（Scriptable Render Pipeline）是什么
 
-**标签**：#unity #graphics #knowledge #urp #srp
-**来源**：Unity 官方文档 - Scriptable Render Pipeline
-**来源日期**：-
-**收录日期**：2026-01-30
-**可信度**：⭐⭐⭐⭐⭐ (官方文档)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp" class="meta-tag">SRP</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - Scriptable Render Pipeline</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">-</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (官方文档)</span></div>
+</div>
+
 
 - SRP 是 Unity 的可编程渲染管线体系：用 C# 组织"何时画什么、用哪些 render states/targets、执行顺序"。
 - 与内置管线相比，SRP 更强调"可定制的 render loop"和更明确的渲染阶段划分。
@@ -29,11 +37,15 @@ description: URP / SRP 知识
 
 ## URP 的核心结构（工程视角）
 
-**标签**：#unity #graphics #knowledge #urp #srp
-**来源**：Unity 官方文档 - Universal Render Pipeline、URP 源码分析
-**来源日期**：-
-**收录日期**：2026-01-30
-**可信度**：⭐⭐⭐⭐⭐ (官方文档 + 源码验证)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp" class="meta-tag">SRP</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - Universal Render Pipeline、URP 源码分析</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">-</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (官方文档 + 源码验证)</span></div>
+</div>
+
 
 常见理解方式：
 
@@ -45,11 +57,15 @@ description: URP / SRP 知识
 
 ## URP 源码分析 - 入口与渲染流程
 
-**标签**：#unity #graphics #knowledge #urp #srp
-**来源**：TaTa 仓库 - URP-analysis/urp-analysis.md
-**来源日期**：2020-11-05
-**收录日期**：2026-01-31
-**可信度**：⭐⭐⭐⭐ (源码分析 + 实践验证)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp" class="meta-tag">SRP</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - URP-analysis/urp-analysis.md</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2020-11-05</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (源码分析 + 实践验证)</span></div>
+</div>
+
 
 ### 入口文件
 
@@ -153,11 +169,15 @@ public static void RenderSingleCamera(ScriptableRenderContext context, Camera ca
 
 ## URP 源码分析 - ForwardRenderer
 
-**标签**：#unity #graphics #knowledge #urp #srp
-**来源**：TaTa 仓库 - URP-analysis/urp-analysis.md
-**来源日期**：2020-11-05
-**收录日期**：2026-01-31
-**可信度**：⭐⭐⭐⭐ (源码分析 + 实践验证)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp" class="meta-tag">SRP</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - URP-analysis/urp-analysis.md</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2020-11-05</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (源码分析 + 实践验证)</span></div>
+</div>
+
 
 ### ForwardRenderer 初始化
 
@@ -250,11 +270,15 @@ public override void Setup(ScriptableRenderContext context, ref RenderingData re
 
 ## Renderer Feature 的要点
 
-**标签**：#unity #graphics #knowledge #urp #srp
-**来源**：Unity 官方文档 - Custom Renderer Feature、URP 工程实践
-**来源日期**：-
-**收录日期**：2026-01-30
-**可信度**：⭐⭐⭐⭐⭐ (官方文档 + 实践验证)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp" class="meta-tag">SRP</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - Custom Renderer Feature、URP 工程实践</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">-</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (官方文档 + 实践验证)</span></div>
+</div>
+
 
 - 关注 Pass 插入时机（`RenderPassEvent`）：不同时机影响与后处理、透明队列、深度纹理等的交互。
 - 关注 RT 分配/释放：临时 RT、RTHandles、分辨率变化、Camera stacking 等都会影响资源生命周期。
@@ -264,11 +288,15 @@ public override void Setup(ScriptableRenderContext context, ref RenderingData re
 
 ## CommandBuffer（命令录制）在 URP 中的角色
 
-**标签**：#unity #graphics #knowledge #urp #srp
-**来源**：Unity 官方文档 - CommandBuffer、URP 源码分析
-**来源日期**：-
-**收录日期**：2026-01-30
-**可信度**：⭐⭐⭐⭐⭐ (官方文档 + 源码验证)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp" class="meta-tag">SRP</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - CommandBuffer、URP 源码分析</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">-</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (官方文档 + 源码验证)</span></div>
+</div>
+
 
 - RenderPass 通常会构建命令并提交执行；命令过多会带来 CPU 开销。
 - 建议在关键 Pass 上加 profiling（CPU/GPU）点，确认瓶颈位置。

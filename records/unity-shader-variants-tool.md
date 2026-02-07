@@ -1,5 +1,5 @@
 ---
-title: unity-shader-variants-tool.md
+title: Unity Shader 经验
 tags:
   - unity
   - shader
@@ -8,6 +8,7 @@ tags:
   - editor
 status: ✅ 已验证
 description: Unity 中 Shader 相关经验
+recordDate: '2026-01-29'
 ---
 # Unity Shader 经验
 
@@ -19,9 +20,13 @@ description: Unity 中 Shader 相关经验
 
 ## VR Shader 变体收集器开发复盘
 
-**日期**：2026-01-29
-**标签**：#unity #shader #experience #shader-variants #editor
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-29</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=shader-variants" class="meta-tag">Shader 变体</a> <a href="/records/?tag=editor" class="meta-tag">编辑器</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 
 **背景**：
 为了解决 VR 项目中 Shader 变体丢失、预热时间过长以及打包剔除问题，开发了一套自动化变体收集工具。在此过程中积累了大量关于 Unity Shader 编译机制和变体管理的深度经验。

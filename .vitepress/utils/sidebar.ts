@@ -44,7 +44,7 @@ export function generateSidebar(contentDir: string): Record<string, SidebarItem[
 
   // 读取标签元数据（构建时从 public/api/tag-meta.json 获取）
   let tagMeta: Record<string, { label: string; icon: string }> = {}
-  const metaPath = path.join(contentDir, 'public', 'api', 'tag-meta.json')
+  const metaPath = path.resolve(contentDir, '..', 'public', 'api', 'tag-meta.json')
   try {
     if (fs.existsSync(metaPath)) {
       tagMeta = JSON.parse(fs.readFileSync(metaPath, 'utf-8'))

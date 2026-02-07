@@ -1,5 +1,5 @@
 ---
-title: unity-editor-extension.md
+title: Unity 编辑器扩展经验
 tags:
   - unity
   - experience
@@ -7,6 +7,8 @@ tags:
   - behavior-designer
 status: ✅ 已验证
 description: Unity Editor 扩展开发相关经验
+recordDate: '2026-02-03'
+version: BehaviorDesigner 1.7.x
 ---
 # Unity 编辑器扩展经验
 
@@ -18,10 +20,14 @@ description: Unity Editor 扩展开发相关经验
 
 ## BD 节点 Tooltip 命名空间冲突解决 {#bd-tooltip-namespace-conflict}
 
-**收录日期**：2026-02-03
-**标签**：#unity #experience #editor #behavior-designer
-**状态**：✅ 已验证
-**适用版本**：BehaviorDesigner 1.7.x
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-03</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=editor" class="meta-tag">编辑器</a> <a href="/records/?tag=behavior-designer" class="meta-tag">行为树</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">BehaviorDesigner 1.7.x</span></div>
+</div>
+
 
 ### 问题/场景
 
@@ -72,10 +78,14 @@ public enum DirectionType
 
 ## BD 节点条件显示的替代方案 {#bd-showif-workaround}
 
-**收录日期**：2026-02-03
-**标签**：#unity #experience #editor #behavior-designer
-**状态**：✅ 已验证
-**适用版本**：BehaviorDesigner 1.7.x
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-03</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=editor" class="meta-tag">编辑器</a> <a href="/records/?tag=behavior-designer" class="meta-tag">行为树</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">BehaviorDesigner 1.7.x</span></div>
+</div>
+
 
 ### 问题/场景
 
@@ -144,9 +154,13 @@ public class MyAction : ProfilingAction
 
 ## BD 节点日志频率控制 {#bd-log-throttle}
 
-**收录日期**：2026-02-03
-**标签**：#unity #experience #editor #behavior-designer
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-03</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=editor" class="meta-tag">编辑器</a> <a href="/records/?tag=behavior-designer" class="meta-tag">行为树</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 
 ### 问题/场景
 

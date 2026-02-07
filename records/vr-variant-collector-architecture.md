@@ -1,5 +1,5 @@
 ---
-title: vr-variant-collector-architecture.md
+title: VR 变体收集器 - 架构与流程图解
 tags:
   - unity
   - shader

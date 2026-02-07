@@ -1,5 +1,5 @@
 ---
-title: arknights-ui-industrial-style.md
+title: 明日方舟工业风 UI：网点、网格、切角、噪点等视觉元素总结
 tags:
   - design
   - knowledge
@@ -7,18 +7,26 @@ tags:
   - ui
 status: "\U0001F4D8 有效"
 description: 明日方舟工业风 UI：网点、网格、切角、噪点等视觉元素总结
+source: ''
 ---
 ## 明日方舟工业风 UI：网点、网格、切角、噪点等视觉元素总结
 
-**标签**：#design #knowledge #arknights #ui
-**来源**：
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=design" class="meta-tag">设计</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=arknights" class="meta-tag">明日方舟</a> <a href="/records/?tag=ui" class="meta-tag">UI</a></span></div>
+</div>
+
 - 机核：《明日方舟》UI/UX设计复盘（蓝湿父，2020-04-30）https://www.gcores.com/articles/123154
 - 腾讯游戏学堂：《明日方舟》UI/UX 分析——藏在好看背后的先进性（AJ，2019-07-17）https://mp.weixin.qq.com/s/276iXWXkLCf_T3IheN0MAA
-**来源日期**：2019-07-17 / 2020-04-30
-**收录日期**：2026-02-07
-**更新日期**：2026-02-07
-**可信度**：⭐⭐⭐⭐（大厂/专业分析文章）
-**状态**：📘 有效
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2019-07-17 / 2020-04-30</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐（大厂/专业分析文章）</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+</div>
+
 
 ### 定义/概念
 

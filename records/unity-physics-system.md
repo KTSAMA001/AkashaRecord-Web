@@ -1,5 +1,5 @@
 ---
-title: unity-physics-system.md
+title: Unity 物理系统知识
 tags:
   - unity
   - knowledge
@@ -8,6 +8,10 @@ tags:
   - raycast
 status: ''
 description: Unity 物理系统知识
+source: Unity 2022.3 官方文档 - Collider types and performance
+sourceDate: '2026-01-31'
+recordDate: '2026-02-01'
+credibility: ⭐⭐⭐⭐⭐ (官方文档)
 ---
 # Unity 物理系统知识
 本文档记录 Unity 物理系统的核心概念与原理，偏"知识 + 原理"。
@@ -16,11 +20,15 @@ description: Unity 物理系统知识
 
 ## 3D Collider 类型性能消耗对比
 
-**标签**：#unity #knowledge #physics #collider #raycast
-**来源**：Unity 2022.3 官方文档 - Collider types and performance  
-**来源日期**：2026-01-31  
-**收录日期**：2026-02-01  
-**可信度**：⭐⭐⭐⭐⭐ (官方文档)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=physics" class="meta-tag">物理系统</a> <a href="/records/?tag=collider" class="meta-tag">碰撞体</a> <a href="/records/?tag=raycast" class="meta-tag">射线检测</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 2022.3 官方文档 - Collider types and performance</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (官方文档)</span></div>
+</div>
+
 
 ### 性能排序（从低到高）
 
@@ -69,11 +77,15 @@ description: Unity 物理系统知识
 
 ## 射线检测（Raycast）知识与性能优化
 
-**标签**：#unity #knowledge #physics #collider #raycast
-**来源**：Unity 2022.3 官方文档 - Physics.Raycast / Optimize raycasts and other physics queries  
-**来源日期**：2026-01-31  
-**收录日期**：2026-02-01  
-**可信度**：⭐⭐⭐⭐⭐ (官方文档)
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=physics" class="meta-tag">物理系统</a> <a href="/records/?tag=collider" class="meta-tag">碰撞体</a> <a href="/records/?tag=raycast" class="meta-tag">射线检测</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 2022.3 官方文档 - Physics.Raycast / Optimize raycasts and other physics queries</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (官方文档)</span></div>
+</div>
+
 
 ### 基本概念
 

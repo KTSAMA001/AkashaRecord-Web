@@ -1,5 +1,5 @@
 ---
-title: urp-shader-practices.md
+title: URP 渲染管线经验
 tags:
   - shader
   - unity
@@ -9,6 +9,7 @@ tags:
   - renderer-feature
 status: ✅ 已验证
 description: Universal Render Pipeline 相关经验
+recordDate: '2026-01-29'
 ---
 # URP 渲染管线经验
 
@@ -20,9 +21,13 @@ description: Universal Render Pipeline 相关经验
 
 ## ASE Shader 架构与 Bakery 光照集成最佳实践
 
-**日期**：2026-01-29
-**标签**：#shader #unity #experience #urp #srp-batcher #renderer-feature
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-29</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp-batcher" class="meta-tag">SRP Batcher</a> <a href="/records/?tag=renderer-feature" class="meta-tag">Renderer Feature</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -104,10 +109,14 @@ float3 UnitySHAr() {
 
 ## CBUFFER 与 SRP Batcher 合批机制
 
-**日期**：2026-01-31
-**标签**：#shader #unity #experience #urp #srp-batcher #renderer-feature
-**状态**：✅ 已验证
-**来源**：Technical_Artist_Technotes/TA零散知识
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp-batcher" class="meta-tag">SRP Batcher</a> <a href="/records/?tag=renderer-feature" class="meta-tag">Renderer Feature</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Technical_Artist_Technotes/TA零散知识</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -214,10 +223,14 @@ ENDHLSL
 
 ## URP Renderer Feature 开发要点
 
-**日期**：2026-01-31
-**标签**：#shader #unity #experience #urp #srp-batcher #renderer-feature
-**状态**：✅ 已验证
-**来源**：Technical_Artist_Technotes/关于SRP、URP
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp-batcher" class="meta-tag">SRP Batcher</a> <a href="/records/?tag=renderer-feature" class="meta-tag">Renderer Feature</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Technical_Artist_Technotes/关于SRP、URP</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -354,11 +367,15 @@ public class MyRendererFeature : ScriptableRendererFeature
 
 ## URP 中 GrabPass 替代方案 (GrabColor RenderFeature) {#grab-color-renderfeature}
 
-**收录日期**：2026-02-07
-**来源日期**：2024-08-08
-**标签**：#shader #unity #experience #urp #srp-batcher #renderer-feature
-**状态**：✅ 已验证
-**适用版本**：Unity 2022.3+ / URP 14.0+
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp-batcher" class="meta-tag">SRP Batcher</a> <a href="/records/?tag=renderer-feature" class="meta-tag">Renderer Feature</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Unity 2022.3+ / URP 14.0+</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -438,11 +455,15 @@ half4 frag(Varyings i) : SV_Target
 
 ## RenderFeature 运行时开关控制 {#renderfeature-toggler}
 
-**收录日期**：2026-02-07
-**来源日期**：2024-08-08
-**标签**：#shader #unity #experience #urp #srp-batcher #renderer-feature
-**状态**：✅ 已验证
-**适用版本**：Unity 2022.3+ / URP 14.0+
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp-batcher" class="meta-tag">SRP Batcher</a> <a href="/records/?tag=renderer-feature" class="meta-tag">Renderer Feature</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Unity 2022.3+ / URP 14.0+</span></div>
+</div>
+
 
 **问题/场景**：
 

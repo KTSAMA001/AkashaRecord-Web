@@ -1,5 +1,5 @@
 ---
-title: vscode-copilot-skills-config.md
+title: VS Code Copilot 经验
 tags:
   - vscode
   - tools
@@ -7,6 +7,7 @@ tags:
   - copilot
 status: ✅ 已验证
 description: GitHub Copilot 使用相关经验
+recordDate: '2026-01-30'
 ---
 # VS Code Copilot 经验
 
@@ -18,9 +19,13 @@ description: GitHub Copilot 使用相关经验
 
 ## VS Code Copilot 与 Claude Code 共享 Skills 仓库
 
-**日期**：2026-01-30
-**标签**：#vscode #tools #experience #copilot
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=vscode" class="meta-tag">VS Code</a> <a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=copilot" class="meta-tag">Copilot</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 
 **问题/场景**：
 

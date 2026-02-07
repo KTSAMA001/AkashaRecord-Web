@@ -1,5 +1,5 @@
 ---
-title: pbr-brdf-theory.md
+title: PBR 渲染知识
 tags:
   - graphics
   - knowledge
@@ -8,6 +8,10 @@ tags:
   - cook-torrance
 status: "\U0001F4D8 有效"
 description: 基于物理的渲染（Physically Based Rendering）相关原理与概念
+source: Unity_URP_Learning 仓库实践 + 学术论文
+sourceDate: '2024-08-08'
+recordDate: '2026-02-07'
+credibility: ⭐⭐⭐⭐⭐ (学术论文 + 实践验证)
 ---
 # PBR 渲染知识
 
@@ -17,12 +21,16 @@ description: 基于物理的渲染（Physically Based Rendering）相关原理�
 
 ## Cook-Torrance BRDF 模型 {#cook-torrance-brdf}
 
-**标签**：#graphics #knowledge #pbr #brdf #cook-torrance
-**来源**：Unity_URP_Learning 仓库实践 + 学术论文
-**来源日期**：2024-08-08
-**收录日期**：2026-02-07
-**可信度**：⭐⭐⭐⭐⭐ (学术论文 + 实践验证)
-**状态**：📘 有效
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=pbr" class="meta-tag">PBR 渲染</a> <a href="/records/?tag=brdf" class="meta-tag">BRDF</a> <a href="/records/?tag=cook-torrance" class="meta-tag">Cook-Torrance</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity_URP_Learning 仓库实践 + 学术论文</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (学术论文 + 实践验证)</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -164,12 +172,16 @@ float3 PBR_Direct_Light(float3 albedo, Light lightData, float3 N, float3 V,
 
 ## 间接光照与 IBL {#ibl}
 
-**标签**：#graphics #knowledge #pbr #brdf #cook-torrance
-**来源**：Unity_URP_Learning 仓库实践 + Unity 官方文档
-**来源日期**：2024-08-08
-**收录日期**：2026-02-07
-**可信度**：⭐⭐⭐⭐ (实践验证)
-**状态**：📘 有效
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=pbr" class="meta-tag">PBR 渲染</a> <a href="/records/?tag=brdf" class="meta-tag">BRDF</a> <a href="/records/?tag=cook-torrance" class="meta-tag">Cook-Torrance</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity_URP_Learning 仓库实践 + Unity 官方文档</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (实践验证)</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+</div>
+
 
 ### 定义/概念
 
@@ -218,12 +230,16 @@ float3 specular_InDirect = envSpecular * (F * env_brdf.r + env_brdf.g);
 
 ## ACES Tone Mapping {#aces-tonemapping}
 
-**标签**：#graphics #knowledge #pbr #brdf #cook-torrance
-**来源**：Unity_URP_Learning 仓库 / ACES 标准
-**来源日期**：2024-08-08
-**收录日期**：2026-02-07
-**可信度**：⭐⭐⭐⭐⭐ (工业标准)
-**状态**：📘 有效
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=pbr" class="meta-tag">PBR 渲染</a> <a href="/records/?tag=brdf" class="meta-tag">BRDF</a> <a href="/records/?tag=cook-torrance" class="meta-tag">Cook-Torrance</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity_URP_Learning 仓库 / ACES 标准</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (工业标准)</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+</div>
+
 
 ### 定义/概念
 

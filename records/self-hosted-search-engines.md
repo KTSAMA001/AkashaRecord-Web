@@ -1,5 +1,5 @@
 ---
-title: self-hosted-search-engines.md
+title: Docker 部署（推荐）
 tags:
   - tools
   - knowledge
@@ -8,15 +8,21 @@ tags:
   - searxng
 status: ✅ 已验证
 description: 自搭建搜索引擎技术
+sourceDate: '2026-02-01'
+recordDate: '2026-02-01'
 ---
 ---
 
 ## 自搭建搜索引擎技术
 
-**收录日期**：2026-02-01
-**来源日期**：2026-02-01
-**标签**：#tools #knowledge #search-engine #meilisearch #searxng
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-01</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=search-engine" class="meta-tag">搜索引擎</a> <a href="/records/?tag=meilisearch" class="meta-tag">Meilisearch</a> <a href="/records/?tag=searxng" class="meta-tag">SearXNG</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 **适用场景**：私有数据搜索、隐私保护、全文检索、元搜索聚合
 
 **概述**：

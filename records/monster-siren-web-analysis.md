@@ -1,5 +1,5 @@
 ---
-title: monster-siren-web-analysis.md
+title: 塞壬唱片官网 (Monster Siren) 深度技术与设计分析
 tags:
   - web
   - design
@@ -9,15 +9,23 @@ tags:
   - cyberpunk
 status: "\U0001F4D8 有效"
 description: 塞壬唱片官网 (Monster Siren) 深度技术与设计分析
+source: 'https://monster-siren.hypergryph.com'
+sourceDate: '2026-02-08'
+recordDate: '2026-02-08'
+credibility: ⭐⭐⭐⭐ (实地分析/逆向研究)
 ---
 ## 塞壬唱片官网 (Monster Siren) 深度技术与设计分析
 
-**标签**：#web #design #knowledge #arknights #react #cyberpunk
-**来源**：https://monster-siren.hypergryph.com
-**来源日期**：2026-02-08
-**收录日期**：2026-02-08
-**可信度**：⭐⭐⭐⭐ (实地分析/逆向研究)
-**状态**：📘 有效
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=design" class="meta-tag">设计</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=arknights" class="meta-tag">明日方舟</a> <a href="/records/?tag=react" class="meta-tag">React</a> <a href="/records/?tag=cyberpunk" class="meta-tag">赛博朋克</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">https://monster-siren.hypergryph.com</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-08</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-08</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (实地分析/逆向研究)</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+</div>
+
 
 ### 定义/概念
 

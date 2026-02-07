@@ -1,5 +1,5 @@
 ---
-title: astrbot-mcp-integration.md
+title: 平台判断
 tags:
   - ai
   - experience
@@ -7,16 +7,23 @@ tags:
   - astrbot
 status: ✅ 已验证
 description: AstrBot 集成 MCP 服务经验
+sourceDate: 2026-01-30 ~ 2026-02-01
+recordDate: '2026-02-01'
+version: AstrBot v4.13.2+
 ---
 ---
 
 ## AstrBot 集成 MCP 服务经验
 
-**收录日期**：2026-02-01
-**来源日期**：2026-01-30 ~ 2026-02-01
-**标签**：#ai #experience #mcp #astrbot
-**状态**：✅ 已验证
-**适用版本**：AstrBot v4.13.2+
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-30 ~ 2026-02-01</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=mcp" class="meta-tag">MCP 协议</a> <a href="/records/?tag=astrbot" class="meta-tag">AstrBot</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">AstrBot v4.13.2+</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -57,11 +64,15 @@ description: AstrBot 集成 MCP 服务经验
 
 ## AstrBot 插件文件上传到QQ实现
 
-**收录日期**：2026-02-04
-**来源日期**：2026-02-04
-**标签**：#ai #experience #mcp #astrbot
-**状态**：✅ 已验证
-**适用版本**：AstrBot v4.13.2+, OneBot v11 (NapCat)
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-04</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-04</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=mcp" class="meta-tag">MCP 协议</a> <a href="/records/?tag=astrbot" class="meta-tag">AstrBot</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">AstrBot v4.13.2+, OneBot v11 (NapCat)</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -136,11 +147,15 @@ except:
 
 ## AstrBot 插件自动触发函数（LLM 请求拦截）
 
-**收录日期**：2026-02-05
-**来源日期**：2026-02-05
-**标签**：#ai #experience #mcp #astrbot
-**状态**：✅ 已验证
-**适用版本**：AstrBot v4.14.2+
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-05</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-05</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=mcp" class="meta-tag">MCP 协议</a> <a href="/records/?tag=astrbot" class="meta-tag">AstrBot</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">AstrBot v4.14.2+</span></div>
+</div>
+
 
 **问题/场景**：
 

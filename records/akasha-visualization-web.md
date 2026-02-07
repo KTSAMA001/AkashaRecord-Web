@@ -1,5 +1,5 @@
 ---
-title: akasha-visualization-web.md
+title: 阿卡西记录可视化网站
 tags:
   - tools
   - web
@@ -7,16 +7,25 @@ tags:
   - akasha
 status: "\U0001F4D8 有效"
 description: 阿卡西记录可视化网站
+source: 用户 KTSAMA 提供
+sourceDate: '2026-02-07'
+recordDate: '2026-02-07'
+updateDate: '2026-02-07'
+credibility: ⭐⭐⭐⭐⭐（官方）
 ---
 ## 阿卡西记录可视化网站
 
-**标签**：#tools #web #reference #akasha
-**来源**：用户 KTSAMA 提供
-**来源日期**：2026-02-07
-**收录日期**：2026-02-07
-**更新日期**：2026-02-07
-**可信度**：⭐⭐⭐⭐⭐（官方）
-**状态**：📘 有效
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=reference" class="meta-tag">参考</a> <a href="/records/?tag=akasha" class="meta-tag">阿卡西记录</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">用户 KTSAMA 提供</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-07</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐（官方）</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+</div>
+
 
 ### 定义/概念
 

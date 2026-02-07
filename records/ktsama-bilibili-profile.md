@@ -1,5 +1,5 @@
 ---
-title: ktsama-bilibili-profile.md
+title: '[KTSAMA的B站主页]'
 tags:
   - social
   - reference
@@ -7,16 +7,25 @@ tags:
   - bilibili
 status: "\U0001F4DA 有效"
 description: '[KTSAMA的B站主页]'
+source: KTSAMA本人提供
+sourceDate: '2026-02-01'
+recordDate: '2026-02-01'
+updateDate: '2026-02-01'
+credibility: ⭐⭐⭐⭐⭐
 ---
 ## [KTSAMA的B站主页]
 
-**标签**：#social #reference #ktsama #bilibili
-**来源**：KTSAMA本人提供
-**来源日期**：2026-02-01
-**收录日期**：2026-02-01
-**更新日期**：2026-02-01
-**可信度**：⭐⭐⭐⭐⭐
-**状态**：📚 有效
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=social" class="meta-tag">社交</a> <a href="/records/?tag=reference" class="meta-tag">参考</a> <a href="/records/?tag=ktsama" class="meta-tag">KTSAMA</a> <a href="/records/?tag=bilibili" class="meta-tag">B站</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA本人提供</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-01</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
+<div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-01</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📚 有效</span></div>
+</div>
+
 
 ### 定义/概念
 

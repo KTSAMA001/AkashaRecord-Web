@@ -1,5 +1,5 @@
 ---
-title: unity-blendtree-audio-sync.md
+title: Unity BlendTree 下动画驱动音效同步（脚步声等）常见方案汇总
 tags:
   - unity
   - knowledge
@@ -8,15 +8,24 @@ tags:
   - audio
 status: "\U0001F4D8 有效"
 description: Unity BlendTree 下动画驱动音效同步（脚步声等）常见方案汇总
+source: 多来源（Unity Manual / Unity Forum & Discussions / 第三方博客；详见“来源链接”）
+sourceDate: 2021-04-12（CodeAndWeb）/ 其他未标注
+recordDate: '2026-02-04'
+updateDate: '2026-02-04'
+credibility: ⭐⭐⭐（社区共识为主，部分有官方手册支撑）
 ---
 ## Unity BlendTree 下动画驱动音效同步（脚步声等）常见方案汇总
-**标签**：#unity #knowledge #animation #blend-tree #audio
-**来源**：多来源（Unity Manual / Unity Forum & Discussions / 第三方博客；详见“来源链接”）
-**来源日期**：2021-04-12（CodeAndWeb）/ 其他未标注
-**收录日期**：2026-02-04
-**更新日期**：2026-02-04
-**可信度**：⭐⭐⭐（社区共识为主，部分有官方手册支撑）
-**状态**：📘 有效
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=animation" class="meta-tag">动画</a> <a href="/records/?tag=blend-tree" class="meta-tag">BlendTree</a> <a href="/records/?tag=audio" class="meta-tag">音频</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">多来源（Unity Manual / Unity Forum & Discussions / 第三方博客；详见“来源链接”）</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2021-04-12（CodeAndWeb）/ 其他未标注</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-04</span></div>
+<div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-04</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐（社区共识为主，部分有官方手册支撑）</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+</div>
+
 
 ### 定义/概念
 

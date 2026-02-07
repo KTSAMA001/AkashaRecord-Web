@@ -156,10 +156,105 @@ function fixLinks(content) {
   return content
 }
 
+/* =============================================
+ * 元数据块识别与转换
+ * ============================================= */
+
+/** 已识别的元数据字段 key，非此列表的 **Key**：Value 不会被识别 */
+const META_KEYS = new Set([
+  '标签', '来源', '来源日期', '收录日期', '更新日期',
+  '日期', '可信度', '状态', '适用版本',
+])
+
+/**
+ * 识别正文中的元数据块并转换为结构化 HTML
+ *
+ * 规则：连续 2+ 行匹配 **KEY**：VALUE（KEY ∈ META_KEYS）视为一个元数据块。
+ * 返回 { content, firstMeta }，firstMeta 为首个块的字段数组（用于丰富 frontmatter）。
+ */
+function transformMetaBlocks(content, tagMeta = new Map()) {
+  const lines = content.split('\n')
+  const result = []
+  let firstMeta = null
+  let i = 0
+
+  while (i < lines.length) {
+    // 尝试收集连续元数据行
+    const blockFields = []
+    const blockStartIdx = i
+
+    while (i < lines.length) {
+      const raw = lines[i]
+      const trimmed = raw.trim()
+      if (!trimmed) break // 空行终止
+
+      const m = trimmed.match(/^\*\*(.+?)\*\*[：:]\s*(.*)$/)
+      if (m && META_KEYS.has(m[1])) {
+        blockFields.push({ key: m[1], value: m[2].replace(/\s{2,}$/, '').trim() })
+        i++
+      } else {
+        break
+      }
+    }
+
+    if (blockFields.length >= 2) {
+      // —— 有效元数据块：转为 HTML ——
+      if (!firstMeta) firstMeta = blockFields
+
+      const htmlParts = ['', '<div class="record-meta-block">']
+
+      for (const f of blockFields) {
+        // 跳过值为空的字段（如多行来源只有 key 无 value）
+        if (!f.value) continue
+
+        if (f.key === '标签') {
+          // 标签 → 可点击 pill
+          const pills = f.value
+            .split(/\s+/)
+            .filter(t => t.startsWith('#'))
+            .map(t => {
+              const k = t.slice(1)
+              const label = tagMeta.get(k)?.label || k
+              return `<a href="/records/?tag=${encodeURIComponent(k)}" class="meta-tag">${label}</a>`
+            })
+            .join(' ')
+          htmlParts.push(`<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value">${pills}</span></div>`)
+        } else if (f.key === '来源') {
+          // 来源中可能有 markdown 链接，转为 <a>
+          const val = f.value.replace(
+            /\[([^\]]+)\]\(([^)]+)\)/g,
+            '<a href="$2" target="_blank" rel="noopener">$1</a>'
+          )
+          htmlParts.push(`<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">${val}</span></div>`)
+        } else {
+          htmlParts.push(`<div class="meta-item"><span class="meta-label">${f.key}</span><span class="meta-value">${f.value}</span></div>`)
+        }
+      }
+
+      htmlParts.push('</div>', '')
+      result.push(htmlParts.join('\n'))
+    } else {
+      // 不构成元数据块，原样保留
+      for (let j = blockStartIdx; j < blockStartIdx + blockFields.length; j++) {
+        result.push(lines[j])
+      }
+      if (blockFields.length === 0) {
+        result.push(lines[i])
+        i++
+      }
+    }
+  }
+
+  return { content: result.join('\n'), firstMeta }
+}
+
 /**
  * 注入 Frontmatter
+ * @param {string} content  - markdown 正文（已经过 transformMetaBlocks）
+ * @param {object} record   - INDEX.md 中的权威元数据
+ * @param {object[]|null} extractedMeta - 正文首个元数据块的字段数组
  */
-function ensureFrontmatter(content, record) {
+function ensureFrontmatter(content, record, extractedMeta) {
   let fileMatter;
   try {
     fileMatter = matter(content);
@@ -170,11 +265,30 @@ function ensureFrontmatter(content, record) {
   
   const data = fileMatter.data || {}
 
-  // 强制覆盖/补全关键元数据
-  data.title = data.title || record.title
-  data.tags = record.tags // 使用 INDEX.md 中的权威标签
+  // 强制覆盖/补全关键元数据（INDEX.md 权威源）
+  // 标题优先级：frontmatter > 正文 h1 > 正文 h2 > INDEX.md desc > 文件名
+  if (!data.title || data.title.endsWith('.md')) {
+    const h1Match = fileMatter.content.match(/^#\s+(.+)$/m)
+    const h2Match = fileMatter.content.match(/^##\s+(.+)$/m)
+    data.title = h1Match ? h1Match[1].trim()
+      : h2Match ? h2Match[1].trim()
+      : record.desc || record.title.replace(/\.md$/, '')
+  }
+  data.tags = record.tags
   data.status = record.status
-  data.description = record.desc
+  data.description = data.description || record.desc
+
+  // 从正文首个元数据块补充丰富字段
+  if (extractedMeta) {
+    const metaMap = new Map(extractedMeta.map(f => [f.key, f.value]))
+    if (metaMap.has('来源'))       data.source       = data.source       || metaMap.get('来源')
+    if (metaMap.has('来源日期'))   data.sourceDate    = data.sourceDate    || metaMap.get('来源日期')
+    if (metaMap.has('收录日期'))   data.recordDate    = data.recordDate    || metaMap.get('收录日期')
+    if (metaMap.has('更新日期'))   data.updateDate    = data.updateDate    || metaMap.get('更新日期')
+    if (metaMap.has('日期'))       data.recordDate    = data.recordDate    || metaMap.get('日期')
+    if (metaMap.has('可信度'))     data.credibility   = data.credibility   || metaMap.get('可信度')
+    if (metaMap.has('适用版本'))   data.version       = data.version       || metaMap.get('适用版本')
+  }
   
   // 生成新的 frontmatter
   return matter.stringify(fileMatter.content, data)
@@ -302,6 +416,9 @@ async function main() {
     process.exit(1)
   }
 
+  // 先解析标签注册表（transformMetaBlocks 需要用到）
+  const tagMeta = parseTagRegistry()
+
   // 清理并重建 content 目录
   if (fs.existsSync(CONTENT_DIR)) fs.rmSync(CONTENT_DIR, { recursive: true })
   fs.mkdirSync(path.join(CONTENT_DIR, 'records'), { recursive: true })
@@ -314,7 +431,8 @@ async function main() {
     if (fs.existsSync(src)) {
       let content = fs.readFileSync(src, 'utf-8')
       content = fixLinks(content)
-      content = ensureFrontmatter(content, r)
+      const { content: transformed, firstMeta } = transformMetaBlocks(content, tagMeta)
+      content = ensureFrontmatter(transformed, r, firstMeta)
       fs.writeFileSync(path.join(CONTENT_DIR, 'records', r.filename), content)
       copyCount++
     }
@@ -322,7 +440,6 @@ async function main() {
   console.log(`✅ 已处理 ${copyCount} 个记录文件`)
 
   // 生成数据和页面
-  const tagMeta = parseTagRegistry()
   generateStats(records)
   generateTags(records, tagMeta)
   generatePages(records)

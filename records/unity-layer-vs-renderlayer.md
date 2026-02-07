@@ -1,11 +1,13 @@
 ---
-title: unity-layer-vs-renderlayer.md
+title: Unity 其他经验
 tags:
   - unity
   - experience
   - rendering
 status: ✅ 已验证
 description: Unity 其他无法归类的经验
+source: Technical_Artist_Technotes/TA零散知识
+recordDate: '2026-01-31'
 ---
 # Unity 其他经验
 
@@ -16,10 +18,14 @@ description: Unity 其他无法归类的经验
 ---
 ## Layer 与 Render Layer 的区别
 
-**日期**：2026-01-31
-**标签**：#unity #experience #rendering
-**状态**：✅ 已验证
-**来源**：Technical_Artist_Technotes/TA零散知识
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=rendering" class="meta-tag">渲染</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Technical_Artist_Technotes/TA零散知识</span></div>
+</div>
+
 
 **问题/场景**：
 

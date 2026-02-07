@@ -1,20 +1,30 @@
 ---
-title: idea-3d-girl-smart-furniture.md
+title: 3D美少女智能家具创业想法
 tags:
   - idea
   - smart-furniture
   - 3d
 status: "\U0001F4A1 灵感记录"
 description: 3D美少女智能家具创业想法
+source: 留枫微风的创业提案
+sourceDate: '2026-02-02'
 ---
 ## 3D美少女智能家具创业想法
 
-**标签**：#idea #smart-furniture #3d
-**来源**：留枫微风的创业提案
-**来源日期**：2026-02-02
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=idea" class="meta-tag">灵感</a> <a href="/records/?tag=smart-furniture" class="meta-tag">智能家具</a> <a href="/records/?tag=3d" class="meta-tag">3D</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">留枫微风的创业提案</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-02</span></div>
+</div>
+
 **收藏日期**：2026-02-02
-**可信度**：⭐⭐⭐
-**状态**：💡 灵感记录
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">💡 灵感记录</span></div>
+</div>
+
 
 ### 定义/概念
 

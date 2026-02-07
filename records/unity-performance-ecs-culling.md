@@ -1,5 +1,5 @@
 ---
-title: unity-performance-ecs-culling.md
+title: Unity 性能优化经验
 tags:
   - unity
   - experience
@@ -8,6 +8,9 @@ tags:
   - culling
 status: ⚠️ 待验证（需根据 Unity 版本和 DOTS 版本调整）
 description: Unity 性能优化相关经验
+sourceDate: 2021-05-19（TaTa 仓库 Git commit 时间）
+recordDate: '2026-01-31'
+version: 'Unity 2019.4+, Entities 0.7+'
 ---
 # Unity 性能优化经验
 
@@ -19,11 +22,15 @@ description: Unity 性能优化相关经验
 
 ## 草海系统 - ECS 视锥剔除优化
 
-**收录日期**：2026-01-31
-**来源日期**：2021-05-19（TaTa 仓库 Git commit 时间）
-**标签**：#unity #experience #performance #ecs #culling
-**状态**：⚠️ 待验证（需根据 Unity 版本和 DOTS 版本调整）
-**适用版本**：Unity 2019.4+, Entities 0.7+
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2021-05-19（TaTa 仓库 Git commit 时间）</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=performance" class="meta-tag">性能优化</a> <a href="/records/?tag=ecs" class="meta-tag">ECS</a> <a href="/records/?tag=culling" class="meta-tag">剔除</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">⚠️ 待验证（需根据 Unity 版本和 DOTS 版本调整）</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Unity 2019.4+, Entities 0.7+</span></div>
+</div>
+
 
 > 📷 **图片/视频资源**：[TaTa 仓库 GrassSystem/Img](https://github.com/KTSAMA001/TaTa/tree/master/GrassSystem/Img)
 

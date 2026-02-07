@@ -1,5 +1,5 @@
 ---
-title: git-troubleshooting.md
+title: Git 问题解决经验
 tags:
   - git
   - experience
@@ -8,6 +8,8 @@ tags:
   - credential
 status: ⚠️ 解决方案已验证，根因待查
 description: Git 常见问题解决相关经验
+recordDate: '2026-02-05'
+version: Git 2.x+
 ---
 # Git 问题解决经验
 
@@ -19,10 +21,14 @@ description: Git 常见问题解决相关经验
 
 ## Docker 容器内 Git PAT 凭据持久化配置 {#docker-git-credential}
 
-**日期**：2026-02-05
-**标签**：#git #experience #pat #docker #credential
-**状态**：✅ 已验证
-**适用版本**：Git 2.x+
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-02-05</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=git" class="meta-tag">Git</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=pat" class="meta-tag">PAT 令牌</a> <a href="/records/?tag=docker" class="meta-tag">Docker</a> <a href="/records/?tag=credential" class="meta-tag">凭证管理</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Git 2.x+</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -79,9 +85,13 @@ git push origin main
 
 ## 使用 git-filter-repo 重写提交历史（清除敏感信息）
 
-**日期**：2026-01-29
-**标签**：#git #experience #pat #docker #credential
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-29</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=git" class="meta-tag">Git</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=pat" class="meta-tag">PAT 令牌</a> <a href="/records/?tag=docker" class="meta-tag">Docker</a> <a href="/records/?tag=credential" class="meta-tag">凭证管理</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -166,10 +176,14 @@ git config user.email "ktsama@example.com"
 
 ## Git HTTPS 拉取失败，改用 SSH 协议解决
 
-**日期**：2026-01-30  
-**标签**：#git #experience #pat #docker #credential
-**状态**：✅ 已验证  
-**适用版本**：Git 2.x+
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=git" class="meta-tag">Git</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=pat" class="meta-tag">PAT 令牌</a> <a href="/records/?tag=docker" class="meta-tag">Docker</a> <a href="/records/?tag=credential" class="meta-tag">凭证管理</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Git 2.x+</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -225,10 +239,14 @@ git stash pop
 
 ## macOS Git osxkeychain Credential Helper 路径问题 {#osxkeychain-path}
 
-**日期**：2026-02-05
-**标签**：#git #experience #pat #docker #credential
-**状态**：✅ 已验证
-**适用版本**：Git 2.x+ (Homebrew)
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-02-05</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=git" class="meta-tag">Git</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=pat" class="meta-tag">PAT 令牌</a> <a href="/records/?tag=docker" class="meta-tag">Docker</a> <a href="/records/?tag=credential" class="meta-tag">凭证管理</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Git 2.x+ (Homebrew)</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -288,10 +306,14 @@ git push origin main
 
 ## Git 对象损坏（loose object corrupt）修复 {#git-object-corrupt}
 
-**日期**：2026-02-05
-**标签**：#git #experience #pat #docker #credential
-**状态**：⚠️ 解决方案已验证，根因待查
-**适用版本**：Git 2.x+
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-02-05</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=git" class="meta-tag">Git</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=pat" class="meta-tag">PAT 令牌</a> <a href="/records/?tag=docker" class="meta-tag">Docker</a> <a href="/records/?tag=credential" class="meta-tag">凭证管理</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">⚠️ 解决方案已验证，根因待查</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Git 2.x+</span></div>
+</div>
+
 
 **问题/场景**：
 

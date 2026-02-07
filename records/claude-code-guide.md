@@ -1,5 +1,5 @@
 ---
-title: claude-code-guide.md
+title: Claude Code 经验
 tags:
   - ai
   - tools
@@ -7,6 +7,7 @@ tags:
   - claude-code
 status: ✅ 已验证
 description: Anthropic Claude Code AI 编程助手相关经验
+recordDate: '2026-01-30'
 ---
 # Claude Code 经验
 
@@ -18,9 +19,13 @@ description: Anthropic Claude Code AI 编程助手相关经验
 
 ## Claude Code 完整指南
 
-**日期**：2026-01-30
-**标签**：#ai #tools #reference #claude-code
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=reference" class="meta-tag">参考</a> <a href="/records/?tag=claude-code" class="meta-tag">Claude Code</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -342,9 +347,13 @@ claude
 
 ## Fork 会话功能
 
-**日期**：2026-01-30
-**标签**：#ai #tools #reference #claude-code
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=reference" class="meta-tag">参考</a> <a href="/records/?tag=claude-code" class="meta-tag">Claude Code</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -409,9 +418,13 @@ flowchart LR
 
 ## 完整斜杠命令列表
 
-**日期**：2026-01-30
-**标签**：#ai #tools #reference #claude-code
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=reference" class="meta-tag">参考</a> <a href="/records/?tag=claude-code" class="meta-tag">Claude Code</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 
 **问题/场景**：
 
@@ -579,9 +592,13 @@ Claude Code 有哪些内置斜杠命令？每个命令的具体作用是什么�
 
 ## Claude Code 作为 Agent 框架接入多种模型
 
-**日期**：2026-01-31
-**标签**：#ai #tools #reference #claude-code
-**状态**：✅ 已验证
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=reference" class="meta-tag">参考</a> <a href="/records/?tag=claude-code" class="meta-tag">Claude Code</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+</div>
+
 
 **问题/场景**：
 

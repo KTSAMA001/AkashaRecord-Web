@@ -1,5 +1,5 @@
 ---
-title: shader-variants-compile.md
+title: HLSL 语法经验
 tags:
   - shader
   - experience
@@ -7,6 +7,8 @@ tags:
   - shader-variants
 status: ✅ 已验证
 description: HLSL 着色器语言相关经验
+source: Technical_Artist_Technotes/TA零散知识
+recordDate: '2026-01-31'
 ---
 # HLSL 语法经验
 
@@ -18,10 +20,14 @@ description: HLSL 着色器语言相关经验
 ---
 ## Shader 变体（Shader Variants）详解
 
-**日期**：2026-01-31
-**标签**：#shader #experience #hlsl #shader-variants
-**状态**：✅ 已验证
-**来源**：Technical_Artist_Technotes/TA零散知识
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=hlsl" class="meta-tag">HLSL</a> <a href="/records/?tag=shader-variants" class="meta-tag">Shader 变体</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Technical_Artist_Technotes/TA零散知识</span></div>
+</div>
+
 
 **问题/场景**：
 

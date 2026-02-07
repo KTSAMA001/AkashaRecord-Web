@@ -1,5 +1,5 @@
 ---
-title: astrbot-messages-param-error.md
+title: astrbot.yaml 或通过 Web UI 配置
 tags:
   - ai
   - experience
@@ -7,13 +7,20 @@ tags:
   - bug
 status: ⚠️ 部分解决（v4.13.2 仍有报告）
 description: AstrBot "messages 参数非法" 错误
+recordDate: '2026-02-02'
+updateDate: '2026-02-02'
+version: AstrBot v3.5.x ~ v4.13.2
 ---
 ## AstrBot "messages 参数非法" 错误
-**收录日期**：2026-02-02
-**更新日期**：2026-02-02
-**标签**：#ai #experience #astrbot #bug
-**状态**：⚠️ 部分解决（v4.13.2 仍有报告）
-**适用版本**：AstrBot v3.5.x ~ v4.13.2
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-02</span></div>
+<div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-02</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=astrbot" class="meta-tag">AstrBot</a> <a href="/records/?tag=bug" class="meta-tag">Bug</a></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">⚠️ 部分解决（v4.13.2 仍有报告）</span></div>
+<div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">AstrBot v3.5.x ~ v4.13.2</span></div>
+</div>
+
 
 ### 问题现象
 在执行某些操作或生成回复后，AstrBot 返回错误：
