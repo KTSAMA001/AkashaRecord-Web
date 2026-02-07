@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /**
  * 标签云组件
- * 从内容文件中提取标签并以云状形式展示
+ * 支持交互模式：点击标签跳转至 /records/?tag=xxx
  */
 import { ref, onMounted } from 'vue'
 
@@ -9,6 +9,10 @@ interface TagItem {
   name: string
   count: number
 }
+
+const props = defineProps<{
+  interactive?: boolean
+}>()
 
 const tags = ref<TagItem[]>([])
 
@@ -33,22 +37,30 @@ function getTagSize(count: number): string {
 function getTagOpacity(count: number): number {
   return Math.min(0.5 + count * 0.1, 1)
 }
+
+function handleClick(tagName: string) {
+  if (props.interactive) {
+    window.location.href = `/records/?tag=${encodeURIComponent(tagName)}`
+  }
+}
 </script>
 
 <template>
   <div v-if="tags.length" class="tag-cloud">
-    <h3>🏷️ 标签</h3>
+    <h3 v-if="!interactive">🏷️ 标签</h3>
     <div class="tags-container">
       <span
         v-for="tag in tags"
         :key="tag.name"
         class="tag-item"
+        :class="{ clickable: interactive }"
         :style="{
           fontSize: getTagSize(tag.count),
           opacity: getTagOpacity(tag.count),
         }"
+        @click="handleClick(tag.name)"
       >
-        {{ tag.name }}
+        #{{ tag.name }}
         <sup>{{ tag.count }}</sup>
       </span>
     </div>
@@ -92,12 +104,16 @@ function getTagOpacity(count: number): number {
 
 .tag-item {
   color: var(--vp-c-brand-1);
-  cursor: pointer;
+  cursor: default;
   transition: all 0.25s;
   padding: 0.2rem 0.6rem;
   border-radius: 0;
   border: 1px solid transparent;
   font-family: 'Courier New', monospace;
+}
+
+.tag-item.clickable {
+  cursor: pointer;
 }
 
 .tag-item:hover {
@@ -106,8 +122,13 @@ function getTagOpacity(count: number): number {
   box-shadow: 0 0 8px rgba(255,107,43,0.15);
 }
 
+.tag-item.clickable:hover {
+  transform: translateY(-2px);
+}
+
 .tag-item sup {
   font-size: 0.65em;
   color: var(--vp-c-text-3);
+  margin-left: 2px;
 }
 </style>

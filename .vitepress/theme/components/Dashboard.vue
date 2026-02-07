@@ -1,66 +1,90 @@
 <script setup lang="ts">
 /**
  * 首页仪表盘组件
- * 显示阿卡西记录的统计信息和最近更新
+ * 显示阿卡西记录的统计信息（标签化体系，全部动态读取）
  */
 import { ref, onMounted } from 'vue'
 
-interface StatItem {
+interface DomainStat {
   label: string
   count: number
-  icon: string
-  link: string
   color: string
 }
 
-interface RecentItem {
-  title: string
-  link: string
-  category: string
-  date: string
+interface TagInfo {
+  name: string
+  count: number
 }
 
-const stats = ref<StatItem[]>([])
-const recentItems = ref<RecentItem[]>([])
+const totalRecords = ref(0)
+const domainStats = ref<DomainStat[]>([])
+const topTags = ref<TagInfo[]>([])
 
-// 统计数据从构建时注入
-// 通过 VitePress 的 data loader 机制
+/**
+ * 从标签名哈希生成确定性颜色，保证同一标签颜色始终一致
+ */
+function tagToColor(tag: string): string {
+  let hash = 0
+  for (let i = 0; i < tag.length; i++) {
+    hash = tag.charCodeAt(i) + ((hash << 5) - hash)
+  }
+  const h = ((hash % 360) + 360) % 360
+  return `hsl(${h}, 65%, 55%)`
+}
+
 onMounted(async () => {
   try {
-    const data = await fetch('/api/stats.json')
-    if (data.ok) {
-      const json = await data.json()
-      stats.value = json.stats || []
-      recentItems.value = json.recent || []
+    const statsRes = await fetch('/api/stats.json')
+    if (statsRes.ok) {
+      const json = await statsRes.json()
+      totalRecords.value = json.total || 0
+      
+      // byDomain 完全动态转为展示数组
+      const byDomain = json.byDomain || {}
+      domainStats.value = Object.entries(byDomain)
+        .map(([key, count]) => ({
+          label: key,
+          count: count as number,
+          color: tagToColor(key),
+        }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 6)
+    }
+
+    const tagsRes = await fetch('/api/tags.json')
+    if (tagsRes.ok) {
+      const allTags = await tagsRes.json()
+      topTags.value = allTags.slice(0, 8)
     }
   } catch {
-    // 静态模式：使用默认数据
-    stats.value = [
-      { label: '经验记录', count: 0, icon: '/icons/doc.svg', link: '/experiences/', color: '#FF6B2B' },
-      { label: '知识文档', count: 0, icon: '/icons/book.svg', link: '/knowledge/', color: '#F49F0A' },
-      { label: '灵感火花', count: 0, icon: '/icons/spark.svg', link: '/ideas/', color: '#E85D1A' },
-    ]
+    // 静态模式回退
   }
 })
 </script>
 
 <template>
   <div class="dashboard">
-    <!-- 统计卡片 -->
+    <!-- 总量卡片 -->
     <div class="section-divider">
       <span class="divider-label">// SYSTEM_STATUS</span>
     </div>
 
+    <div class="total-card">
+      <span class="total-number">{{ totalRecords }}</span>
+      <span class="total-label">RECORDS INDEXED</span>
+      <a href="/records/" class="total-link">ACCESS_TERMINAL →</a>
+    </div>
+
+    <!-- Domain 统计 -->
     <div class="card-grid card-grid--3">
       <a
-        v-for="(stat, index) in stats"
+        v-for="(stat, index) in domainStats"
         :key="stat.label"
-        :href="stat.link"
+        :href="`/records/?tag=${stat.label}`"
         class="ak-card"
         :style="{ '--card-accent': stat.color }"
       >
         <span class="ak-card__index">{{ String(index + 1).padStart(2, '0') }}</span>
-        <img :src="stat.icon" :alt="stat.label" class="ak-card__icon" />
         <div class="ak-card__body">
           <span class="ak-card__count">{{ stat.count }}</span>
           <span class="ak-card__label">{{ stat.label }}</span>
@@ -69,23 +93,22 @@ onMounted(async () => {
       </a>
     </div>
 
-    <!-- 最近更新 -->
-    <div v-if="recentItems.length" class="recent-section">
+    <!-- Top Tags -->
+    <div v-if="topTags.length" class="recent-section">
       <div class="section-divider">
-        <span class="divider-label">// RECENT_UPDATES</span>
-        <span class="divider-count">{{ recentItems.length }} ENTRIES</span>
+        <span class="divider-label">// TOP_TAGS</span>
+        <span class="divider-count">{{ topTags.length }} ENTRIES</span>
       </div>
       <div class="card-grid card-grid--1">
         <a
-          v-for="(item, index) in recentItems"
-          :key="item.link"
-          :href="item.link"
+          v-for="(tag, index) in topTags"
+          :key="tag.name"
+          :href="`/records/?tag=${tag.name}`"
           class="ak-card ak-card--row"
         >
           <span class="ak-card__index">{{ String(index + 1).padStart(2, '0') }}</span>
-          <span class="ak-card__tag">{{ item.category }}</span>
-          <span class="ak-card__title">{{ item.title }}</span>
-          <span class="ak-card__meta">{{ item.date }}</span>
+          <span class="ak-card__tag">#{{ tag.name }}</span>
+          <span class="ak-card__title">{{ tag.count }} 条记录</span>
           <span class="ak-card__arrow">→</span>
           <span class="ak-card__shine"></span>
         </a>
@@ -99,6 +122,50 @@ onMounted(async () => {
   max-width: 960px;
   margin: 0 auto;
   padding: 2rem 1rem;
+}
+
+/* ======= 总量卡片 ======= */
+.total-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-border);
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+.total-number {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--ak-accent, #FF6B2B);
+  font-family: 'Courier New', monospace;
+  line-height: 1;
+}
+
+.total-label {
+  font-size: 0.8rem;
+  color: var(--vp-c-text-3);
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.2em;
+  margin-top: 0.5rem;
+}
+
+.total-link {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
+  transition: transform 0.2s;
+}
+
+.total-link:hover {
+  transform: translateX(4px);
 }
 
 /* ======= 分隔线 ======= */

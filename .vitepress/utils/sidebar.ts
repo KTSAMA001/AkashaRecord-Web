@@ -1,83 +1,12 @@
 /**
- * 自动从 content/ 目录结构生成 VitePress 侧边栏配置
- * 支持经验(experiences)、知识(knowledge)、灵感(ideas) 三大分类
- * 
- * 分类名自动从目录下 index.md 的 frontmatter title 或 h1 标题推断，
- * 仅对无法自动推断的特殊名称（缩写、顶级分类 emoji）保留硬编码映射。
+ * 自动从 records/ 目录 + frontmatter tags 生成 VitePress 侧边栏
+ * 按首个 domain 标签分组，组内按字母排序
+ * 标签名称完全动态读取，无硬编码映射
  */
 
 import fs from 'node:fs'
 import path from 'node:path'
-
-// 仅保留无法从 index.md 自动推断的特殊映射
-// - 顶级分类中文名
-// - 技术缩写（全大写 / 特殊符号）目录名无法通过首字母大写还原
-const SPECIAL_LABELS: Record<string, string> = {
-  experiences: '经验',
-  knowledge: '知识',
-  ideas: '灵感',
-  ai: 'AI',
-  csharp: 'C#',
-  hlsl: 'HLSL',
-  vscode: 'VS Code',
-}
-
-/**
- * 获取分类的显示名称
- * 优先级：特殊映射 → index.md 标题 → 目录名美化
- */
-function getCategoryLabel(dirName: string, dirPath?: string): string {
-  // 1. 特殊映射（顶级分类、缩写等）
-  if (SPECIAL_LABELS[dirName]) return SPECIAL_LABELS[dirName]
-
-  // 2. 从目录下的 index.md 读取标题
-  if (dirPath) {
-    const indexFile = path.join(dirPath, 'index.md')
-    if (fs.existsSync(indexFile)) {
-      try {
-        const content = fs.readFileSync(indexFile, 'utf-8')
-        // frontmatter title
-        const fmMatch = content.match(/^---[\s\S]*?title:\s*["']?(.+?)["']?\s*\n[\s\S]*?---/m)
-        if (fmMatch) {
-          const title = fmMatch[1].trim()
-          // 排除自动生成的首字母大写目录名（和 fallback 一样），优先用有意义的中文标题
-          if (title !== dirName.charAt(0).toUpperCase() + dirName.slice(1)) {
-            return title
-          }
-        }
-        // h1 标题
-        const h1Match = content.match(/^#\s+(.+)$/m)
-        if (h1Match) return h1Match[1].trim()
-      } catch { /* ignore */ }
-    }
-  }
-
-  // 3. 回退：目录名美化（连字符/下划线 → 空格，首字母大写）
-  return dirName
-    .replace(/[-_]/g, ' ')
-    .replace(/\b\w/g, c => c.toUpperCase())
-}
-
-/**
- * 从 Markdown 文件提取标题（取第一个 # 标题，回退到文件名）
- */
-function getFileTitle(filePath: string, fileName: string): string {
-  try {
-    const content = fs.readFileSync(filePath, 'utf-8')
-    // 优先匹配 # 一级标题
-    const h1Match = content.match(/^#\s+(.+)$/m)
-    if (h1Match) return h1Match[1].trim()
-    // 其次匹配 ## 二级标题
-    const h2Match = content.match(/^##\s+(.+)$/m)
-    if (h2Match) return h2Match[1].trim()
-  } catch { /* 读取失败时用文件名 */ }
-
-  // 回退：文件名去扩展名，美化
-  return fileName
-    .replace(/\.md$/, '')
-    .replace(/[-_]/g, ' ')
-    .replace(/\b\w/g, c => c.toUpperCase())
-}
+import matter from 'gray-matter'
 
 interface SidebarItem {
   text: string
@@ -87,116 +16,82 @@ interface SidebarItem {
 }
 
 /**
- * 扫描目录生成侧边栏项
+ * 从 Markdown 文件提取标题（取 frontmatter title 或第一个 # 标题，回退到文件名）
  */
-function scanDirectory(dirPath: string, basePath: string): SidebarItem[] {
-  if (!fs.existsSync(dirPath)) return []
+function getFileTitle(filePath: string, fileName: string): string {
+  try {
+    const content = fs.readFileSync(filePath, 'utf-8')
+    const parsed = matter(content)
+    if (parsed.data.title) return parsed.data.title
+    const h1Match = parsed.content.match(/^#\s+(.+)$/m)
+    if (h1Match) return h1Match[1].trim()
+  } catch { /* ignore */ }
 
-  const entries = fs.readdirSync(dirPath, { withFileTypes: true })
-    .filter(e => !e.name.startsWith('.') && !e.name.startsWith('_'))
-    .sort((a, b) => {
-      // 目录排前面
-      if (a.isDirectory() && !b.isDirectory()) return -1
-      if (!a.isDirectory() && b.isDirectory()) return 1
-      return a.name.localeCompare(b.name)
-    })
-
-  const items: SidebarItem[] = []
-
-  for (const entry of entries) {
-    const fullPath = path.join(dirPath, entry.name)
-
-    if (entry.isDirectory()) {
-      const children = scanDirectory(fullPath, `${basePath}/${entry.name}`)
-      if (children.length > 0) {
-        items.push({
-          text: getCategoryLabel(entry.name, fullPath),
-          collapsed: true,
-          items: children,
-        })
-      }
-    } else if (entry.name.endsWith('.md') && entry.name !== 'index.md') {
-      const linkPath = `${basePath}/${entry.name.replace(/\.md$/, '')}`
-      items.push({
-        text: getFileTitle(fullPath, entry.name),
-        link: linkPath,
-      })
-    }
-  }
-
-  return items
+  return fileName
+    .replace(/\.md$/, '')
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, c => c.toUpperCase())
 }
 
 /**
  * 生成完整的侧边栏配置
+ * 扫描 records/ 目录，读取每个文件的 tags，按首个标签分组
  */
 export function generateSidebar(contentDir: string): Record<string, SidebarItem[]> {
-  const sidebar: Record<string, SidebarItem[]> = {}
+  const recordsDir = path.join(contentDir, 'records')
+  if (!fs.existsSync(recordsDir)) return {}
 
-  const topDirs = ['experiences', 'knowledge', 'ideas']
+  // 按 domain tag 分组
+  const groups = new Map<string, SidebarItem[]>()
 
-  for (const dir of topDirs) {
-    const dirPath = path.join(contentDir, dir)
-    if (!fs.existsSync(dirPath)) continue
+  const files = fs.readdirSync(recordsDir)
+    .filter(f => f.endsWith('.md') && f !== 'index.md')
+    .sort()
 
-    const items = scanDirectory(dirPath, `/${dir}`)
-    if (items.length > 0) {
-      sidebar[`/${dir}/`] = [
-        {
-          text: getCategoryLabel(dir, dirPath),
-          items,
-        },
-      ]
+  for (const file of files) {
+    const filePath = path.join(recordsDir, file)
+    let domain = 'Other'
+    
+    try {
+      const content = fs.readFileSync(filePath, 'utf-8')
+      const parsed = matter(content)
+      const tags: string[] = parsed.data.tags || []
+      if (tags.length > 0) {
+        domain = tags[0]
+      }
+    } catch { /* ignore */ }
+
+    if (!groups.has(domain)) {
+      groups.set(domain, [])
     }
+
+    groups.get(domain)!.push({
+      text: getFileTitle(filePath, file),
+      link: `/records/${file.replace(/\.md$/, '')}`,
+    })
   }
 
-  return sidebar
+  // 转为侧边栏结构，按组排序
+  const sidebarItems: SidebarItem[] = Array.from(groups.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([domain, items]) => ({
+      text: domain,
+      collapsed: true,
+      items: items.sort((a, b) => a.text.localeCompare(b.text)),
+    }))
+
+  return {
+    '/records/': sidebarItems,
+  }
 }
 
 /**
  * 生成导航栏配置
  */
-export function generateNav(contentDir: string) {
-  const nav = [{ text: '首页', link: '/' }]
-
-  const sections = [
-    { dir: 'experiences', label: '经验' },
-    { dir: 'knowledge', label: '知识' },
-    { dir: 'ideas', label: '灵感' },
+export function generateNav(_contentDir: string) {
+  return [
+    { text: '首页', link: '/' },
+    { text: '记录终端', link: '/records/' },
+    { text: '标签索引', link: '/tags/' },
   ]
-
-  for (const { dir, label } of sections) {
-    const dirPath = path.join(contentDir, dir)
-    if (fs.existsSync(dirPath)) {
-      nav.push({ text: label, link: `/${dir}/` })
-    }
-  }
-
-  return nav
-}
-
-/**
- * 统计内容文件数量
- */
-export function countFiles(contentDir: string): Record<string, number> {
-  const counts: Record<string, number> = {}
-
-  for (const dir of ['experiences', 'knowledge', 'ideas']) {
-    const dirPath = path.join(contentDir, dir)
-    if (!fs.existsSync(dirPath)) {
-      counts[dir] = 0
-      continue
-    }
-    let count = 0
-    const walk = (p: string) => {
-      for (const e of fs.readdirSync(p, { withFileTypes: true })) {
-        if (e.isDirectory()) walk(path.join(p, e.name))
-        else if (e.name.endsWith('.md')) count++
-      }
-    }
-    walk(dirPath)
-    counts[dir] = count
-  }
-
-  return counts
 }

@@ -5,6 +5,7 @@
 import DefaultTheme from 'vitepress/theme'
 import type { Theme } from 'vitepress'
 import Dashboard from './components/Dashboard.vue'
+import RecordsBrowser from './components/RecordsBrowser.vue'
 import TagCloud from './components/TagCloud.vue'
 import StatusBadge from './components/StatusBadge.vue'
 import Mermaid from './components/Mermaid.vue'
@@ -19,6 +20,7 @@ export default {
   enhanceApp({ app, router }) {
     // 注册全局组件，可在 Markdown 中直接使用
     app.component('Dashboard', Dashboard)
+    app.component('RecordsBrowser', RecordsBrowser)
     app.component('TagCloud', TagCloud)
     app.component('StatusBadge', StatusBadge)
     app.component('Mermaid', Mermaid)

@@ -1,15 +1,20 @@
 /**
- * 内容同步脚本
- * 从阿卡西记录 Git 仓库拉取内容到 content/ 目录
- * 并生成统计数据（stats.json、tags.json）供前端组件使用
+ * 内容同步脚本 (Refactored 2026-02-08)
+ * 适配阿卡西记录扁平化标签体系
  * 
- * 用法：node scripts/sync-content.mjs
+ * 流程：
+ * 1. 拉取 .akasha-repo
+ * 2. 解析 references/INDEX.md 获取权威元数据 (文件清单 + 标签)
+ * 3. 复制 data/*.md 到 content/records/，同时注入 Frontmatter 和修正链接
+ * 4. 生成 content/records/index.md 和 content/tags/index.md
+ * 5. 生成 public/api/stats.json 和 tags.json
  */
 
 import fs from 'node:fs'
 import path from 'node:path'
 import { execSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
+import matter from 'gray-matter'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const PROJECT_ROOT = path.resolve(__dirname, '..')
@@ -17,616 +22,290 @@ const CONTENT_DIR = path.join(PROJECT_ROOT, 'content')
 const PUBLIC_DIR = path.join(PROJECT_ROOT, 'public')
 const API_DIR = path.join(PUBLIC_DIR, 'api')
 
-// 阿卡西记录数据仓库
-// 支持通过环境变量 GITHUB_MIRROR 配置镜像前缀（如 https://ghfast.top/）
+// 阿卡西记录配置
 const GITHUB_MIRROR = process.env.GITHUB_MIRROR || ''
-const AKASHA_REPO_ORIGIN = 'https://github.com/KTSAMA001/AgentSkill-Akasha-KT.git'
-const AKASHA_REPO = GITHUB_MIRROR
+// 优先使用本地已存在的 AgentSkill 路径作为源（开发环境）
+const LOCAL_SOURCE = '/Users/ktsama/.claude/skills/AgentSkill-Akasha-KT'
+const AKASHA_REPO_ORIGIN = fs.existsSync(LOCAL_SOURCE) 
+  ? LOCAL_SOURCE 
+  : 'https://github.com/KTSAMA001/AgentSkill-Akasha-KT.git'
+
+const AKASHA_REPO = GITHUB_MIRROR && !fs.existsSync(LOCAL_SOURCE)
   ? AKASHA_REPO_ORIGIN.replace('https://github.com/', GITHUB_MIRROR)
   : AKASHA_REPO_ORIGIN
 const AKASHA_LOCAL = path.join(PROJECT_ROOT, '.akasha-repo')
 
-// ====== 1. 克隆 / 拉取阿卡西记录仓库 ======
 function syncRepo() {
-  // 自动添加 safe.directory，避免 dubious ownership 错误（服务器 root 用户 + www 目录常见）
   try {
     execSync(`git config --global --add safe.directory "${AKASHA_LOCAL}"`, { stdio: 'pipe' })
   } catch {}
 
   if (fs.existsSync(path.join(AKASHA_LOCAL, '.git'))) {
-    // 每次同步前更新 remote URL（兼容镜像切换）
     try {
       execSync(`git remote set-url origin "${AKASHA_REPO}"`, { cwd: AKASHA_LOCAL, stdio: 'pipe' })
     } catch {}
 
-    console.log(`📥 正在拉取阿卡西记录最新内容...${GITHUB_MIRROR ? '（镜像: ' + GITHUB_MIRROR + '）' : ''}`)
+    console.log(`📥 拉取 .akasha-repo... ${GITHUB_MIRROR ? '(Mirror)' : ''}`)
     try {
-      // 丢弃本地修改，避免 pull 时冲突
       execSync('git checkout . && git clean -fd', { cwd: AKASHA_LOCAL, stdio: 'pipe' })
       execSync('git pull --ff-only', { cwd: AKASHA_LOCAL, stdio: 'pipe', timeout: 60000 })
-      console.log('✅ 拉取完成')
     } catch (e) {
-      console.warn(`⚠️ 拉取失败: ${e.stderr?.toString().trim() || e.message}`)
-      console.warn('⚠️ 尝试 fetch + reset...')
+      console.warn('⚠️ Pull failed, trying fetch+reset...')
       try {
-        execSync('git fetch origin && git reset --hard origin/main', {
-          cwd: AKASHA_LOCAL,
-          stdio: 'pipe',
-          timeout: 60000,
-        })
-        console.log('✅ reset 成功')
+        execSync('git fetch origin && git reset --hard origin/main', { cwd: AKASHA_LOCAL, stdio: 'pipe' })
       } catch (e2) {
-        console.warn(`⚠️ 网络同步完全失败: ${e2.stderr?.toString().trim() || e2.message}`)
-        console.warn('⚠️ 将使用本地缓存继续...')
+        console.warn('⚠️ Sync failed, using local cache.')
       }
     }
   } else {
-    console.log(`📦 首次克隆阿卡西记录仓库...${GITHUB_MIRROR ? '（镜像: ' + GITHUB_MIRROR + '）' : ''}`)
-    execSync(`git clone --depth 1 ${AKASHA_REPO} "${AKASHA_LOCAL}"`, {
-      stdio: 'pipe',
-      timeout: 60000,
-    })
-    console.log('✅ 克隆完成')
+    console.log(`📦 Cloning .akasha-repo...`)
+    execSync(`git clone --depth 1 ${AKASHA_REPO} "${AKASHA_LOCAL}"`, { stdio: 'pipe' })
   }
-}
-
-// ====== 2. 复制数据文件到 content/ ======
-function copyContent() {
-  const sourceData = path.join(AKASHA_LOCAL, 'data')
-
-  if (!fs.existsSync(sourceData)) {
-    console.error('❌ 找不到阿卡西记录 data/ 目录')
-    process.exit(1)
-  }
-
-  // 清理旧内容
-  if (fs.existsSync(CONTENT_DIR)) {
-    fs.rmSync(CONTENT_DIR, { recursive: true })
-  }
-
-  // 复制三个数据目录
-  const dirs = ['experiences', 'knowledge', 'ideas']
-  for (const dir of dirs) {
-    const src = path.join(sourceData, dir)
-    const dest = path.join(CONTENT_DIR, dir)
-    if (fs.existsSync(src)) {
-      copyDirRecursive(src, dest)
-      console.log(`📁 已同步 ${dir}/`)
-    }
-  }
-
-  // 将 content/ 下的文件同步到项目根目录对应位置（VitePress 需要）
-  for (const dir of dirs) {
-    const src = path.join(CONTENT_DIR, dir)
-    const dest = path.join(PROJECT_ROOT, dir)
-    if (fs.existsSync(src)) {
-      // 清除旧文件（完全重建，index.md 将由 generateCategoryIndexes 动态生成）
-      if (fs.existsSync(dest)) {
-        fs.rmSync(dest, { recursive: true })
-      }
-      fs.mkdirSync(dest, { recursive: true })
-
-      // 复制内容文件
-      copyDirRecursive(src, dest, true)
-
-      // 递归为没有 index.md 的子目录生成默认索引页，解决 Nginx 403 问题
-      generateMissingIndexesRecursive(dest)
-    }
-  }
-
-  // 从 INDEX.md 解析元数据，动态生成分类首页
-  generateCategoryIndexes()
-
-  console.log('✅ 内容同步完成')
-}
-
-// ====== 2.5 解析 INDEX.md 并动态生成分类首页 ======
-
-// 三大分类的页面配置
-const SECTION_CONFIG = {
-  experiences: {
-    icon: '/icons/doc.svg',
-    title: '经验记录',
-    desc: '收录在各技术领域实践中积累的解决方案、踩坑记录和最佳实践。',
-    footer: '> 从左侧导航栏选择分类，或使用搜索功能查找特定内容。',
-  },
-  knowledge: {
-    icon: '/icons/book.svg',
-    title: '知识文档',
-    desc: '系统整理的理论知识、概念解析和技术参考文档。',
-    footer: '> 知识文档提供理论支撑，与经验记录交叉引用形成完整知识网络。',
-  },
-  ideas: {
-    icon: '/icons/spark.svg',
-    title: '灵感火花',
-    desc: '随时记录的创意灵感和项目构想。',
-    footer: '> 灵感不设限制，随想随记。',
-  },
 }
 
 /**
- * 解析 INDEX.md，提取每个分类下子目录的元数据（中文名、描述）
- * 表格格式：| 目录 | 中文名 | 描述 | 文件 |
- * 返回 { experiences: [{dir, label, desc, files}], knowledge: [...], ideas: [...] }
+ * 解析 INDEX.md 中的「文件清单」表格
+ * 返回: Array<{ filename, title, tags: [], status, desc }>
  */
 function parseIndexMd() {
   const indexPath = path.join(AKASHA_LOCAL, 'references', 'INDEX.md')
-  if (!fs.existsSync(indexPath)) {
-    console.warn('⚠️ 未找到 references/INDEX.md，跳过元数据解析')
-    return {}
-  }
+  if (!fs.existsSync(indexPath)) return []
 
   const content = fs.readFileSync(indexPath, 'utf-8')
-  const result = {}
-
-  // 匹配 "## xxx section_name/" 格式的标题，然后解析其后的表格
-  const sectionRegex = /^## .+ (experiences|knowledge|ideas)\/\s*$/gm
-  let match
-  while ((match = sectionRegex.exec(content)) !== null) {
-    const sectionName = match[1]
-    const startPos = match.index + match[0].length
-
-    // 找到下一个 ## 标题或文件末尾
-    const nextSection = content.indexOf('\n## ', startPos)
-    const block = content.substring(startPos, nextSection === -1 ? undefined : nextSection)
-
-    // 解析表格行：| 目录 | 中文名 | 描述 | 文件 |
-    const rows = []
-    const lines = block.split('\n')
-    for (const line of lines) {
-      // 跳过表头和分隔线
-      if (!line.startsWith('|')) continue
-      if (line.includes('---')) continue
-      if (line.includes('目录')) continue // 表头行
-
-      const cols = line.split('|').map(c => c.trim()).filter(c => c.length > 0)
-      if (cols.length >= 3) {
-        rows.push({
-          dir: cols[0].replace(/\/$/, ''), // 去掉尾部 /
-          label: cols[1],
-          desc: cols[2],
-          files: cols[3] || '',
-        })
-      }
-    }
-
-    result[sectionName] = rows
-  }
-
-  return result
-}
-
-/**
- * 根据 INDEX.md 元数据，动态生成三大分类的 index.md 首页
- */
-function generateCategoryIndexes() {
-  const meta = parseIndexMd()
-
-  for (const [section, config] of Object.entries(SECTION_CONFIG)) {
-    const destDir = path.join(PROJECT_ROOT, section)
-    if (!fs.existsSync(destDir)) continue
-
-    const categories = meta[section] || []
-
-    // 生成 CategoryGrid 组件的 items JSON
-    let gridItems
-    if (categories.length > 0) {
-      gridItems = categories.map(c => ({
-        label: c.label,
-        link: `./${c.dir}/`,
-        desc: c.desc,
-      }))
-      console.log(`📄 ${section}/index.md ← INDEX.md 元数据（${categories.length} 个子分类）`)
-    } else {
-      // 回退：扫描目录自动生成（无描述）
-      const entries = fs.readdirSync(destDir, { withFileTypes: true })
-        .filter(e => e.isDirectory() && !e.name.startsWith('.'))
-        .sort((a, b) => a.name.localeCompare(b.name))
-      gridItems = entries.map(e => ({
-        label: e.name.charAt(0).toUpperCase() + e.name.slice(1),
-        link: `./${e.name}/`,
-        desc: '-',
-      }))
-      console.log(`📄 ${section}/index.md ← 目录扫描（${entries.length} 个子分类，无 INDEX.md 元数据）`)
-    }
-
-    // 将 items 序列化为内联 JSON（转义单引号以安全嵌入模板属性）
-    const itemsJson = JSON.stringify(gridItems).replace(/'/g, '&#39;')
-
-    const indexContent = `---
-title: ${config.title}
----
-
-# ${config.title}
-
-${config.desc}
-
-<CategoryGrid :items='${itemsJson}' />
-
-${config.footer}
-`
-    fs.writeFileSync(path.join(destDir, 'index.md'), indexContent)
-  }
-}
-
-/**
- * 递归复制目录
- */
-function copyDirRecursive(src, dest, skipIndex = false) {
-  fs.mkdirSync(dest, { recursive: true })
-
-  for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
-    // 跳过隐藏文件和 .DS_Store
-    if (entry.name.startsWith('.')) continue
-    if (skipIndex && entry.name === 'index.md') continue
-
-    const srcPath = path.join(src, entry.name)
-    const destPath = path.join(dest, entry.name)
-
-    if (entry.isDirectory()) {
-      copyDirRecursive(srcPath, destPath, skipIndex)
-    } else {
-      // 复制文件，修正内部链接路径
-      let content = fs.readFileSync(srcPath, 'utf-8')
-      content = fixMarkdownLinks(content)
-      content = ensureFrontmatter(content, entry.name)
-      fs.writeFileSync(destPath, content)
-    }
-  }
-}
-
-/**
- * 递归检查目录，如果缺少 index.md 则自动生成
- * 为了解决 Nginx 无法访问无 index.html 目录的问题
- */
-function generateMissingIndexesRecursive(dirPath) {
-  if (!fs.existsSync(dirPath)) return
-
-  const entries = fs.readdirSync(dirPath, { withFileTypes: true })
-  const hasIndex = entries.some(e => e.name === 'index.md')
-
-  if (!hasIndex) {
-    const dirName = path.basename(dirPath)
-    // 首字母大写
-    const title = dirName.charAt(0).toUpperCase() + dirName.slice(1)
-    
-    const mdFiles = entries
-      .filter(e => e.isFile() && e.name.endsWith('.md') && e.name !== 'index.md')
-    
-    // 生成 CategoryGrid 的 items
-    const gridItems = mdFiles.map(e => {
-      const name = e.name.replace(/\.md$/, '')
-      const displayName = name.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
-      return { label: displayName, link: `./${name}`, desc: '' }
-    })
-
-    let body
-    if (gridItems.length > 0) {
-      const itemsJson = JSON.stringify(gridItems).replace(/'/g, '&#39;')
-      body = `<CategoryGrid :items='${itemsJson}' />`
-    } else {
-      body = '*暂无文档*'
-    }
-
-    const content = `---\ntitle: ${title}\n---\n\n# ${title}\n\n${body}\n`
-    
-    const indexFile = path.join(dirPath, 'index.md')
-    fs.writeFileSync(indexFile, content)
-    console.log(`P  +Auto-Index: ${path.relative(CONTENT_DIR, indexFile)}`)
-  }
-
-  // 递归处理子目录
-  for (const entry of entries) {
-    if (entry.isDirectory() && !entry.name.startsWith('.')) {
-      generateMissingIndexesRecursive(path.join(dirPath, entry.name))
-    }
-  }
-}
-
-
-/**
- * 确保 Markdown 文件有合法的 frontmatter
- * 阿卡西记录中部分文件以 --- 开头但内容不是合法 YAML，会导致 VitePress 解析失败
- */
-function ensureFrontmatter(content, fileName) {
-  const trimmed = content.trimStart()
-
-  if (trimmed.startsWith('---')) {
-    // 检查是否是合法的 frontmatter（第二个 --- 之前应该是纯 YAML）
-    const secondDash = trimmed.indexOf('---', 3)
-    if (secondDash === -1) {
-      // 只有一个 ---，不是 frontmatter，是分隔线
-      // 在文件开头添加空 frontmatter 避免解析器混淆
-      const title = fileName.replace(/\.md$/, '').replace(/[-_]/g, ' ')
-      return `---\ntitle: "${title}"\n---\n\n${content}`
-    }
-
-    // 提取 frontmatter 内容检测是否合法
-    const fmContent = trimmed.substring(3, secondDash).trim()
-    if (fmContent.includes('**') || fmContent.includes('##') || fmContent.includes('|')) {
-      // 内容不是 YAML（包含 Markdown 语法），添加正确的 frontmatter
-      const title = fileName.replace(/\.md$/, '').replace(/[-_]/g, ' ')
-      return `---\ntitle: "${title}"\n---\n\n${content}`
-    }
-  }
-
-  return content
-}
-
-/**
- * 修正 Markdown 中的相对链接
- * 阿卡西记录中使用 ../../knowledge/ 等路径，需要修正为网站路径
- */
-function fixMarkdownLinks(content) {
-  // 修正 knowledge/experiences/ideas 的交叉引用路径
-  // 例如 ../../knowledge/unity/physics.md → /knowledge/unity/physics
-  content = content.replace(
-    /\]\((?:\.\.\/)*(?:\.\.\/)(experiences|knowledge|ideas)\//g,
-    '](/$1/'
-  )
-
-  // 移除 .md 扩展名（VitePress cleanUrls）
-  content = content.replace(
-    /\]\(([^)]+)\.md(#[^)]*)??\)/g,
-    (match, p, hash) => `](${p}${hash || ''})`
-  )
-
-  // 转义代码块外的尖括号（泛型如 <T> 会被 Vue 当作 HTML 标签）
-  content = escapeAngleBrackets(content)
-
-  return content
-}
-
-/**
- * 转义 Markdown 正文中的尖括号，避免 Vue 将 C# 泛型语法当作 HTML 标签
- * 仅处理代码块（```...```）和行内代码（`...`）外的内容
- */
-function escapeAngleBrackets(content) {
   const lines = content.split('\n')
-  let inCodeBlock = false
-  const result = []
+  
+  const records = []
+  let inTable = false
 
   for (const line of lines) {
-    // 检测代码块边界
-    if (line.trimStart().startsWith('```')) {
-      inCodeBlock = !inCodeBlock
-      result.push(line)
+    if (line.includes('## 文件清单')) {
+      inTable = true
       continue
     }
-
-    if (inCodeBlock) {
-      result.push(line)
-      continue
+    if (inTable && line.startsWith('## ')) {
+      inTable = false
+      break
     }
+    
+    if (inTable && line.startsWith('|') && !line.includes('---') && !line.includes('| 文件 |')) {
+      // | [title](../data/filename.md) | ：#tag1 #tag2 | ：✅ 状态 | 描述 |
+      const cols = line.split('|').map(c => c.trim())
+      if (cols.length < 5) continue
 
-    // 在非代码块行中，转义行内代码外的 <> 
-    // 保留已有的 HTML 标签（如 <br>、<details> 等常见标签）
-    let processed = ''
-    let inInlineCode = false
-    let i = 0
+      const fileCol = cols[1]
+      const tagCol = cols[2]
+      const statusCol = cols[3]
+      const descCol = cols[4]
 
-    while (i < line.length) {
-      if (line[i] === '`') {
-        inInlineCode = !inInlineCode
-        processed += line[i]
-        i++
-        continue
-      }
+      // 解析文件名和标题: [title](../data/filename.md)
+      const fileMatch = fileCol.match(/\[(.*?)\]\((?:..\/)?data\/(.*?)\)/)
+      if (!fileMatch) continue
+      
+      const title = fileMatch[1]
+      const filename = fileMatch[2]
 
-      if (!inInlineCode && line[i] === '<') {
-        // 检查是否为常见 HTML 标签 或已知安全标签
-        const rest = line.slice(i)
-        const htmlTagMatch = rest.match(/^<\/?(br|hr|details|summary|sup|sub|kbd|mark|abbr|img|a |div|span|p|table|thead|tbody|tr|th|td|ul|ol|li|em|strong|code|pre|blockquote|h[1-6]|!--)[\s>/]/)
-        if (htmlTagMatch) {
-          // 保留合法 HTML 标签
-          const closeIdx = rest.indexOf('>')
-          if (closeIdx !== -1) {
-            processed += rest.slice(0, closeIdx + 1)
-            i += closeIdx + 1
-            continue
-          }
-        }
-        // 非 HTML 标签的 < 转义
-        processed += '&lt;'
-        i++
-        continue
-      }
+      // 解析标签: ：#tag1 #tag2 -> ['tag1', 'tag2']
+      const tags = tagCol
+        .replace(/[:：]/g, '')
+        .split(' ')
+        .filter(t => t.startsWith('#'))
+        .map(t => t.slice(1))
 
-      if (!inInlineCode && line[i] === '>' && i > 0 && processed.endsWith(';')) {
-        // 在 &lt; 之后的 > 也需要转义
-        // 但要注意如果前面是 &lt; 才转义
-      }
+      // 解析状态: ：✅ 已验证 -> ✅ 已验证
+      const status = statusCol.replace(/[:：]/g, '').trim()
 
-      processed += line[i]
-      i++
-    }
-
-    result.push(processed)
-  }
-
-  return result.join('\n')
-}
-
-// ====== 3. 生成统计数据 ======
-function generateStats() {
-  fs.mkdirSync(API_DIR, { recursive: true })
-
-  const stats = {
-    stats: [],
-    recent: [],
-  }
-
-  // 统计各分类文件数
-  const sections = [
-    { dir: 'experiences', label: '经验记录', icon: '/icons/doc.svg', color: '#7c3aed' },
-    { dir: 'knowledge', label: '知识文档', icon: '/icons/book.svg', color: '#2563eb' },
-    { dir: 'ideas', label: '灵感火花', icon: '/icons/spark.svg', color: '#f59e0b' },
-  ]
-
-  for (const section of sections) {
-    const dirPath = path.join(CONTENT_DIR, section.dir)
-    const count = countMdFiles(dirPath)
-    stats.stats.push({
-      label: section.label,
-      count,
-      icon: section.icon,
-      link: `/${section.dir}/`,
-      color: section.color,
-    })
-  }
-
-  // 获取最近更新的文件（通过 git log）
-  try {
-    const gitLog = execSync(
-      'git log --format="%H|%ai|%s" --name-only -50',
-      { cwd: AKASHA_LOCAL, encoding: 'utf-8' }
-    )
-
-    const recentFiles = new Map()
-    let currentCommit = null
-
-    for (const line of gitLog.split('\n')) {
-      if (line.includes('|')) {
-        const parts = line.split('|')
-        currentCommit = {
-          date: parts[1]?.trim().slice(0, 10) || '',
-          message: parts[2]?.trim() || '',
-        }
-      } else if (line.startsWith('data/') && line.endsWith('.md') && currentCommit) {
-        if (!recentFiles.has(line)) {
-          recentFiles.set(line, currentCommit)
-        }
-      }
-    }
-
-    // 取前 10 个最近更新
-    let count = 0
-    for (const [filePath, commit] of recentFiles) {
-      if (count >= 10) break
-
-      // data/experiences/unity/csharp.md → /experiences/unity/csharp
-      const webPath = filePath
-        .replace(/^data\//, '/')
-        .replace(/\.md$/, '')
-
-      // 提取分类
-      const parts = webPath.split('/')
-      const category = parts[1] || ''
-
-      // 提取标题
-      const fullPath = path.join(AKASHA_LOCAL, filePath)
-      let title = path.basename(filePath, '.md')
-      try {
-        const content = fs.readFileSync(fullPath, 'utf-8')
-        const match = content.match(/^##?\s+(.+)$/m)
-        if (match) title = match[1].replace(/\s*\{#[^}]+\}/g, '').trim()
-      } catch { /* ignore */ }
-
-      stats.recent.push({
+      records.push({
+        filename,
         title,
-        link: webPath,
-        category: sections.find(s => s.dir === category)?.label || category,
-        date: commit.date,
+        tags,
+        status,
+        desc: descCol
       })
-
-      count++
-    }
-  } catch (e) {
-    console.warn('⚠️ 无法获取 git 历史:', e.message)
-  }
-
-  fs.writeFileSync(
-    path.join(API_DIR, 'stats.json'),
-    JSON.stringify(stats, null, 2)
-  )
-  console.log('📊 统计数据已生成')
-}
-
-// ====== 4. 生成标签数据 ======
-function generateTags() {
-  const tagMap = new Map()
-
-  function scanTags(dirPath) {
-    if (!fs.existsSync(dirPath)) return
-
-    for (const entry of fs.readdirSync(dirPath, { withFileTypes: true })) {
-      if (entry.name.startsWith('.')) continue
-      const fullPath = path.join(dirPath, entry.name)
-
-      if (entry.isDirectory()) {
-        scanTags(fullPath)
-      } else if (entry.name.endsWith('.md')) {
-        try {
-          const content = fs.readFileSync(fullPath, 'utf-8')
-          // 匹配各种标签格式
-          // 格式1: `标签` 在表格中
-          // 格式2: **标签**：xxx, xxx
-          // 格式3: tags: [xxx, xxx]
-          const tagPatterns = [
-            /\*\*标签\*\*[：:]\s*(.+)/g,
-            /\|\s*标签\s*\|\s*(.+?)\s*\|/g,
-            /tags?[：:]\s*\[?([^\]\n]+)/gi,
-          ]
-
-          for (const pattern of tagPatterns) {
-            let match
-            while ((match = pattern.exec(content)) !== null) {
-              const tagStr = match[1]
-              // 按逗号/空格/中文逗号分割
-              const tags = tagStr.split(/[,，、\s|]+/)
-                .map(t => t.replace(/[`\[\]#*]/g, '').trim())
-                .filter(t => t.length > 0 && t.length < 20)
-
-              for (const tag of tags) {
-                tagMap.set(tag, (tagMap.get(tag) || 0) + 1)
-              }
-            }
-          }
-        } catch { /* ignore */ }
-      }
     }
   }
-
-  scanTags(CONTENT_DIR)
-
-  // 按数量排序
-  const tags = Array.from(tagMap.entries())
-    .map(([name, count]) => ({ name, count }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 50) // 最多 50 个标签
-
-  fs.writeFileSync(
-    path.join(API_DIR, 'tags.json'),
-    JSON.stringify(tags, null, 2)
-  )
-  console.log(`🏷️ 标签数据已生成（${tags.length} 个标签）`)
+  
+  console.log(`📋 解析到 ${records.length} 条记录元数据`)
+  return records
 }
 
 /**
- * 递归统计 .md 文件数量
+ * 修正内容中的链接
+ * ../../knowledge/xxx.md -> ./xxx.md
  */
-function countMdFiles(dirPath) {
-  if (!fs.existsSync(dirPath)) return 0
-  let count = 0
-  for (const entry of fs.readdirSync(dirPath, { withFileTypes: true })) {
-    if (entry.name.startsWith('.')) continue
-    const fullPath = path.join(dirPath, entry.name)
-    if (entry.isDirectory()) count += countMdFiles(fullPath)
-    else if (entry.name.endsWith('.md')) count++
+function fixLinks(content) {
+  // 移除旧的分类目录层级 references
+  // 匹配 ](../../knowledge/xxx.md) 或 ](../graphics/xxx.md) 等
+  // 统一替换为 ](./xxx)
+  
+  // 1. 处理以 ../data/ 开头的 (已经是扁平的了，但可能在旧文件中还有残留)
+  content = content.replace(/\]\(\.\.\/data\//g, '](./')
+  
+  // 2. 处理旧的分类路径 ../../knowledge/graphics/xxx.md -> ./xxx.md
+  content = content.replace(/\]\(\.\.\/.*?\/([^\/]+?)\.md\)/g, '](./$1.md)')
+  
+  // 3. 移除 .md 后缀 (VitePress cleanUrls)
+  content = content.replace(/\]\(\.\/([^\)]+)\.md\)/g, '](./$1)')
+
+  // 4. 转义 C# 泛型防止 Vue 解析错误 <T>
+  content = content.replace(/<([a-zA-Z0-9_, ]+)>/g, (match, p1) => {
+    // 简单 heuristic: 如果是纯字母数字组合，可能是泛型，转义
+    // 排除 HTML 标签将在 Markdown 渲染层处理，这里只处理明显的代码泛型
+    return `&lt;${p1}&gt;`
+  })
+
+  return content
+}
+
+/**
+ * 注入 Frontmatter
+ */
+function ensureFrontmatter(content, record) {
+  let fileMatter;
+  try {
+    fileMatter = matter(content);
+  } catch(e) {
+    // Fallback for files with broken frontmatter or none
+    fileMatter = { data: {}, content: content };
   }
-  return count
+  
+  const data = fileMatter.data || {}
+
+  // 强制覆盖/补全关键元数据
+  data.title = data.title || record.title
+  data.tags = record.tags // 使用 INDEX.md 中的权威标签
+  data.status = record.status
+  data.description = record.desc
+  
+  // 生成新的 frontmatter
+  return matter.stringify(fileMatter.content, data)
 }
 
-// ====== 主流程 ======
-console.log('🌀 阿卡西记录内容同步开始...\n')
+function generateStats(records) {
+  const stats = {
+    total: records.length,
+    byDomain: {},
+    recent: [] // TODO: Git log logic could be re-added here if needed
+  }
 
-try {
+  // 统计 Domain 标签 (首个标签作为 Domain)
+  for (const r of records) {
+    if (r.tags.length > 0) {
+      const domain = r.tags[0]
+      stats.byDomain[domain] = (stats.byDomain[domain] || 0) + 1
+    }
+  }
+
+  fs.mkdirSync(API_DIR, { recursive: true })
+  fs.writeFileSync(path.join(API_DIR, 'stats.json'), JSON.stringify(stats, null, 2))
+}
+
+function generateTags(records) {
+  const tagMap = new Map() // tag -> { count, files: [] }
+
+  for (const r of records) {
+    for (const tag of r.tags) {
+      if (!tagMap.has(tag)) {
+        tagMap.set(tag, { name: tag, count: 0, files: [] })
+      }
+      const info = tagMap.get(tag)
+      info.count++
+      info.files.push({
+        title: r.title,
+        link: `/records/${r.filename.replace('.md', '')}`,
+        status: r.status,
+        tags: r.tags
+      })
+    }
+  }
+
+  const sortedTags = Array.from(tagMap.values()).sort((a, b) => b.count - a.count)
+  fs.writeFileSync(path.join(API_DIR, 'tags.json'), JSON.stringify(sortedTags, null, 2))
+}
+
+function generatePages(records) {
+  // 1. records/index.md
+  const recordsIndexContent = `---
+layout: page
+title: 记录终端
+sidebar: false
+---
+
+<RecordsBrowser />
+`
+  fs.writeFileSync(path.join(CONTENT_DIR, 'records', 'index.md'), recordsIndexContent)
+
+  // 2. tags/index.md
+  const tagsIndexContent = `---
+layout: page
+title: 标签索引
+sidebar: false
+---
+
+# 标签索引
+
+<TagCloud :interactive="true" />
+`
+  fs.writeFileSync(path.join(CONTENT_DIR, 'tags', 'index.md'), tagsIndexContent)
+}
+
+// 主流程
+async function main() {
+  console.log('🚀 开始执行标签化内容同步...')
+  
   syncRepo()
-  copyContent()
-  generateStats()
-  generateTags()
-  console.log('\n✨ 全部完成！')
-} catch (error) {
-  console.error('❌ 同步失败:', error.message)
-  process.exit(1)
+  const records = parseIndexMd()
+  
+  if (records.length === 0) {
+    console.error('❌ 未解析到任何记录，请检查 INDEX.md 格式')
+    process.exit(1)
+  }
+
+  // 清理并重建 content 目录
+  if (fs.existsSync(CONTENT_DIR)) fs.rmSync(CONTENT_DIR, { recursive: true })
+  fs.mkdirSync(path.join(CONTENT_DIR, 'records'), { recursive: true })
+  fs.mkdirSync(path.join(CONTENT_DIR, 'tags'), { recursive: true })
+
+  // 复制文件
+  let copyCount = 0
+  for (const r of records) {
+    const src = path.join(AKASHA_LOCAL, 'data', r.filename)
+    if (fs.existsSync(src)) {
+      let content = fs.readFileSync(src, 'utf-8')
+      content = fixLinks(content)
+      content = ensureFrontmatter(content, r)
+      fs.writeFileSync(path.join(CONTENT_DIR, 'records', r.filename), content)
+      copyCount++
+    }
+  }
+  console.log(`✅ 已处理 ${copyCount} 个记录文件`)
+
+  // 生成数据和页面
+  generateStats(records)
+  generateTags(records)
+  generatePages(records)
+
+  // 同步到项目根目录 (VitePress Root)
+  const rootRecords = path.join(PROJECT_ROOT, 'records')
+  const rootTags = path.join(PROJECT_ROOT, 'tags')
+  
+  // 清理旧目录 (experiences, knowledge, ideas)
+  const oldDirs = ['experiences', 'knowledge', 'ideas']
+  for (const d of oldDirs) {
+    const p = path.join(PROJECT_ROOT, d)
+    if (fs.existsSync(p)) fs.rmSync(p, { recursive: true })
+  }
+
+  // 部署新目录
+  if (fs.existsSync(rootRecords)) fs.rmSync(rootRecords, { recursive: true })
+  if (fs.existsSync(rootTags)) fs.rmSync(rootTags, { recursive: true })
+  
+  fs.cpSync(path.join(CONTENT_DIR, 'records'), rootRecords, { recursive: true })
+  fs.cpSync(path.join(CONTENT_DIR, 'tags'), rootTags, { recursive: true })
+
+  console.log('✨ 同步完成！')
 }
+
+main().catch(e => {
+  console.error(e)
+  process.exit(1)
+})

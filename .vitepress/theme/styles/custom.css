@@ -838,3 +838,56 @@ body::after {
   letter-spacing: 0.05em;
   font-size: 0.8rem;
 }
+
+/* ======= 标签胶囊 (ak-tag) ======= */
+.ak-tag {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.75rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.03em;
+  color: var(--vp-c-brand-1);
+  border: 1px solid var(--vp-c-brand-soft);
+  background: transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+}
+
+.ak-tag:hover {
+  background: var(--vp-c-brand-soft);
+  border-color: var(--vp-c-brand-1);
+}
+
+/* ======= 筛选条 (ak-filter-bar) ======= */
+.ak-filter-bar {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--vp-c-divider);
+  scrollbar-width: thin;
+}
+
+.ak-filter-bar::-webkit-scrollbar {
+  height: 3px;
+}
+
+.ak-filter-bar::-webkit-scrollbar-thumb {
+  background: var(--vp-c-divider);
+}
+
+.ak-filter-bar .ak-tag {
+  cursor: pointer;
+}
+
+.ak-filter-bar .ak-tag.active {
+  background: var(--vp-c-brand-1);
+  color: #fff;
+  border-color: var(--vp-c-brand-1);
+}
+
+/* ======= Records 页面内容样式 ======= */
+.vp-doc .content-container {
+  max-width: 1200px;
+}
