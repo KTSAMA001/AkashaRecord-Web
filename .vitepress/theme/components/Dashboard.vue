@@ -201,16 +201,16 @@ onMounted(async () => {
 }
 
 .recent-list li:last-child {
-  borderindex {
+  border-bottom: none;
+}
+
+.recent-index {
   font-family: 'Courier New', monospace;
   font-size: 0.9rem;
   color: var(--vp-c-text-3);
   font-weight: 700;
   opacity: 0.5;
   margin-right: 0.5rem;
-}
-
-.recent--bottom: none;
 }
 
 .recent-list a {

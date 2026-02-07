@@ -12,9 +12,11 @@
     "deploy:build": "node scripts/sync-content.mjs && vitepress build"
   },
   "dependencies": {
-    "express": "^4.21.0"
+    "express": "^4.21.0",
+    "nprogress": "^0.2.0"
   },
   "devDependencies": {
+    "@types/nprogress": "^0.2.3",
     "@vue/devtools-api": "^8.0.6",
     "@vueuse/core": "^14.2.0",
     "gray-matter": "^4.0.3",

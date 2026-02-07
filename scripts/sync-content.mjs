@@ -208,19 +208,30 @@ function generateCategoryIndexes() {
 
     const categories = meta[section] || []
 
-    // 如果 INDEX.md 里没有该分类的元数据，回退扫描目录自动生成
-    let tableRows
+    // 生成 CategoryGrid 组件的 items JSON
+    let gridItems
     if (categories.length > 0) {
-      tableRows = categories.map(c => `| [${c.label}](./${c.dir}/) | ${c.desc} |`).join('\n')
+      gridItems = categories.map(c => ({
+        label: c.label,
+        link: `./${c.dir}/`,
+        desc: c.desc,
+      }))
       console.log(`📄 ${section}/index.md ← INDEX.md 元数据（${categories.length} 个子分类）`)
     } else {
       // 回退：扫描目录自动生成（无描述）
       const entries = fs.readdirSync(destDir, { withFileTypes: true })
         .filter(e => e.isDirectory() && !e.name.startsWith('.'))
         .sort((a, b) => a.name.localeCompare(b.name))
-      tableRows = entries.map(e => `| [${e.name}](./${e.name}/) | - |`).join('\n')
+      gridItems = entries.map(e => ({
+        label: e.name.charAt(0).toUpperCase() + e.name.slice(1),
+        link: `./${e.name}/`,
+        desc: '-',
+      }))
       console.log(`📄 ${section}/index.md ← 目录扫描（${entries.length} 个子分类，无 INDEX.md 元数据）`)
     }
+
+    // 将 items 序列化为内联 JSON（转义单引号以安全嵌入模板属性）
+    const itemsJson = JSON.stringify(gridItems).replace(/'/g, '&#39;')
 
     const indexContent = `---
 title: ${config.icon} ${config.title}
@@ -230,11 +241,7 @@ title: ${config.icon} ${config.title}
 
 ${config.desc}
 
-## 分类一览
-
-| 分类 | 说明 |
-|------|------|
-${tableRows}
+<CategoryGrid :items='${itemsJson}' />
 
 ${config.footer}
 `
@@ -283,15 +290,25 @@ function generateMissingIndexesRecursive(dirPath) {
     // 首字母大写
     const title = dirName.charAt(0).toUpperCase() + dirName.slice(1)
     
-    const links = entries
+    const mdFiles = entries
       .filter(e => e.isFile() && e.name.endsWith('.md') && e.name !== 'index.md')
-      .map(e => {
-         const name = e.name.replace(/\.md$/, '')
-         return `- [${name}](./${name})` 
-      })
-      .join('\n')
+    
+    // 生成 CategoryGrid 的 items
+    const gridItems = mdFiles.map(e => {
+      const name = e.name.replace(/\.md$/, '')
+      const displayName = name.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+      return { label: displayName, link: `./${name}`, desc: '' }
+    })
 
-    const content = `---\ntitle: ${title}\n---\n\n# ${title}\n\n> 🤖 自动生成的目录页\n\n${links || '*暂无文档*'}\n`
+    let body
+    if (gridItems.length > 0) {
+      const itemsJson = JSON.stringify(gridItems).replace(/'/g, '&#39;')
+      body = `<CategoryGrid :items='${itemsJson}' />`
+    } else {
+      body = '*暂无文档*'
+    }
+
+    const content = `---\ntitle: ${title}\n---\n\n# ${title}\n\n${body}\n`
     
     const indexFile = path.join(dirPath, 'index.md')
     fs.writeFileSync(indexFile, content)
