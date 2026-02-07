@@ -72,8 +72,9 @@ onMounted(async () => {
         <span class="divider-label">// RECENT_UPDATES</span>
       </div>
       <ul class="recent-list">
-        <li v-for="item in recentItems" :key="item.link">
+        <li v-for="(item, index) in recentItems" :key="item.link">
           <a :href="item.link">
+            <span class="recent-index">{{ String(index + 1).padStart(2, '0') }}</span>
             <span class="recent-category">{{ item.category }}</span>
             <span class="recent-title">{{ item.title }}</span>
             <span class="recent-date">{{ item.date }}</span>
@@ -128,18 +129,37 @@ onMounted(async () => {
   padding: 1.5rem;
   border-radius: 0;
   background: var(--vp-c-bg-soft);
+  background-image: radial-gradient(var(--ak-bg-dot) 1px, transparent 1px);
+  background-size: 8px 8px;
   border: 1px solid var(--vp-c-border);
   text-decoration: none;
   transition: all 0.25s ease;
   cursor: pointer;
   position: relative;
   clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--accent-color);
+  opacity: 0;
+  transition: opacity 0.25s;
 }
 
 .stat-card:hover {
   border-color: var(--accent-color);
   box-shadow: 0 0 20px rgba(255, 107, 43, 0.15),
               inset 0 0 20px rgba(255, 107, 43, 0.05);
+}
+
+.stat-card:hover::before {
+  opacity: 1;
 }
 
 .stat-icon {
@@ -181,7 +201,16 @@ onMounted(async () => {
 }
 
 .recent-list li:last-child {
-  border-bottom: none;
+  borderindex {
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: var(--vp-c-text-3);
+  font-weight: 700;
+  opacity: 0.5;
+  margin-right: 0.5rem;
+}
+
+.recent--bottom: none;
 }
 
 .recent-list a {
