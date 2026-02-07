@@ -519,7 +519,7 @@ function generateStats() {
       try {
         const content = fs.readFileSync(fullPath, 'utf-8')
         const match = content.match(/^##?\s+(.+)$/m)
-        if (match) title = match[1].trim()
+        if (match) title = match[1].replace(/\s*\{#[^}]+\}/g, '').trim()
       } catch { /* ignore */ }
 
       stats.recent.push({
