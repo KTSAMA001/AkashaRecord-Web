@@ -10,12 +10,12 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 // 仅保留无法从 index.md 自动推断的特殊映射
-// - 顶级分类带 emoji 前缀
+// - 顶级分类中文名
 // - 技术缩写（全大写 / 特殊符号）目录名无法通过首字母大写还原
 const SPECIAL_LABELS: Record<string, string> = {
-  experiences: '📝 经验',
-  knowledge: '📚 知识',
-  ideas: '💡 灵感',
+  experiences: '经验',
+  knowledge: '知识',
+  ideas: '灵感',
   ai: 'AI',
   csharp: 'C#',
   hlsl: 'HLSL',
@@ -160,9 +160,9 @@ export function generateNav(contentDir: string) {
   const nav = [{ text: '首页', link: '/' }]
 
   const sections = [
-    { dir: 'experiences', label: '📝 经验' },
-    { dir: 'knowledge', label: '📚 知识' },
-    { dir: 'ideas', label: '💡 灵感' },
+    { dir: 'experiences', label: '经验' },
+    { dir: 'knowledge', label: '知识' },
+    { dir: 'ideas', label: '灵感' },
   ]
 
   for (const { dir, label } of sections) {
