@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF6B2B" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+  <!-- 左尖括号 < -->
+  <path d="M8 5L2 12l6 7"/>
+  <!-- 右尖括号 > -->
+  <path d="M16 5l6 7-6 7"/>
+  <!-- 斜杠 / -->
+  <path d="M14 3l-4 18" opacity="0.4"/>
+  <!-- 光标闪烁标记 -->
+  <rect x="11" y="9" width="2" height="6" fill="#FF6B2B" opacity="0.2" stroke="none"/>
+</svg>

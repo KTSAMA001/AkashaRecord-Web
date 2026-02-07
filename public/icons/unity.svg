@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF6B2B" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+  <!-- 等距立方体（Unity 标志性元素） -->
+  <!-- 顶面 -->
+  <path d="M12 2l10 5v10l-10 5L2 17V7z"/>
+  <!-- 内部分割线 -->
+  <path d="M12 2v10l10 5" opacity="0.5"/>
+  <path d="M12 12L2 7" opacity="0.5"/>
+  <path d="M2 17l10-5" opacity="0.3"/>
+  <!-- 中心点 -->
+  <circle cx="12" cy="12" r="1.5" fill="#FF6B2B" opacity="0.4" stroke="none"/>
+</svg>

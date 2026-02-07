@@ -301,6 +301,32 @@
 }
 
 /* ======= Feature 卡片（统一 ak-card 交互模式） ======= */
+
+/* Feature 图标容器 - 工业风 */
+.VPFeature .icon {
+  border-radius: 0 !important;
+  background: transparent !important;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  border: 1px solid var(--ak-border);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.VPFeature:hover .icon {
+  border-color: var(--ak-accent);
+  box-shadow: 0 0 8px rgba(255, 107, 43, 0.2);
+}
+
+.VPFeature .icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
 .VPFeature {
   border-radius: 0 !important;
   border: 1px solid var(--ak-border) !important;

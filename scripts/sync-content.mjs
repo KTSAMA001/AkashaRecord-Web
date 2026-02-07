@@ -125,19 +125,19 @@ function copyContent() {
 // 三大分类的页面配置
 const SECTION_CONFIG = {
   experiences: {
-    icon: '📝',
+    icon: '/icons/doc.svg',
     title: '经验记录',
     desc: '收录在各技术领域实践中积累的解决方案、踩坑记录和最佳实践。',
     footer: '> 从左侧导航栏选择分类，或使用搜索功能查找特定内容。',
   },
   knowledge: {
-    icon: '📚',
+    icon: '/icons/book.svg',
     title: '知识文档',
     desc: '系统整理的理论知识、概念解析和技术参考文档。',
     footer: '> 知识文档提供理论支撑，与经验记录交叉引用形成完整知识网络。',
   },
   ideas: {
-    icon: '💡',
+    icon: '/icons/spark.svg',
     title: '灵感火花',
     desc: '随时记录的创意灵感和项目构想。',
     footer: '> 灵感不设限制，随想随记。',
@@ -234,10 +234,10 @@ function generateCategoryIndexes() {
     const itemsJson = JSON.stringify(gridItems).replace(/'/g, '&#39;')
 
     const indexContent = `---
-title: ${config.icon} ${config.title}
+title: ${config.title}
 ---
 
-# ${config.icon} ${config.title}
+# ${config.title}
 
 ${config.desc}
 
@@ -458,9 +458,9 @@ function generateStats() {
 
   // 统计各分类文件数
   const sections = [
-    { dir: 'experiences', label: '经验记录', icon: '📝', color: '#7c3aed' },
-    { dir: 'knowledge', label: '知识文档', icon: '📚', color: '#2563eb' },
-    { dir: 'ideas', label: '灵感火花', icon: '💡', color: '#f59e0b' },
+    { dir: 'experiences', label: '经验记录', icon: '/icons/doc.svg', color: '#7c3aed' },
+    { dir: 'knowledge', label: '知识文档', icon: '/icons/book.svg', color: '#2563eb' },
+    { dir: 'ideas', label: '灵感火花', icon: '/icons/spark.svg', color: '#f59e0b' },
   ]
 
   for (const section of sections) {

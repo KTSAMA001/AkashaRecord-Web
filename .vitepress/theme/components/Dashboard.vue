@@ -36,9 +36,9 @@ onMounted(async () => {
   } catch {
     // 静态模式：使用默认数据
     stats.value = [
-      { label: '经验记录', count: 0, icon: '📝', link: '/experiences/', color: '#FF6B2B' },
-      { label: '知识文档', count: 0, icon: '📚', link: '/knowledge/', color: '#F49F0A' },
-      { label: '灵感火花', count: 0, icon: '💡', link: '/ideas/', color: '#E85D1A' },
+      { label: '经验记录', count: 0, icon: '/icons/doc.svg', link: '/experiences/', color: '#FF6B2B' },
+      { label: '知识文档', count: 0, icon: '/icons/book.svg', link: '/knowledge/', color: '#F49F0A' },
+      { label: '灵感火花', count: 0, icon: '/icons/spark.svg', link: '/ideas/', color: '#E85D1A' },
     ]
   }
 })
@@ -60,7 +60,7 @@ onMounted(async () => {
         :style="{ '--card-accent': stat.color }"
       >
         <span class="ak-card__index">{{ String(index + 1).padStart(2, '0') }}</span>
-        <span class="ak-card__icon">{{ stat.icon }}</span>
+        <img :src="stat.icon" :alt="stat.label" class="ak-card__icon" />
         <div class="ak-card__body">
           <span class="ak-card__count">{{ stat.count }}</span>
           <span class="ak-card__label">{{ stat.label }}</span>
@@ -232,7 +232,9 @@ onMounted(async () => {
 }
 
 .ak-card__icon {
-  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+  object-fit: contain;
   flex-shrink: 0;
 }
 

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF6B2B" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+  <!-- 三棱镜（图形学经典符号） -->
+  <path d="M4 20L12 4l8 16z"/>
+  <!-- 入射光线 -->
+  <path d="M1 10h9" opacity="0.5"/>
+  <!-- 色散光线 -->
+  <path d="M16 12l6-4" opacity="0.6"/>
+  <path d="M16 14l6 0" opacity="0.45"/>
+  <path d="M16 16l6 4" opacity="0.3"/>
+  <!-- 棱镜内部高光 -->
+  <path d="M10 14l4-6" opacity="0.2"/>
+</svg>

@@ -34,7 +34,7 @@ defineProps<{
         <!-- 序号 -->
         <span class="card-index">{{ String(index + 1).padStart(2, '0') }}</span>
         <!-- 图标（可选） -->
-        <span v-if="item.icon" class="card-icon">{{ item.icon }}</span>
+        <img v-if="item.icon" :src="item.icon" :alt="item.label" class="card-icon" />
         <!-- 内容 -->
         <div class="card-body">
           <span class="card-label">{{ item.label }}</span>
@@ -165,7 +165,9 @@ defineProps<{
 }
 
 .card-icon {
-  font-size: 1.4rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  object-fit: contain;
   flex-shrink: 0;
 }
 

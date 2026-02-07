@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF6B2B" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+  <!-- 六角螺栓（工业标志） -->
+  <path d="M12 3l7.8 4.5v9L12 21l-7.8-4.5v-9z"/>
+  <!-- 内六角 -->
+  <path d="M12 7l4.5 2.6v5.2L12 17.4l-4.5-2.6V9.6z" opacity="0.5"/>
+  <!-- 中心点 -->
+  <circle cx="12" cy="12" r="1" fill="#FF6B2B" opacity="0.5" stroke="none"/>
+  <!-- 扳手方向标记 -->
+  <path d="M12 3v4M19.8 7.5l-3.5 2M19.8 16.5l-3.5-2" opacity="0.3"/>
+</svg>

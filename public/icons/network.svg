@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF6B2B" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
+  <!-- 连接线 -->
+  <path d="M5 18L12 5l7 13" opacity="0.4"/>
+  <path d="M5 18h14" opacity="0.4"/>
+  <!-- 交叉连接 -->
+  <path d="M5 18l14-13M19 18L5 5" opacity="0.2"/>
+  <!-- 节点 -->
+  <circle cx="12" cy="5" r="2.5" fill="#FF6B2B" opacity="0.15" stroke="#FF6B2B"/>
+  <circle cx="5" cy="18" r="2.5" fill="#FF6B2B" opacity="0.15" stroke="#FF6B2B"/>
+  <circle cx="19" cy="18" r="2.5" fill="#FF6B2B" opacity="0.15" stroke="#FF6B2B"/>
+  <!-- 中心枢纽 -->
+  <circle cx="12" cy="14" r="1.5" fill="#FF6B2B" opacity="0.3" stroke="#FF6B2B" stroke-width="1"/>
+</svg>
