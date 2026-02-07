@@ -752,12 +752,27 @@ body::after {
   50% { border-color: transparent; }
 }
 
-/* tagline 光标闪烁（紧贴文字右侧） */
+/* tagline 光标闪烁（用 ::after 控制高度，匹配文字比例） */
 .VPHero .tagline {
+  position: relative;
   display: inline;
-  border-right: 2px solid transparent;
-  padding-right: 0.15em;
+}
+
+.VPHero .tagline::after {
+  content: '';
+  display: inline-block;
+  width: 0.55em;
+  height: 0.9em;
+  background: var(--ak-accent);
+  margin-left: 0.25em;
+  vertical-align: text-bottom;
+  clip-path: polygon(0 0, calc(100% - 3px) 0, 100% 3px, 100% 100%, 3px 100%, 0 calc(100% - 3px));
   animation: ak-cursor-blink 0.8s step-end 1s infinite;
+}
+
+@keyframes ak-cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 /* ======= 内联代码（工业风） ======= */
