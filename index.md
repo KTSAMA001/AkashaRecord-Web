@@ -6,7 +6,7 @@ titleTemplate: KT 的知识与经验记忆中枢
 hero:
   name: "阿卡西记录"
   text: "知识与经验的智能记忆中枢"
-  tagline: 收录 KT 在 Unity、C#、Shader、技术美术等领域的实践经验与知识体系
+  tagline: Unity · C# · Shader · 技术美术
   actions:
     - theme: brand
       text: 📝 浏览经验
