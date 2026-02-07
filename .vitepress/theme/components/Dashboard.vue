@@ -217,16 +217,33 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0.75rem 0.5rem;
+  padding: 0.75rem 0.5rem 0.75rem 0.75rem;
   text-decoration: none;
-  transition: background 0.2s;
+  transition: background 0.25s ease;
   border-radius: 0;
-  border-left: 2px solid transparent;
+  position: relative;
+}
+
+/* 左侧高亮条：用伪元素代替 border-left，避免错位 */
+.recent-list a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--ak-accent, #FF6B2B);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.25s ease;
 }
 
 .recent-list a:hover {
   background: var(--vp-c-bg-soft);
-  border-left-color: var(--ak-accent, #FF6B2B);
+}
+
+.recent-list a:hover::before {
+  transform: scaleY(1);
 }
 
 .recent-category {
