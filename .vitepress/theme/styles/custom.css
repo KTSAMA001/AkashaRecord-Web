@@ -308,9 +308,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative !important;
   overflow: hidden !important;
-  /* 网点底纹直接作为 background-image（释放 ::before 给左条） */
-  background-image: radial-gradient(circle, var(--ak-bg-dot, rgba(0,0,0,0.04)) 1px, transparent 1px) !important;
-  background-size: 10px 10px !important;
+  /* 网点底纹由全局 VPContent 提供，Feature 不重复设置 */
 }
 
 .VPFeature:hover {
@@ -446,18 +444,7 @@ body::after {
   );
 }
 
-/* ======= 网格底纹（蓝图感） - 首页 ======= */
-
-.VPHome::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    repeating-linear-gradient(0deg, var(--ak-grid-color), var(--ak-grid-color) 1px, transparent 1px, transparent 60px),
-    repeating-linear-gradient(90deg, var(--ak-grid-color), var(--ak-grid-color) 1px, transparent 1px, transparent 60px);
-}
+/* 网格底纹已合并到 VPContent 全局底纹 */
 
 /* ======= 左侧高亮条（Feature 卡片，匹配 ak-card） ======= */
 .VPFeature::before {
@@ -528,11 +515,16 @@ body::after {
   }
 }
 
-/* ======= 全局网点底纹（统一视觉语言） ======= */
-/* 只在 VPContent 上设置一层，VPHome 在其内部不重复设置 */
+/* ======= 全局底纹（网点 + 网格统一在 VPContent） ======= */
 .VPContent {
-  background-image: radial-gradient(circle, var(--ak-bg-dot) 1px, transparent 1px) !important;
-  background-size: 10px 10px !important;
+  background-image:
+    radial-gradient(circle, var(--ak-bg-dot) 1px, transparent 1px),
+    repeating-linear-gradient(0deg, var(--ak-grid-color), var(--ak-grid-color) 1px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(90deg, var(--ak-grid-color), var(--ak-grid-color) 1px, transparent 1px, transparent 60px) !important;
+  background-size:
+    10px 10px,
+    60px 60px,
+    60px 60px !important;
 }
 
 /* ======= 暗角效果（首页 Vignette） ======= */
@@ -760,22 +752,12 @@ body::after {
   50% { border-color: transparent; }
 }
 
-/* tagline 逐字显示 + 尾部光标闪烁（只闪光标，不闪文字） */
+/* tagline 光标闪烁（紧贴文字右侧） */
 .VPHero .tagline {
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 2px solid var(--ak-accent);
-  animation:
-    ak-typing 2.5s steps(20, end) forwards,
-    ak-cursor-blink 0.8s step-end 2.5s infinite;
-  width: 0;
-  max-width: 100%;
-  display: inline-block;
-}
-
-@keyframes ak-typing {
-  from { width: 0; }
-  to { width: 100%; }
+  display: inline;
+  border-right: 2px solid transparent;
+  padding-right: 0.15em;
+  animation: ak-cursor-blink 0.8s step-end 1s infinite;
 }
 
 /* ======= 内联代码（工业风） ======= */
