@@ -18,6 +18,7 @@ interface TagData {
 }
 
 const tags = ref<TagData[]>([])
+const tagMeta = ref<Record<string, { label: string; icon: string }>>({})
 const selectedTag = ref<string>('All')
 const searchQuery = ref('')
 const loading = ref(true)
@@ -56,10 +57,12 @@ const filteredRecords = computed(() => {
 
 onMounted(async () => {
   try {
-    const res = await fetch('/api/tags.json')
-    if (res.ok) {
-      tags.value = await res.json()
-    }
+    const [tagsRes, metaRes] = await Promise.all([
+      fetch('/api/tags.json'),
+      fetch('/api/tag-meta.json'),
+    ])
+    if (tagsRes.ok) tags.value = await tagsRes.json()
+    if (metaRes.ok) tagMeta.value = await metaRes.json()
     
     // 从 URL 参数初始化选中标签
     const params = new URLSearchParams(window.location.search)
@@ -91,6 +94,11 @@ function getStatusColor(status?: string) {
   if (status?.includes('草稿') || status?.includes('WIP')) return 'warning'
   return 'default'
 }
+
+/** 获取标签的中文显示名（回退到原始 key） */
+function displayName(tag: string): string {
+  return tagMeta.value[tag]?.label || tag
+}
 </script>
 
 <template>
@@ -112,7 +120,7 @@ function getStatusColor(status?: string) {
           :class="{ active: selectedTag === tag.name }"
           @click="selectTag(tag.name)"
         >
-          {{ tag.name }}
+          {{ displayName(tag.name) }}
           <span class="count">{{ tag.count }}</span>
         </button>
       </div>
@@ -130,7 +138,7 @@ function getStatusColor(status?: string) {
     <!-- 结果统计 -->
     <div class="status-bar">
       <span>// FOUND {{ filteredRecords.length }} RECORDS</span>
-      <span v-if="selectedTag !== 'All'">FILTER: [{{ selectedTag }}]</span>
+      <span v-if="selectedTag !== 'All'">FILTER: [{{ displayName(selectedTag) }}]</span>
     </div>
 
     <!-- 骨架屏加载中 -->

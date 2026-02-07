@@ -36,10 +36,20 @@ function getFileTitle(filePath: string, fileName: string): string {
 /**
  * 生成完整的侧边栏配置
  * 扫描 records/ 目录，读取每个文件的 tags，按首个标签分组
+ * 使用 tag-meta.json 将标签 key 转为中文显示名
  */
 export function generateSidebar(contentDir: string): Record<string, SidebarItem[]> {
   const recordsDir = path.join(contentDir, 'records')
   if (!fs.existsSync(recordsDir)) return {}
+
+  // 读取标签元数据（构建时从 public/api/tag-meta.json 获取）
+  let tagMeta: Record<string, { label: string; icon: string }> = {}
+  const metaPath = path.join(contentDir, 'public', 'api', 'tag-meta.json')
+  try {
+    if (fs.existsSync(metaPath)) {
+      tagMeta = JSON.parse(fs.readFileSync(metaPath, 'utf-8'))
+    }
+  } catch { /* 回退到原始 key */ }
 
   // 按 domain tag 分组
   const groups = new Map<string, SidebarItem[]>()
@@ -75,7 +85,7 @@ export function generateSidebar(contentDir: string): Record<string, SidebarItem[
   const sidebarItems: SidebarItem[] = Array.from(groups.entries())
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([domain, items]) => ({
-      text: domain,
+      text: tagMeta[domain]?.label || domain,
       collapsed: true,
       items: items.sort((a, b) => a.text.localeCompare(b.text)),
     }))

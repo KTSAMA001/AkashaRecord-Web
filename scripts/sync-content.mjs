@@ -7,7 +7,7 @@
  * 2. 解析 references/INDEX.md 获取权威元数据 (文件清单 + 标签)
  * 3. 复制 data/*.md 到 content/records/，同时注入 Frontmatter 和修正链接
  * 4. 生成 content/records/index.md 和 content/tags/index.md
- * 5. 生成 public/api/stats.json 和 tags.json
+ * 5. 生成 public/api/stats.json、tags.json 和 tag-meta.json
  */
 
 import fs from 'node:fs'
@@ -199,7 +199,41 @@ function generateStats(records) {
   fs.writeFileSync(path.join(API_DIR, 'stats.json'), JSON.stringify(stats, null, 2))
 }
 
-function generateTags(records) {
+/**
+ * 解析 tag-registry.md 标签注册表
+ * 返回: Map<string, { label: string, icon: string }>
+ */
+function parseTagRegistry() {
+  const registryPath = path.join(AKASHA_LOCAL, 'references', 'tag-registry.md')
+  const meta = new Map()
+
+  if (!fs.existsSync(registryPath)) {
+    console.warn('⚠️ 未找到 tag-registry.md，跳过标签元数据')
+    return meta
+  }
+
+  const content = fs.readFileSync(registryPath, 'utf-8')
+  const lines = content.split('\n')
+
+  for (const line of lines) {
+    if (!line.startsWith('|') || line.includes('---') || line.includes('| 标签')) continue
+    const cols = line.split('|').map(c => c.trim())
+    if (cols.length < 4) continue
+
+    const tagCol = cols[1]  // #tag-name
+    const label = cols[2]   // 中文名
+    const icon = cols[3]    // 图标名
+
+    if (!tagCol.startsWith('#')) continue
+    const tag = tagCol.slice(1) // 去掉 #
+    meta.set(tag, { label, icon })
+  }
+
+  console.log(`🏷️  解析到 ${meta.size} 个标签元数据`)
+  return meta
+}
+
+function generateTags(records, tagMeta) {
   const tagMap = new Map() // tag -> { count, files: [] }
 
   for (const r of records) {
@@ -220,6 +254,14 @@ function generateTags(records) {
 
   const sortedTags = Array.from(tagMap.values()).sort((a, b) => b.count - a.count)
   fs.writeFileSync(path.join(API_DIR, 'tags.json'), JSON.stringify(sortedTags, null, 2))
+
+  // 生成 tag-meta.json
+  const metaObj = {}
+  for (const [tag, info] of tagMeta) {
+    metaObj[tag] = info
+  }
+  fs.writeFileSync(path.join(API_DIR, 'tag-meta.json'), JSON.stringify(metaObj, null, 2))
+  console.log(`💾 已生成 tag-meta.json (${tagMeta.size} 条)`)
 }
 
 function generatePages(records) {
@@ -280,8 +322,9 @@ async function main() {
   console.log(`✅ 已处理 ${copyCount} 个记录文件`)
 
   // 生成数据和页面
+  const tagMeta = parseTagRegistry()
   generateStats(records)
-  generateTags(records)
+  generateTags(records, tagMeta)
   generatePages(records)
 
   // 同步到项目根目录 (VitePress Root)

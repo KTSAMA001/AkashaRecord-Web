@@ -15,17 +15,25 @@ const props = defineProps<{
 }>()
 
 const tags = ref<TagItem[]>([])
+const tagMeta = ref<Record<string, { label: string; icon: string }>>({})
 
 onMounted(async () => {
   try {
-    const data = await fetch('/api/tags.json')
-    if (data.ok) {
-      tags.value = await data.json()
-    }
+    const [tagsRes, metaRes] = await Promise.all([
+      fetch('/api/tags.json'),
+      fetch('/api/tag-meta.json'),
+    ])
+    if (tagsRes.ok) tags.value = await tagsRes.json()
+    if (metaRes.ok) tagMeta.value = await metaRes.json()
   } catch {
     // 静态模式下无标签数据
   }
 })
+
+/** 获取标签的中文显示名（回退到原始 key） */
+function displayName(tag: string): string {
+  return tagMeta.value[tag]?.label || tag
+}
 
 function getTagSize(count: number): string {
   if (count >= 10) return '1.4rem'
@@ -60,7 +68,7 @@ function handleClick(tagName: string) {
         }"
         @click="handleClick(tag.name)"
       >
-        #{{ tag.name }}
+        #{{ displayName(tag.name) }}
         <sup>{{ tag.count }}</sup>
       </span>
     </div>

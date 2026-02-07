@@ -19,6 +19,7 @@ interface TagInfo {
 const totalRecords = ref(0)
 const domainStats = ref<DomainStat[]>([])
 const topTags = ref<TagInfo[]>([])
+const tagMeta = ref<Record<string, { label: string; icon: string }>>({})
 
 /**
  * 从标签名哈希生成确定性颜色，保证同一标签颜色始终一致
@@ -34,16 +35,23 @@ function tagToColor(tag: string): string {
 
 onMounted(async () => {
   try {
-    const statsRes = await fetch('/api/stats.json')
+    const [statsRes, tagsRes, metaRes] = await Promise.all([
+      fetch('/api/stats.json'),
+      fetch('/api/tags.json'),
+      fetch('/api/tag-meta.json'),
+    ])
+
+    if (metaRes.ok) tagMeta.value = await metaRes.json()
+
     if (statsRes.ok) {
       const json = await statsRes.json()
       totalRecords.value = json.total || 0
       
-      // byDomain 完全动态转为展示数组
+      // byDomain 完全动态转为展示数组，使用中文显示名
       const byDomain = json.byDomain || {}
       domainStats.value = Object.entries(byDomain)
         .map(([key, count]) => ({
-          label: key,
+          label: tagMeta.value[key]?.label || key,
           count: count as number,
           color: tagToColor(key),
         }))
@@ -51,7 +59,6 @@ onMounted(async () => {
         .slice(0, 6)
     }
 
-    const tagsRes = await fetch('/api/tags.json')
     if (tagsRes.ok) {
       const allTags = await tagsRes.json()
       topTags.value = allTags.slice(0, 8)
@@ -107,7 +114,7 @@ onMounted(async () => {
           class="ak-card ak-card--row"
         >
           <span class="ak-card__index">{{ String(index + 1).padStart(2, '0') }}</span>
-          <span class="ak-card__tag">#{{ tag.name }}</span>
+          <span class="ak-card__tag">#{{ tagMeta[tag.name]?.label || tag.name }}</span>
           <span class="ak-card__title">{{ tag.count }} 条记录</span>
           <span class="ak-card__arrow">→</span>
           <span class="ak-card__shine"></span>
