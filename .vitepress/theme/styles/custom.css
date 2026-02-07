@@ -96,10 +96,10 @@
   --vp-code-copy-code-hover-border-color: var(--vp-c-brand-2);
 }
 
-/* ======= 侧边栏增强（工业风激活态） ======= */
+/* ======= 侧边栏增强（统一 ak-card 交互模式） ======= */
 .VPSidebar .VPSidebarItem .text {
   font-size: 0.9rem;
-  transition: color 0.2s, transform 0.2s;
+  transition: color 0.25s, transform 0.25s;
 }
 
 .VPSidebar .VPSidebarItem.level-0 > .item > .text {
@@ -108,21 +108,73 @@
   letter-spacing: 0.03em;
 }
 
-/* 激活态：左侧脉冲光条 + 文字高亮 */
-.VPSidebar .VPSidebarItem .is-active > .item {
+/* 所有项基础：相对定位 + overflow hidden 用于 sweep */
+.VPSidebar .VPSidebarItem .item {
   position: relative;
-  background: var(--vp-c-brand-soft);
-  border-radius: 0;
+  overflow: hidden;
+  border-radius: 0 !important;
+  transition: background 0.25s ease;
 }
 
-.VPSidebar .VPSidebarItem .is-active > .item::before {
+/* 统一左侧高亮条（scaleY 过渡，匹配 ak-card） */
+.VPSidebar .VPSidebarItem .item::before {
   content: '';
   position: absolute;
   left: 0;
   top: 0;
-  bottom: 0;
   width: 3px;
+  height: 100%;
   background: var(--ak-accent);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+  z-index: 2;
+}
+
+/* 统一微光扫过层 */
+.VPSidebar .VPSidebarItem .item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 107, 43, 0.06) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+}
+
+/* hover：三合一（左条 + sweep + translateX） */
+.VPSidebar .VPSidebarItem .item:hover {
+  background: var(--vp-c-bg-soft);
+}
+
+.VPSidebar .VPSidebarItem .item:hover::before {
+  transform: scaleY(1);
+}
+
+.VPSidebar .VPSidebarItem .item:hover::after {
+  transform: translateX(100%);
+  transition: transform 0.5s ease;
+}
+
+.VPSidebar .VPSidebarItem .item:hover .text {
+  color: var(--ak-accent);
+  transform: translateX(4px);
+}
+
+/* 激活态：左条常驻 + 脉冲 + 文字高亮 */
+.VPSidebar .VPSidebarItem .is-active > .item {
+  background: var(--vp-c-brand-soft);
+}
+
+.VPSidebar .VPSidebarItem .is-active > .item::before {
+  transform: scaleY(1);
   animation: ak-sidebar-pulse 2s ease-in-out infinite;
 }
 
@@ -134,12 +186,6 @@
 .VPSidebar .VPSidebarItem .is-active > .item .text {
   color: var(--ak-accent) !important;
   font-weight: 600;
-}
-
-/* 非激活项 hover */
-.VPSidebar .VPSidebarItem .item:hover .text {
-  color: var(--ak-accent);
-  transform: translateX(2px);
 }
 
 /* ======= 内容区域（工业风标题） ======= */
@@ -218,19 +264,24 @@
   border-radius: 0 !important;
 }
 
-/* ======= Feature 卡片（工业风切角） ======= */
+/* ======= Feature 卡片（统一 ak-card 交互模式） ======= */
 .VPFeature {
   border-radius: 0 !important;
   border: 1px solid var(--ak-border) !important;
   clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)) !important;
-  transition: all 0.25s ease !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   position: relative !important;
+  overflow: hidden !important;
+  /* 网点底纹直接作为 background-image（释放 ::before 给左条） */
+  background-image: radial-gradient(circle, var(--ak-bg-dot, rgba(0,0,0,0.04)) 1px, transparent 1px) !important;
+  background-size: 10px 10px !important;
 }
 
 .VPFeature:hover {
   border-color: var(--ak-accent) !important;
-  box-shadow: 0 0 16px var(--ak-accent-dim),
-              inset 0 0 16px var(--ak-accent-dim) !important;
+  box-shadow: 0 0 20px rgba(255, 107, 43, 0.12),
+              inset 0 0 20px rgba(255, 107, 43, 0.04) !important;
+  transform: translateX(4px);
 }
 
 /* ======= 微光扫过（可复用） ======= */
@@ -379,16 +430,23 @@ body::after {
     repeating-linear-gradient(90deg, var(--ak-grid-color), var(--ak-grid-color) 1px, transparent 1px, transparent 60px);
 }
 
-/* ======= 网点/半色调纹理（Feature 卡片） ======= */
+/* ======= 左侧高亮条（Feature 卡片，匹配 ak-card） ======= */
 .VPFeature::before {
   content: '';
   position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.4;
-  background-image: radial-gradient(circle, var(--ak-bg-dot) 1px, transparent 1px);
-  background-size: 8px 8px;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--ak-accent);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+  z-index: 3;
+}
+
+.VPFeature:hover::before {
+  transform: scaleY(1);
 }
 
 .VPFeature > * {
@@ -636,12 +694,12 @@ body::after {
 }
 
 @keyframes ak-glitch-subtle {
-  0%, 92% { transform: translate(0); filter: none; }
-  93% { transform: translate(-2px, 1px); filter: hue-rotate(30deg); }
-  94% { transform: translate(1px, -1px); filter: none; }
-  95% { transform: translate(-1px, 0); filter: hue-rotate(-20deg); }
-  96% { transform: translate(2px, 1px); filter: none; }
-  97%, 100% { transform: translate(0); filter: none; }
+  0%, 92% { opacity: 1; filter: none; }
+  93% { opacity: 0.8; filter: hue-rotate(20deg) brightness(1.1); }
+  94% { opacity: 1; filter: none; }
+  95% { opacity: 0.85; filter: hue-rotate(-15deg); }
+  96% { opacity: 1; filter: brightness(1.05); }
+  97%, 100% { opacity: 1; filter: none; }
 }
 
 /* Hero Logo 定期轻微 Glitch */
