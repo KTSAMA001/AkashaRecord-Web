@@ -78,8 +78,16 @@ async function runBuild() {
       })
     }
 
-    // Step 1: 同步阿卡西记录内容
-    console.log('📥 Step 1/3: 同步阿卡西记录内容...')
+    // Step 1: 安装/更新依赖（package.json 可能变更）
+    console.log('📦 Step 1/4: 检查依赖...')
+    execSync('npm install --production=false', {
+      cwd: PROJECT_DIR,
+      stdio: 'inherit',
+      timeout: 120000,
+    })
+
+    // Step 2: 同步阿卡西记录内容
+    console.log('📥 Step 2/4: 同步阿卡西记录内容...')
     execSync('node scripts/sync-content.mjs', {
       cwd: PROJECT_DIR,
       stdio: 'inherit',
@@ -87,8 +95,8 @@ async function runBuild() {
       env: { ...process.env, GITHUB_MIRROR: process.env.GITHUB_MIRROR || '' },
     })
 
-    // Step 2: 构建 VitePress
-    console.log('🔨 Step 2/3: 构建 VitePress 站点...')
+    // Step 3: 构建 VitePress
+    console.log('🔨 Step 3/4: 构建 VitePress 站点...')
     execSync('./node_modules/.bin/vitepress build', {
       cwd: PROJECT_DIR,
       stdio: 'inherit',
