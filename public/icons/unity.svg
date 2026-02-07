@@ -1,11 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF6B2B" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
-  <!-- 等距立方体（Unity 标志性元素） -->
-  <!-- 顶面 -->
-  <path d="M12 2l10 5v10l-10 5L2 17V7z"/>
-  <!-- 内部分割线 -->
-  <path d="M12 2v10l10 5" opacity="0.5"/>
-  <path d="M12 12L2 7" opacity="0.5"/>
-  <path d="M2 17l10-5" opacity="0.3"/>
-  <!-- 中心点 -->
-  <circle cx="12" cy="12" r="1.5" fill="#FF6B2B" opacity="0.4" stroke="none"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+  <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+  <line x1="12" y1="22.08" x2="12" y2="12"/>
 </svg>

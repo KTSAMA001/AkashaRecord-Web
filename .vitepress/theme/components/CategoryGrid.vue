@@ -169,6 +169,7 @@ defineProps<{
   height: 1.4rem;
   object-fit: contain;
   flex-shrink: 0;
+  filter: invert(48%) sepia(89%) saturate(1600%) hue-rotate(3deg) brightness(101%) contrast(103%);
 }
 
 .card-body {

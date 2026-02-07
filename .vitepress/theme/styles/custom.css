@@ -314,6 +314,7 @@
   align-items: center;
   justify-content: center;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  color: var(--ak-accent);
 }
 
 .VPFeature:hover .icon {
@@ -325,6 +326,8 @@
   width: 28px;
   height: 28px;
   object-fit: contain;
+  /* 使 currentColor SVG 着色为橙色 — sepia+saturate+hue-rotate 近似 #FF6B2B */
+  filter: invert(48%) sepia(89%) saturate(1600%) hue-rotate(3deg) brightness(101%) contrast(103%);
 }
 
 .VPFeature {

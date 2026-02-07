@@ -1,12 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#FF6B2B" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter">
-  <!-- 屏幕主体（切角） -->
-  <path d="M2 4h18l2 2v10H2z"/>
-  <!-- 底边 -->
-  <path d="M2 16h20"/>
-  <!-- 支架 -->
-  <path d="M8 16v3h8v-3"/>
-  <path d="M6 19h12"/>
-  <!-- 播放三角（B站） -->
-  <path d="M9 7l7 3.5-7 3.5z" fill="#FF6B2B" opacity="0.25" stroke="none"/>
-  <path d="M9 7l7 3.5-7 3.5z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="2" y="3" width="20" height="14" rx="2"/>
+  <polygon points="10 8 16 12 10 16"/>
+  <line x1="8" y1="21" x2="16" y2="21"/>
+  <line x1="12" y1="17" x2="12" y2="21"/>
 </svg>
