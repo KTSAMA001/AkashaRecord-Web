@@ -277,17 +277,24 @@ body::after {
 
 /* ======= 修复 VPBackdrop 断点不匹配 ======= */
 /* VitePress 的 sidebar 在 960px 进入桌面模式，但 backdrop 在 1280px 才隐藏 */
-/* 窗口从窄变宽时 backdrop 残留覆盖内容区域，将隐藏断点对齐到 960px */
 @media (min-width: 960px) {
   .VPBackdrop {
     display: none !important;
   }
 }
 
-/* Safari 拉伸窗口时 fixed 元素重绘有延迟，遮罩边缘漏出内容 */
-/* 用 100vw/100vh + 超大 outset 的 box-shadow 取代 inset，无论拉多快都能覆盖 */
+/* 移除 VPBackdrop 暗色遮罩，改为透明点击热区 + sidebar 投影 */
+/* 避免 Safari resize 时覆盖层重绘延迟导致边界闪烁 */
 .VPBackdrop {
-  box-shadow: 0 0 0 200vmax var(--vp-backdrop-bg-color) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 移动端 sidebar 展开时的层级感用投影表达 */
+@media (max-width: 959px) {
+  .VPSidebar {
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3) !important;
+  }
 }
 
 /* ======= 暗角效果（首页 Vignette） ======= */
