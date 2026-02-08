@@ -130,7 +130,7 @@ onMounted(async () => {
 .dashboard-terminal {
   font-family: 'Courier New', monospace;
   max-width: 960px;
-  margin: 3rem auto;
+  margin: 0 auto 2rem;
   padding: 1.5rem;
   background: var(--vp-c-bg-soft);
   border: 1px solid var(--ak-border);
@@ -255,8 +255,9 @@ onMounted(async () => {
 }
 
 .digit-display {
+  font-family: 'Orbitron', 'Courier New', monospace;
   font-size: 3.5rem;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1;
   color: var(--ak-accent);
   text-shadow: 0 0 10px var(--ak-accent-dim);

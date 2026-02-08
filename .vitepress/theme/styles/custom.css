@@ -3,6 +3,9 @@
  * 视觉元素：网点(Halftone) · 网格(Grid) · 噪点(Noise) · 切角(Clip-path) · 亚克力(Acrylic)
  */
 
+/* ======= HUD 字体（数字/代码屏显示） ======= */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
 /* ======= 品牌色（工业橙/琥珀） ======= */
 :root {
   --vp-c-brand-1: #FF6B2B;
@@ -399,13 +402,10 @@ body::after {
 /* 网格底纹已合并到 VPContent 全局底纹 */
 
 
-/* ======= Hero 全屏布局 + 工业风增强 ======= */
+/* ======= Hero 布局 + 工业风增强 ======= */
 .VPHero {
   position: relative;
-  min-height: 70vh;
-  display: flex !important;
-  align-items: center;
-  padding-bottom: 2rem !important;
+  padding: 8rem 0 2rem !important;
 }
 
 /* 隐藏 Hero Logo 区域 + 禁止双栏占位 */
@@ -462,7 +462,7 @@ body::after {
 /* ======= 移动端适配 ======= */
 @media (max-width: 640px) {
   .VPHero {
-    min-height: 60vh;
+    padding: 4rem 0 1.5rem !important;
   }
 
   .VPHero .name {

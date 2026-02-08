@@ -101,8 +101,8 @@ onUnmounted(() => {
 
 /* ======= SCROLL 指示器 ======= */
 .scroll-indicator {
-  position: fixed;
-  bottom: 2.5rem;
+  position: absolute;
+  bottom: -4rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
