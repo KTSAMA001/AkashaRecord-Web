@@ -33,8 +33,8 @@ defineProps<{
       >
         <!-- 序号 -->
         <span class="card-index">{{ String(index + 1).padStart(2, '0') }}</span>
-        <!-- 图标（可选） -->
-        <img v-if="item.icon" :src="item.icon" :alt="item.label" class="card-icon" />
+        <!-- 图标（可选，用 mask-image 着色） -->
+        <span v-if="item.icon" class="card-icon" :style="{ '-webkit-mask-image': `url(${item.icon})`, 'mask-image': `url(${item.icon})` }" />
         <!-- 内容 -->
         <div class="card-body">
           <span class="card-label">{{ item.label }}</span>
@@ -165,9 +165,14 @@ defineProps<{
 .card-icon {
   width: 1.4rem;
   height: 1.4rem;
-  object-fit: contain;
   flex-shrink: 0;
-  color: var(--ak-accent);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  background-color: var(--ak-accent);
 }
 
 .card-body {

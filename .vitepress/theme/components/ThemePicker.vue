@@ -74,11 +74,9 @@ function applyTheme(index: number) {
   root.style.setProperty('--vp-button-brand-hover-bg', darken(main, 0.1))
   root.style.setProperty('--vp-button-brand-active-bg', darken(main, 0.2))
 
-  // Hero 渐变
+  // Hero 标题渐变
   root.style.setProperty('--vp-home-hero-name-background',
     `-webkit-linear-gradient(120deg, ${main} 30%, ${aux} 70%)`)
-  root.style.setProperty('--vp-home-hero-image-background-image',
-    `linear-gradient(-45deg, ${main} 50%, ${aux} 50%)`)
 
   // h1 标题渐变
   root.style.setProperty('--ak-h1-gradient', `linear-gradient(120deg, ${main}, ${aux})`)

@@ -35,11 +35,36 @@ export default {
     app.component('MermaidRenderer', MermaidRenderer)
     app.component('CategoryGrid', CategoryGrid)
 
-    // NProgress 路由进度条
+    // NProgress 路由进度条 + VPFeature 图标着色
     if (typeof window !== 'undefined') {
       NProgress.configure({ showSpinner: false, trickleSpeed: 100 })
+
+      // VPFeature 的 <img> 无法通过模板修改，用 mask-image 实现主题色着色
+      const maskFeatureIcons = () => {
+        requestAnimationFrame(() => {
+          document.querySelectorAll<HTMLImageElement>('.VPFeature .VPImage').forEach(img => {
+            const src = img.getAttribute('src')
+            if (src && !img.dataset.masked) {
+              img.style.setProperty('-webkit-mask-image', `url(${src})`)
+              img.style.setProperty('mask-image', `url(${src})`)
+              img.dataset.masked = '1'
+            }
+          })
+        })
+      }
+
       router.onBeforeRouteChange = () => { NProgress.start() }
-      router.onAfterRouteChanged = () => { NProgress.done() }
+      router.onAfterRouteChanged = () => {
+        NProgress.done()
+        maskFeatureIcons()
+      }
+
+      // 首次加载也需要处理
+      if (document.readyState === 'complete') {
+        maskFeatureIcons()
+      } else {
+        window.addEventListener('load', maskFeatureIcons)
+      }
     }
   },
 } satisfies Theme

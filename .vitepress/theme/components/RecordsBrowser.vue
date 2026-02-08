@@ -191,7 +191,7 @@ function displayName(tag: string): string {
         class="record-card"
       >
         <div class="card-header">
-          <img class="card-icon" :src="getRecordIcon(record)" alt="" />
+          <span class="card-icon" :style="{ '-webkit-mask-image': `url(${getRecordIcon(record)})`, 'mask-image': `url(${getRecordIcon(record)})` }" />
           <span 
             v-if="record.status" 
             class="status-dot" 
@@ -419,8 +419,13 @@ function displayName(tag: string): string {
 .card-icon {
   width: 24px;
   height: 24px;
-  object-fit: contain;
-  color: var(--ak-accent);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  background-color: var(--ak-accent);
 }
 
 .status-dot {

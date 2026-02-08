@@ -42,20 +42,12 @@
     #FF6B2B 30%,
     #F49F0A 70%
   );
-  --vp-home-hero-image-background-image: linear-gradient(
-    -45deg,
-    #FF6B2B 50%,
-    #F49F0A 50%
-  );
-  --vp-home-hero-image-filter: blur(44px);
+  --vp-home-hero-image-background-image: none;
+  --vp-home-hero-image-filter: none;
 }
 
 .dark {
-  --vp-home-hero-image-background-image: linear-gradient(
-    -45deg,
-    #FF8A50 50%,
-    #FBBF24 50%
-  );
+  --vp-home-hero-image-background-image: none;
 }
 
 /* ======= 按钮品牌色（跟随主题色变量） ======= */
@@ -326,9 +318,16 @@
 .VPFeature .VPImage {
   width: 48px;
   height: 48px;
-  object-fit: contain;
-  /* SVG 使用 stroke="currentColor"，直接通过 color 着色 */
-  color: var(--ak-accent);
+  /* img 加载的 SVG 不支持 currentColor，用 mask-image 让背景色透出 */
+  -webkit-mask-image: var(--icon-url);
+  mask-image: var(--icon-url);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  background-color: var(--ak-accent);
 }
 
 .VPFeature {
