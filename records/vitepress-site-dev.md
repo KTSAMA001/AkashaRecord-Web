@@ -23,7 +23,7 @@ recordDate: '2026-02-07'
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=vitepress" class="meta-tag">VitePress</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 
@@ -63,7 +63,7 @@ sync-content.mjs 中新增：
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=vitepress" class="meta-tag">VitePress</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">⚠️ 待验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--warning"><img class="inline-icon inline-icon--status" src="/icons/status-pending.svg" alt="待验证" /> 待验证</span></div>
 </div>
 
 
@@ -95,7 +95,7 @@ Safari 对 SVG favicon 支持不佳，特别是 HTTP（非 HTTPS）站点。需�
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=vitepress" class="meta-tag">VitePress</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">⚠️ 待验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--warning"><img class="inline-icon inline-icon--status" src="/icons/status-pending.svg" alt="待验证" /> 待验证</span></div>
 </div>
 
 
@@ -121,7 +121,7 @@ Safari 对 SVG favicon 支持不佳，特别是 HTTP（非 HTTPS）站点。需�
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=vitepress" class="meta-tag">VitePress</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 
@@ -165,7 +165,7 @@ Safari 对 SVG favicon 支持不佳，特别是 HTTP（非 HTTPS）站点。需�
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=vitepress" class="meta-tag">VitePress</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 
@@ -207,7 +207,7 @@ filter: invert(48%) sepia(89%) saturate(1600%) hue-rotate(3deg) brightness(101%)
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=vitepress" class="meta-tag">VitePress</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 
@@ -250,7 +250,7 @@ VitePress 对 `{ src: '...' }` 格式的 feature icon 生成的 HTML 结构是�
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=vitepress" class="meta-tag">VitePress</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 

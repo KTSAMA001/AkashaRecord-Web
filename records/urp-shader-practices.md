@@ -25,7 +25,7 @@ recordDate: '2026-01-29'
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-29</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp-batcher" class="meta-tag">SRP Batcher</a> <a href="/records/?tag=renderer-feature" class="meta-tag">Renderer Feature</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 
@@ -39,22 +39,22 @@ recordDate: '2026-01-29'
 
 **核心原则**：ASE Shader 图不应直接引用具体 hlsl 文件，功能细节应封装到各自的节点组中。
 
-- ✅ 将复杂功能（如 SH 光照、RimLight、LatLong 特效）拆分为独立的 ASE 节点组（SubGraph）
-- ✅ 每个节点组负责单一功能，对外暴露必要参数
-- ✅ 主 Shader 图只负责组合各节点组，而非实现具体逻辑
+- <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 将复杂功能（如 SH 光照、RimLight、LatLong 特效）拆分为独立的 ASE 节点组（SubGraph）
+- <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 每个节点组负责单一功能，对外暴露必要参数
+- <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 主 Shader 图只负责组合各节点组，而非实现具体逻辑
 
 ### 2. SH 光照参数外置
 
 **原因**：让节点可以灵活控制光照来源，提高通用性。
 
 `hlsl
-// ❌ 之前：在 shader 内联获取 L0
+// <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> 之前：在 shader 内联获取 L0
 float3 BakerySH(float3 normalWorld, float2 lightmapUV) {
     BakerySH_float(float3(unity_SHAr.w, unity_SHAg.w, unity_SHAb.w), normalWorld, lightmapUV, sh); 
     return sh;
 }
 
-// ✅ 之后：L0 从外部节点传入，更灵活
+// <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 之后：L0 从外部节点传入，更灵活
 float3 UnitySHAr() {
     return float3(unity_SHAr.w, unity_SHAg.w, unity_SHAb.w);
 }
@@ -64,10 +64,10 @@ float3 UnitySHAr() {
 ### 3. Include 路径使用相对路径
 
 `hlsl
-// ❌ 绝对路径：项目迁移后会失效
+// <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> 绝对路径：项目迁移后会失效
 #include "Assets/CommonFunctionModule/.../BakeryDecodeLightmap.hlsl"
 
-// ✅ 相对路径：更具可移植性
+// <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 相对路径：更具可移植性
 #include "../../../../CommonFunctionModule/.../BakeryDecodeLightmap.hlsl"
 `
 
@@ -76,7 +76,7 @@ float3 UnitySHAr() {
 减少 Shader 变体数量，显著降低编译时间和内存占用：
 
 `hlsl
-// ❌ 不必要时移除这些变体声明
+// <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> 不必要时移除这些变体声明
 #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
 #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
 #pragma multi_compile _ _FORWARD_PLUS
@@ -113,7 +113,7 @@ float3 UnitySHAr() {
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-31</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp-batcher" class="meta-tag">SRP Batcher</a> <a href="/records/?tag=renderer-feature" class="meta-tag">Renderer Feature</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Technical_Artist_Technotes/TA零散知识</span></div>
 </div>
 
@@ -166,15 +166,15 @@ GPU 执行渲染时从 CBUFFER 读取属性
 
 ### 4. URP 中的 SRP Batcher 条件
 
-- ✅ 使用同一个 Shader
-- ✅ 所有材质属性都在 CBUFFER 中声明
-- ❌ 多 Pass Shader 无法被 SRP Batcher 合批
-- ❌ Texture 类型无法放入 CBUFFER（需使用图集技术）
+- <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 使用同一个 Shader
+- <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 所有材质属性都在 CBUFFER 中声明
+- <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> 多 Pass Shader 无法被 SRP Batcher 合批
+- <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> Texture 类型无法放入 CBUFFER（需使用图集技术）
 
 **关键代码**：
 
 ```hlsl
-// ✅ 正确：属性在 CBUFFER 中，支持 SRP Batcher
+// <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 正确：属性在 CBUFFER 中，支持 SRP Batcher
 Properties
 {
     _Color ("Color", Color) = (1,1,1,1)
@@ -227,7 +227,7 @@ ENDHLSL
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-31</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp-batcher" class="meta-tag">SRP Batcher</a> <a href="/records/?tag=renderer-feature" class="meta-tag">Renderer Feature</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Technical_Artist_Technotes/关于SRP、URP</span></div>
 </div>
 
@@ -372,7 +372,7 @@ public class MyRendererFeature : ScriptableRendererFeature
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp-batcher" class="meta-tag">SRP Batcher</a> <a href="/records/?tag=renderer-feature" class="meta-tag">Renderer Feature</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Unity 2022.3+ / URP 14.0+</span></div>
 </div>
 
@@ -460,7 +460,7 @@ half4 frag(Varyings i) : SV_Target
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=urp" class="meta-tag">URP</a> <a href="/records/?tag=srp-batcher" class="meta-tag">SRP Batcher</a> <a href="/records/?tag=renderer-feature" class="meta-tag">Renderer Feature</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Unity 2022.3+ / URP 14.0+</span></div>
 </div>
 

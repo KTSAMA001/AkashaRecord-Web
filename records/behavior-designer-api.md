@@ -10,8 +10,8 @@ description: Behavior Designer 行为树插件的技术规范、API 和原理
 source: >-
   [Opsive
   官方文档](https://opsive.com/support/documentation/behavior-designer/task-attributes/)
-sourceDate: '2026-02-03'
 recordDate: '2026-02-03'
+sourceDate: '2026-02-03'
 credibility: ⭐⭐⭐⭐⭐(官方)
 ---
 # BehaviorDesigner 相关知识
@@ -30,8 +30,8 @@ credibility: ⭐⭐⭐⭐⭐(官方)
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value"><a href="https://opsive.com/support/documentation/behavior-designer/task-attributes/" target="_blank" rel="noopener">Opsive 官方文档</a></span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-03</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-03</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐(官方)</span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">官方</span></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 </div>
 
 
@@ -82,8 +82,8 @@ BehaviorDesigner 提供一系列 Attribute 用于定义 Task 的元数据和显�
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value"><a href="https://opsive.com/support/documentation/behavior-designer/object-drawers/" target="_blank" rel="noopener">Opsive 官方文档</a></span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-03</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-03</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐(官方)</span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">官方</span></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 </div>
 
 
@@ -142,20 +142,20 @@ public class RangeDrawer : ObjectDrawer
 ### 关键点（重要限制）
 
 **ObjectDrawer 的 OnGUI 方法：**
-- ✅ 可以访问当前字段的 `value`
-- ✅ 可以访问当前字段的 `attribute`
-- ❌ **无法访问** Task 实例
-- ❌ **无法访问** 其他字段的值
-- ❌ **无法实现** ShowIf/HideIf 条件显示
+- <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 可以访问当前字段的 `value`
+- <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 可以访问当前字段的 `attribute`
+- <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> **无法访问** Task 实例
+- <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> **无法访问** 其他字段的值
+- <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> **无法实现** ShowIf/HideIf 条件显示
 
 **与 Unity PropertyDrawer 对比：**
 
 | 功能 | Unity PropertyDrawer | BD ObjectDrawer |
 |------|---------------------|-----------------|
-| 访问当前字段 | ✅ | ✅ |
-| 访问 SerializedObject | ✅ | ❌ |
-| 遍历其他字段 | ✅ | ❌ |
-| 条件显示 | ✅ 可实现 | ❌ 不可实现 |
+| 访问当前字段 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> |
+| 访问 SerializedObject | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> | <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> |
+| 遍历其他字段 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> | <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> |
+| 条件显示 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 可实现 | <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> 不可实现 |
 
 ### 相关链接
 

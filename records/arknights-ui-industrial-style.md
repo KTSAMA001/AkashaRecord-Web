@@ -7,7 +7,6 @@ tags:
   - ui
 status: "\U0001F4D8 有效"
 description: 明日方舟工业风 UI：网点、网格、切角、噪点等视觉元素总结
-source: ''
 ---
 ## 明日方舟工业风 UI：网点、网格、切角、噪点等视觉元素总结
 
@@ -23,8 +22,8 @@ source: ''
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2019-07-17 / 2020-04-30</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
 <div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-07</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐（大厂/专业分析文章）</span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">大厂/专业分析文章</span></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 </div>
 
 

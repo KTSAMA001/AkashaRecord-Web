@@ -21,8 +21,8 @@ sourceDate: '2026-02-02'
 **收藏日期**：2026-02-02
 
 <div class="record-meta-block">
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐</span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">💡 灵感记录</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-concept.svg" alt="构想中" /> 构想中</span></div>
 </div>
 
 
@@ -61,7 +61,7 @@ sourceDate: '2026-02-02'
 ### 关键点
 
 - 💡 **创意核心**：虚拟伴侣 + 智能家居的跨界组合
-- ⚠️ **注意尺度**：3D美少女的内容风格需符合审查要求
+- <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> **注意尺度**：3D美少女的内容风格需符合审查要求
 - 💰 **成本控制**：硬件成本虽低，但内容研发成本不容忽视
 - 🎯 **目标用户**：明确小众市场定位，避免盲目扩张
 

@@ -2,6 +2,7 @@
 /**
  * RecordsBrowser Component
  * 记录总览浏览器：支持标签筛选、搜索和卡片展示
+ * 状态颜色完全由 meta-schema.json 驱动，无硬编码
  */
 import { ref, computed, onMounted } from 'vue'
 
@@ -9,6 +10,7 @@ interface FileInfo {
   title: string
   link: string
   status?: string
+  tags?: string[]
 }
 
 interface TagData {
@@ -17,8 +19,16 @@ interface TagData {
   files: FileInfo[]
 }
 
+interface StatusDef {
+  emoji: string
+  label: string
+  color: string
+  svg: string
+}
+
 const tags = ref<TagData[]>([])
 const tagMeta = ref<Record<string, { label: string; icon: string }>>({})
+const statusDefs = ref<StatusDef[]>([])
 const selectedTag = ref<string>('All')
 const searchQuery = ref('')
 const loading = ref(true)
@@ -57,12 +67,17 @@ const filteredRecords = computed(() => {
 
 onMounted(async () => {
   try {
-    const [tagsRes, metaRes] = await Promise.all([
+    const [tagsRes, metaRes, schemaRes] = await Promise.all([
       fetch('/api/tags.json'),
       fetch('/api/tag-meta.json'),
+      fetch('/api/meta-schema.json'),
     ])
     if (tagsRes.ok) tags.value = await tagsRes.json()
     if (metaRes.ok) tagMeta.value = await metaRes.json()
+    if (schemaRes.ok) {
+      const schema = await schemaRes.json()
+      statusDefs.value = schema.statuses || []
+    }
     
     // 从 URL 参数初始化选中标签
     const params = new URLSearchParams(window.location.search)
@@ -88,11 +103,27 @@ function selectTag(tagName: string) {
   window.history.replaceState({}, '', url)
 }
 
-function getStatusColor(status?: string) {
-  if (status?.includes('验证')) return 'success'
-  if (status?.includes('废弃') || status?.includes('过时')) return 'danger'
-  if (status?.includes('草稿') || status?.includes('WIP')) return 'warning'
+/**
+ * Schema 驱动的状态颜色匹配：
+ * 用 status 字符串前缀的 emoji 匹配 statusDefs，返回 color class
+ */
+function getStatusColor(status?: string): string {
+  if (!status) return 'default'
+  for (const def of statusDefs.value) {
+    if (status.startsWith(def.emoji)) return def.color
+  }
   return 'default'
+}
+
+/** 获取记录的 SVG 图标（取第一个有图标的标签，回退到 doc.svg） */
+function getRecordIcon(record: FileInfo): string {
+  if (record.tags) {
+    for (const t of record.tags) {
+      const meta = tagMeta.value[t]
+      if (meta?.icon) return `/icons/${meta.icon}.svg`
+    }
+  }
+  return '/icons/doc.svg'
 }
 
 /** 获取标签的中文显示名（回退到原始 key） */
@@ -155,7 +186,7 @@ function displayName(tag: string): string {
         class="record-card"
       >
         <div class="card-header">
-          <span class="icon">📄</span>
+          <img class="card-icon" :src="getRecordIcon(record)" alt="" />
           <span 
             v-if="record.status" 
             class="status-dot" 
@@ -170,6 +201,7 @@ function displayName(tag: string): string {
         <div class="card-footer">
           <span class="view-btn">VIEW_LOG</span>
         </div>
+        <span class="card-shine"></span>
       </a>
     </div>
     
@@ -209,6 +241,7 @@ function displayName(tag: string): string {
   background: var(--vp-c-divider);
 }
 
+/* ======= 筛选标签（工业风切角） ======= */
 .filter-tag {
   white-space: nowrap;
   padding: 0.3rem 0.8rem;
@@ -217,16 +250,37 @@ function displayName(tag: string): string {
   color: var(--vp-c-text-2);
   font-size: 0.85rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   gap: 6px;
   font-family: 'Courier New', monospace;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+}
+
+.filter-tag::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--ak-accent, #FF6B2B);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
 }
 
 .filter-tag:hover {
   border-color: var(--vp-c-brand-1);
   color: var(--vp-c-brand-1);
+  transform: translateX(2px);
+}
+
+.filter-tag:hover::before {
+  transform: scaleY(1);
 }
 
 .filter-tag.active {
@@ -247,6 +301,7 @@ function displayName(tag: string): string {
   color: var(--vp-c-text-1);
   width: 200px;
   font-size: 0.9rem;
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
 }
 
 .search-box input:focus {
@@ -271,27 +326,80 @@ function displayName(tag: string): string {
   gap: 1.5rem;
 }
 
+/* ======= 记录卡片（工业风：切角 + 高亮条 + 微光 + hover 位移） ======= */
 .record-card {
   display: block;
   text-decoration: none;
   border: 1px solid var(--vp-c-divider);
   background: var(--vp-c-bg-soft);
   padding: 1.25rem;
-  transition: all 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  background-image: radial-gradient(circle, var(--ak-bg-dot, rgba(0,0,0,0.04)) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+/* 左侧高亮条 */
+.record-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--ak-accent, #FF6B2B);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+  z-index: 2;
 }
 
 .record-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--vp-c-brand-1);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateX(4px);
+  border-color: var(--ak-accent, #FF6B2B);
+  box-shadow: 0 0 20px rgba(255, 107, 43, 0.12),
+              inset 0 0 20px rgba(255, 107, 43, 0.04);
+}
+
+.record-card:hover::before {
+  transform: scaleY(1);
+}
+
+/* 微光扫过层 */
+.card-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 107, 43, 0.06) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.record-card:hover .card-shine {
+  transform: translateX(100%);
+  transition: transform 0.6s ease;
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 0.8rem;
+}
+
+.card-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: invert(48%) sepia(89%) saturate(1600%) hue-rotate(3deg) brightness(101%) contrast(103%);
 }
 
 .status-dot {
@@ -299,16 +407,23 @@ function displayName(tag: string): string {
   height: 8px;
   border-radius: 50%;
   background: var(--vp-c-text-3);
+  flex-shrink: 0;
 }
 .status-dot.success { background: #10b981; box-shadow: 0 0 5px #10b981; }
-.status-dot.danger { background: #ef4444; }
-.status-dot.warning { background: #f59e0b; }
+.status-dot.info { background: #3b82f6; box-shadow: 0 0 5px rgba(59,130,246,0.5); }
+.status-dot.warning { background: #f59e0b; box-shadow: 0 0 5px rgba(245,158,11,0.5); }
+.status-dot.danger { background: #ef4444; box-shadow: 0 0 5px rgba(239,68,68,0.5); }
 
 .title {
   margin: 0 0 0.5rem 0;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--vp-c-text-1);
   line-height: 1.4;
+  transition: color 0.25s;
+}
+
+.record-card:hover .title {
+  color: var(--ak-accent, #FF6B2B);
 }
 
 .code-path {
@@ -331,12 +446,21 @@ function displayName(tag: string): string {
   font-family: 'Courier New', monospace;
   color: var(--vp-c-brand-1);
   letter-spacing: 1px;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.25s;
+}
+
+.record-card:hover .view-btn {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .skeleton {
   height: 140px;
   background: var(--vp-c-bg-mute);
   animation: pulse 2s infinite;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
 }
 
 @keyframes pulse {
@@ -350,5 +474,6 @@ function displayName(tag: string): string {
   padding: 3rem;
   color: var(--vp-c-text-3);
   border: 1px dashed var(--vp-c-divider);
+  font-family: 'Courier New', monospace;
 }
 </style>

@@ -968,9 +968,9 @@ body::after {
 
 .vp-doc .meta-tag:hover {
   background: var(--ak-accent, #FF6B2B);
-  color: #fff;
+  color: #fff !important;
   border-color: var(--ak-accent, #FF6B2B);
-  transform: translateY(-1px);
+  transform: translateX(2px);
   box-shadow: 0 2px 6px rgba(255, 107, 43, 0.25);
 }
 
@@ -979,6 +979,40 @@ body::after {
   display: flex;
   flex-wrap: wrap;
   gap: 0.15rem;
+}
+
+/* ======= 内联 SVG 图标（Emoji→SVG 替换后的样式） ======= */
+.vp-doc .inline-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.1em;
+  margin: 0 0.1em;
+}
+
+.vp-doc .inline-icon--status {
+  width: 1.1em;
+  height: 1.1em;
+  vertical-align: -0.15em;
+  margin-right: 0.25em;
+}
+
+/* 状态颜色（与 meta-schema.json 的 color 字段对应） */
+.vp-doc .status--success { color: #10b981; }
+.vp-doc .status--warning { color: #f59e0b; }
+.vp-doc .status--info { color: #3b82f6; }
+.vp-doc .status--danger { color: #ef4444; }
+
+/* ======= Star Rating 组件（⭐→SVG 五星） ======= */
+.vp-doc .star-rating {
+  display: inline-flex;
+  gap: 0.15em;
+  vertical-align: middle;
+}
+
+.vp-doc .star-rating .star-icon {
+  width: 1em;
+  height: 1em;
 }
 
 /* 移动端响应 */

@@ -24,7 +24,7 @@ version: Unity 2020+ / HLSL generic
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=hlsl" class="meta-tag">HLSL</a> <a href="/records/?tag=performance" class="meta-tag">性能优化</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Unity 2020+ / HLSL generic</span></div>
 </div>
 
@@ -92,10 +92,10 @@ float GetVectorComponent_Matrix(float3 v, int index)
 
 | 方案 | 指令数 | 无分支保证 | 推荐度 |
 |------|--------|------------|--------|
-| 直接索引 | 1 | ⚠️ 依赖编译器 | ⭐⭐⭐ |
-| 点积法 | 4 | ✅ 完全保证 | ⭐⭐⭐⭐⭐ |
-| 数学运算法 | 7+ | ✅ 完全保证 | ⭐⭐ |
-| 矩阵转置法 | 5+ | ✅ 完全保证 | ⭐⭐ |
+| 直接索引 | 1 | <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 依赖编译器 | ⭐⭐⭐ |
+| 点积法 | 4 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐⭐⭐⭐ |
+| 数学运算法 | 7+ | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐ |
+| 矩阵转置法 | 5+ | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐ |
 
 **验证记录**：
 
@@ -113,7 +113,7 @@ float GetVectorComponent_Matrix(float3 v, int index)
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=hlsl" class="meta-tag">HLSL</a> <a href="/records/?tag=performance" class="meta-tag">性能优化</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Unity 2020+ / HLSL generic</span></div>
 </div>
 
@@ -198,10 +198,10 @@ float3 IndexToAxis_Compare(int index)
 
 | 方案 | 指令数 | 无分支保证 | 推荐度 |
 |------|--------|------------|--------|
-| 三元运算符 | 3-6 | ⚠️ 依赖编译器 | ⭐⭐⭐ |
-| 数学运算法 | 7+ | ✅ 完全保证 | ⭐⭐ |
-| 矩阵索引 | 1-2 | ✅ 完全保证 | ⭐⭐⭐⭐⭐ |
-| 比较乘法 | 3 | ✅ 完全保证 | ⭐⭐⭐⭐⭐ |
+| 三元运算符 | 3-6 | <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 依赖编译器 | ⭐⭐⭐ |
+| 数学运算法 | 7+ | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐ |
+| 矩阵索引 | 1-2 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐⭐⭐⭐ |
+| 比较乘法 | 3 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐⭐⭐⭐ |
 
 **验证记录**：
 

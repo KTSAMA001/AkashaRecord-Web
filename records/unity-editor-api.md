@@ -8,8 +8,8 @@ tags:
 status: "\U0001F4D8 有效"
 description: Unity Editor 开发知识
 source: Unity Scripting API
-sourceDate: '2026-02-02'
 recordDate: '2026-02-02'
+sourceDate: '2026-02-02'
 updateDate: '2026-02-02'
 credibility: ⭐⭐⭐⭐⭐(官方)
 ---
@@ -24,8 +24,8 @@ credibility: ⭐⭐⭐⭐⭐(官方)
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-02</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-02</span></div>
 <div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-02</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐(官方)</span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">官方</span></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 </div>
 
 

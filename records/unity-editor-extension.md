@@ -24,7 +24,7 @@ version: BehaviorDesigner 1.7.x
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-03</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=editor" class="meta-tag">编辑器</a> <a href="/records/?tag=behavior-designer" class="meta-tag">行为树</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">BehaviorDesigner 1.7.x</span></div>
 </div>
 
@@ -68,7 +68,7 @@ public enum DirectionType
 
 | 日期 | 验证者 | 结果 |
 |------|--------|------|
-| 2026-02-03 | KT | ✅ 方案1在项目中验证通过 |
+| 2026-02-03 | KT | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 方案1在项目中验证通过 |
 
 ### 理论基础
 
@@ -82,7 +82,7 @@ public enum DirectionType
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-03</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=editor" class="meta-tag">编辑器</a> <a href="/records/?tag=behavior-designer" class="meta-tag">行为树</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">BehaviorDesigner 1.7.x</span></div>
 </div>
 
@@ -144,7 +144,7 @@ public class MyAction : ProfilingAction
 
 | 日期 | 验证者 | 结果 |
 |------|--------|------|
-| 2026-02-03 | KT | ✅ Header 分组在 BD Inspector 中正常显示 |
+| 2026-02-03 | KT | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> Header 分组在 BD Inspector 中正常显示 |
 
 ### 理论基础
 
@@ -158,7 +158,7 @@ public class MyAction : ProfilingAction
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-03</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=editor" class="meta-tag">编辑器</a> <a href="/records/?tag=behavior-designer" class="meta-tag">行为树</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 
@@ -214,7 +214,7 @@ public class MyConditional : ProfilingConditional
 
 | 日期 | 验证者 | 结果 |
 |------|--------|------|
-| 2026-02-03 | KT | ✅ 日志频率正常控制，不再刷屏 |
+| 2026-02-03 | KT | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 日志频率正常控制，不再刷屏 |
 
 ---
 

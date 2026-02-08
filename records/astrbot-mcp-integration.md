@@ -7,8 +7,8 @@ tags:
   - astrbot
 status: ✅ 已验证
 description: AstrBot 集成 MCP 服务经验
-sourceDate: 2026-01-30 ~ 2026-02-01
 recordDate: '2026-02-01'
+sourceDate: 2026-01-30 ~ 2026-02-01
 version: AstrBot v4.13.2+
 ---
 ---
@@ -20,7 +20,7 @@ version: AstrBot v4.13.2+
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-30 ~ 2026-02-01</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=mcp" class="meta-tag">MCP 协议</a> <a href="/records/?tag=astrbot" class="meta-tag">AstrBot</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">AstrBot v4.13.2+</span></div>
 </div>
 
@@ -69,7 +69,7 @@ version: AstrBot v4.13.2+
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-04</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-04</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=mcp" class="meta-tag">MCP 协议</a> <a href="/records/?tag=astrbot" class="meta-tag">AstrBot</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">AstrBot v4.13.2+, OneBot v11 (NapCat)</span></div>
 </div>
 
@@ -152,7 +152,7 @@ except:
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-05</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-05</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=mcp" class="meta-tag">MCP 协议</a> <a href="/records/?tag=astrbot" class="meta-tag">AstrBot</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">AstrBot v4.14.2+</span></div>
 </div>
 

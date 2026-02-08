@@ -55,7 +55,7 @@ function handleClick(tagName: string) {
 
 <template>
   <div v-if="tags.length" class="tag-cloud">
-    <h3 v-if="!interactive">🏷️ 标签</h3>
+    <h3 v-if="!interactive">标签</h3>
     <div class="tags-container">
       <span
         v-for="tag in tags"
@@ -113,11 +113,13 @@ function handleClick(tagName: string) {
 .tag-item {
   color: var(--vp-c-brand-1);
   cursor: default;
-  transition: all 0.25s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0.2rem 0.6rem;
   border-radius: 0;
   border: 1px solid transparent;
   font-family: 'Courier New', monospace;
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+  position: relative;
 }
 
 .tag-item.clickable {
@@ -131,7 +133,7 @@ function handleClick(tagName: string) {
 }
 
 .tag-item.clickable:hover {
-  transform: translateY(-2px);
+  transform: translateX(4px);
 }
 
 .tag-item sup {

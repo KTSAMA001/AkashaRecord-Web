@@ -22,7 +22,7 @@ recordDate: '2026-01-30'
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=git" class="meta-tag">Git</a> <a href="/records/?tag=reference" class="meta-tag">参考</a> <a href="/records/?tag=conventional-commits" class="meta-tag">提交规范</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 **参考**：[conventionalcommits.org](https://www.conventionalcommits.org/)

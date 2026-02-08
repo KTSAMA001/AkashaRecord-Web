@@ -35,7 +35,7 @@ features:
       height: 48
     title: C# 编程
     details: 语法精要、异步模式、LINQ 技巧、设计模式等 C# 深度实践
-    link: /records/?tag=unity
+    link: /records/?tag=csharp
   - icon:
       src: /icons/shader.svg
       width: 48

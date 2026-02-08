@@ -1,13 +1,14 @@
 /**
  * 内容同步脚本 (Refactored 2026-02-08)
- * 适配阿卡西记录扁平化标签体系
+ * 适配阿卡西记录扁平化标签体系 + Schema-Driven 渲染管线
  * 
  * 流程：
  * 1. 拉取 .akasha-repo
- * 2. 解析 references/INDEX.md 获取权威元数据 (文件清单 + 标签)
- * 3. 复制 data/*.md 到 content/records/，同时注入 Frontmatter 和修正链接
- * 4. 生成 content/records/index.md 和 content/tags/index.md
- * 5. 生成 public/api/stats.json、tags.json 和 tag-meta.json
+ * 2. 解析 record-template.md 获取 Schema (字段定义/状态定义/Emoji映射)
+ * 3. 解析 references/INDEX.md 获取权威元数据 (文件清单 + 标签)
+ * 4. 复制 data/*.md 到 content/records/，注入 Frontmatter、修正链接、Emoji→SVG
+ * 5. 生成 content/records/index.md 和 content/tags/index.md
+ * 6. 生成 public/api/stats.json、tags.json、tag-meta.json 和 meta-schema.json
  */
 
 import fs from 'node:fs'
@@ -61,6 +62,67 @@ function syncRepo() {
     console.log(`📦 Cloning .akasha-repo...`)
     execSync(`git clone --depth 1 ${AKASHA_REPO} "${AKASHA_LOCAL}"`, { stdio: 'pipe' })
   }
+}
+
+/* =============================================
+ * record-template.md Schema 解析引擎
+ * ============================================= */
+
+/**
+ * 从 record-template.md 解析三张 Schema 表格:
+ *   1. 元数据字段 Schema → fields[]
+ *   2. 状态定义 → statuses[]
+ *   3. Emoji 渲染映射 → emojiMap[]
+ * 返回: { fields, statuses, emojiMap, metaKeys }
+ */
+function parseRecordTemplate() {
+  const templatePath = path.join(AKASHA_LOCAL, 'references', 'templates', 'record-template.md')
+  const schema = { fields: [], statuses: [], emojiMap: [], metaKeys: new Set() }
+
+  if (!fs.existsSync(templatePath)) {
+    throw new Error(`❌ 致命错误: 未找到 record-template.md (${templatePath})\n   → 请确认后端仓库路径 AKASHA_LOCAL 正确且文件存在`)
+  }
+
+  const content = fs.readFileSync(templatePath, 'utf-8')
+  const lines = content.split('\n')
+
+  let currentSection = null
+
+  for (const line of lines) {
+    // 识别章节标题
+    if (line.startsWith('## 元数据字段 Schema')) { currentSection = 'fields'; continue }
+    if (line.startsWith('## 状态定义')) { currentSection = 'statuses'; continue }
+    if (line.startsWith('## Emoji 渲染映射')) { currentSection = 'emoji'; continue }
+    if (line.startsWith('## ') && currentSection) { currentSection = null; continue }
+
+    // 跳过非表格行
+    if (!line.startsWith('|') || line.includes('---')) continue
+
+    const cols = line.split('|').map(c => c.trim()).filter(Boolean)
+
+    if (currentSection === 'fields' && cols.length >= 4) {
+      const [fieldName, key, renderType, alias] = cols
+      if (fieldName === '字段名') continue // 表头
+      schema.fields.push({ fieldName, key, renderType, alias: alias === '—' ? null : alias })
+      schema.metaKeys.add(fieldName)
+      if (alias && alias !== '—') schema.metaKeys.add(alias)
+    }
+
+    if (currentSection === 'statuses' && cols.length >= 5) {
+      const [emoji, label, color, svg, scene] = cols
+      if (emoji === 'Emoji') continue // 表头
+      schema.statuses.push({ emoji: emoji.trim(), label, color, svg, scene })
+    }
+
+    if (currentSection === 'emoji' && cols.length >= 4) {
+      const [emoji, svg, cssClass, desc] = cols
+      if (emoji === 'Emoji') continue // 表头
+      schema.emojiMap.push({ emoji: emoji.trim(), svg, cssClass: cssClass === '—' ? null : cssClass, desc })
+    }
+  }
+
+  console.log(`📐 Schema 解析完成: ${schema.fields.length} 字段, ${schema.statuses.length} 状态, ${schema.emojiMap.length} Emoji 映射`)
+  return schema
 }
 
 /**
@@ -157,22 +219,75 @@ function fixLinks(content) {
 }
 
 /* =============================================
+ * Emoji → SVG 转换引擎
+ * ============================================= */
+
+/**
+ * 将正文中的 Emoji 替换为 SVG <img> 标签
+ * 处理顺序：元数据块的状态/可信度已由 transformMetaBlocks 处理，
+ *           此函数处理正文中的装饰性和标记 Emoji
+ * @param {string} content - 已经过 transformMetaBlocks 处理的内容
+ * @param {object} schema - parseRecordTemplate() 返回的 schema
+ */
+function transformEmoji(content, schema) {
+  if (!schema?.emojiMap?.length) return content
+
+  for (const mapping of schema.emojiMap) {
+    const { emoji, svg, cssClass } = mapping
+    if (!emoji || !svg) continue
+
+    // 跳过星级 emoji（已由 star-rating 渲染器处理）
+    if (emoji === '⭐') continue
+
+    const cls = cssClass ? `inline-icon ${cssClass}` : 'inline-icon'
+    const replacement = `<img class="${cls}" src="/icons/${svg}.svg" alt="${emoji}" />`
+
+    // 替换正文中的 emoji（排除已在 HTML 标签内的 emoji，如 alt="" 属性中的）
+    // 使用全局替换，但避免替换 HTML 属性内的内容
+    content = content.replace(new RegExp(`(?<!alt=")(?<!src="[^"]*?)${escapeRegExp(emoji)}`, 'g'), replacement)
+  }
+
+  return content
+}
+
+/** 转义正则特殊字符 */
+function escapeRegExp(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+/* =============================================
  * 元数据块识别与转换
  * ============================================= */
 
-/** 已识别的元数据字段 key，非此列表的 **Key**：Value 不会被识别 */
-const META_KEYS = new Set([
-  '标签', '来源', '来源日期', '收录日期', '更新日期',
-  '日期', '可信度', '状态', '适用版本',
-])
-
 /**
  * 识别正文中的元数据块并转换为结构化 HTML
+ * Schema-Driven: 使用 schema.metaKeys 识别, schema.fields 的 renderType 驱动渲染
  *
- * 规则：连续 2+ 行匹配 **KEY**：VALUE（KEY ∈ META_KEYS）视为一个元数据块。
+ * 规则：连续 2+ 行匹配 **KEY**：VALUE（KEY ∈ metaKeys）视为一个元数据块。
  * 返回 { content, firstMeta }，firstMeta 为首个块的字段数组（用于丰富 frontmatter）。
  */
-function transformMetaBlocks(content, tagMeta = new Map()) {
+function transformMetaBlocks(content, tagMeta = new Map(), schema = null) {
+  if (!schema?.metaKeys) {
+    throw new Error('❌ 致命错误: transformMetaBlocks 缺少 schema 参数\n   → parseRecordTemplate() 必须在调用前成功执行')
+  }
+  const metaKeys = schema.metaKeys
+
+  // 构建 fieldName → renderType 映射
+  const renderTypeMap = new Map()
+  if (schema?.fields) {
+    for (const f of schema.fields) {
+      renderTypeMap.set(f.fieldName, f.renderType)
+      if (f.alias) renderTypeMap.set(f.alias, f.renderType)
+    }
+  }
+
+  // 构建 emoji → { label, color, svg } 映射（状态渲染用）
+  const statusMap = new Map()
+  if (schema?.statuses) {
+    for (const s of schema.statuses) {
+      statusMap.set(s.emoji, s)
+    }
+  }
   const lines = content.split('\n')
   const result = []
   let firstMeta = null
@@ -189,7 +304,7 @@ function transformMetaBlocks(content, tagMeta = new Map()) {
       if (!trimmed) break // 空行终止
 
       const m = trimmed.match(/^\*\*(.+?)\*\*[：:]\s*(.*)$/)
-      if (m && META_KEYS.has(m[1])) {
+      if (m && metaKeys.has(m[1])) {
         blockFields.push({ key: m[1], value: m[2].replace(/\s{2,}$/, '').trim() })
         i++
       } else {
@@ -207,7 +322,9 @@ function transformMetaBlocks(content, tagMeta = new Map()) {
         // 跳过值为空的字段（如多行来源只有 key 无 value）
         if (!f.value) continue
 
-        if (f.key === '标签') {
+        const rType = renderTypeMap.get(f.key) || 'text'
+
+        if (rType === 'tag-pills') {
           // 标签 → 可点击 pill
           const pills = f.value
             .split(/\s+/)
@@ -219,14 +336,39 @@ function transformMetaBlocks(content, tagMeta = new Map()) {
             })
             .join(' ')
           htmlParts.push(`<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value">${pills}</span></div>`)
-        } else if (f.key === '来源') {
+        } else if (rType === 'link') {
           // 来源中可能有 markdown 链接，转为 <a>
           const val = f.value.replace(
             /\[([^\]]+)\]\(([^)]+)\)/g,
             '<a href="$2" target="_blank" rel="noopener">$1</a>'
           )
-          htmlParts.push(`<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">${val}</span></div>`)
+          htmlParts.push(`<div class="meta-item"><span class="meta-label">${f.key}</span><span class="meta-value">${val}</span></div>`)
+        } else if (rType === 'status-icon') {
+          // 状态 → SVG 图标 + 中文标签
+          const statusEmoji = f.value.match(/^([\p{Emoji}\u200d\uFE0F]+)/u)?.[1]?.trim()
+          const statusInfo = statusEmoji ? statusMap.get(statusEmoji) : null
+          if (statusInfo) {
+            const svgHtml = `<img class="inline-icon inline-icon--status" src="/icons/${statusInfo.svg}.svg" alt="${statusInfo.label}" />`
+            htmlParts.push(`<div class="meta-item"><span class="meta-label">${f.key}</span><span class="meta-value meta-value--status meta-value--${statusInfo.color}">${svgHtml} ${statusInfo.label}</span></div>`)
+          } else {
+            htmlParts.push(`<div class="meta-item"><span class="meta-label">${f.key}</span><span class="meta-value">${f.value}</span></div>`)
+          }
+        } else if (rType === 'star-rating') {
+          // 可信度 → 星级 SVG 组件
+          const starCount = (f.value.match(/⭐/g) || []).length
+          if (starCount > 0) {
+            const starsHtml = Array.from({ length: 5 }, (_, i) =>
+              `<img class="inline-icon inline-icon--star" src="/icons/${i < starCount ? 'star-filled' : 'star-empty'}.svg" alt="${i < starCount ? '★' : '☆'}" />`
+            ).join('')
+            // 提取括号中的说明文字
+            const descMatch = f.value.match(/[（(](.+?)[）)]/)
+            const desc = descMatch ? ` <span class="star-desc">${descMatch[1]}</span>` : ''
+            htmlParts.push(`<div class="meta-item"><span class="meta-label">${f.key}</span><span class="meta-value"><span class="star-rating">${starsHtml}</span>${desc}</span></div>`)
+          } else {
+            htmlParts.push(`<div class="meta-item"><span class="meta-label">${f.key}</span><span class="meta-value">${f.value}</span></div>`)
+          }
         } else {
+          // text 和其他类型 → 纯文本
           htmlParts.push(`<div class="meta-item"><span class="meta-label">${f.key}</span><span class="meta-value">${f.value}</span></div>`)
         }
       }
@@ -254,7 +396,7 @@ function transformMetaBlocks(content, tagMeta = new Map()) {
  * @param {object} record   - INDEX.md 中的权威元数据
  * @param {object[]|null} extractedMeta - 正文首个元数据块的字段数组
  */
-function ensureFrontmatter(content, record, extractedMeta) {
+function ensureFrontmatter(content, record, extractedMeta, schema = null) {
   let fileMatter;
   try {
     fileMatter = matter(content);
@@ -278,16 +420,19 @@ function ensureFrontmatter(content, record, extractedMeta) {
   data.status = record.status
   data.description = data.description || record.desc
 
-  // 从正文首个元数据块补充丰富字段
-  if (extractedMeta) {
+  // 从正文首个元数据块补充丰富字段（Schema-Driven）
+  if (extractedMeta && schema?.fields) {
     const metaMap = new Map(extractedMeta.map(f => [f.key, f.value]))
-    if (metaMap.has('来源'))       data.source       = data.source       || metaMap.get('来源')
-    if (metaMap.has('来源日期'))   data.sourceDate    = data.sourceDate    || metaMap.get('来源日期')
-    if (metaMap.has('收录日期'))   data.recordDate    = data.recordDate    || metaMap.get('收录日期')
-    if (metaMap.has('更新日期'))   data.updateDate    = data.updateDate    || metaMap.get('更新日期')
-    if (metaMap.has('日期'))       data.recordDate    = data.recordDate    || metaMap.get('日期')
-    if (metaMap.has('可信度'))     data.credibility   = data.credibility   || metaMap.get('可信度')
-    if (metaMap.has('适用版本'))   data.version       = data.version       || metaMap.get('适用版本')
+    for (const field of schema.fields) {
+      // 跳过 tag-pills 类型（标签走 INDEX.md 权威路径）
+      if (field.renderType === 'tag-pills') continue
+      const val = metaMap.get(field.fieldName) || (field.alias ? metaMap.get(field.alias) : null)
+      if (val && !data[field.key]) {
+        data[field.key] = val
+      }
+    }
+  } else if (extractedMeta && !schema?.fields) {
+    throw new Error(`❌ 致命错误: ensureFrontmatter 缺少 schema.fields (文件: ${record.title})\n   → parseRecordTemplate() 必须在调用前成功执行`)
   }
   
   // 生成新的 frontmatter
@@ -409,6 +554,10 @@ async function main() {
   console.log('🚀 开始执行标签化内容同步...')
   
   syncRepo()
+
+  // 解析 Schema（Phase 2 核心）
+  const schema = parseRecordTemplate()
+
   const records = parseIndexMd()
   
   if (records.length === 0) {
@@ -431,8 +580,17 @@ async function main() {
     if (fs.existsSync(src)) {
       let content = fs.readFileSync(src, 'utf-8')
       content = fixLinks(content)
-      const { content: transformed, firstMeta } = transformMetaBlocks(content, tagMeta)
-      content = ensureFrontmatter(transformed, r, firstMeta)
+      const { content: transformed, firstMeta } = transformMetaBlocks(content, tagMeta, schema)
+      // Emoji → SVG 转换（处理正文中的装饰性 Emoji）
+      content = transformEmoji(transformed, schema)
+      content = ensureFrontmatter(content, r, firstMeta, schema)
+      // 回填真实标题到 record 对象（供 generateTags 使用）
+      try {
+        const fm = matter(content)
+        if (fm.data?.title && !fm.data.title.endsWith('.md')) {
+          r.title = fm.data.title
+        }
+      } catch {}
       fs.writeFileSync(path.join(CONTENT_DIR, 'records', r.filename), content)
       copyCount++
     }
@@ -443,6 +601,18 @@ async function main() {
   generateStats(records)
   generateTags(records, tagMeta)
   generatePages(records)
+
+  // 生成 meta-schema.json（Phase 2 新增）
+  fs.mkdirSync(API_DIR, { recursive: true })
+  fs.writeFileSync(
+    path.join(API_DIR, 'meta-schema.json'),
+    JSON.stringify({
+      fields: schema.fields,
+      statuses: schema.statuses,
+      emojiMap: schema.emojiMap,
+    }, null, 2)
+  )
+  console.log(`📐 已生成 meta-schema.json`)
 
   // 同步到项目根目录 (VitePress Root)
   const rootRecords = path.join(PROJECT_ROOT, 'records')

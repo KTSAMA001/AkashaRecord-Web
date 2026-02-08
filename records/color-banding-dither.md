@@ -9,10 +9,10 @@ tags:
 status: "\U0001F4D8 有效"
 description: 色带（Color Banding）与抖动（Dithering）知识
 source: Wikipedia（Colour banding / Dither）、FrostKiwi（LUT 文章）
+recordDate: '2026-02-05'
 sourceDate: >-
   2026-01-15（Dither 页面最后编辑时间） / 2026-01-04（Colour banding 页面最后编辑时间） /
   2024-02-29（FrostKiwi LUT 文章最后编辑时间）
-recordDate: '2026-02-05'
 updateDate: '2026-02-05'
 credibility: ⭐⭐⭐（社区科普 + 工程广泛实践）
 ---
@@ -31,8 +31,8 @@ credibility: ⭐⭐⭐（社区科普 + 工程广泛实践）
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-15（Dither 页面最后编辑时间） / 2026-01-04（Colour banding 页面最后编辑时间） / 2024-02-29（FrostKiwi LUT 文章最后编辑时间）</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-05</span></div>
 <div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-05</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐（社区科普 + 工程广泛实践）</span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">社区科普 + 工程广泛实践</span></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 </div>
 
 

@@ -7,8 +7,8 @@ tags:
 status: ''
 description: "\U0001F4F7 **图片资源**：本文图片引用自 [TaTa 仓库 SDF/img](https://github.com/KTSAMA001/TaTa/tree/master/SDF/img)"
 source: TaTa 仓库 - SDF/SDF-8ssedt.md
-sourceDate: '2020-12-18'
 recordDate: '2026-01-31'
+sourceDate: '2020-12-18'
 credibility: ⭐⭐⭐⭐ (技术博客 + 实践验证)
 ---
 # SDF（有向距离场）知识
@@ -27,7 +27,7 @@ credibility: ⭐⭐⭐⭐ (技术博客 + 实践验证)
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - SDF/SDF-8ssedt.md</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2020-12-18</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (技术博客 + 实践验证)</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">技术博客 + 实践验证</span></span></div>
 </div>
 
 
@@ -73,7 +73,7 @@ Signed Distance Field（有向距离场），中文名为有向距离场。SDF �
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - SDF/SDF-8ssedt.md</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2020-12-18</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (技术博客 + 代码验证)</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">技术博客 + 代码验证</span></span></div>
 </div>
 
 
@@ -181,7 +181,7 @@ void GenerateSDF(Grid &g) {
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - SDF/SDF-8ssedt.md</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2020-12-18</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (技术博客 + 实践验证)</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">技术博客 + 实践验证</span></span></div>
 </div>
 
 
@@ -239,7 +239,7 @@ B3 = (3,0)
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - SDF/SDF-8ssedt.md</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2020-12-18</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (技术博客 + 实践验证)</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">技术博客 + 实践验证</span></span></div>
 </div>
 
 

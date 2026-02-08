@@ -23,7 +23,7 @@ sourceDate: '2026-02-01'
 
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-01</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span></span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📚 有效</span></div>
 </div>
 

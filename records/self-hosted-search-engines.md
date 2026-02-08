@@ -8,8 +8,8 @@ tags:
   - searxng
 status: ✅ 已验证
 description: 自搭建搜索引擎技术
-sourceDate: '2026-02-01'
 recordDate: '2026-02-01'
+sourceDate: '2026-02-01'
 ---
 ---
 
@@ -20,7 +20,7 @@ recordDate: '2026-02-01'
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=search-engine" class="meta-tag">搜索引擎</a> <a href="/records/?tag=meilisearch" class="meta-tag">Meilisearch</a> <a href="/records/?tag=searxng" class="meta-tag">SearXNG</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 **适用场景**：私有数据搜索、隐私保护、全文检索、元搜索聚合
@@ -143,7 +143,7 @@ search:
   default_lang: "zh-CN"
 ```
 
-**⚠️ 注意**：
+**<img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 注意**：
 - SearXNG 依赖第三方搜索引擎，同样受反爬影响
 - 高频使用会被封 IP，建议配合代理池
 - 不适合作为稳定的 API 服务

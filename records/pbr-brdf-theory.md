@@ -9,8 +9,8 @@ tags:
 status: "\U0001F4D8 有效"
 description: 基于物理的渲染（Physically Based Rendering）相关原理与概念
 source: Unity_URP_Learning 仓库实践 + 学术论文
-sourceDate: '2024-08-08'
 recordDate: '2026-02-07'
+sourceDate: '2024-08-08'
 credibility: ⭐⭐⭐⭐⭐ (学术论文 + 实践验证)
 ---
 # PBR 渲染知识
@@ -27,8 +27,8 @@ credibility: ⭐⭐⭐⭐⭐ (学术论文 + 实践验证)
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity_URP_Learning 仓库实践 + 学术论文</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (学术论文 + 实践验证)</span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">学术论文 + 实践验证</span></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 </div>
 
 
@@ -178,8 +178,8 @@ float3 PBR_Direct_Light(float3 albedo, Light lightData, float3 N, float3 V,
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity_URP_Learning 仓库实践 + Unity 官方文档</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (实践验证)</span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 </div>
 
 
@@ -236,8 +236,8 @@ float3 specular_InDirect = envSpecular * (F * env_brdf.r + env_brdf.g);
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity_URP_Learning 仓库 / ACES 标准</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐⭐ (工业标准)</span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">工业标准</span></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 </div>
 
 

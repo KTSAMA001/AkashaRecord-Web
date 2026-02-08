@@ -10,8 +10,8 @@ tags:
 status: "\U0001F4D8 有效"
 description: 塞壬唱片官网 (Monster Siren) 深度技术与设计分析
 source: 'https://monster-siren.hypergryph.com'
-sourceDate: '2026-02-08'
 recordDate: '2026-02-08'
+sourceDate: '2026-02-08'
 credibility: ⭐⭐⭐⭐ (实地分析/逆向研究)
 ---
 ## 塞壬唱片官网 (Monster Siren) 深度技术与设计分析
@@ -22,8 +22,8 @@ credibility: ⭐⭐⭐⭐ (实地分析/逆向研究)
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">https://monster-siren.hypergryph.com</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-08</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-08</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐⭐ (实地分析/逆向研究)</span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实地分析/逆向研究</span></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 </div>
 
 

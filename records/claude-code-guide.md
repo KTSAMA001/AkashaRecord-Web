@@ -23,7 +23,7 @@ recordDate: '2026-01-30'
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=reference" class="meta-tag">参考</a> <a href="/records/?tag=claude-code" class="meta-tag">Claude Code</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 
@@ -282,14 +282,14 @@ flowchart LR
 
 | 场景 | Claude Code | VS Code Copilot | 推荐选择 |
 |------|-------------|-----------------|----------|
-| 新建项目骨架 | ✅ 擅长 | ⚠️ 较弱 | Claude Code |
-| 重构代码 | ✅ 全局理解 | ⚠️ 单文件 | Claude Code |
-| 修复 bug | ✅ 上下文丰富 | ⚠️ 需复制 | Claude Code |
-| 实时代码补全 | ⚠️ 需手动 | ✅ 实时 | Copilot |
-| 快速生成函数 | ⚠️ 需切换 | ✅ 就在 IDE | Copilot |
-| 处理 Git 冲突 | ✅ 直接操作 | ❌ 不支持 | Claude Code |
-| 生成文档 | ✅ 理解项目 | ⚠️ 局部理解 | Claude Code |
-| 学习新框架 | ✅ 项目级讲解 | ⚠️ 片段式 | Claude Code |
+| 新建项目骨架 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 擅长 | <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 较弱 | Claude Code |
+| 重构代码 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 全局理解 | <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 单文件 | Claude Code |
+| 修复 bug | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 上下文丰富 | <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 需复制 | Claude Code |
+| 实时代码补全 | <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 需手动 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 实时 | Copilot |
+| 快速生成函数 | <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 需切换 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 就在 IDE | Copilot |
+| 处理 Git 冲突 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 直接操作 | <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> 不支持 | Claude Code |
+| 生成文档 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 理解项目 | <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 局部理解 | Claude Code |
+| 学习新框架 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 项目级讲解 | <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 片段式 | Claude Code |
 
 ### 七、安装与配置
 
@@ -351,7 +351,7 @@ claude
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=reference" class="meta-tag">参考</a> <a href="/records/?tag=claude-code" class="meta-tag">Claude Code</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 
@@ -422,7 +422,7 @@ flowchart LR
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=reference" class="meta-tag">参考</a> <a href="/records/?tag=claude-code" class="meta-tag">Claude Code</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 
@@ -596,7 +596,7 @@ Claude Code 有哪些内置斜杠命令？每个命令的具体作用是什么�
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-31</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=ai" class="meta-tag">AI</a> <a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=reference" class="meta-tag">参考</a> <a href="/records/?tag=claude-code" class="meta-tag">Claude Code</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 

@@ -6,6 +6,7 @@
 import { ref, onMounted } from 'vue'
 
 interface DomainStat {
+  key: string
   label: string
   count: number
   color: string
@@ -51,6 +52,7 @@ onMounted(async () => {
       const byDomain = json.byDomain || {}
       domainStats.value = Object.entries(byDomain)
         .map(([key, count]) => ({
+          key,
           label: tagMeta.value[key]?.label || key,
           count: count as number,
           color: tagToColor(key),
@@ -87,7 +89,7 @@ onMounted(async () => {
       <a
         v-for="(stat, index) in domainStats"
         :key="stat.label"
-        :href="`/records/?tag=${stat.label}`"
+        :href="`/records/?tag=${stat.key}`"
         class="ak-card"
         :style="{ '--card-accent': stat.color }"
       >

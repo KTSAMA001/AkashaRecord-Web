@@ -9,8 +9,8 @@ tags:
 status: "\U0001F4D8 有效"
 description: Unity BlendTree 下动画驱动音效同步（脚步声等）常见方案汇总
 source: 多来源（Unity Manual / Unity Forum & Discussions / 第三方博客；详见“来源链接”）
-sourceDate: 2021-04-12（CodeAndWeb）/ 其他未标注
 recordDate: '2026-02-04'
+sourceDate: 2021-04-12（CodeAndWeb）/ 其他未标注
 updateDate: '2026-02-04'
 credibility: ⭐⭐⭐（社区共识为主，部分有官方手册支撑）
 ---
@@ -22,8 +22,8 @@ credibility: ⭐⭐⭐（社区共识为主，部分有官方手册支撑）
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2021-04-12（CodeAndWeb）/ 其他未标注</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-04</span></div>
 <div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-04</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value">⭐⭐⭐（社区共识为主，部分有官方手册支撑）</span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📘 有效</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">社区共识为主，部分有官方手册支撑</span></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 </div>
 
 

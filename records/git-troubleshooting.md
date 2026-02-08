@@ -25,7 +25,7 @@ version: Git 2.x+
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-02-05</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=git" class="meta-tag">Git</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=pat" class="meta-tag">PAT 令牌</a> <a href="/records/?tag=docker" class="meta-tag">Docker</a> <a href="/records/?tag=credential" class="meta-tag">凭证管理</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Git 2.x+</span></div>
 </div>
 
@@ -89,7 +89,7 @@ git push origin main
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-29</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=git" class="meta-tag">Git</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=pat" class="meta-tag">PAT 令牌</a> <a href="/records/?tag=docker" class="meta-tag">Docker</a> <a href="/records/?tag=credential" class="meta-tag">凭证管理</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 
@@ -129,7 +129,7 @@ git filter-repo --mailmap mailmap.txt --force
 
 ### 4. 重新添加远程仓库
 
-> ⚠️ `git-filter-repo` 会自动移除 `origin` 远程，防止误推送
+> <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> `git-filter-repo` 会自动移除 `origin` 远程，防止误推送
 
 ```powershell
 git remote add origin https://github.com/<用户名>/<仓库名>.git
@@ -141,7 +141,7 @@ git remote add origin https://github.com/<用户名>/<仓库名>.git
 git push origin main --force
 ```
 
-> ⚠️ **警告**：强制推送会覆盖远程历史，协作仓库需提前通知所有成员！
+> <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> **警告**：强制推送会覆盖远程历史，协作仓库需提前通知所有成员！
 
 ### 完整脚本示例
 
@@ -180,7 +180,7 @@ git config user.email "ktsama@example.com"
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=git" class="meta-tag">Git</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=pat" class="meta-tag">PAT 令牌</a> <a href="/records/?tag=docker" class="meta-tag">Docker</a> <a href="/records/?tag=credential" class="meta-tag">凭证管理</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Git 2.x+</span></div>
 </div>
 
@@ -243,7 +243,7 @@ git stash pop
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-02-05</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=git" class="meta-tag">Git</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=pat" class="meta-tag">PAT 令牌</a> <a href="/records/?tag=docker" class="meta-tag">Docker</a> <a href="/records/?tag=credential" class="meta-tag">凭证管理</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Git 2.x+ (Homebrew)</span></div>
 </div>
 
@@ -288,7 +288,7 @@ git config --global credential.helper /opt/homebrew/opt/git/libexec/git-core/git
 git push origin main
 ```
 
-**⚠️ 注意事项**：
+**<img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 注意事项**：
 
 - **不要随意清除 Keychain 凭据**：会导致所有使用该凭据的仓库认证失败
 - PAT 需要 `repo` 权限才能 push
@@ -310,7 +310,7 @@ git push origin main
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-02-05</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=git" class="meta-tag">Git</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=pat" class="meta-tag">PAT 令牌</a> <a href="/records/?tag=docker" class="meta-tag">Docker</a> <a href="/records/?tag=credential" class="meta-tag">凭证管理</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">⚠️ 解决方案已验证，根因待查</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--warning"><img class="inline-icon inline-icon--status" src="/icons/status-pending.svg" alt="待验证" /> 待验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Git 2.x+</span></div>
 </div>
 
@@ -343,7 +343,7 @@ zlib压缩( "blob " + 文件大小 + "\0" + 文件原始内容 )
 - 文件系统损坏
 - Git 进程异常终止
 
-> ⚠️ **待查**：本次案例的实际触发原因未能确定，仅验证了修复方法有效。
+> <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> **待查**：本次案例的实际触发原因未能确定，仅验证了修复方法有效。
 
 **解决方案**：
 
@@ -384,7 +384,7 @@ git fetch origin
 git reset --hard origin/dev
 ```
 
-⚠️ **实测结论**：此方案在对象已损坏/删除的情况下**通常无效**。
+<img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> **实测结论**：此方案在对象已损坏/删除的情况下**通常无效**。
 - `git fetch` 和 `git reset` 都需要读取本地对象来计算差异
 - 损坏的对象会导致这些命令本身报错终止
 - 只有在损坏对象恰好不在当前操作路径上时才可能成功

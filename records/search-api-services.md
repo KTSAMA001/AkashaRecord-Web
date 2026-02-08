@@ -7,8 +7,8 @@ tags:
   - serp
 status: ✅ 已验证
 description: 搜索 API 服务对比
-sourceDate: '2026-02-01'
 recordDate: '2026-02-01'
+sourceDate: '2026-02-01'
 ---
 ---
 
@@ -19,7 +19,7 @@ recordDate: '2026-02-01'
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=search-api" class="meta-tag">搜索 API</a> <a href="/records/?tag=serp" class="meta-tag">SERP</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 **适用场景**：MCP 服务、AI Agent、SEO 分析、数据采集

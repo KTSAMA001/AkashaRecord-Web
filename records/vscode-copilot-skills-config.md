@@ -23,7 +23,7 @@ recordDate: '2026-01-30'
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=vscode" class="meta-tag">VS Code</a> <a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=copilot" class="meta-tag">Copilot</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">✅ 已验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 
