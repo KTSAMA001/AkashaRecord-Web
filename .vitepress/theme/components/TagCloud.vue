@@ -129,7 +129,7 @@ function handleClick(tagName: string) {
 .tag-item:hover {
   background: var(--vp-c-brand-soft);
   border-color: var(--ak-accent);
-  box-shadow: 0 0 8px rgba(255,107,43,0.15);
+  box-shadow: 0 0 8px var(--ak-accent-dim);
 }
 
 .tag-item.clickable:hover {

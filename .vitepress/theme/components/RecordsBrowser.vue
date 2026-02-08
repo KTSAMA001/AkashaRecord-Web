@@ -420,7 +420,7 @@ function displayName(tag: string): string {
   width: 24px;
   height: 24px;
   object-fit: contain;
-  filter: invert(48%) sepia(89%) saturate(1600%) hue-rotate(3deg) brightness(101%) contrast(103%);
+  filter: var(--ak-icon-filter);
 }
 
 .status-dot {

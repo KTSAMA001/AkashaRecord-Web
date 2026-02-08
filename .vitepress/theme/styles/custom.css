@@ -58,17 +58,17 @@
   );
 }
 
-/* ======= 按钮品牌色（工业橙） ======= */
+/* ======= 按钮品牌色（跟随主题色变量） ======= */
 :root {
   --vp-button-brand-border: transparent;
   --vp-button-brand-text: #fff;
-  --vp-button-brand-bg: #FF6B2B;
+  --vp-button-brand-bg: var(--ak-accent);
   --vp-button-brand-hover-border: transparent;
   --vp-button-brand-hover-text: #fff;
-  --vp-button-brand-hover-bg: #E85D1A;
+  --vp-button-brand-hover-bg: var(--vp-c-brand-2);
   --vp-button-brand-active-border: transparent;
   --vp-button-brand-active-text: #fff;
-  --vp-button-brand-active-bg: #D14E0E;
+  --vp-button-brand-active-bg: var(--vp-c-brand-3);
 }
 
 /* ======= 工业风按钮（统一 ak-card 交互模式） ======= */
@@ -179,7 +179,7 @@
     120deg,
     transparent 0%,
     transparent 40%,
-    rgba(255, 107, 43, 0.06) 50%,
+    color-mix(in srgb, var(--ak-accent) 10%, transparent) 50%,
     transparent 60%,
     transparent 100%
   );
@@ -227,7 +227,7 @@
 
 /* ======= 内容区域（工业风标题） ======= */
 .vp-doc h1 {
-  background: linear-gradient(120deg, #FF6B2B, #F49F0A);
+  background: var(--ak-h1-gradient, linear-gradient(120deg, var(--ak-accent), var(--vp-c-brand-2)));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -258,11 +258,11 @@
 }
 
 .vp-doc table tr:nth-child(even) td {
-  background: rgba(255, 107, 43, 0.02);
+  background: color-mix(in srgb, var(--ak-accent) 3%, transparent);
 }
 
 .dark .vp-doc table tr:nth-child(even) td {
-  background: rgba(255, 138, 80, 0.03);
+  background: color-mix(in srgb, var(--ak-accent) 4%, transparent);
 }
 
 .vp-doc table tr:hover td {
@@ -327,8 +327,8 @@
   width: 48px;
   height: 48px;
   object-fit: contain;
-  /* 使 currentColor SVG 着色为橙色 — sepia+saturate+hue-rotate 近似 #FF6B2B */
-  filter: invert(48%) sepia(89%) saturate(1600%) hue-rotate(3deg) brightness(101%) contrast(103%);
+  /* SVG 图标着色跟随主题色 */
+  filter: var(--ak-icon-filter, invert(48%) sepia(89%) saturate(1600%) hue-rotate(3deg) brightness(101%) contrast(103%));
 }
 
 .VPFeature {

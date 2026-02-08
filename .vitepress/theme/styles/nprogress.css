@@ -8,7 +8,7 @@
 }
 
 #nprogress .bar {
-  background: var(--ak-accent, #FF6B2B);
+  background: var(--ak-accent);
   position: fixed;
   z-index: 1031;
   top: 0;
@@ -34,7 +34,7 @@
   right: 0;
   width: 120px;
   height: 100%;
-  box-shadow: 0 0 12px var(--ak-accent, #FF6B2B), 0 0 6px var(--ak-accent, #FF6B2B);
+  box-shadow: 0 0 12px var(--ak-accent), 0 0 6px var(--ak-accent);
   opacity: 1;
   transform: rotate(3deg) translate(0px, -4px);
 }
