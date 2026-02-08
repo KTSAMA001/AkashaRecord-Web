@@ -12,6 +12,7 @@ import Mermaid from './components/Mermaid.vue'
 import MermaidRenderer from './components/MermaidRenderer.vue'
 import CategoryGrid from './components/CategoryGrid.vue'
 import ThemePicker from './components/ThemePicker.vue'
+import HeroEnhance from './components/HeroEnhance.vue'
 import NProgress from 'nprogress'
 import './styles/custom.css'
 import './styles/nprogress.css'
@@ -20,8 +21,8 @@ export default {
   extends: DefaultTheme,
   Layout() {
     return h(DefaultTheme.Layout, null, {
-      // 在导航栏右侧（暗色模式开关之前）注入主题色选择器
       'nav-bar-content-after': () => h(ThemePicker),
+      'home-hero-info-after': () => h(HeroEnhance),
     })
   },
   enhanceApp({ app, router }) {
@@ -33,7 +34,7 @@ export default {
     app.component('MermaidRenderer', MermaidRenderer)
     app.component('CategoryGrid', CategoryGrid)
 
-    // NProgress 路由进度条 + VPFeature 图标着色
+    // NProgress 路由进度条
     if (typeof window !== 'undefined') {
       NProgress.configure({ showSpinner: false, trickleSpeed: 100 })
 
