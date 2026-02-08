@@ -282,6 +282,7 @@ function transformMetaBlocks(content, tagMeta = new Map(), schema = null) {
   }
 
   // 构建 emoji → { label, color, svg } 映射（状态渲染用）
+  // 映射完全由 Schema 模板的状态定义表驱动，近似 emoji 在表中直接添加行
   const statusMap = new Map()
   if (schema?.statuses) {
     for (const s of schema.statuses) {

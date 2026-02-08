@@ -5,7 +5,7 @@ tags:
   - reference
   - ktsama
   - bilibili
-status: "\U0001F4DA 有效"
+status: "\U0001F4D8 有效"
 description: '[KTSAMA的B站主页]'
 source: KTSAMA本人提供
 recordDate: '2026-02-01'
@@ -23,7 +23,7 @@ credibility: ⭐⭐⭐⭐⭐
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value">📚 有效</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 </div>
 
 
