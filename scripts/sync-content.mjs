@@ -7,7 +7,7 @@
  * 2. 解析 record-template.md 获取 Schema (字段定义/状态定义/Emoji映射)
  * 3. 解析 references/INDEX.md 获取权威元数据 (文件清单 + 标签)
  * 4. 复制 data/*.md 到 content/records/，注入 Frontmatter、修正链接、Emoji→SVG
- * 5. 生成 content/records/index.md 和 content/tags/index.md
+ * 5. 生成 content/records/index.md
  * 6. 生成 public/api/stats.json、tags.json、tag-meta.json 和 meta-schema.json
  */
 
@@ -540,18 +540,7 @@ sidebar: false
 `
   fs.writeFileSync(path.join(CONTENT_DIR, 'records', 'index.md'), recordsIndexContent)
 
-  // 2. tags/index.md
-  const tagsIndexContent = `---
-layout: page
-title: 标签索引
-sidebar: false
----
-
-# 标签索引
-
-<TagCloud :interactive="true" />
-`
-  fs.writeFileSync(path.join(CONTENT_DIR, 'tags', 'index.md'), tagsIndexContent)
+  // 标签索引页已移除——记录终端内置多选标签筛选，标签索引页不再需要
 }
 
 // 主流程

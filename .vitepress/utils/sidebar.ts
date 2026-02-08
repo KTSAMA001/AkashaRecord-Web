@@ -19,6 +19,5 @@ export function generateNav() {
   return [
     { text: '首页', link: '/' },
     { text: '记录终端', link: '/records/' },
-    { text: '标签索引', link: '/tags/' },
   ]
 }

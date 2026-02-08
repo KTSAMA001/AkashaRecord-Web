@@ -12,9 +12,6 @@ hero:
       text: 记录终端
       link: /records/
     - theme: alt
-      text: 标签索引
-      link: /tags/
-    - theme: alt
       text: B站主页
       link: https://space.bilibili.com/12822357
   image:
@@ -57,13 +54,6 @@ features:
     title: AI & 自动化
     details: Agent Skills、Anthropic API、MCP 协议等 AI 开发经验
     link: /records/?tag=ai
-  - icon:
-      src: /icons/network.svg
-      width: 48
-      height: 48
-    title: 标签化知识网络
-    details: 以标签驱动的扁平化索引，打破分类壁垒，构建多维记忆网络
-    link: /tags/
 ---
 
 <Dashboard />
