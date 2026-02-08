@@ -402,39 +402,78 @@ body::after {
 /* ======= Hero 全屏布局 + 工业风增强 ======= */
 .VPHero {
   position: relative;
-  min-height: 80vh;
+  min-height: 70vh;
   display: flex !important;
   align-items: center;
+  padding-bottom: 2rem !important;
 }
 
-/* 隐藏 Hero Logo 区域（首屏专注文字信息） */
+/* 隐藏 Hero Logo 区域 + 禁止双栏占位 */
 .VPHero .image-container,
-.VPHero .image-bg {
+.VPHero .image-bg,
+.VPHero .image {
   display: none !important;
 }
 
-/* Hero 名称 - 大字间距工业风 */
-.VPHero .name {
-  letter-spacing: 0.25em !important;
-  font-weight: 900 !important;
-}
-
-/* Hero 副标题 - 终端字体 */
-.VPHero .text {
-  font-family: 'Courier New', monospace !important;
-  letter-spacing: 0.08em !important;
-  opacity: 0.85;
-}
-
-/* Hero 布局：无图时让文字居中 */
+/* 强制 Hero 内部单栏：文字撑满宽度 */
 .VPHero .container {
+  display: flex !important;
+  flex-direction: column !important;
   max-width: 960px;
   margin: 0 auto;
 }
 
 .VPHero .main {
   max-width: 100% !important;
+  width: 100% !important;
   text-align: left;
+}
+
+/* Hero 名称 - 大字间距工业风 */
+.VPHero .name {
+  letter-spacing: 0.25em !important;
+  font-weight: 900 !important;
+  font-size: 3rem !important;
+  line-height: 1.2 !important;
+}
+
+/* Hero 副标题 - 简洁工业风 */
+.VPHero .text {
+  font-size: 1.5rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.15em !important;
+  opacity: 0.85;
+  line-height: 1.4 !important;
+  max-width: 100% !important;
+  white-space: nowrap;
+}
+
+/* Hero tagline - 终端字体小字 */
+.VPHero .tagline {
+  font-family: 'Courier New', monospace !important;
+  font-size: 0.95rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.05em !important;
+  color: var(--vp-c-text-2) !important;
+  line-height: 1.6 !important;
+  max-width: 100% !important;
+}
+
+/* ======= 移动端适配 ======= */
+@media (max-width: 640px) {
+  .VPHero {
+    min-height: 60vh;
+  }
+
+  .VPHero .name {
+    font-size: 2rem !important;
+    letter-spacing: 0.15em !important;
+  }
+
+  .VPHero .text {
+    font-size: 1.1rem !important;
+    white-space: normal;
+  }
 }
 
 /* ======= HUD 角标装饰（Hero 容器） ======= */
