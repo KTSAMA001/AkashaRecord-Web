@@ -327,8 +327,8 @@
   width: 48px;
   height: 48px;
   object-fit: contain;
-  /* SVG 图标着色跟随主题色 */
-  filter: var(--ak-icon-filter, invert(48%) sepia(89%) saturate(1600%) hue-rotate(3deg) brightness(101%) contrast(103%));
+  /* SVG 使用 stroke="currentColor"，直接通过 color 着色 */
+  color: var(--ak-accent);
 }
 
 .VPFeature {

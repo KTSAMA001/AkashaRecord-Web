@@ -300,7 +300,7 @@ onMounted(async () => {
   height: 2rem;
   object-fit: contain;
   flex-shrink: 0;
-  filter: var(--ak-icon-filter);
+  color: var(--ak-accent);
 }
 
 .ak-card__body {

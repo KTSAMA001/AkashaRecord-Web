@@ -167,7 +167,7 @@ defineProps<{
   height: 1.4rem;
   object-fit: contain;
   flex-shrink: 0;
-  filter: var(--ak-icon-filter);
+  color: var(--ak-accent);
 }
 
 .card-body {

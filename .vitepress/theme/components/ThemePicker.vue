@@ -49,31 +49,6 @@ function darken(hex: string, amount: number): string {
   return `#${((1 << 24) + (dr << 16) + (dg << 8) + db).toString(16).slice(1)}`
 }
 
-/**
- * 将 HEX 颜色转为 CSS filter（近似着色黑色 SVG 为目标颜色）
- * 原理：先 invert+sepia 得到基础暖色，再通过 hue-rotate+saturate 旋转到目标色相
- */
-function hexToFilter(hex: string): string {
-  const [r, g, b] = hexToRgb(hex)
-  // 转 HSL
-  const rf = r / 255, gf = g / 255, bf = b / 255
-  const max = Math.max(rf, gf, bf), min = Math.min(rf, gf, bf)
-  const l = (max + min) / 2
-  let h = 0, s = 0
-  if (max !== min) {
-    const d = max - min
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min)
-    if (max === rf) h = ((gf - bf) / d + (gf < bf ? 6 : 0)) * 60
-    else if (max === gf) h = ((bf - rf) / d + 2) * 60
-    else h = ((rf - gf) / d + 4) * 60
-  }
-  // sepia 基色约 hue=50°，需旋转 (targetHue - 50) 度
-  const hueRotate = Math.round(h - 50)
-  const saturate = Math.round(s * 100 * 20) // 放大 saturate 补偿 sepia 的低饱和度
-  const brightness = Math.round((l + 0.1) * 100)
-  return `invert(50%) sepia(100%) saturate(${saturate}%) hue-rotate(${hueRotate}deg) brightness(${brightness}%) contrast(100%)`
-}
-
 function applyTheme(index: number) {
   if (typeof document === 'undefined') return
   const preset = presets[index]
@@ -108,8 +83,6 @@ function applyTheme(index: number) {
   // h1 标题渐变
   root.style.setProperty('--ak-h1-gradient', `linear-gradient(120deg, ${main}, ${aux})`)
 
-  // SVG 图标着色 filter（从 HSL 近似生成）
-  root.style.setProperty('--ak-icon-filter', hexToFilter(main))
 }
 
 function selectTheme(index: number) {

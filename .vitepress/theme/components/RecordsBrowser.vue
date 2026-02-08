@@ -420,7 +420,7 @@ function displayName(tag: string): string {
   width: 24px;
   height: 24px;
   object-fit: contain;
-  filter: var(--ak-icon-filter);
+  color: var(--ak-accent);
 }
 
 .status-dot {
