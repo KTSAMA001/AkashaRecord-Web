@@ -114,6 +114,7 @@ onMounted(async () => {
           :key="tag.name"
           :href="`/records/?tag=${tag.name}`"
           class="ak-card ak-card--row"
+          :style="{ '--card-accent': tagToColor(tag.name) }"
         >
           <span class="ak-card__index">{{ String(index + 1).padStart(2, '0') }}</span>
           <span class="ak-card__tag">#{{ tagMeta[tag.name]?.label || tag.name }}</span>
@@ -244,16 +245,14 @@ onMounted(async () => {
     10px 100%,
     0 calc(100% - 10px)
   );
-  /* 网点底纹 */
-  background-image: radial-gradient(circle, var(--ak-bg-dot, rgba(0,0,0,0.04)) 1px, transparent 1px);
-  background-size: 10px 10px;
+  /* 网点底纹由全局 VPContent 提供，不重复设置 */
 }
 
 .ak-card:hover {
   border-color: var(--card-accent, var(--ak-accent, #FF6B2B));
   box-shadow:
-    0 0 20px rgba(255, 107, 43, 0.12),
-    inset 0 0 20px rgba(255, 107, 43, 0.04);
+    0 0 20px color-mix(in srgb, var(--card-accent, var(--ak-accent, #FF6B2B)) 20%, transparent),
+    inset 0 0 20px color-mix(in srgb, var(--card-accent, var(--ak-accent, #FF6B2B)) 8%, transparent);
   transform: translateX(4px);
 }
 
@@ -283,7 +282,7 @@ onMounted(async () => {
     120deg,
     transparent 0%,
     transparent 40%,
-    rgba(255, 107, 43, 0.06) 50%,
+    color-mix(in srgb, var(--card-accent, var(--ak-accent, #FF6B2B)) 10%, transparent) 50%,
     transparent 60%,
     transparent 100%
   );

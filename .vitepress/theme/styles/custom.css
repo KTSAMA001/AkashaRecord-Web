@@ -320,7 +320,7 @@
 
 .VPFeature:hover .icon {
   border-color: var(--ak-accent);
-  box-shadow: 0 0 8px rgba(255, 107, 43, 0.2);
+  box-shadow: 0 0 8px var(--ak-accent-dim);
 }
 
 .VPFeature .VPImage {
@@ -343,8 +343,8 @@
 
 .VPFeature:hover {
   border-color: var(--ak-accent) !important;
-  box-shadow: 0 0 20px rgba(255, 107, 43, 0.12),
-              inset 0 0 20px rgba(255, 107, 43, 0.04) !important;
+  box-shadow: 0 0 20px var(--ak-accent-dim),
+              inset 0 0 20px color-mix(in srgb, var(--ak-accent) 8%, transparent) !important;
   transform: translateX(4px);
 }
 
@@ -364,7 +364,7 @@
     120deg,
     transparent 0%,
     transparent 40%,
-    rgba(255, 107, 43, 0.06) 50%,
+    color-mix(in srgb, var(--ak-accent) 10%, transparent) 50%,
     transparent 60%,
     transparent 100%
   );
@@ -812,7 +812,7 @@ body::after {
   color: var(--ak-accent) !important;
   padding: 0.15rem 0.4rem !important;
   font-weight: 500;
-  border: 1px solid rgba(255, 107, 43, 0.15);
+  border: 1px solid var(--ak-accent-dim, rgba(255, 107, 43, 0.15));
 }
 
 /* ======= 页脚工业风 ======= */
@@ -971,7 +971,7 @@ body::after {
   color: #fff !important;
   border-color: var(--ak-accent, #FF6B2B);
   transform: translateX(2px);
-  box-shadow: 0 2px 6px rgba(255, 107, 43, 0.25);
+  box-shadow: 0 2px 6px var(--ak-accent-dim, rgba(255, 107, 43, 0.25));
 }
 
 /* 标签行特殊处理：允许换行 */

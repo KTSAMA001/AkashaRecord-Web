@@ -380,8 +380,8 @@ function displayName(tag: string): string {
 .record-card:hover {
   transform: translateX(4px);
   border-color: var(--ak-accent, #FF6B2B);
-  box-shadow: 0 0 20px rgba(255, 107, 43, 0.12),
-              inset 0 0 20px rgba(255, 107, 43, 0.04);
+  box-shadow: 0 0 20px var(--ak-accent-dim, rgba(255, 107, 43, 0.25)),
+              inset 0 0 20px color-mix(in srgb, var(--ak-accent, #FF6B2B) 8%, transparent);
 }
 
 .record-card:hover::before {
@@ -396,7 +396,7 @@ function displayName(tag: string): string {
     120deg,
     transparent 0%,
     transparent 40%,
-    rgba(255, 107, 43, 0.06) 50%,
+    color-mix(in srgb, var(--ak-accent, #FF6B2B) 10%, transparent) 50%,
     transparent 60%,
     transparent 100%
   );
