@@ -155,10 +155,15 @@ onMounted(async () => {
   text-decoration: none;
   font-family: 'Courier New', monospace;
   letter-spacing: 0.05em;
-  transition: transform 0.2s;
+  background-image: linear-gradient(to right, var(--ak-accent), var(--ak-accent));
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.2s;
 }
 
 .total-link:hover {
+  background-size: 100% 2px;
   transform: translateX(4px);
 }
 
