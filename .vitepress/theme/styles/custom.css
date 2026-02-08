@@ -629,7 +629,8 @@ body::after {
 }
 
 /* ======= 正文链接交互（扫描线动效） ======= */
-.vp-doc a:not(.header-anchor) {
+/* 排除卡片类链接（ak-card / record-card / category-card），避免底部橙色下划线覆盖卡片自身交互 */
+.vp-doc a:not(.header-anchor):not(.ak-card):not(.record-card):not(.category-card):not(.total-link) {
   text-decoration: none;
   background-image: linear-gradient(to right, var(--ak-accent), var(--ak-accent));
   background-position: 0% 100%;
@@ -639,7 +640,7 @@ body::after {
   color: var(--ak-accent);
 }
 
-.vp-doc a:not(.header-anchor):hover {
+.vp-doc a:not(.header-anchor):not(.ak-card):not(.record-card):not(.category-card):not(.total-link):hover {
   background-size: 100% 2px;
   color: var(--vp-c-brand-2);
 }
