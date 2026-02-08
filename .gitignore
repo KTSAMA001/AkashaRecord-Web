@@ -15,3 +15,4 @@ ideas/*/
 !knowledge/index.md
 !ideas/index.md
 public/api/
+.git_commit_msg.txt

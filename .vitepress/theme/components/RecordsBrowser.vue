@@ -337,8 +337,6 @@ function displayName(tag: string): string {
   position: relative;
   overflow: hidden;
   clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-  background-image: radial-gradient(circle, var(--ak-bg-dot, rgba(0,0,0,0.04)) 1px, transparent 1px);
-  background-size: 10px 10px;
 }
 
 /* 左侧高亮条 */
