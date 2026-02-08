@@ -10,7 +10,7 @@ description: Unity Editor 扩展开发相关经验
 recordDate: '2026-02-03'
 version: BehaviorDesigner 1.7.x
 ---
-# Unity 编辑器扩展经验
+# Unity Editor 扩展开发相关经验
 
 > Unity Editor 扩展开发相关经验
 > 
@@ -68,7 +68,7 @@ public enum DirectionType
 
 | 日期 | 验证者 | 结果 |
 |------|--------|------|
-| 2026-02-03 | KT | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 方案1在项目中验证通过 |
+| 2026-02-03 | KT | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 方案1在项目中验证通过 |
 
 ### 理论基础
 
@@ -144,7 +144,7 @@ public class MyAction : ProfilingAction
 
 | 日期 | 验证者 | 结果 |
 |------|--------|------|
-| 2026-02-03 | KT | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> Header 分组在 BD Inspector 中正常显示 |
+| 2026-02-03 | KT | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> Header 分组在 BD Inspector 中正常显示 |
 
 ### 理论基础
 
@@ -214,7 +214,7 @@ public class MyConditional : ProfilingConditional
 
 | 日期 | 验证者 | 结果 |
 |------|--------|------|
-| 2026-02-03 | KT | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 日志频率正常控制，不再刷屏 |
+| 2026-02-03 | KT | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 日志频率正常控制，不再刷屏 |
 
 ---
 

@@ -10,7 +10,7 @@ recordDate: '2026-02-07'
 sourceDate: '2024-08-08'
 version: Unity 2022.3+ / URP 14.0+
 ---
-# Shader 特效实现经验
+# 具体特效实现相关经验
 
 > 具体特效实现相关经验
 > 

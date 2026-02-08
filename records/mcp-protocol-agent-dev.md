@@ -10,9 +10,7 @@ recordDate: '2026-02-01'
 sourceDate: 2026-01-30 ~ 2026-02-01
 version: MCP 0.3+ / FastMCP 0.2+ / AstrBot v4.13.2+
 ---
----
-
-## MCP 协议与 Agent 服务开发经验
+# MCP 协议与 Agent 服务开发经验
 
 
 <div class="record-meta-block">
@@ -52,7 +50,7 @@ FastMCP.run(tools=[...], transport="stdio")
 **验证记录**：
 - [2026-01-30] MCP 服务本地开发，SSE 受限于 Docker 网络
 - [2026-02-01] AstrBot 容器内 stdio 部署，工具正常加载
-- [2026-02-01] <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> **搜索引擎多选择器兜底方案失效**：所有搜索引擎（百度、Bing、DuckDuckGo、Brave）均检测到自动化并重定向到验证/保护页面。尝试了自定义 User-Agent、playwright-stealth 库、反检测脚本等多种方案均无效。
+- [2026-02-01] <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> **搜索引擎多选择器兜底方案失效**：所有搜索引擎（百度、Bing、DuckDuckGo、Brave）均检测到自动化并重定向到验证/保护页面。尝试了自定义 User-Agent、playwright-stealth 库、反检测脚本等多种方案均无效。
 
 **补充结论（2026-02-01 更新）**：
 

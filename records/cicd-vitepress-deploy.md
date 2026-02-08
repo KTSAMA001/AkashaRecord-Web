@@ -13,7 +13,7 @@ sourceDate: '2026-02-07'
 updateDate: '2026-02-07'
 version: VitePress 1.x + Nginx 1.26 + 宝塔面板 9.x + Alibaba Cloud Linux 3
 ---
-# CI/CD 经验
+# 持续集成/持续部署相关经验
 
 > 持续集成/持续部署相关经验
 > 
@@ -256,7 +256,7 @@ execSync('git pull --ff-only', { cwd: PROJECT_ROOT, timeout: 60000 })
 }
 ```
 
-**状态**：<img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 已验证
+**状态**：<img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 已验证
 
 16) **Safari position:fixed 元素在窗口 resize 时重绘延迟**
 
@@ -272,7 +272,7 @@ VPBackdrop 使用 `position: fixed; inset: 0` 覆盖视口。Safari 拉伸窗口
 
 200vmax = 视口最大维度的200倍，无论窗口多大拉多快都不可能露出。`box-shadow` 是渲染层效果，不依赖元素 inset 尺寸的重绘。
 
-**状态**：<img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> 已废弃（见条目 17）
+**状态**：<img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 已废弃（见条目 17）
 
 **验证结果**：box-shadow 200vmax 理论上覆盖范围足够，但实测 Safari 拉伸窗口时 **box-shadow 的重绘同样存在延迟**，仍会漏出边缘。根本原因是 Safari 对 fixed 元素的所有视觉属性（background/box-shadow/backdrop-filter）在 resize 时都有重绘延迟，无法通过纯 CSS 覆盖层解决。最终决定彻底移除覆盖层，见条目 17。
 
@@ -309,7 +309,7 @@ VPBackdrop 遮罩（半透明暗色覆盖层）在 Safari 窗口 resize 时，�
 
 **核心思路**：覆盖层的边界问题不可能完美解决（浏览器渲染层面限制），不如换个思路——不需要边界就不存在边界问题。阴影挂在 sidebar 元素自身上，跟 resize 无关。
 
-**状态**：<img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 已验证
+**状态**：<img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 已验证
 
 
 18) **宝塔面板 SSL 部署报"找不到标识信息"——双配置文件冲突**
@@ -322,8 +322,8 @@ VPBackdrop 遮罩（半透明暗色覆盖层）在 Safari 窗口 resize 时，�
 
 | 模块 | 查找的文件名 | 实际文件 |
 |------|-------------|---------|
-| 站点管理（配置文件编辑） | `html_akasha.ktsama.top.conf` | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 存在，标记完整 |
-| SSL 部署模块 | `akasha.ktsama.top.conf` | <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> 不存在或为空 |
+| 站点管理（配置文件编辑） | `html_akasha.ktsama.top.conf` | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 存在，标记完整 |
+| SSL 部署模块 | `akasha.ktsama.top.conf` | <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 不存在或为空 |
 
 两个模块的命名规范不一致，导致 SSL 模块在错误的文件里找标记。
 
@@ -341,7 +341,7 @@ VPBackdrop 遮罩（半透明暗色覆盖层）在 Safari 窗口 resize 时，�
 
 **注意**：宝塔面板操作 SSL 时可能自动创建 `{域名}.conf`（不带前缀），导致两份同名 server 配置同时加载。发现 `nginx -t` 有 `conflicting server name` 警告时，需排查并合并/删除重复文件。
 
-**状态**：<img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 已验证
+**状态**：<img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 已验证
 
 
 19) **Webhook 从 HTTP 直连迁移到 Nginx 反向代理（HTTPS）**
@@ -377,4 +377,4 @@ location /webhook {
 
 **验证**：GitHub Recent Deliveries 显示 ping 事件返回 200 + `{"message":"pong"}`
 
-**状态**：<img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 已验证
+**状态**：<img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 已验证

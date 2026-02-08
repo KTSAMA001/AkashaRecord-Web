@@ -9,7 +9,7 @@ description: 3D美少女智能家具创业想法
 source: 留枫微风的创业提案
 sourceDate: '2026-02-02'
 ---
-## 3D美少女智能家具创业想法
+# 3D美少女智能家具创业想法
 
 
 <div class="record-meta-block">
@@ -61,7 +61,7 @@ sourceDate: '2026-02-02'
 ### 关键点
 
 - 💡 **创意核心**：虚拟伴侣 + 智能家居的跨界组合
-- <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> **注意尺度**：3D美少女的内容风格需符合审查要求
+- <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> **注意尺度**：3D美少女的内容风格需符合审查要求
 - 💰 **成本控制**：硬件成本虽低，但内容研发成本不容忽视
 - 🎯 **目标用户**：明确小众市场定位，避免盲目扩张
 

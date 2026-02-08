@@ -13,7 +13,7 @@ sourceDate: '2026-02-01'
 updateDate: '2026-02-01'
 credibility: ⭐⭐⭐⭐⭐
 ---
-## [KTSAMA的B站主页]
+# [KTSAMA的B站主页]
 
 
 <div class="record-meta-block">

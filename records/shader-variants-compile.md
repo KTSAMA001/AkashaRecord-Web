@@ -10,7 +10,7 @@ description: HLSL 着色器语言相关经验
 source: Technical_Artist_Technotes/TA零散知识
 recordDate: '2026-01-31'
 ---
-# HLSL 语法经验
+# HLSL 着色器语言相关经验
 
 > HLSL 着色器语言相关经验
 > 
@@ -62,7 +62,7 @@ Shader 变体是根据不同的**平台、渲染管线、材质属性和宏定�
 |------|---------------|----------------|
 | 变体生成 | 生成**所有**关键字组合 | 只生成**被材质引用**的组合 |
 | 变体数量 | N 个声明 = 2^N 个变体 | 取决于实际使用 |
-| 运行时切换 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 可通过 API 动态切换 | <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> 出包后无法启用未打包的变体 |
+| 运行时切换 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 可通过 API 动态切换 | <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 出包后无法启用未打包的变体 |
 | 适用场景 | 阴影开关、雾效等运行时需切换的功能 | 法线贴图、视差等编辑期确定的功能 |
 
 **关键代码示例**：

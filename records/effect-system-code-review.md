@@ -11,7 +11,7 @@ recordDate: '2026-02-06'
 sourceDate: 2025-08-19（系统创建，作者：KT）
 version: Unity 2021+（使用 SerializeReference、UniTask）
 ---
-## EffectSystem 效果系统 - 代码审查与架构分析 {#effect-system-review}
+# EffectSystem 效果系统 - 代码审查与架构分析
 
 
 <div class="record-meta-block">

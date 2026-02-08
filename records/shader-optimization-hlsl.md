@@ -10,7 +10,7 @@ description: Shader 性能优化相关经验
 recordDate: '2026-01-30'
 version: Unity 2020+ / HLSL generic
 ---
-# Shader 性能优化经验
+# Shader 性能优化相关经验
 
 > Shader 性能优化相关经验
 > 
@@ -92,10 +92,10 @@ float GetVectorComponent_Matrix(float3 v, int index)
 
 | 方案 | 指令数 | 无分支保证 | 推荐度 |
 |------|--------|------------|--------|
-| 直接索引 | 1 | <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 依赖编译器 | ⭐⭐⭐ |
-| 点积法 | 4 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐⭐⭐⭐ |
-| 数学运算法 | 7+ | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐ |
-| 矩阵转置法 | 5+ | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐ |
+| 直接索引 | 1 | <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 依赖编译器 | ⭐⭐⭐ |
+| 点积法 | 4 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐⭐⭐⭐ |
+| 数学运算法 | 7+ | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐ |
+| 矩阵转置法 | 5+ | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐ |
 
 **验证记录**：
 
@@ -198,10 +198,10 @@ float3 IndexToAxis_Compare(int index)
 
 | 方案 | 指令数 | 无分支保证 | 推荐度 |
 |------|--------|------------|--------|
-| 三元运算符 | 3-6 | <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 依赖编译器 | ⭐⭐⭐ |
-| 数学运算法 | 7+ | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐ |
-| 矩阵索引 | 1-2 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐⭐⭐⭐ |
-| 比较乘法 | 3 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐⭐⭐⭐ |
+| 三元运算符 | 3-6 | <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 依赖编译器 | ⭐⭐⭐ |
+| 数学运算法 | 7+ | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐ |
+| 矩阵索引 | 1-2 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐⭐⭐⭐ |
+| 比较乘法 | 3 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 完全保证 | ⭐⭐⭐⭐⭐ |
 
 **验证记录**：
 

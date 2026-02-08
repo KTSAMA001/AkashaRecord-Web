@@ -10,7 +10,7 @@ description: 薇拉的身份设定
 source: KTSAMA的事实公告
 sourceDate: '2026-02-01'
 ---
-## 薇拉的身份设定
+# 薇拉的身份设定
 
 
 <div class="record-meta-block">

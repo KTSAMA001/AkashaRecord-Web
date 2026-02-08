@@ -13,7 +13,7 @@ recordDate: '2026-02-07'
 sourceDate: '2024-08-08'
 version: Unity 2022.3+ / URP 14.0+
 ---
-# 大规模渲染经验
+# 大规模渲染 (Large-Scale Rendering) 相关经验
 
 > 大规模渲染 (Large-Scale Rendering) 相关经验
 >

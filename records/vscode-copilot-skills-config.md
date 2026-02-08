@@ -9,7 +9,7 @@ status: ✅ 已验证
 description: GitHub Copilot 使用相关经验
 recordDate: '2026-01-30'
 ---
-# VS Code Copilot 经验
+# GitHub Copilot 使用相关经验
 
 > GitHub Copilot 使用相关经验
 >

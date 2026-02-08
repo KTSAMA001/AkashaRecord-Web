@@ -9,7 +9,7 @@ status: ✅ 已验证
 description: VitePress 静态站点生成器相关经验
 recordDate: '2026-02-07'
 ---
-# VitePress 站点开发经验
+# VitePress 静态站点生成器相关经验
 
 > VitePress 静态站点生成器相关经验
 > 

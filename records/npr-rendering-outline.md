@@ -13,7 +13,7 @@ recordDate: '2026-02-07'
 sourceDate: '2024-08-08'
 version: Unity 2022.3+ / URP 14.0+
 ---
-# NPR 渲染经验
+# 非真实感渲染 (Non-Photorealistic Rendering) 相关经验
 
 > 非真实感渲染 (Non-Photorealistic Rendering) 相关经验
 >

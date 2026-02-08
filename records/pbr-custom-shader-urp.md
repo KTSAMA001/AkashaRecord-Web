@@ -13,7 +13,7 @@ recordDate: '2026-02-07'
 sourceDate: '2024-08-08'
 version: Unity 2022.3+ / URP 14.0+
 ---
-# PBR 渲染经验
+# 基于物理的渲染 (Physically Based Rendering) 相关经验
 
 > 基于物理的渲染 (Physically Based Rendering) 相关经验
 >

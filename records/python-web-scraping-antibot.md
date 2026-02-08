@@ -12,9 +12,7 @@ recordDate: '2026-02-01'
 sourceDate: '2026-02-01'
 version: nodriver 0.48+ / playwright-stealth 2.0.1 / undetected-chromedriver 3.5.5
 ---
----
-
-## 网页抓取与反爬虫绕过
+# 网页抓取与反爬虫绕过
 
 
 <div class="record-meta-block">
@@ -36,11 +34,11 @@ version: nodriver 0.48+ / playwright-stealth 2.0.1 / undetected-chromedriver 3.5
 
 | 工具 | 特点 | 有效性 |
 |---|---|---|
-| **nodriver** ⭐ | **undetected-chromedriver 继任者**，纯 CDP 直连，无 Selenium/WebDriver | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 绕过能力最强，完全异步，内置 `cf_verify()` 自动点击 Cloudflare 验证 |
-| **undetected-chromedriver** | Selenium 补丁，绕过 Cloudflare/Imperva/DataDome | <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 普通网站有效，**不隐藏 IP**，数据中心 IP 大概率失败 |
-| **playwright-stealth** | Playwright 隐身插件，伪装浏览器指纹 | <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 仅对简单反爬有效，作者明确声明"proof-of-concept"不保证效果 |
-| **住宅代理 (Residential Proxy)** | 从数据中心 IP 切换为住宅 IP | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 解决 IP 信誉问题，但需付费 |
-| **官方 Search API** | Serper.dev / SerpAPI / Brave Search API | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> **最可靠**，推荐用于搜索引擎 |
+| **nodriver** ⭐ | **undetected-chromedriver 继任者**，纯 CDP 直连，无 Selenium/WebDriver | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 绕过能力最强，完全异步，内置 `cf_verify()` 自动点击 Cloudflare 验证 |
+| **undetected-chromedriver** | Selenium 补丁，绕过 Cloudflare/Imperva/DataDome | <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 普通网站有效，**不隐藏 IP**，数据中心 IP 大概率失败 |
+| **playwright-stealth** | Playwright 隐身插件，伪装浏览器指纹 | <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 仅对简单反爬有效，作者明确声明"proof-of-concept"不保证效果 |
+| **住宅代理 (Residential Proxy)** | 从数据中心 IP 切换为住宅 IP | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 解决 IP 信誉问题，但需付费 |
+| **官方 Search API** | Serper.dev / SerpAPI / Brave Search API | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> **最可靠**，推荐用于搜索引擎 |
 
 ### nodriver vs undetected-chromedriver
 
@@ -64,10 +62,10 @@ version: nodriver 0.48+ / playwright-stealth 2.0.1 / undetected-chromedriver 3.5
 
 | 网站类型 | 反爬强度 | 推荐方案 |
 |---|---|---|
-| 搜索引擎（Google/Bing/Baidu） | <img class="inline-icon indicator--red" src="/icons/indicator-red.svg" alt="🔴" /> 极高 | 放弃绕过，使用官方 API |
-| CDN 防护站点（Cloudflare/DataDome） | <img class="inline-icon indicator--orange" src="/icons/indicator-orange.svg" alt="🟠" /> 高 | **nodriver** + `cf_verify()` 或住宅代理 |
-| 普通商业网站 | <img class="inline-icon indicator--yellow" src="/icons/indicator-yellow.svg" alt="🟡" /> 中等 | nodriver / playwright-stealth + 合理频率 |
-| 静态内容站点 | <img class="inline-icon indicator--green" src="/icons/indicator-green.svg" alt="🟢" /> 低 | requests + 随机 User-Agent |
+| 搜索引擎（Google/Bing/Baidu） | <img class="inline-icon inline-icon--red" src="/icons/indicator-red.svg" alt="🔴" /> 极高 | 放弃绕过，使用官方 API |
+| CDN 防护站点（Cloudflare/DataDome） | <img class="inline-icon inline-icon--orange" src="/icons/indicator-orange.svg" alt="🟠" /> 高 | **nodriver** + `cf_verify()` 或住宅代理 |
+| 普通商业网站 | <img class="inline-icon inline-icon--yellow" src="/icons/indicator-yellow.svg" alt="🟡" /> 中等 | nodriver / playwright-stealth + 合理频率 |
+| 静态内容站点 | <img class="inline-icon inline-icon--green" src="/icons/indicator-green.svg" alt="🟢" /> 低 | requests + 随机 User-Agent |
 
 **关键代码**：
 
@@ -146,10 +144,10 @@ response = requests.get(url, headers=headers)
 
 | 测试项 | 结果 | 备注 |
 |-------|------|------|
-| nodriver 启动 | <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> 失败 | macOS 上 CDP HTTPApi 连接失败 (RemoteDisconnected) |
-| undetected-chromedriver | <img class="inline-icon mark-warning" src="/icons/status-pending.svg" alt="⚠️" /> 部分成功 | `navigator.webdriver = False` 成功伪装 |
-| Cloudflare Turnstile | <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> 仍触发 | 即使 webdriver=False，仍显示"确认您是真人" |
-| pyautogui 真实鼠标点击 | <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> 仍触发 | 物理层面的鼠标模拟也未能绕过 |
+| nodriver 启动 | <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 失败 | macOS 上 CDP HTTPApi 连接失败 (RemoteDisconnected) |
+| undetected-chromedriver | <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 部分成功 | `navigator.webdriver = False` 成功伪装 |
+| Cloudflare Turnstile | <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 仍触发 | 即使 webdriver=False，仍显示"确认您是真人" |
+| pyautogui 真实鼠标点击 | <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 仍触发 | 物理层面的鼠标模拟也未能绕过 |
 
 **关键发现**：
 - Cloudflare 的检测**不仅是 `navigator.webdriver`**，还包括更深层的浏览器指纹
@@ -192,9 +190,9 @@ driver.tab_new("https://google.com")
 
 | 服务 | 价格 | Turnstile 支持 |
 |-----|------|----------------|
-| [2Captcha](https://2captcha.com) | ~$2.99/1000 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 支持 |
-| [CapSolver](https://capsolver.com) | ~$3/1000 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 支持 |
-| [Anti-Captcha](https://anti-captcha.com) | ~$2/1000 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 支持 |
+| [2Captcha](https://2captcha.com) | ~$2.99/1000 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 支持 |
+| [CapSolver](https://capsolver.com) | ~$3/1000 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 支持 |
+| [Anti-Captcha](https://anti-captcha.com) | ~$2/1000 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 支持 |
 
 **2Captcha Turnstile 调用示例**：
 ```python

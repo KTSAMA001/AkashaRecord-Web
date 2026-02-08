@@ -10,7 +10,7 @@ status: ✅ 已验证
 description: Unity 中 Shader 相关经验
 recordDate: '2026-01-29'
 ---
-# Unity Shader 经验
+# Unity 中 Shader 相关经验
 
 > Unity 中 Shader 相关经验
 >

@@ -497,10 +497,10 @@ private IEnumerator ExecuteSingleFogRenderSafe()
 - **原因**：猜测是 Unity 在同步编译和异步编译时对 `_fragment` 后缀的处理存在差异，也可能是 Unity 的 Bug。
 - **解决**：**必须使用 `multi_compile_local`**（不带 `_fragment` 后缀）：
     ```hlsl
-    // <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> 错误：可能产生无宏变体
+    // <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 错误：可能产生无宏变体
     #pragma multi_compile_local_fragment _NOISEMODE_NONE _NOISEMODE_TRIPLANAR ...
     
-    // <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 正确：变体收集正常
+    // <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 正确：变体收集正常
     #pragma multi_compile_local _NOISEMODE_NONE _NOISEMODE_TRIPLANAR ...
     ```
 - **影响**：去掉 `_fragment` 后缀会导致顶点着色器也包含这些变体，可能略微增加变体数量，但能确保收集结果正确。

@@ -14,7 +14,7 @@ sourceDate: 2021-04-12（CodeAndWeb）/ 其他未标注
 updateDate: '2026-02-04'
 credibility: ⭐⭐⭐（社区共识为主，部分有官方手册支撑）
 ---
-## Unity BlendTree 下动画驱动音效同步（脚步声等）常见方案汇总
+# Unity BlendTree 下动画驱动音效同步（脚步声等）常见方案汇总
 
 <div class="record-meta-block">
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=animation" class="meta-tag">动画</a> <a href="/records/?tag=blend-tree" class="meta-tag">BlendTree</a> <a href="/records/?tag=audio" class="meta-tag">音频</a></span></div>

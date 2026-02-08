@@ -8,7 +8,7 @@ status: ✅ 已验证
 description: Git 团队协作工作流相关经验
 recordDate: '2026-01-30'
 ---
-# Git 工作流经验
+# Git 团队协作工作流相关经验
 
 > Git 团队协作工作流相关经验
 >

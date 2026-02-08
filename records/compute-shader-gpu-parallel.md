@@ -13,7 +13,7 @@ recordDate: '2026-02-07'
 sourceDate: '2024-08-08'
 credibility: ⭐⭐⭐⭐ (官方文档 + 实践验证)
 ---
-# ComputeShader 与 GPU 并行计算
+# GPU 通用计算 (GPGPU) 相关原理与概念
 
 > GPU 通用计算 (GPGPU) 相关原理与概念
 

@@ -14,7 +14,7 @@ recordDate: '2026-02-03'
 sourceDate: '2026-02-03'
 credibility: ⭐⭐⭐⭐⭐(官方)
 ---
-# BehaviorDesigner 相关知识
+# Behavior Designer 行为树插件的技术规范、API 和原理
 
 > Behavior Designer 行为树插件的技术规范、API 和原理
 > 
@@ -142,20 +142,20 @@ public class RangeDrawer : ObjectDrawer
 ### 关键点（重要限制）
 
 **ObjectDrawer 的 OnGUI 方法：**
-- <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 可以访问当前字段的 `value`
-- <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 可以访问当前字段的 `attribute`
-- <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> **无法访问** Task 实例
-- <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> **无法访问** 其他字段的值
-- <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> **无法实现** ShowIf/HideIf 条件显示
+- <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 可以访问当前字段的 `value`
+- <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 可以访问当前字段的 `attribute`
+- <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> **无法访问** Task 实例
+- <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> **无法访问** 其他字段的值
+- <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> **无法实现** ShowIf/HideIf 条件显示
 
 **与 Unity PropertyDrawer 对比：**
 
 | 功能 | Unity PropertyDrawer | BD ObjectDrawer |
 |------|---------------------|-----------------|
-| 访问当前字段 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> |
-| 访问 SerializedObject | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> | <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> |
-| 遍历其他字段 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> | <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> |
-| 条件显示 | <img class="inline-icon mark-check" src="/icons/mark-check.svg" alt="✅" /> 可实现 | <img class="inline-icon mark-cross" src="/icons/mark-cross.svg" alt="❌" /> 不可实现 |
+| 访问当前字段 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> |
+| 访问 SerializedObject | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> | <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> |
+| 遍历其他字段 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> | <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> |
+| 条件显示 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 可实现 | <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 不可实现 |
 
 ### 相关链接
 

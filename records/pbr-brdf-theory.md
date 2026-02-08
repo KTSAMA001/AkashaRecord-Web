@@ -13,7 +13,7 @@ recordDate: '2026-02-07'
 sourceDate: '2024-08-08'
 credibility: ⭐⭐⭐⭐⭐ (学术论文 + 实践验证)
 ---
-# PBR 渲染知识
+# 基于物理的渲染（Physically Based Rendering）相关原理与概念
 
 > 基于物理的渲染（Physically Based Rendering）相关原理与概念
 

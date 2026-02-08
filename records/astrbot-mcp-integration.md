@@ -11,9 +11,7 @@ recordDate: '2026-02-01'
 sourceDate: 2026-01-30 ~ 2026-02-01
 version: AstrBot v4.13.2+
 ---
----
-
-## AstrBot 集成 MCP 服务经验
+# AstrBot 集成 MCP 服务经验
 
 
 <div class="record-meta-block">

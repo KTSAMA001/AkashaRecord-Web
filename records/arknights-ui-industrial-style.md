@@ -8,7 +8,7 @@ tags:
 status: "\U0001F4D8 有效"
 description: 明日方舟工业风 UI：网点、网格、切角、噪点等视觉元素总结
 ---
-## 明日方舟工业风 UI：网点、网格、切角、噪点等视觉元素总结
+# 明日方舟工业风 UI：网点、网格、切角、噪点等视觉元素总结
 
 
 <div class="record-meta-block">

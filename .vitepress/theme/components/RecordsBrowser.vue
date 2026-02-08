@@ -32,6 +32,7 @@ const statusDefs = ref<StatusDef[]>([])
 const selectedTag = ref<string>('All')
 const searchQuery = ref('')
 const loading = ref(true)
+const tagsExpanded = ref(false)
 
 // 获取所有去重的记录
 const allRecords = computed(() => {
@@ -136,7 +137,7 @@ function displayName(tag: string): string {
   <div class="records-browser">
     <!-- 筛选工具栏 -->
     <div class="filter-bar">
-      <div class="tag-scroller">
+      <div class="tag-cloud" :class="{ expanded: tagsExpanded }">
         <button 
           class="filter-tag" 
           :class="{ active: selectedTag === 'All' }"
@@ -155,14 +156,18 @@ function displayName(tag: string): string {
           <span class="count">{{ tag.count }}</span>
         </button>
       </div>
-      
-      <!-- 搜索框 -->
-      <div class="search-box">
-        <input 
-          v-model="searchQuery" 
-          type="text" 
-          placeholder="搜索记录..."
-        />
+      <div class="filter-actions">
+        <button class="expand-btn" @click="tagsExpanded = !tagsExpanded">
+          {{ tagsExpanded ? '▲ COLLAPSE' : '▼ MORE_TAGS' }}
+        </button>
+        <!-- 搜索框 -->
+        <div class="search-box">
+          <input 
+            v-model="searchQuery" 
+            type="text" 
+            placeholder="搜索记录..."
+          />
+        </div>
       </div>
     </div>
 
@@ -196,7 +201,7 @@ function displayName(tag: string): string {
         </div>
         <div class="card-body">
           <h4 class="title">{{ record.title }}</h4>
-          <div class="code-path">{{ record.link }}</div>
+          <div class="code-path" :title="record.link">{{ record.link }}</div>
         </div>
         <div class="card-footer">
           <span class="view-btn">VIEW_LOG</span>
@@ -217,28 +222,44 @@ function displayName(tag: string): string {
 }
 
 .filter-bar {
-  display: flex;
-  gap: 1rem;
   margin-bottom: 1.5rem;
-  align-items: center;
-  flex-wrap: wrap;
 }
 
-.tag-scroller {
-  flex: 1;
+.tag-cloud {
   display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-  scrollbar-width: thin;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  max-height: 2.8rem;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 工业风滚动条 */
-.tag-scroller::-webkit-scrollbar {
-  height: 4px;
+.tag-cloud.expanded {
+  max-height: 600px;
 }
-.tag-scroller::-webkit-scrollbar-thumb {
-  background: var(--vp-c-divider);
+
+.filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 0.6rem;
+}
+
+.expand-btn {
+  padding: 0.2rem 0.6rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+  background: none;
+  border: 1px dashed var(--vp-c-divider);
+  cursor: pointer;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+
+.expand-btn:hover {
+  color: var(--vp-c-brand-1);
+  border-color: var(--vp-c-brand-1);
 }
 
 /* ======= 筛选标签（工业风切角） ======= */
@@ -328,11 +349,13 @@ function displayName(tag: string): string {
 
 /* ======= 记录卡片（工业风：切角 + 高亮条 + 微光 + hover 位移） ======= */
 .record-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   text-decoration: none;
   border: 1px solid var(--vp-c-divider);
   background: var(--vp-c-bg-soft);
   padding: 1.25rem;
+  min-height: 160px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -412,12 +435,20 @@ function displayName(tag: string): string {
 .status-dot.warning { background: #f59e0b; box-shadow: 0 0 5px rgba(245,158,11,0.5); }
 .status-dot.danger { background: #ef4444; box-shadow: 0 0 5px rgba(239,68,68,0.5); }
 
+.card-body {
+  flex: 1;
+}
+
 .title {
   margin: 0 0 0.5rem 0;
   font-size: 1.05rem;
   color: var(--vp-c-text-1);
   line-height: 1.4;
   transition: color 0.25s;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .record-card:hover .title {
@@ -428,11 +459,13 @@ function displayName(tag: string): string {
   font-family: monospace;
   font-size: 0.75rem;
   color: var(--vp-c-text-3);
-  word-break: break-all;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card-footer {
-  margin-top: 1rem;
+  margin-top: auto;
   padding-top: 0.8rem;
   border-top: 1px dashed var(--vp-c-divider);
   display: flex;
