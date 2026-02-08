@@ -1,5 +1,5 @@
 ---
-title: CI/CD 经验
+title: 持续集成/持续部署相关经验
 tags:
   - tools
   - experience

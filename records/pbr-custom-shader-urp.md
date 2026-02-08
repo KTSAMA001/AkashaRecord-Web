@@ -1,5 +1,5 @@
 ---
-title: PBR 渲染经验
+title: 基于物理的渲染 (Physically Based Rendering) 相关经验
 tags:
   - shader
   - unity

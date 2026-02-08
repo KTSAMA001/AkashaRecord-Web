@@ -1,5 +1,5 @@
 ---
-title: VitePress 站点开发经验
+title: VitePress 静态站点生成器相关经验
 tags:
   - tools
   - web

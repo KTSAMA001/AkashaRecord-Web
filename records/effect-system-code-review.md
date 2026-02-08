@@ -1,5 +1,5 @@
 ---
-title: 'EffectSystem 效果系统 - 代码审查与架构分析 {#effect-system-review}'
+title: EffectSystem 效果系统 - 代码审查与架构分析
 tags:
   - unity
   - architecture

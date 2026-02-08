@@ -1,5 +1,5 @@
 ---
-title: Shader 特效实现经验
+title: 具体特效实现相关经验
 tags:
   - shader
   - experience

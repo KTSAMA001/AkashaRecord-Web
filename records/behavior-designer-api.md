@@ -1,5 +1,5 @@
 ---
-title: BehaviorDesigner 相关知识
+title: Behavior Designer 行为树插件的技术规范、API 和原理
 tags:
   - unity
   - knowledge

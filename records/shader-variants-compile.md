@@ -1,5 +1,5 @@
 ---
-title: HLSL 语法经验
+title: HLSL 着色器语言相关经验
 tags:
   - shader
   - experience

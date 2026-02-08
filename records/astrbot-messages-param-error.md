@@ -1,5 +1,5 @@
 ---
-title: astrbot.yaml 或通过 Web UI 配置
+title: AstrBot "messages 参数非法" 错误
 tags:
   - ai
   - experience

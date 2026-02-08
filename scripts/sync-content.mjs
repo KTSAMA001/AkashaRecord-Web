@@ -408,13 +408,17 @@ function ensureFrontmatter(content, record, extractedMeta, schema = null) {
   const data = fileMatter.data || {}
 
   // 强制覆盖/补全关键元数据（INDEX.md 权威源）
-  // 标题优先级：frontmatter > 正文 h1 > 正文 h2 > INDEX.md desc > 文件名
+  // 标题优先级：INDEX.md desc（权威） > 正文 h1 > 正文 h2 > 文件名
   if (!data.title || data.title.endsWith('.md')) {
     const h1Match = fileMatter.content.match(/^#\s+(.+)$/m)
     const h2Match = fileMatter.content.match(/^##\s+(.+)$/m)
-    data.title = h1Match ? h1Match[1].trim()
-      : h2Match ? h2Match[1].trim()
-      : record.desc || record.title.replace(/\.md$/, '')
+    const cleanHeading = (s) => s?.replace(/\s*\{#[^}]+\}$/, '').trim()  // 去除 {#anchor}
+    // desc 有效性检查：跳过图片备注、操作说明等非标题内容
+    const isValidDesc = (s) => s && !s.startsWith('📷') && !s.startsWith('请在') && !s.includes('**图片资源**')
+    data.title = (isValidDesc(record.desc) ? record.desc : null)
+      || cleanHeading(h1Match?.[1])
+      || cleanHeading(h2Match?.[1])
+      || record.title.replace(/\.md$/, '')
   }
   data.tags = record.tags
   data.status = record.status

@@ -1,5 +1,5 @@
 ---
-title: 平台判断
+title: AstrBot 集成 MCP 服务经验
 tags:
   - ai
   - experience

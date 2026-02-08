@@ -1,5 +1,5 @@
 ---
-title: Docker 部署（推荐）
+title: 自搭建搜索引擎技术
 tags:
   - tools
   - knowledge

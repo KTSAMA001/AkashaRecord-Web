@@ -1,5 +1,5 @@
 ---
-title: NPR 渲染经验
+title: 非真实感渲染 (Non-Photorealistic Rendering) 相关经验
 tags:
   - shader
   - unity

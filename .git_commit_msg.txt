@@ -1,0 +1,20 @@
+fix(pipeline): 标题优先使用 INDEX.md desc，修复卡片显示文件名的问题
+
+## 问题
+记录卡片显示文件名而非中文标题（如 "behavior-designer-api.md"）
+
+## 原因
+ensureFrontmatter 标题优先级为 h1 > h2 > desc > filename，
+但源文档使用 ## Title（h2），且部分文档的 h1 是子标题而非文档标题，
+导致提取到错误标题或 fallback 到文件名。
+
+## 修复
+- 标题优先级改为：INDEX.md desc（权威） > h1 > h2 > filename
+- 增加 desc 有效性检查，跳过图片备注/操作说明等非标题内容
+- 增加 {#anchor} 清洗，移除标题中的 markdown 锚点标记
+- 源文档已规范化：全部使用 # Title（h1），符合 VitePress 页面标题规范
+
+## 验证
+- 全部 47 条记录标题正确
+- 之前错误的标题均已修复（如 "平台判断" → "AstrBot 集成 MCP 服务经验"）
+- 构建通过（8.75s）
