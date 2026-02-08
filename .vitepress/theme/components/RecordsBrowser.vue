@@ -216,6 +216,13 @@ function displayName(tag: string): string {
     <div class="status-bar">
       <span>// FOUND {{ filteredRecords.length }} RECORDS</span>
       <span v-if="selectedTags.size > 0">FILTER: [{{ [...selectedTags].map(t => displayName(t)).join(' + ') }}]</span>
+      <!-- 状态图例 -->
+      <div class="status-legend">
+        <span class="legend-item" v-for="def in statusDefs.filter((v, i, a) => a.findIndex(d => d.color === v.color) === i)" :key="def.color">
+          <span class="status-dot legend-dot" :class="def.color"></span>
+          <span class="legend-label">{{ { success: '已验证', info: '有效', warning: '待验证', danger: '已过时' }[def.color] || def.label }}</span>
+        </span>
+      </div>
     </div>
 
     <!-- 骨架屏加载中 -->
@@ -393,6 +400,35 @@ function displayName(tag: string): string {
   margin-bottom: 1.5rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.status-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.status-legend:hover {
+  opacity: 1;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.legend-dot {
+  width: 6px !important;
+  height: 6px !important;
 }
 
 .grid-container {
