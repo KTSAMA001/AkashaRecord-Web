@@ -4,6 +4,7 @@
  */
 import DefaultTheme from 'vitepress/theme'
 import type { Theme } from 'vitepress'
+import { h } from 'vue'
 import Dashboard from './components/Dashboard.vue'
 import RecordsBrowser from './components/RecordsBrowser.vue'
 import TagCloud from './components/TagCloud.vue'
@@ -11,12 +12,19 @@ import StatusBadge from './components/StatusBadge.vue'
 import Mermaid from './components/Mermaid.vue'
 import MermaidRenderer from './components/MermaidRenderer.vue'
 import CategoryGrid from './components/CategoryGrid.vue'
+import ThemePicker from './components/ThemePicker.vue'
 import NProgress from 'nprogress'
 import './styles/custom.css'
 import './styles/nprogress.css'
 
 export default {
   extends: DefaultTheme,
+  Layout() {
+    return h(DefaultTheme.Layout, null, {
+      // 在导航栏右侧（暗色模式开关之前）注入主题色选择器
+      'nav-bar-content-after': () => h(ThemePicker),
+    })
+  },
   enhanceApp({ app, router }) {
     // 注册全局组件，可在 Markdown 中直接使用
     app.component('Dashboard', Dashboard)

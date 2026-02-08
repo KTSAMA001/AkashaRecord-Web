@@ -65,7 +65,7 @@ defineProps<{
 .grid-label {
   font-family: 'Courier New', monospace;
   font-size: 0.7rem;
-  color: var(--ak-accent, #FF6B2B);
+  color: var(--ak-accent);
   letter-spacing: 0.15em;
   opacity: 0.6;
 }
@@ -106,10 +106,10 @@ defineProps<{
 }
 
 .category-card:hover {
-  border-color: var(--ak-accent, #FF6B2B);
+  border-color: var(--ak-accent);
   box-shadow:
-    0 0 20px var(--ak-accent-dim, rgba(255, 107, 43, 0.25)),
-    inset 0 0 20px color-mix(in srgb, var(--ak-accent, #FF6B2B) 8%, transparent);
+    0 0 20px var(--ak-accent-dim),
+    inset 0 0 20px color-mix(in srgb, var(--ak-accent) 8%, transparent);
   transform: translateX(4px);
 }
 
@@ -121,7 +121,7 @@ defineProps<{
   top: 0;
   width: 3px;
   height: 100%;
-  background: var(--ak-accent, #FF6B2B);
+  background: var(--ak-accent);
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform 0.3s ease;
@@ -139,7 +139,7 @@ defineProps<{
     120deg,
     transparent 0%,
     transparent 40%,
-    color-mix(in srgb, var(--ak-accent, #FF6B2B) 10%, transparent) 50%,
+    color-mix(in srgb, var(--ak-accent) 10%, transparent) 50%,
     transparent 60%,
     transparent 100%
   );
@@ -156,7 +156,7 @@ defineProps<{
   font-family: 'Courier New', monospace;
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--ak-accent, #FF6B2B);
+  color: var(--ak-accent);
   opacity: 0.35;
   min-width: 1.6rem;
   flex-shrink: 0;
@@ -186,7 +186,7 @@ defineProps<{
 }
 
 .category-card:hover .card-label {
-  color: var(--ak-accent, #FF6B2B);
+  color: var(--ak-accent);
 }
 
 .card-desc {
@@ -210,7 +210,7 @@ defineProps<{
 .category-card:hover .card-arrow {
   opacity: 1;
   transform: translateX(0);
-  color: var(--ak-accent, #FF6B2B);
+  color: var(--ak-accent);
 }
 
 @media (max-width: 640px) {

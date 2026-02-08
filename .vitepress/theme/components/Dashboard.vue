@@ -9,7 +9,6 @@ interface DomainStat {
   key: string
   label: string
   count: number
-  color: string
 }
 
 interface TagInfo {
@@ -21,18 +20,6 @@ const totalRecords = ref(0)
 const domainStats = ref<DomainStat[]>([])
 const topTags = ref<TagInfo[]>([])
 const tagMeta = ref<Record<string, { label: string; icon: string }>>({})
-
-/**
- * 从标签名哈希生成确定性颜色，保证同一标签颜色始终一致
- */
-function tagToColor(tag: string): string {
-  let hash = 0
-  for (let i = 0; i < tag.length; i++) {
-    hash = tag.charCodeAt(i) + ((hash << 5) - hash)
-  }
-  const h = ((hash % 360) + 360) % 360
-  return `hsl(${h}, 65%, 55%)`
-}
 
 onMounted(async () => {
   try {
@@ -55,7 +42,6 @@ onMounted(async () => {
           key,
           label: tagMeta.value[key]?.label || key,
           count: count as number,
-          color: tagToColor(key),
         }))
         .sort((a, b) => b.count - a.count)
         .slice(0, 6)
@@ -91,7 +77,6 @@ onMounted(async () => {
         :key="stat.label"
         :href="`/records/?tag=${stat.key}`"
         class="ak-card"
-        :style="{ '--card-accent': stat.color }"
       >
         <span class="ak-card__index">{{ String(index + 1).padStart(2, '0') }}</span>
         <div class="ak-card__body">
@@ -114,7 +99,6 @@ onMounted(async () => {
           :key="tag.name"
           :href="`/records/?tag=${tag.name}`"
           class="ak-card ak-card--row"
-          :style="{ '--card-accent': tagToColor(tag.name) }"
         >
           <span class="ak-card__index">{{ String(index + 1).padStart(2, '0') }}</span>
           <span class="ak-card__tag">#{{ tagMeta[tag.name]?.label || tag.name }}</span>
@@ -151,7 +135,7 @@ onMounted(async () => {
 .total-number {
   font-size: 3.5rem;
   font-weight: 700;
-  color: var(--ak-accent, #FF6B2B);
+  color: var(--ak-accent);
   font-family: 'Courier New', monospace;
   line-height: 1;
 }
@@ -190,13 +174,13 @@ onMounted(async () => {
   content: '';
   flex: 1;
   height: 1px;
-  background: linear-gradient(to right, var(--ak-accent, #FF6B2B), transparent);
+  background: linear-gradient(to right, var(--ak-accent), transparent);
 }
 
 .divider-label {
   font-family: 'Courier New', monospace;
   font-size: 0.8rem;
-  color: var(--ak-accent, #FF6B2B);
+  color: var(--ak-accent);
   letter-spacing: 0.1em;
   white-space: nowrap;
   font-weight: 600;
@@ -249,10 +233,10 @@ onMounted(async () => {
 }
 
 .ak-card:hover {
-  border-color: var(--card-accent, var(--ak-accent, #FF6B2B));
+  border-color: var(--ak-accent);
   box-shadow:
-    0 0 20px color-mix(in srgb, var(--card-accent, var(--ak-accent, #FF6B2B)) 20%, transparent),
-    inset 0 0 20px color-mix(in srgb, var(--card-accent, var(--ak-accent, #FF6B2B)) 8%, transparent);
+    0 0 20px var(--ak-accent-dim),
+    inset 0 0 20px color-mix(in srgb, var(--ak-accent) 8%, transparent);
   transform: translateX(4px);
 }
 
@@ -264,7 +248,7 @@ onMounted(async () => {
   top: 0;
   width: 3px;
   height: 100%;
-  background: var(--card-accent, var(--ak-accent, #FF6B2B));
+  background: var(--ak-accent);
   transform: scaleY(0);
   transform-origin: center;
   transition: transform 0.3s ease;
@@ -282,7 +266,7 @@ onMounted(async () => {
     120deg,
     transparent 0%,
     transparent 40%,
-    color-mix(in srgb, var(--card-accent, var(--ak-accent, #FF6B2B)) 10%, transparent) 50%,
+    color-mix(in srgb, var(--ak-accent) 10%, transparent) 50%,
     transparent 60%,
     transparent 100%
   );
@@ -300,7 +284,7 @@ onMounted(async () => {
   font-family: 'Courier New', monospace;
   font-size: 1rem;
   font-weight: 700;
-  color: var(--card-accent, var(--ak-accent, #FF6B2B));
+  color: var(--ak-accent);
   opacity: 0.35;
   min-width: 1.6rem;
   flex-shrink: 0;
@@ -324,7 +308,7 @@ onMounted(async () => {
 .ak-card__count {
   font-size: 1.8rem;
   font-weight: 700;
-  color: var(--card-accent, var(--ak-accent, #FF6B2B));
+  color: var(--ak-accent);
   line-height: 1.2;
   font-family: 'Courier New', monospace;
 }
@@ -365,7 +349,7 @@ onMounted(async () => {
 }
 
 .ak-card:hover .ak-card__title {
-  color: var(--ak-accent, #FF6B2B);
+  color: var(--ak-accent);
 }
 
 .ak-card__meta {
@@ -389,7 +373,7 @@ onMounted(async () => {
 .ak-card:hover .ak-card__arrow {
   opacity: 1;
   transform: translateX(0);
-  color: var(--ak-accent, #FF6B2B);
+  color: var(--ak-accent);
 }
 
 /* ======= 响应式 ======= */

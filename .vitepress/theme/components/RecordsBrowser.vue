@@ -288,7 +288,7 @@ function displayName(tag: string): string {
   top: 0;
   width: 2px;
   height: 100%;
-  background: var(--ak-accent, #FF6B2B);
+  background: var(--ak-accent);
   transform: scaleY(0);
   transform-origin: center;
   transition: transform 0.3s ease;
@@ -370,7 +370,7 @@ function displayName(tag: string): string {
   top: 0;
   width: 3px;
   height: 100%;
-  background: var(--ak-accent, #FF6B2B);
+  background: var(--ak-accent);
   transform: scaleY(0);
   transform-origin: center;
   transition: transform 0.3s ease;
@@ -379,9 +379,9 @@ function displayName(tag: string): string {
 
 .record-card:hover {
   transform: translateX(4px);
-  border-color: var(--ak-accent, #FF6B2B);
-  box-shadow: 0 0 20px var(--ak-accent-dim, rgba(255, 107, 43, 0.25)),
-              inset 0 0 20px color-mix(in srgb, var(--ak-accent, #FF6B2B) 8%, transparent);
+  border-color: var(--ak-accent);
+  box-shadow: 0 0 20px var(--ak-accent-dim),
+              inset 0 0 20px color-mix(in srgb, var(--ak-accent) 8%, transparent);
 }
 
 .record-card:hover::before {
@@ -396,7 +396,7 @@ function displayName(tag: string): string {
     120deg,
     transparent 0%,
     transparent 40%,
-    color-mix(in srgb, var(--ak-accent, #FF6B2B) 10%, transparent) 50%,
+    color-mix(in srgb, var(--ak-accent) 10%, transparent) 50%,
     transparent 60%,
     transparent 100%
   );
@@ -452,7 +452,7 @@ function displayName(tag: string): string {
 }
 
 .record-card:hover .title {
-  color: var(--ak-accent, #FF6B2B);
+  color: var(--ak-accent);
 }
 
 .code-path {

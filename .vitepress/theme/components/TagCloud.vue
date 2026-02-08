@@ -105,7 +105,7 @@ function handleClick(tagName: string) {
   right: 0.5rem;
   font-family: 'Courier New', monospace;
   font-size: 0.6rem;
-  color: var(--ak-accent, #FF6B2B);
+  color: var(--ak-accent);
   opacity: 0.4;
   letter-spacing: 0.1em;
 }
@@ -128,7 +128,7 @@ function handleClick(tagName: string) {
 
 .tag-item:hover {
   background: var(--vp-c-brand-soft);
-  border-color: var(--ak-accent, #FF6B2B);
+  border-color: var(--ak-accent);
   box-shadow: 0 0 8px rgba(255,107,43,0.15);
 }
 
