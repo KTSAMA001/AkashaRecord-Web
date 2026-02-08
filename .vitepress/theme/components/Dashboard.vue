@@ -56,6 +56,9 @@ onMounted(async () => {
 
 <template>
   <div ref="dashboardRef" class="dashboard-terminal" :class="{ 'is-active': isVisible }">
+    <!-- 角标装饰 -->
+    <div class="corner-decor top-left"></div>
+    <div class="corner-decor bottom-right"></div>
     
     <!-- 顶部装饰栏 -->
     <div class="terminal-header">
@@ -155,6 +158,37 @@ onMounted(async () => {
 .dashboard-terminal.is-active {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* 角标装饰 */
+.corner-decor {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--ak-accent);
+  opacity: 0.4;
+  transition: all 0.5s ease;
+  pointer-events: none;
+}
+
+.dashboard-terminal:hover .corner-decor {
+  opacity: 0.8;
+  width: 20px;
+  height: 20px;
+}
+
+.corner-decor.top-left {
+  top: -8px;
+  left: -8px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+
+.corner-decor.bottom-right {
+  bottom: -8px;
+  right: -8px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
 }
 
 .dashboard-terminal::before {
