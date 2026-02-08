@@ -63,7 +63,7 @@ onMounted(async () => {
         <span class="header-title">SYSTEM_MONITOR</span>
       </div>
       <div class="header-line"></div>
-      <div class="header-right">V.2.0.4</div>
+      <div class="header-right">V.2.1.0</div>
     </div>
 
     <div class="terminal-content">

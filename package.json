@@ -1,6 +1,6 @@
 {
   "name": "akasha-record-web",
-  "version": "1.0.0",
+  "version": "2.1.0",
   "description": "阿卡西记录 - 知识与经验的可交互网站",
   "type": "module",
   "scripts": {

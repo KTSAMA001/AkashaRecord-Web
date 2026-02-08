@@ -8,7 +8,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 // 装饰性终端行（逐行 fade-in）
 const terminalLines = [
   '> CLASSIFICATION: OPEN_ACCESS',
-  '> SYSTEM: AKASHA_RECORD v2.0',
+  '> SYSTEM: AKASHA_RECORD v2.1',
   '> STATUS: OPERATIONAL',
 ]
 
