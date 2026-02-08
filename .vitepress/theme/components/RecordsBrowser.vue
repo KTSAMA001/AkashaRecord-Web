@@ -290,13 +290,25 @@ function displayName(tag: string): string {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  max-height: 2.8rem;
-  overflow: hidden;
+  max-height: none;
+  overflow: visible;
   transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.tag-cloud:not(.expanded) {
+  max-height: 12rem;
+  overflow: hidden;
+}
+
 .tag-cloud.expanded {
-  max-height: 600px;
+  max-height: none;
+  overflow: visible;
+}
+
+@media (max-width: 640px) {
+  .tag-cloud:not(.expanded) {
+    max-height: 10rem;
+  }
 }
 
 .filter-actions {
@@ -304,6 +316,7 @@ function displayName(tag: string): string {
   align-items: center;
   gap: 0.8rem;
   margin-top: 0.6rem;
+  flex-wrap: wrap;
 }
 
 .expand-btn {
@@ -376,13 +389,20 @@ function displayName(tag: string): string {
   opacity: 0.7;
 }
 
+.search-box {
+  flex: 1;
+  min-width: 120px;
+  max-width: 240px;
+}
+
 .search-box input {
   padding: 0.4rem 0.8rem;
   border: 1px solid var(--vp-c-divider);
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
-  width: 200px;
+  width: 100%;
   font-size: 0.9rem;
+  box-sizing: border-box;
   clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
 }
 

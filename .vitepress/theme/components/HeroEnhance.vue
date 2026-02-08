@@ -152,7 +152,7 @@ onUnmounted(() => {
     font-size: 0.65rem;
   }
   .scroll-indicator {
-    bottom: 1.5rem;
+    display: none;
   }
 }
 </style>

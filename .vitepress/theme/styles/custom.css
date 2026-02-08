@@ -688,7 +688,7 @@ body::after {
 }
 
 /* ======= 页面角标装饰（L 形工程图纸标记） ======= */
-/* 仅在文章页显示，首页（VPHome 下的 vp-doc）不显示 */
+/* 仅文章页显示；首页的 vp-doc 同时带 .container 类，用此区分 */
 @media (min-width: 960px) {
   .vp-doc {
     position: relative;
@@ -705,31 +705,30 @@ body::after {
     z-index: 0;
   }
 
-  /* 左上角 L 标记 */
+  /* 左上角 L 标记 —— 远离内容区 */
   .vp-doc::before {
     content: '┌ [0,0]';
-    top: 0;
-    left: -1.5rem;
+    top: -1rem;
+    left: -3rem;
     border-top: 1px solid var(--ak-accent);
     border-left: 1px solid var(--ak-accent);
     padding: 2px 6px 6px 2px;
   }
 
-  /* 右下角 L 标记 */
+  /* 右下角 L 标记 —— 远离内容区 */
   .vp-doc::after {
     content: '[1,1] ┘';
     bottom: 2rem;
-    right: -1.5rem;
+    right: -3rem;
     border-bottom: 1px solid var(--ak-accent);
     border-right: 1px solid var(--ak-accent);
     padding: 6px 2px 2px 6px;
   }
 
-  /* 首页的 vp-doc 是 VPHomeContent 的容器（max-width: 1280px），
-     与 Dashboard（960px）宽度不匹配，角标会溢出到两侧空白区域 */
-  .VPHome .vp-doc::before,
-  .VPHome .vp-doc::after {
-    content: none;
+  /* 首页 VPHomeContent 内的 .vp-doc 同时带 .container 类，隐藏角标 */
+  .vp-doc.container::before,
+  .vp-doc.container::after {
+    content: none !important;
   }
 }
 
