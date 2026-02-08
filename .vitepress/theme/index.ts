@@ -37,45 +37,9 @@ export default {
     if (typeof window !== 'undefined') {
       NProgress.configure({ showSpinner: false, trickleSpeed: 100 })
 
-      // VPFeature 的 <img> 是替换元素，background-color 无法透过内容显示
-      // 需要将 <img> 替换为 <span> + mask-image 实现主题色着色
-      const maskFeatureIcons = () => {
-        requestAnimationFrame(() => {
-          document.querySelectorAll<HTMLImageElement>('.VPFeature .VPImage').forEach(img => {
-            const src = img.getAttribute('src')
-            if (src && !img.dataset.masked) {
-              const span = document.createElement('span')
-              span.className = img.className // 保留 VPImage 等类名
-              span.style.cssText = `
-                display: block;
-                width: 48px; height: 48px;
-                -webkit-mask-image: url(${src});
-                mask-image: url(${src});
-                -webkit-mask-size: contain;
-                mask-size: contain;
-                -webkit-mask-repeat: no-repeat;
-                mask-repeat: no-repeat;
-                -webkit-mask-position: center;
-                mask-position: center;
-                background-color: var(--ak-accent);
-              `
-              img.replaceWith(span)
-            }
-          })
-        })
-      }
-
       router.onBeforeRouteChange = () => { NProgress.start() }
       router.onAfterRouteChanged = () => {
         NProgress.done()
-        maskFeatureIcons()
-      }
-
-      // 首次加载也需要处理
-      if (document.readyState === 'complete') {
-        maskFeatureIcons()
-      } else {
-        window.addEventListener('load', maskFeatureIcons)
       }
     }
   },
