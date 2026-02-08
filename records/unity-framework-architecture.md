@@ -24,7 +24,7 @@ recordDate: '2026-01-28'
 
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-28</span></div>
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=csharp" class="meta-tag">C#</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=architecture" class="meta-tag">架构设计</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=csharp" class="meta-tag">C#</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=architecture" class="meta-tag">架构设计</a></span></div>
 </div>
 
 **问题/场景**：

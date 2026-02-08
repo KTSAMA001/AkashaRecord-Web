@@ -17,7 +17,7 @@ credibility: ⭐⭐⭐⭐⭐（官方）
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=reference" class="meta-tag">参考</a> <a href="/records/?tag=akasha" class="meta-tag">阿卡西记录</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=web" class="meta-tag">Web 开发</a> <a href="/records/?tags=reference" class="meta-tag">参考</a> <a href="/records/?tags=akasha" class="meta-tag">阿卡西记录</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">用户 KTSAMA 提供</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-07</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>

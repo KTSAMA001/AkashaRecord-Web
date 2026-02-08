@@ -23,7 +23,7 @@ credibility: ⭐⭐⭐⭐ (官方文档 + 实践验证)
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=compute-shader" class="meta-tag">计算着色器</a> <a href="/records/?tag=gpgpu" class="meta-tag">GPGPU</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=shader" class="meta-tag">着色器</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=compute-shader" class="meta-tag">计算着色器</a> <a href="/records/?tags=gpgpu" class="meta-tag">GPGPU</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity_URP_Learning 仓库实践 + Unity 官方文档</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
@@ -131,7 +131,7 @@ void FrustumCulling(uint3 id : SV_DispatchThreadID)
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=compute-shader" class="meta-tag">计算着色器</a> <a href="/records/?tag=gpgpu" class="meta-tag">GPGPU</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=shader" class="meta-tag">着色器</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=compute-shader" class="meta-tag">计算着色器</a> <a href="/records/?tags=gpgpu" class="meta-tag">GPGPU</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity_URP_Learning 仓库实践</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>

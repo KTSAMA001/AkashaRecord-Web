@@ -621,7 +621,7 @@ body::after {
 
 /* ======= 正文链接交互（扫描线动效） ======= */
 /* 排除卡片类链接（ak-card / record-card / category-card），避免底部橙色下划线覆盖卡片自身交互 */
-.vp-doc a:not(.header-anchor):not(.ak-card):not(.record-card):not(.category-card):not(.total-link) {
+.vp-doc a:not(.header-anchor):not(.ak-card):not(.record-card):not(.category-card):not(.total-link):not(.meta-tag) {
   text-decoration: none;
   background-image: linear-gradient(to right, var(--ak-accent), var(--ak-accent));
   background-position: 0% 100%;
@@ -631,7 +631,7 @@ body::after {
   color: var(--ak-accent);
 }
 
-.vp-doc a:not(.header-anchor):not(.ak-card):not(.record-card):not(.category-card):not(.total-link):hover {
+.vp-doc a:not(.header-anchor):not(.ak-card):not(.record-card):not(.category-card):not(.total-link):not(.meta-tag):hover {
   background-size: 100% 2px;
   color: var(--vp-c-brand-2);
 }
@@ -944,26 +944,46 @@ body::after {
   text-underline-offset: 2px;
 }
 
-/* 标签 pill */
+/* 标签 pill（工业风：切角 + 左侧高亮条 + hover 右移） */
 .vp-doc .meta-tag {
   display: inline-block;
-  padding: 0.05rem 0.45rem;
+  padding: 0.2rem 0.6rem;
   margin: 0.1rem 0.15rem;
-  background: var(--vp-c-brand-soft);
-  border: 1px solid var(--ak-accent-dim);
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
   color: var(--vp-c-brand-1);
   font-size: 0.82em;
+  font-family: 'Courier New', monospace;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   line-height: 1.5;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+}
+
+.vp-doc .meta-tag::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--ak-accent);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
 }
 
 .vp-doc .meta-tag:hover {
-  background: var(--ak-accent);
-  color: #fff !important;
-  border-color: var(--ak-accent);
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1) !important;
   transform: translateX(2px);
   box-shadow: 0 2px 6px var(--ak-accent-dim);
+}
+
+.vp-doc .meta-tag:hover::before {
+  transform: scaleY(1);
 }
 
 /* 标签行特殊处理：允许换行 */

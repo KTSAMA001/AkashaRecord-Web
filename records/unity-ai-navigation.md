@@ -22,7 +22,7 @@ credibility: ⭐⭐⭐⭐ (官方文档+实践验证)
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=nav-mesh" class="meta-tag">NavMesh</a> <a href="/records/?tag=ai-navigation" class="meta-tag">AI 寻路</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=nav-mesh" class="meta-tag">NavMesh</a> <a href="/records/?tags=ai-navigation" class="meta-tag">AI 寻路</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 / 社区验证</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-05</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-05</span></div>

@@ -23,7 +23,7 @@ version: Unity 2020+ / HLSL generic
 
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=hlsl" class="meta-tag">HLSL</a> <a href="/records/?tag=performance" class="meta-tag">性能优化</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=shader" class="meta-tag">着色器</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=hlsl" class="meta-tag">HLSL</a> <a href="/records/?tags=performance" class="meta-tag">性能优化</a></span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Unity 2020+ / HLSL generic</span></div>
 </div>
@@ -112,7 +112,7 @@ float GetVectorComponent_Matrix(float3 v, int index)
 
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=shader" class="meta-tag">着色器</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=hlsl" class="meta-tag">HLSL</a> <a href="/records/?tag=performance" class="meta-tag">性能优化</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=shader" class="meta-tag">着色器</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=hlsl" class="meta-tag">HLSL</a> <a href="/records/?tags=performance" class="meta-tag">性能优化</a></span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Unity 2020+ / HLSL generic</span></div>
 </div>

@@ -23,7 +23,7 @@ version: BehaviorDesigner 1.7.x
 
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-03</span></div>
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=editor" class="meta-tag">编辑器</a> <a href="/records/?tag=behavior-designer" class="meta-tag">行为树</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=editor" class="meta-tag">编辑器</a> <a href="/records/?tags=behavior-designer" class="meta-tag">行为树</a></span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">BehaviorDesigner 1.7.x</span></div>
 </div>
@@ -81,7 +81,7 @@ public enum DirectionType
 
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-03</span></div>
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=editor" class="meta-tag">编辑器</a> <a href="/records/?tag=behavior-designer" class="meta-tag">行为树</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=editor" class="meta-tag">编辑器</a> <a href="/records/?tags=behavior-designer" class="meta-tag">行为树</a></span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">BehaviorDesigner 1.7.x</span></div>
 </div>
@@ -157,7 +157,7 @@ public class MyAction : ProfilingAction
 
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-03</span></div>
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=experience" class="meta-tag">经验</a> <a href="/records/?tag=editor" class="meta-tag">编辑器</a> <a href="/records/?tag=behavior-designer" class="meta-tag">行为树</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=editor" class="meta-tag">编辑器</a> <a href="/records/?tags=behavior-designer" class="meta-tag">行为树</a></span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 

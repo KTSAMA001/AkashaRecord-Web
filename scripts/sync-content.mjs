@@ -333,7 +333,7 @@ function transformMetaBlocks(content, tagMeta = new Map(), schema = null) {
             .map(t => {
               const k = t.slice(1)
               const label = tagMeta.get(k)?.label || k
-              return `<a href="/records/?tag=${encodeURIComponent(k)}" class="meta-tag">${label}</a>`
+              return `<a href="/records/?tags=${encodeURIComponent(k)}" class="meta-tag">${label}</a>`
             })
             .join(' ')
           htmlParts.push(`<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value">${pills}</span></div>`)

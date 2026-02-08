@@ -12,7 +12,7 @@ description: 明日方舟工业风 UI：网点、网格、切角、噪点等视�
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=design" class="meta-tag">设计</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=arknights" class="meta-tag">明日方舟</a> <a href="/records/?tag=ui" class="meta-tag">UI</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=design" class="meta-tag">设计</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=arknights" class="meta-tag">明日方舟</a> <a href="/records/?tags=ui" class="meta-tag">UI</a></span></div>
 </div>
 
 - 机核：《明日方舟》UI/UX设计复盘（蓝湿父，2020-04-30）https://www.gcores.com/articles/123154

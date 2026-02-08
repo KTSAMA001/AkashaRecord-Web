@@ -23,7 +23,7 @@ credibility: ⭐⭐⭐⭐ (技术博客 + 实践验证)
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=sdf" class="meta-tag">SDF 距离场</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=sdf" class="meta-tag">SDF 距离场</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - SDF/SDF-8ssedt.md</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2020-12-18</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
@@ -69,7 +69,7 @@ Signed Distance Field（有向距离场），中文名为有向距离场。SDF �
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=sdf" class="meta-tag">SDF 距离场</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=sdf" class="meta-tag">SDF 距离场</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - SDF/SDF-8ssedt.md</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2020-12-18</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
@@ -177,7 +177,7 @@ void GenerateSDF(Grid &g) {
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=sdf" class="meta-tag">SDF 距离场</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=sdf" class="meta-tag">SDF 距离场</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - SDF/SDF-8ssedt.md</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2020-12-18</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
@@ -235,7 +235,7 @@ B3 = (3,0)
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=sdf" class="meta-tag">SDF 距离场</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=sdf" class="meta-tag">SDF 距离场</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - SDF/SDF-8ssedt.md</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2020-12-18</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>

@@ -18,7 +18,7 @@ credibility: ⭐⭐⭐⭐⭐(官方)
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=rendering" class="meta-tag">渲染</a> <a href="/records/?tag=material" class="meta-tag">材质</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering" class="meta-tag">渲染</a> <a href="/records/?tags=material" class="meta-tag">材质</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-31</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-02</span></div>

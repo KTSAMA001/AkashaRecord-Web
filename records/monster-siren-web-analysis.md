@@ -18,7 +18,7 @@ credibility: ⭐⭐⭐⭐ (实地分析/逆向研究)
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=web" class="meta-tag">Web 开发</a> <a href="/records/?tag=design" class="meta-tag">设计</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=arknights" class="meta-tag">明日方舟</a> <a href="/records/?tag=react" class="meta-tag">React</a> <a href="/records/?tag=cyberpunk" class="meta-tag">赛博朋克</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=web" class="meta-tag">Web 开发</a> <a href="/records/?tags=design" class="meta-tag">设计</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=arknights" class="meta-tag">明日方舟</a> <a href="/records/?tags=react" class="meta-tag">React</a> <a href="/records/?tags=cyberpunk" class="meta-tag">赛博朋克</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">https://monster-siren.hypergryph.com</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-08</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-08</span></div>

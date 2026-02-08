@@ -14,7 +14,7 @@ sourceDate: '2026-02-01'
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=social" class="meta-tag">社交</a> <a href="/records/?tag=reference" class="meta-tag">参考</a> <a href="/records/?tag=vera" class="meta-tag">薇拉</a> <a href="/records/?tag=identity" class="meta-tag">身份设定</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=social" class="meta-tag">社交</a> <a href="/records/?tags=reference" class="meta-tag">参考</a> <a href="/records/?tags=vera" class="meta-tag">薇拉</a> <a href="/records/?tags=identity" class="meta-tag">身份设定</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA的事实公告</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-01</span></div>
 </div>

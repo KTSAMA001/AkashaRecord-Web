@@ -22,7 +22,7 @@ credibility: ⭐⭐⭐⭐⭐ (官方文档)
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=physics" class="meta-tag">物理系统</a> <a href="/records/?tag=collider" class="meta-tag">碰撞体</a> <a href="/records/?tag=raycast" class="meta-tag">射线检测</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=physics" class="meta-tag">物理系统</a> <a href="/records/?tags=collider" class="meta-tag">碰撞体</a> <a href="/records/?tags=raycast" class="meta-tag">射线检测</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 2022.3 官方文档 - Collider types and performance</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-31</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
@@ -79,7 +79,7 @@ credibility: ⭐⭐⭐⭐⭐ (官方文档)
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=physics" class="meta-tag">物理系统</a> <a href="/records/?tag=collider" class="meta-tag">碰撞体</a> <a href="/records/?tag=raycast" class="meta-tag">射线检测</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=physics" class="meta-tag">物理系统</a> <a href="/records/?tags=collider" class="meta-tag">碰撞体</a> <a href="/records/?tags=raycast" class="meta-tag">射线检测</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 2022.3 官方文档 - Physics.Raycast / Optimize raycasts and other physics queries</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-31</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>

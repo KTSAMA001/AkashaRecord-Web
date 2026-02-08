@@ -26,7 +26,7 @@ credibility: ⭐⭐⭐⭐⭐(官方)
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=behavior-designer" class="meta-tag">行为树</a> <a href="/records/?tag=ai" class="meta-tag">AI</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=behavior-designer" class="meta-tag">行为树</a> <a href="/records/?tags=ai" class="meta-tag">AI</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value"><a href="https://opsive.com/support/documentation/behavior-designer/task-attributes/" target="_blank" rel="noopener">Opsive 官方文档</a></span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-03</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-03</span></div>
@@ -78,7 +78,7 @@ BehaviorDesigner 提供一系列 Attribute 用于定义 Task 的元数据和显�
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=behavior-designer" class="meta-tag">行为树</a> <a href="/records/?tag=ai" class="meta-tag">AI</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=behavior-designer" class="meta-tag">行为树</a> <a href="/records/?tags=ai" class="meta-tag">AI</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value"><a href="https://opsive.com/support/documentation/behavior-designer/object-drawers/" target="_blank" rel="noopener">Opsive 官方文档</a></span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-03</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-03</span></div>

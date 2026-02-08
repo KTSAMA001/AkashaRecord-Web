@@ -13,7 +13,7 @@ sourceDate: '2026-02-02'
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=idea" class="meta-tag">灵感</a> <a href="/records/?tag=smart-furniture" class="meta-tag">智能家具</a> <a href="/records/?tag=3d" class="meta-tag">3D</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=idea" class="meta-tag">灵感</a> <a href="/records/?tags=smart-furniture" class="meta-tag">智能家具</a> <a href="/records/?tags=3d" class="meta-tag">3D</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">留枫微风的创业提案</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-02</span></div>
 </div>

@@ -19,7 +19,7 @@ credibility: ⭐⭐⭐⭐⭐(官方)
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=editor" class="meta-tag">编辑器</a> <a href="/records/?tag=custom-editor" class="meta-tag">自定义编辑器</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=editor" class="meta-tag">编辑器</a> <a href="/records/?tags=custom-editor" class="meta-tag">自定义编辑器</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity Scripting API</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-02</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-02</span></div>

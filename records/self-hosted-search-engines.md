@@ -17,7 +17,7 @@ sourceDate: '2026-02-01'
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-01</span></div>
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=tools" class="meta-tag">工具</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=search-engine" class="meta-tag">搜索引擎</a> <a href="/records/?tag=meilisearch" class="meta-tag">Meilisearch</a> <a href="/records/?tag=searxng" class="meta-tag">SearXNG</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=search-engine" class="meta-tag">搜索引擎</a> <a href="/records/?tags=meilisearch" class="meta-tag">Meilisearch</a> <a href="/records/?tags=searxng" class="meta-tag">SearXNG</a></span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 

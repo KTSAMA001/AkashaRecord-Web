@@ -23,7 +23,7 @@ credibility: ⭐⭐⭐⭐⭐ (学术论文 + 实践验证)
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=pbr" class="meta-tag">PBR 渲染</a> <a href="/records/?tag=brdf" class="meta-tag">BRDF</a> <a href="/records/?tag=cook-torrance" class="meta-tag">Cook-Torrance</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=pbr" class="meta-tag">PBR 渲染</a> <a href="/records/?tags=brdf" class="meta-tag">BRDF</a> <a href="/records/?tags=cook-torrance" class="meta-tag">Cook-Torrance</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity_URP_Learning 仓库实践 + 学术论文</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
@@ -174,7 +174,7 @@ float3 PBR_Direct_Light(float3 albedo, Light lightData, float3 N, float3 V,
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=pbr" class="meta-tag">PBR 渲染</a> <a href="/records/?tag=brdf" class="meta-tag">BRDF</a> <a href="/records/?tag=cook-torrance" class="meta-tag">Cook-Torrance</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=pbr" class="meta-tag">PBR 渲染</a> <a href="/records/?tags=brdf" class="meta-tag">BRDF</a> <a href="/records/?tags=cook-torrance" class="meta-tag">Cook-Torrance</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity_URP_Learning 仓库实践 + Unity 官方文档</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
@@ -232,7 +232,7 @@ float3 specular_InDirect = envSpecular * (F * env_brdf.r + env_brdf.g);
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=pbr" class="meta-tag">PBR 渲染</a> <a href="/records/?tag=brdf" class="meta-tag">BRDF</a> <a href="/records/?tag=cook-torrance" class="meta-tag">Cook-Torrance</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=pbr" class="meta-tag">PBR 渲染</a> <a href="/records/?tags=brdf" class="meta-tag">BRDF</a> <a href="/records/?tags=cook-torrance" class="meta-tag">Cook-Torrance</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity_URP_Learning 仓库 / ACES 标准</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>

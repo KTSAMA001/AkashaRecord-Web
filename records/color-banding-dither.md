@@ -26,7 +26,7 @@ credibility: ⭐⭐⭐（社区科普 + 工程广泛实践）
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tag=graphics" class="meta-tag">图形学</a> <a href="/records/?tag=knowledge" class="meta-tag">知识</a> <a href="/records/?tag=color-banding" class="meta-tag">色带</a> <a href="/records/?tag=dither" class="meta-tag">抖动</a> <a href="/records/?tag=hdr" class="meta-tag">HDR</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=color-banding" class="meta-tag">色带</a> <a href="/records/?tags=dither" class="meta-tag">抖动</a> <a href="/records/?tags=hdr" class="meta-tag">HDR</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Wikipedia（Colour banding / Dither）、FrostKiwi（LUT 文章）</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-15（Dither 页面最后编辑时间） / 2026-01-04（Colour banding 页面最后编辑时间） / 2024-02-29（FrostKiwi LUT 文章最后编辑时间）</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-05</span></div>
