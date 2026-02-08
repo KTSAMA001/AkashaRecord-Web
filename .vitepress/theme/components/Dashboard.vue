@@ -1,55 +1,18 @@
 <script setup lang="ts">
 /**
  * 首页仪表盘组件
- * 显示阿卡西记录的统计信息（标签化体系，全部动态读取）
+ * 显示阿卡西记录的总量统计
  */
 import { ref, onMounted } from 'vue'
 
-interface DomainStat {
-  key: string
-  label: string
-  count: number
-}
-
-interface TagInfo {
-  name: string
-  count: number
-}
-
 const totalRecords = ref(0)
-const domainStats = ref<DomainStat[]>([])
-const topTags = ref<TagInfo[]>([])
-const tagMeta = ref<Record<string, { label: string; icon: string }>>({})
 
 onMounted(async () => {
   try {
-    const [statsRes, tagsRes, metaRes] = await Promise.all([
-      fetch('/api/stats.json'),
-      fetch('/api/tags.json'),
-      fetch('/api/tag-meta.json'),
-    ])
-
-    if (metaRes.ok) tagMeta.value = await metaRes.json()
-
-    if (statsRes.ok) {
-      const json = await statsRes.json()
+    const res = await fetch('/api/stats.json')
+    if (res.ok) {
+      const json = await res.json()
       totalRecords.value = json.total || 0
-      
-      // byDomain 完全动态转为展示数组，使用中文显示名
-      const byDomain = json.byDomain || {}
-      domainStats.value = Object.entries(byDomain)
-        .map(([key, count]) => ({
-          key,
-          label: tagMeta.value[key]?.label || key,
-          count: count as number,
-        }))
-        .sort((a, b) => b.count - a.count)
-        .slice(0, 6)
-    }
-
-    if (tagsRes.ok) {
-      const allTags = await tagsRes.json()
-      topTags.value = allTags.slice(0, 8)
     }
   } catch {
     // 静态模式回退
@@ -59,7 +22,6 @@ onMounted(async () => {
 
 <template>
   <div class="dashboard">
-    <!-- 总量卡片 -->
     <div class="section-divider">
       <span class="divider-label">// SYSTEM_STATUS</span>
     </div>
@@ -69,45 +31,6 @@ onMounted(async () => {
       <span class="total-label">RECORDS INDEXED</span>
       <a href="/records/" class="total-link">ACCESS_TERMINAL →</a>
     </div>
-
-    <!-- Domain 统计 -->
-    <div class="card-grid card-grid--3">
-      <a
-        v-for="(stat, index) in domainStats"
-        :key="stat.label"
-        :href="`/records/?tag=${stat.key}`"
-        class="ak-card"
-      >
-        <span class="ak-card__index">{{ String(index + 1).padStart(2, '0') }}</span>
-        <div class="ak-card__body">
-          <span class="ak-card__count">{{ stat.count }}</span>
-          <span class="ak-card__label">{{ stat.label }}</span>
-        </div>
-        <span class="ak-card__shine"></span>
-      </a>
-    </div>
-
-    <!-- Top Tags -->
-    <div v-if="topTags.length" class="recent-section">
-      <div class="section-divider">
-        <span class="divider-label">// TOP_TAGS</span>
-        <span class="divider-count">{{ topTags.length }} ENTRIES</span>
-      </div>
-      <div class="card-grid card-grid--1">
-        <a
-          v-for="(tag, index) in topTags"
-          :key="tag.name"
-          :href="`/records/?tag=${tag.name}`"
-          class="ak-card ak-card--row"
-        >
-          <span class="ak-card__index">{{ String(index + 1).padStart(2, '0') }}</span>
-          <span class="ak-card__tag">#{{ tagMeta[tag.name]?.label || tag.name }}</span>
-          <span class="ak-card__title">{{ tag.count }} 条记录</span>
-          <span class="ak-card__arrow">→</span>
-          <span class="ak-card__shine"></span>
-        </a>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -116,6 +39,30 @@ onMounted(async () => {
   max-width: 960px;
   margin: 0 auto;
   padding: 2rem 1rem;
+}
+
+/* ======= 分隔线 ======= */
+.section-divider {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--ak-accent), transparent);
+}
+
+.divider-label {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: var(--ak-accent);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  font-weight: 600;
 }
 
 /* ======= 总量卡片 ======= */
@@ -165,237 +112,5 @@ onMounted(async () => {
 .total-link:hover {
   background-size: 100% 2px;
   transform: translateX(4px);
-}
-
-/* ======= 分隔线 ======= */
-.section-divider {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  gap: 1rem;
-}
-
-.section-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, var(--ak-accent), transparent);
-}
-
-.divider-label {
-  font-family: 'Courier New', monospace;
-  font-size: 0.8rem;
-  color: var(--ak-accent);
-  letter-spacing: 0.1em;
-  white-space: nowrap;
-  font-weight: 600;
-}
-
-.divider-count {
-  font-family: 'Courier New', monospace;
-  font-size: 0.65rem;
-  color: var(--vp-c-text-3);
-  letter-spacing: 0.1em;
-  flex-shrink: 0;
-}
-
-/* ======= 统一卡片网格 ======= */
-.card-grid {
-  display: grid;
-  gap: 1rem;
-  margin-bottom: 3rem;
-}
-
-.card-grid--3 {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
-
-.card-grid--1 {
-  grid-template-columns: 1fr;
-}
-
-/* ======= 统一卡片基础样式 ======= */
-.ak-card {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1.25rem;
-  background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-border);
-  text-decoration: none;
-  overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  clip-path: polygon(
-    0 0,
-    calc(100% - 10px) 0,
-    100% 10px,
-    100% 100%,
-    10px 100%,
-    0 calc(100% - 10px)
-  );
-  /* 网点底纹由全局 VPContent 提供，不重复设置 */
-}
-
-.ak-card:hover {
-  border-color: var(--ak-accent);
-  box-shadow:
-    0 0 20px var(--ak-accent-dim),
-    inset 0 0 20px color-mix(in srgb, var(--ak-accent) 8%, transparent);
-  transform: translateX(4px);
-}
-
-/* 左侧高亮条 */
-.ak-card::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 3px;
-  height: 100%;
-  background: var(--ak-accent);
-  transform: scaleY(0);
-  transform-origin: center;
-  transition: transform 0.3s ease;
-}
-
-.ak-card:hover::before {
-  transform: scaleY(1);
-}
-
-/* 微光扫过层 */
-.ak-card__shine {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    transparent 40%,
-    color-mix(in srgb, var(--ak-accent) 10%, transparent) 50%,
-    transparent 60%,
-    transparent 100%
-  );
-  transform: translateX(-100%);
-  pointer-events: none;
-}
-
-.ak-card:hover .ak-card__shine {
-  transform: translateX(100%);
-  transition: transform 0.6s ease;
-}
-
-/* ======= 卡片内部元素 ======= */
-.ak-card__index {
-  font-family: 'Courier New', monospace;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--ak-accent);
-  opacity: 0.35;
-  min-width: 1.6rem;
-  flex-shrink: 0;
-}
-
-.ak-card__icon {
-  width: 2rem;
-  height: 2rem;
-  object-fit: contain;
-  flex-shrink: 0;
-  color: var(--ak-accent);
-}
-
-.ak-card__body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.ak-card__count {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--ak-accent);
-  line-height: 1.2;
-  font-family: 'Courier New', monospace;
-}
-
-.ak-card__label {
-  font-size: 0.8rem;
-  color: var(--vp-c-text-2);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-family: 'Courier New', monospace;
-}
-
-/* ======= 行式卡片（RECENT_UPDATES） ======= */
-.ak-card--row {
-  padding: 0.9rem 1.25rem;
-}
-
-.ak-card__tag {
-  font-size: 0.7rem;
-  padding: 0.1rem 0.5rem;
-  background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand-1);
-  white-space: nowrap;
-  font-family: 'Courier New', monospace;
-  letter-spacing: 0.05em;
-  flex-shrink: 0;
-  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
-}
-
-.ak-card__title {
-  flex: 1;
-  color: var(--vp-c-text-1);
-  font-weight: 500;
-  font-size: 0.95rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.ak-card:hover .ak-card__title {
-  color: var(--ak-accent);
-}
-
-.ak-card__meta {
-  font-size: 0.75rem;
-  color: var(--vp-c-text-3);
-  white-space: nowrap;
-  font-family: 'Courier New', monospace;
-  flex-shrink: 0;
-}
-
-.ak-card__arrow {
-  font-family: 'Courier New', monospace;
-  font-size: 1rem;
-  color: var(--vp-c-text-3);
-  opacity: 0;
-  transform: translateX(-8px);
-  transition: all 0.25s;
-  flex-shrink: 0;
-}
-
-.ak-card:hover .ak-card__arrow {
-  opacity: 1;
-  transform: translateX(0);
-  color: var(--ak-accent);
-}
-
-/* ======= 响应式 ======= */
-@media (max-width: 640px) {
-  .card-grid--3 {
-    grid-template-columns: 1fr;
-  }
-  .ak-card--row {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  .ak-card__meta {
-    width: 100%;
-    text-align: right;
-  }
-  .ak-card__arrow {
-    display: none;
-  }
 }
 </style>
