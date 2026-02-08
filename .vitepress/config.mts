@@ -1,8 +1,5 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar, generateNav } from './utils/sidebar'
-import path from 'node:path'
-
-const contentDir = path.resolve(__dirname, '../content')
 
 export default defineConfig({
   // 站点基础信息
@@ -19,10 +16,10 @@ export default defineConfig({
     siteTitle: '阿卡西记录',
 
     // 导航栏
-    nav: generateNav(contentDir),
+    nav: generateNav(),
 
-    // 侧边栏（自动生成）
-    sidebar: generateSidebar(contentDir),
+    // 侧边栏（记录页由 RecordsBrowser 承载导航，不需要侧边栏）
+    sidebar: generateSidebar(),
 
     // 本地搜索
     search: {
