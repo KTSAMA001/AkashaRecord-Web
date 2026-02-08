@@ -4,7 +4,7 @@
  * 记录总览浏览器：支持标签筛选、搜索和卡片展示
  * 状态颜色完全由 meta-schema.json 驱动，无硬编码
  */
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch, nextTick } from 'vue'
 
 interface FileInfo {
   title: string
@@ -29,10 +29,18 @@ interface StatusDef {
 const tags = ref<TagData[]>([])
 const tagMeta = ref<Record<string, { label: string; icon: string }>>({})
 const statusDefs = ref<StatusDef[]>([])
-const selectedTag = ref<string>('All')
+const selectedTags = ref<Set<string>>(new Set())
 const searchQuery = ref('')
 const loading = ref(true)
 const tagsExpanded = ref(false)
+const cardVisible = ref(false)
+
+// 卡片入场动画控制：筛选变化时重置动画
+watch([selectedTags, searchQuery], async () => {
+  cardVisible.value = false
+  await nextTick()
+  requestAnimationFrame(() => { cardVisible.value = true })
+})
 
 // 获取所有去重的记录
 const allRecords = computed(() => {
@@ -47,15 +55,25 @@ const allRecords = computed(() => {
   return Array.from(map.values()).sort((a, b) => a.title.localeCompare(b.title))
 })
 
-// 根据当前筛选条件过滤记录
+// 根据当前筛选条件过滤记录（多标签交集）
 const filteredRecords = computed(() => {
   let records: FileInfo[] = []
-  
-  if (selectedTag.value === 'All') {
+  const sel = selectedTags.value
+
+  if (sel.size === 0) {
     records = allRecords.value
   } else {
-    const tagData = tags.value.find(t => t.name === selectedTag.value)
-    records = tagData ? tagData.files : []
+    // 交集：记录必须同时属于所有选中标签
+    const tagArrays = [...sel]
+      .map(name => tags.value.find(t => t.name === name))
+      .filter(Boolean) as TagData[]
+    if (tagArrays.length === 0) return []
+
+    // 以最小的标签文件列表为基准，做交集
+    tagArrays.sort((a, b) => a.files.length - b.files.length)
+    const baseFiles = tagArrays[0].files
+    const otherSets = tagArrays.slice(1).map(t => new Set(t.files.map(f => f.link)))
+    records = baseFiles.filter(f => otherSets.every(s => s.has(f.link)))
   }
 
   if (searchQuery.value.trim()) {
@@ -80,26 +98,49 @@ onMounted(async () => {
       statusDefs.value = schema.statuses || []
     }
     
-    // 从 URL 参数初始化选中标签
+    // 从 URL 参数初始化选中标签（支持逗号分隔多选）
     const params = new URLSearchParams(window.location.search)
-    const urlTag = params.get('tag')
-    if (urlTag && tags.value.some(t => t.name === urlTag)) {
-      selectedTag.value = urlTag
+    const urlTags = params.get('tags')
+    if (urlTags) {
+      const names = urlTags.split(',').filter(n => tags.value.some(t => t.name === n))
+      if (names.length) selectedTags.value = new Set(names)
+    } else {
+      // 兼容旧版单选参数
+      const urlTag = params.get('tag')
+      if (urlTag && tags.value.some(t => t.name === urlTag)) {
+        selectedTags.value = new Set([urlTag])
+      }
     }
   } finally {
     loading.value = false
+    await nextTick()
+    cardVisible.value = true
   }
 })
 
-function selectTag(tagName: string) {
-  selectedTag.value = tagName
-  
-  // 更新 URL (但不刷新页面)
-  const url = new URL(window.location.href)
-  if (tagName === 'All') {
-    url.searchParams.delete('tag')
+function toggleTag(tagName: string) {
+  const next = new Set(selectedTags.value)
+  if (next.has(tagName)) {
+    next.delete(tagName)
   } else {
-    url.searchParams.set('tag', tagName)
+    next.add(tagName)
+  }
+  selectedTags.value = next
+  syncUrl()
+}
+
+function clearTags() {
+  selectedTags.value = new Set()
+  syncUrl()
+}
+
+function syncUrl() {
+  const url = new URL(window.location.href)
+  url.searchParams.delete('tag') // 清理旧参数
+  if (selectedTags.value.size > 0) {
+    url.searchParams.set('tags', [...selectedTags.value].join(','))
+  } else {
+    url.searchParams.delete('tags')
   }
   window.history.replaceState({}, '', url)
 }
@@ -140,8 +181,8 @@ function displayName(tag: string): string {
       <div class="tag-cloud" :class="{ expanded: tagsExpanded }">
         <button 
           class="filter-tag" 
-          :class="{ active: selectedTag === 'All' }"
-          @click="selectTag('All')"
+          :class="{ active: selectedTags.size === 0 }"
+          @click="clearTags()"
         >
           ALL
         </button>
@@ -149,8 +190,8 @@ function displayName(tag: string): string {
           v-for="tag in tags" 
           :key="tag.name"
           class="filter-tag"
-          :class="{ active: selectedTag === tag.name }"
-          @click="selectTag(tag.name)"
+          :class="{ active: selectedTags.has(tag.name) }"
+          @click="toggleTag(tag.name)"
         >
           {{ displayName(tag.name) }}
           <span class="count">{{ tag.count }}</span>
@@ -174,21 +215,34 @@ function displayName(tag: string): string {
     <!-- 结果统计 -->
     <div class="status-bar">
       <span>// FOUND {{ filteredRecords.length }} RECORDS</span>
-      <span v-if="selectedTag !== 'All'">FILTER: [{{ displayName(selectedTag) }}]</span>
+      <span v-if="selectedTags.size > 0">FILTER: [{{ [...selectedTags].map(t => displayName(t)).join(' + ') }}]</span>
     </div>
 
     <!-- 骨架屏加载中 -->
     <div v-if="loading" class="grid-container">
-      <div v-for="i in 6" :key="i" class="record-card skeleton"></div>
+      <div v-for="i in 6" :key="i" class="record-card skeleton">
+        <div class="skeleton-header">
+          <div class="skeleton-icon"></div>
+          <div class="skeleton-dot"></div>
+        </div>
+        <div class="skeleton-body">
+          <div class="skeleton-line skeleton-line--title"></div>
+          <div class="skeleton-line skeleton-line--short"></div>
+        </div>
+        <div class="skeleton-footer">
+          <div class="skeleton-line skeleton-line--btn"></div>
+        </div>
+      </div>
     </div>
 
-    <!-- 记录列表 -->
-    <div v-else class="grid-container">
+    <!-- 记录列表（交错淡入） -->
+    <div v-else class="grid-container" :class="{ 'cards-visible': cardVisible }">
       <a 
-        v-for="record in filteredRecords" 
+        v-for="(record, idx) in filteredRecords" 
         :key="record.link" 
         :href="record.link"
-        class="record-card"
+        class="record-card card-enter"
+        :style="{ '--enter-delay': `${Math.min(idx * 50, 600)}ms` }"
       >
         <div class="card-header">
           <span class="card-icon" :style="{ '-webkit-mask-image': `url(${getRecordIcon(record)})`, 'mask-image': `url(${getRecordIcon(record)})` }" />
@@ -493,16 +547,83 @@ function displayName(tag: string): string {
 }
 
 .skeleton {
-  height: 140px;
+  min-height: 160px;
   background: var(--vp-c-bg-mute);
-  animation: pulse 2s infinite;
   clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
 }
 
-@keyframes pulse {
-  0% { opacity: 0.6; }
-  50% { opacity: 1; }
-  100% { opacity: 0.6; }
+.skeleton-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.skeleton-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: var(--vp-c-divider);
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--vp-c-divider);
+  animation: shimmer 1.5s infinite 0.2s;
+}
+
+.skeleton-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skeleton-line {
+  height: 0.8rem;
+  border-radius: 3px;
+  background: var(--vp-c-divider);
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-line--title { width: 75%; animation-delay: 0.1s; }
+.skeleton-line--short { width: 50%; animation-delay: 0.3s; }
+.skeleton-line--btn   { width: 30%; margin-left: auto; animation-delay: 0.5s; }
+
+.skeleton-footer {
+  margin-top: auto;
+  padding-top: 0.8rem;
+  border-top: 1px dashed var(--vp-c-divider);
+}
+
+@keyframes shimmer {
+  0%   { opacity: 0.3; }
+  50%  { opacity: 0.6; }
+  100% { opacity: 0.3; }
+}
+
+/* 卡片入场交错动画 */
+.card-enter {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.cards-visible .card-enter {
+  animation: cardFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: var(--enter-delay, 0ms);
+}
+
+@keyframes cardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .empty-state {
