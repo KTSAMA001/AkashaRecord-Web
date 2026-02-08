@@ -419,7 +419,7 @@ body::after {
 .VPHero .container {
   display: flex !important;
   flex-direction: column !important;
-  max-width: 960px;
+  max-width: 960px !important;
   margin: 0 auto;
 }
 
@@ -479,7 +479,8 @@ body::after {
 /* ======= HUD 角标装饰（Hero 容器） ======= */
 @media (min-width: 960px) {
   .VPHero .container {
-    position: relative;
+    position: relative !important;
+    max-width: 960px !important;
     padding: 3rem 2rem;
   }
 
@@ -491,6 +492,7 @@ body::after {
     color: var(--ak-accent);
     opacity: 0.25;
     pointer-events: none;
+    z-index: 1;
   }
 
   /* 左上角 */
@@ -686,6 +688,7 @@ body::after {
 }
 
 /* ======= 页面角标装饰（L 形工程图纸标记） ======= */
+/* 仅在文章页显示，首页（VPHome 下的 vp-doc）不显示 */
 @media (min-width: 960px) {
   .vp-doc {
     position: relative;
@@ -720,6 +723,13 @@ body::after {
     border-bottom: 1px solid var(--ak-accent);
     border-right: 1px solid var(--ak-accent);
     padding: 6px 2px 2px 6px;
+  }
+
+  /* 首页的 vp-doc 是 VPHomeContent 的容器（max-width: 1280px），
+     与 Dashboard（960px）宽度不匹配，角标会溢出到两侧空白区域 */
+  .VPHome .vp-doc::before,
+  .VPHome .vp-doc::after {
+    content: none;
   }
 }
 
