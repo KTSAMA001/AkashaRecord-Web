@@ -360,24 +360,24 @@ function displayName(tag: string): string {
 
 /* ======= 标签搜索框 ======= */
 .tag-search-box {
-  min-width: 100px;
-  max-width: 180px;
+  min-width: 120px;
+  max-width: 200px;
 }
 
 .tag-search-box input {
-  padding: 0.3rem 0.6rem;
+  padding: 0.35rem 0.7rem;
   border: 1px solid var(--vp-c-divider);
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   width: 100%;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-family: 'Courier New', monospace;
   box-sizing: border-box;
   clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
 }
 
 .tag-search-box input:focus {
-  border-color: var(--ak-accent);
+  border-color: var(--vp-c-brand-1);
   outline: none;
 }
 
@@ -448,12 +448,13 @@ function displayName(tag: string): string {
 }
 
 .search-box input {
-  padding: 0.4rem 0.8rem;
+  padding: 0.35rem 0.7rem;
   border: 1px solid var(--vp-c-divider);
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
   width: 100%;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-family: 'Courier New', monospace;
   box-sizing: border-box;
   clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
 }
