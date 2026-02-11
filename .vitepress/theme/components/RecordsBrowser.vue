@@ -26,6 +26,8 @@ interface StatusDef {
   svg: string
 }
 
+type ViewMode = 'grid' | 'list'
+
 const tags = ref<TagData[]>([])
 const tagMeta = ref<Record<string, { label: string; icon: string }>>({})
 const categoryConfig = ref<Record<string, { label: string; order: number }>>({})
@@ -36,6 +38,16 @@ const loading = ref(true)
 const tagsExpanded = ref(false)
 const cardVisible = ref(false)
 const collapsedGroups = ref<Set<string>>(new Set())
+const viewMode = ref<ViewMode>(
+  (typeof localStorage !== 'undefined' && localStorage.getItem('ak-view-mode') as ViewMode) || 'grid'
+)
+
+function setViewMode(mode: ViewMode) {
+  viewMode.value = mode
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('ak-view-mode', mode)
+  }
+}
 
 interface TagGroup {
   key: string
@@ -246,6 +258,27 @@ function displayName(tag: string): string {
             placeholder="搜索记录..."
           />
         </div>
+        <!-- 视图切换 -->
+        <div class="view-toggle">
+          <button 
+            class="view-btn-toggle" 
+            :class="{ active: viewMode === 'grid' }"
+            @click="setViewMode('grid')"
+            title="网格视图"
+            aria-label="网格视图"
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="0.5" y="0.5" width="5" height="5" rx="0.5" stroke="currentColor"/><rect x="8.5" y="0.5" width="5" height="5" rx="0.5" stroke="currentColor"/><rect x="0.5" y="8.5" width="5" height="5" rx="0.5" stroke="currentColor"/><rect x="8.5" y="8.5" width="5" height="5" rx="0.5" stroke="currentColor"/></svg>
+          </button>
+          <button 
+            class="view-btn-toggle" 
+            :class="{ active: viewMode === 'list' }"
+            @click="setViewMode('list')"
+            title="列表视图"
+            aria-label="列表视图"
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="0.5" y="1" width="13" height="2.5" rx="0.5" stroke="currentColor"/><rect x="0.5" y="5.75" width="13" height="2.5" rx="0.5" stroke="currentColor"/><rect x="0.5" y="10.5" width="13" height="2.5" rx="0.5" stroke="currentColor"/></svg>
+          </button>
+        </div>
       </div>
       <div class="tag-groups" :class="{ expanded: tagsExpanded }">
         <div v-for="group in groupedTags" :key="group.key" class="tag-group">
@@ -302,7 +335,8 @@ function displayName(tag: string): string {
     </div>
 
     <!-- 记录列表（交错淡入） -->
-    <div v-else class="grid-container" :class="{ 'cards-visible': cardVisible }">
+    <!-- 网格视图 -->
+    <div v-if="!loading && viewMode === 'grid'" class="grid-container" :class="{ 'cards-visible': cardVisible }">
       <a 
         v-for="(record, idx) in filteredRecords" 
         :key="record.link" 
@@ -327,6 +361,31 @@ function displayName(tag: string): string {
           <span class="view-btn">VIEW_LOG</span>
         </div>
         <span class="card-shine"></span>
+      </a>
+    </div>
+
+    <!-- 列表视图 -->
+    <div v-if="!loading && viewMode === 'list'" class="list-container" :class="{ 'cards-visible': cardVisible }">
+      <a 
+        v-for="(record, idx) in filteredRecords" 
+        :key="record.link" 
+        :href="record.link"
+        class="list-row card-enter"
+        :style="{ '--enter-delay': `${Math.min(idx * 30, 400)}ms` }"
+      >
+        <span class="list-icon" :style="{ '-webkit-mask-image': `url(${getRecordIcon(record)})`, 'mask-image': `url(${getRecordIcon(record)})` }" />
+        <span 
+          v-if="record.status" 
+          class="status-dot" 
+          :class="getStatusColor(record.status)"
+          :title="record.status"
+        ></span>
+        <span class="list-title">{{ record.title }}</span>
+        <span class="list-tags" v-if="record.tags">
+          <span class="list-tag" v-for="t in record.tags.slice(0, 3)" :key="t">{{ displayName(t) }}</span>
+        </span>
+        <span class="list-path">{{ record.link }}</span>
+        <span class="list-arrow">→</span>
       </a>
     </div>
     
@@ -533,6 +592,37 @@ function displayName(tag: string): string {
   outline: none;
 }
 
+/* ======= 视图切换按钮 ======= */
+.view-toggle {
+  display: flex;
+  gap: 2px;
+  border: 1px solid var(--vp-c-divider);
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+}
+
+.view-btn-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 28px;
+  background: var(--vp-c-bg-soft);
+  border: none;
+  color: var(--vp-c-text-3);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.view-btn-toggle:hover {
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-bg-mute);
+}
+
+.view-btn-toggle.active {
+  color: var(--ak-accent);
+  background: color-mix(in srgb, var(--ak-accent) 12%, var(--vp-c-bg-soft));
+}
+
 .status-bar {
   font-family: 'Courier New', monospace;
   font-size: 0.8rem;
@@ -577,6 +667,137 @@ function displayName(tag: string): string {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
+}
+
+/* ======= 列表视图 ======= */
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--vp-c-divider);
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  overflow: hidden;
+}
+
+.list-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  color: var(--vp-c-text-1);
+  border-bottom: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.list-row:last-child {
+  border-bottom: none;
+}
+
+.list-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--ak-accent);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+}
+
+.list-row:hover {
+  background: color-mix(in srgb, var(--ak-accent) 6%, var(--vp-c-bg-soft));
+  padding-left: calc(1rem + 4px);
+}
+
+.list-row:hover::before {
+  transform: scaleY(1);
+}
+
+.list-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  background-color: var(--ak-accent);
+  opacity: 0.7;
+}
+
+.list-row:hover .list-icon {
+  opacity: 1;
+}
+
+.list-title {
+  flex: 1;
+  font-size: 0.92rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.25s;
+  min-width: 0;
+}
+
+.list-row:hover .list-title {
+  color: var(--ak-accent);
+}
+
+.list-tags {
+  display: flex;
+  gap: 0.3rem;
+  flex-shrink: 0;
+}
+
+.list-tag {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--vp-c-divider);
+  color: var(--vp-c-text-3);
+  white-space: nowrap;
+  clip-path: polygon(0 0, calc(100% - 3px) 0, 100% 3px, 100% 100%, 3px 100%, 0 calc(100% - 3px));
+}
+
+.list-path {
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+  flex-shrink: 0;
+}
+
+.list-arrow {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: var(--vp-c-text-3);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.25s;
+  flex-shrink: 0;
+}
+
+.list-row:hover .list-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--ak-accent);
+}
+
+@media (max-width: 768px) {
+  .list-tags, .list-path {
+    display: none;
+  }
 }
 
 /* ======= 记录卡片（工业风：切角 + 高亮条 + 微光 + hover 位移） ======= */
