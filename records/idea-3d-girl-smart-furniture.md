@@ -3,24 +3,21 @@ title: 3D美少女智能家具创业想法
 tags:
   - idea
   - smart-furniture
-  - 3d
 status: "\U0001F4A1 灵感记录"
 description: 3D美少女智能家具创业想法
 source: 留枫微风的创业提案
+recordDate: '2026-02-02'
 sourceDate: '2026-02-02'
+credibility: ⭐⭐⭐
 ---
 # 3D美少女智能家具创业想法
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=idea" class="meta-tag">灵感</a> <a href="/records/?tags=smart-furniture" class="meta-tag">智能家具</a> <a href="/records/?tags=3d" class="meta-tag">3D</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=idea" class="meta-tag">灵感</a> <a href="/records/?tags=smart-furniture" class="meta-tag">智能家具</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">留枫微风的创业提案</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-02</span></div>
-</div>
-
-**收藏日期**：2026-02-02
-
-<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-02</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span></span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-concept.svg" alt="构想中" /> 构想中</span></div>
 </div>

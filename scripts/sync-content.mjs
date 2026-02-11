@@ -7,6 +7,7 @@
  * 2. 解析 record-template.md 获取 Schema (字段定义/状态定义/Emoji映射)
  * 3. 解析 references/INDEX.md 获取权威元数据 (文件清单 + 标签)
  * 4. 复制 data/*.md 到 content/records/，注入 Frontmatter、修正链接、Emoji→SVG
+ * 4b. 复制 data/ 和 assets/ 下的图片等静态资源到 content/records/
  * 5. 生成 content/records/index.md
  * 6. 生成 public/api/stats.json、tags.json、tag-meta.json 和 meta-schema.json
  */
@@ -35,6 +36,75 @@ const AKASHA_REPO = GITHUB_MIRROR && !fs.existsSync(LOCAL_SOURCE)
   ? AKASHA_REPO_ORIGIN.replace('https://github.com/', GITHUB_MIRROR)
   : AKASHA_REPO_ORIGIN
 const AKASHA_LOCAL = path.join(PROJECT_ROOT, '.akasha-repo')
+
+// 支持同步的图片/静态资源扩展名
+const ASSET_EXTENSIONS = new Set([
+  '.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.bmp', '.ico', '.avif',
+])
+
+// 生成用于正则匹配的图片扩展名模式（从 ASSET_EXTENSIONS 动态生成，保持单一来源）
+const ASSET_EXT_PATTERN = [...ASSET_EXTENSIONS].map(e => e.slice(1)).join('|')
+
+/**
+ * 递归复制图片等静态资源文件，保持相对目录结构
+ * @param {string} srcDir - 源目录（如 .akasha-repo/data）
+ * @param {string} destDir - 目标目录（如 content/records）
+ * @returns {number} 复制的文件数量
+ */
+function copyAssetFiles(srcDir, destDir) {
+  if (!fs.existsSync(srcDir)) return 0
+
+  let count = 0
+  const entries = fs.readdirSync(srcDir, { withFileTypes: true })
+
+  for (const entry of entries) {
+    const srcPath = path.join(srcDir, entry.name)
+    const destPath = path.join(destDir, entry.name)
+
+    if (entry.isDirectory()) {
+      fs.mkdirSync(destPath, { recursive: true })
+      count += copyAssetFiles(srcPath, destPath)
+    } else if (ASSET_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+      fs.copyFileSync(srcPath, destPath)
+      count++
+    }
+  }
+
+  return count
+}
+
+/**
+ * 递归复制图片文件，将子目录结构扁平化到目标目录
+ * 用于将 assets/{record-name}/image.png 复制到 records/image.png
+ * （因为 fixLinks 会把 ../assets/subdir/file.png 转为 ./file.png）
+ * @param {string} srcDir - 源目录（如 .akasha-repo/assets）
+ * @param {string} destDir - 目标目录（如 content/records）
+ * @param {Set<string>} [seen] - 已复制的文件名（检测冲突用）
+ * @returns {number} 复制的文件数量
+ */
+function copyAssetFilesFlat(srcDir, destDir, seen = new Set()) {
+  if (!fs.existsSync(srcDir)) return 0
+
+  let count = 0
+  const entries = fs.readdirSync(srcDir, { withFileTypes: true })
+
+  for (const entry of entries) {
+    const srcPath = path.join(srcDir, entry.name)
+
+    if (entry.isDirectory()) {
+      count += copyAssetFilesFlat(srcPath, destDir, seen)
+    } else if (ASSET_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+      if (seen.has(entry.name)) {
+        console.warn(`  ⚠️ 资源文件名冲突: ${entry.name}（来自 ${srcPath}），已被覆盖`)
+      }
+      seen.add(entry.name)
+      fs.copyFileSync(srcPath, path.join(destDir, entry.name))
+      count++
+    }
+  }
+
+  return count
+}
 
 function syncRepo() {
   try {
@@ -204,7 +274,13 @@ function fixLinks(content) {
   
   // 2. 处理旧的分类路径 ../../knowledge/graphics/xxx.md -> ./xxx.md
   content = content.replace(/\]\(\.\.\/.*?\/([^\/]+?)\.md\)/g, '](./$1.md)')
-  
+
+  // 2b. 处理旧的分类路径中的图片引用 ../../knowledge/graphics/image.png -> ./image.png
+  content = content.replace(
+    new RegExp(`\\]\\(\\.\\.\\/.*?\\/([^\\/]+?\\.(${ASSET_EXT_PATTERN}))\\)`, 'gi'),
+    '](./$1)'
+  )
+
   // 3. 移除 .md 后缀 (VitePress cleanUrls)
   content = content.replace(/\]\(\.\/([^\)]+)\.md\)/g, '](./$1)')
 
@@ -590,6 +666,20 @@ async function main() {
     }
   }
   console.log(`✅ 已处理 ${copyCount} 个记录文件`)
+
+  // 复制图片等静态资源文件（保持 data/ 下的相对目录结构）
+  const dataDir = path.join(AKASHA_LOCAL, 'data')
+  const recordsDestDir = path.join(CONTENT_DIR, 'records')
+  let assetCount = copyAssetFiles(dataDir, recordsDestDir)
+
+  // 复制 assets/ 目录下的图片（扁平化子目录结构到 records/）
+  // 源 markdown 引用 ../assets/subdir/file.png，fixLinks 转为 ./file.png
+  const assetsDir = path.join(AKASHA_LOCAL, 'assets')
+  assetCount += copyAssetFilesFlat(assetsDir, recordsDestDir)
+
+  if (assetCount > 0) {
+    console.log(`🖼️  已复制 ${assetCount} 个图片/资源文件`)
+  }
 
   // 生成数据和页面
   generateStats(records)

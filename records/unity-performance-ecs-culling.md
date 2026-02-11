@@ -8,8 +8,10 @@ tags:
   - culling
 status: ⚠️ 待验证（需根据 Unity 版本和 DOTS 版本调整）
 description: Unity 性能优化相关经验
+source: KTSAMA 实践经验
 recordDate: '2026-01-31'
 sourceDate: 2021-05-19（TaTa 仓库 Git commit 时间）
+credibility: ⭐⭐⭐ (待验证)
 version: 'Unity 2019.4+, Entities 0.7+'
 ---
 # Unity 性能优化相关经验
@@ -27,7 +29,9 @@ version: 'Unity 2019.4+, Entities 0.7+'
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2021-05-19（TaTa 仓库 Git commit 时间）</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=performance" class="meta-tag">性能优化</a> <a href="/records/?tags=ecs" class="meta-tag">ECS</a> <a href="/records/?tags=culling" class="meta-tag">剔除</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--warning"><img class="inline-icon inline-icon--status" src="/icons/status-pending.svg" alt="待验证" /> 待验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">待验证</span></span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Unity 2019.4+, Entities 0.7+</span></div>
 </div>
 

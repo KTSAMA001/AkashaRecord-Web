@@ -6,7 +6,7 @@ tags:
   - color-space
   - gamma
   - linear
-status: ''
+status: "\U0001F4D8 有效"
 description: 色彩空间知识
 source: TaTa 仓库 - ColorSpace/Gamma&Linear.md
 recordDate: '2026-01-31'
@@ -25,8 +25,9 @@ credibility: ⭐⭐⭐⭐ (技术博客 + 实践验证)
 <div class="record-meta-block">
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=color-space" class="meta-tag">色彩空间</a> <a href="/records/?tags=gamma" class="meta-tag">Gamma</a> <a href="/records/?tags=linear" class="meta-tag">线性空间</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - ColorSpace/Gamma&Linear.md</span></div>
-<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2021-01-06</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2021-01-06</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">技术博客 + 实践验证</span></span></div>
 </div>
 
@@ -65,6 +66,7 @@ credibility: ⭐⭐⭐⭐ (技术博客 + 实践验证)
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - ColorSpace/Gamma&Linear.md</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2021-01-06</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">技术博客 + 实践验证</span></span></div>
 </div>
 

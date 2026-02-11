@@ -8,8 +8,10 @@ tags:
   - searxng
 status: ✅ 已验证
 description: 自搭建搜索引擎技术
+source: KTSAMA 实践经验
 recordDate: '2026-02-01'
 sourceDate: '2026-02-01'
+credibility: ⭐⭐⭐⭐ (实践验证)
 ---
 # 自搭建搜索引擎技术
 
@@ -18,7 +20,9 @@ sourceDate: '2026-02-01'
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=search-engine" class="meta-tag">搜索引擎</a> <a href="/records/?tags=meilisearch" class="meta-tag">Meilisearch</a> <a href="/records/?tags=searxng" class="meta-tag">SearXNG</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
 </div>
 
 **适用场景**：私有数据搜索、隐私保护、全文检索、元搜索聚合

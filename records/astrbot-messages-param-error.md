@@ -7,17 +7,24 @@ tags:
   - bug
 status: ⚠️ 部分解决（v4.13.2 仍有报告）
 description: AstrBot "messages 参数非法" 错误
+source: KTSAMA 实践经验
 recordDate: '2026-02-02'
+sourceDate: '2026-02-02'
 updateDate: '2026-02-02'
+credibility: ⭐⭐⭐⭐ (实践验证)
 version: AstrBot v3.5.x ~ v4.13.2
 ---
 # AstrBot "messages 参数非法" 错误
 
+
 <div class="record-meta-block">
-<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-02</span></div>
-<div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-02</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=ai" class="meta-tag">AI</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=astrbot" class="meta-tag">AstrBot</a> <a href="/records/?tags=bug" class="meta-tag">Bug</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-02</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-02</span></div>
+<div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-02</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--warning"><img class="inline-icon inline-icon--status" src="/icons/status-pending.svg" alt="待验证" /> 待验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">AstrBot v3.5.x ~ v4.13.2</span></div>
 </div>
 
@@ -329,5 +336,5 @@ docker logs astrbot --tail 500 | grep -A 20 "1214"
 ---
 
 ## 相关经验
-- [AstrBot 集成 MCP 服务经验](./ai/astrbot)
-- [MCP 协议与 Agent 服务开发经验](./ai/mcp)
+- [AstrBot 集成 MCP 服务经验](./astrbot-mcp-service-config)
+- [MCP 协议与 Agent 服务开发经验](./mcp-protocol-agent-dev)

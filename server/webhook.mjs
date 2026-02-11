@@ -2,7 +2,7 @@
  * GitHub Webhook 接收服务
  * 监听两个仓库的 push 事件，智能判断构建策略：
  *   - Web 仓库 push → 完整构建（git pull + npm install + sync + build）
- *   - 阿卡西记录 push + data/ 变更 → 轻量构建（sync + build，跳过 web git pull/npm install）
+ *   - 阿卡西记录 push + data/ 或 assets/ 变更 → 轻量构建（sync + build，跳过 web git pull/npm install）
  *   - 阿卡西记录 push + 仅改 SKILL.md/references 等 → 跳过构建
  * 
  * 启动方式：pm2 start server/webhook.mjs --name akasha-webhook
@@ -56,10 +56,15 @@ function analyzeAkashaChanges(payload) {
     return 'skip'
   }
 
-  // 检查是否有 data/ 目录下的文件变更（这些才会发布到网站）
+  // 检查是否有 data/ 或 assets/ 目录下的文件变更（这些才会发布到网站）
   // 也包括 references/INDEX.md（影响分类索引生成）
+  // 以及 record-template.md（Schema 定义）和 tag-registry.md（标签元数据）
   const publishedFiles = [...allFiles].filter(f =>
-    f.startsWith('data/') || f === 'references/INDEX.md'
+    f.startsWith('data/') ||
+    f.startsWith('assets/') ||
+    f === 'references/INDEX.md' ||
+    f === 'references/templates/record-template.md' ||
+    f === 'references/tag-registry.md'
   )
 
   console.log(`  📋 变更文件 ${allFiles.size} 个，其中影响网站的 ${publishedFiles.length} 个`)
@@ -71,8 +76,8 @@ function analyzeAkashaChanges(payload) {
     return 'content'
   }
 
-  // 只改了 SKILL.md / references/workflows/ / templates/ 等非发布文件
-  console.log('  📋 变更仅涉及非发布文件（SKILL.md/workflows/templates等），跳过构建')
+  // 只改了 SKILL.md / references/workflows/ 等非发布文件
+  console.log('  📋 变更仅涉及非发布文件（SKILL.md/workflows等），跳过构建')
   return 'skip'
 }
 

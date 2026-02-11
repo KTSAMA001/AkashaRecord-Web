@@ -6,18 +6,22 @@ tags:
   - mcp
 status: ✅ 已验证
 description: MCP 协议与 Agent 服务开发经验
+source: KTSAMA 实践经验
 recordDate: '2026-02-01'
 sourceDate: 2026-01-30 ~ 2026-02-01
+credibility: ⭐⭐⭐⭐ (实践验证)
 version: MCP 0.3+ / FastMCP 0.2+ / AstrBot v4.13.2+
 ---
 # MCP 协议与 Agent 服务开发经验
 
 
 <div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=ai" class="meta-tag">AI</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=mcp" class="meta-tag">MCP 协议</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-30 ~ 2026-02-01</span></div>
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=ai" class="meta-tag">AI</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=mcp" class="meta-tag">MCP 协议</a></span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">MCP 0.3+ / FastMCP 0.2+ / AstrBot v4.13.2+</span></div>
 </div>
 

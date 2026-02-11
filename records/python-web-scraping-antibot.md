@@ -8,8 +8,10 @@ tags:
   - anti-bot
 status: ✅ 已验证
 description: 网页抓取与反爬虫绕过
+source: KTSAMA 实践经验
 recordDate: '2026-02-01'
 sourceDate: '2026-02-01'
+credibility: ⭐⭐⭐⭐ (实践验证)
 version: nodriver 0.48+ / playwright-stealth 2.0.1 / undetected-chromedriver 3.5.5
 ---
 # 网页抓取与反爬虫绕过
@@ -19,7 +21,9 @@ version: nodriver 0.48+ / playwright-stealth 2.0.1 / undetected-chromedriver 3.5
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=python" class="meta-tag">Python</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=playwright" class="meta-tag">Playwright</a> <a href="/records/?tags=selenium" class="meta-tag">Selenium</a> <a href="/records/?tags=anti-bot" class="meta-tag">反爬虫</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">nodriver 0.48+ / playwright-stealth 2.0.1 / undetected-chromedriver 3.5.5</span></div>
 </div>
 

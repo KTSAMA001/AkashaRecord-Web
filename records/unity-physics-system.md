@@ -6,7 +6,7 @@ tags:
   - physics
   - collider
   - raycast
-status: ''
+status: "\U0001F4D8 有效"
 description: Unity 物理系统知识
 source: Unity 2022.3 官方文档 - Collider types and performance
 recordDate: '2026-02-01'
@@ -24,8 +24,9 @@ credibility: ⭐⭐⭐⭐⭐ (官方文档)
 <div class="record-meta-block">
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=physics" class="meta-tag">物理系统</a> <a href="/records/?tags=collider" class="meta-tag">碰撞体</a> <a href="/records/?tags=raycast" class="meta-tag">射线检测</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 2022.3 官方文档 - Collider types and performance</span></div>
-<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-31</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">官方文档</span></span></div>
 </div>
 
@@ -83,6 +84,7 @@ credibility: ⭐⭐⭐⭐⭐ (官方文档)
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 2022.3 官方文档 - Physics.Raycast / Optimize raycasts and other physics queries</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-31</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">官方文档</span></span></div>
 </div>
 
