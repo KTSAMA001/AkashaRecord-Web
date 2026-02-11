@@ -567,6 +567,7 @@ body::after {
     10px 10px,
     60px 60px,
     60px 60px !important;
+  background-attachment: fixed !important;
 }
 
 /* ======= 暗角效果（首页 Vignette） ======= */
