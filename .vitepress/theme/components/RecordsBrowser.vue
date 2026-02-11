@@ -31,9 +31,20 @@ const tagMeta = ref<Record<string, { label: string; icon: string }>>({})
 const statusDefs = ref<StatusDef[]>([])
 const selectedTags = ref<Set<string>>(new Set())
 const searchQuery = ref('')
+const tagSearchQuery = ref('')
 const loading = ref(true)
 const tagsExpanded = ref(false)
 const cardVisible = ref(false)
+
+/** 根据搜索词过滤标签按钮（匹配中文标签名或英文 key） */
+const filteredTags = computed(() => {
+  const q = tagSearchQuery.value.trim().toLowerCase()
+  if (!q) return tags.value
+  return tags.value.filter(tag => {
+    const label = (tagMeta.value[tag.name]?.label || '').toLowerCase()
+    return tag.name.toLowerCase().includes(q) || label.includes(q)
+  })
+})
 
 // 卡片入场动画控制：筛选变化时重置动画
 watch([selectedTags, searchQuery], async () => {
@@ -178,6 +189,27 @@ function displayName(tag: string): string {
   <div class="records-browser">
     <!-- 筛选工具栏 -->
     <div class="filter-bar">
+      <!-- 标签搜索 + 操作栏 -->
+      <div class="filter-actions">
+        <button class="expand-btn" @click="tagsExpanded = !tagsExpanded">
+          {{ tagsExpanded ? '▲ COLLAPSE' : '▼ MORE_TAGS' }}
+        </button>
+        <div class="tag-search-box">
+          <input 
+            v-model="tagSearchQuery" 
+            type="text" 
+            placeholder="搜索标签..."
+          />
+        </div>
+        <!-- 记录搜索框 -->
+        <div class="search-box">
+          <input 
+            v-model="searchQuery" 
+            type="text" 
+            placeholder="搜索记录..."
+          />
+        </div>
+      </div>
       <div class="tag-cloud" :class="{ expanded: tagsExpanded }">
         <button 
           class="filter-tag" 
@@ -187,7 +219,7 @@ function displayName(tag: string): string {
           ALL
         </button>
         <button 
-          v-for="tag in tags" 
+          v-for="tag in filteredTags" 
           :key="tag.name"
           class="filter-tag"
           :class="{ active: selectedTags.has(tag.name) }"
@@ -197,19 +229,9 @@ function displayName(tag: string): string {
           <span class="count">{{ tag.count }}</span>
         </button>
       </div>
-      <div class="filter-actions">
-        <button class="expand-btn" @click="tagsExpanded = !tagsExpanded">
-          {{ tagsExpanded ? '▲ COLLAPSE' : '▼ MORE_TAGS' }}
-        </button>
-        <!-- 搜索框 -->
-        <div class="search-box">
-          <input 
-            v-model="searchQuery" 
-            type="text" 
-            placeholder="搜索记录..."
-          />
-        </div>
-      </div>
+      <span v-if="tagSearchQuery && filteredTags.length === 0" class="tag-no-match">
+        未找到匹配的标签
+      </span>
     </div>
 
     <!-- 结果统计 -->
@@ -286,6 +308,14 @@ function displayName(tag: string): string {
   margin-bottom: 1.5rem;
 }
 
+.filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
 .tag-cloud {
   display: flex;
   flex-wrap: wrap;
@@ -311,14 +341,6 @@ function displayName(tag: string): string {
   }
 }
 
-.filter-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-top: 0.6rem;
-  flex-wrap: wrap;
-}
-
 .expand-btn {
   padding: 0.2rem 0.6rem;
   font-family: 'Courier New', monospace;
@@ -334,6 +356,36 @@ function displayName(tag: string): string {
 .expand-btn:hover {
   color: var(--vp-c-brand-1);
   border-color: var(--vp-c-brand-1);
+}
+
+/* ======= 标签搜索框 ======= */
+.tag-search-box {
+  min-width: 100px;
+  max-width: 180px;
+}
+
+.tag-search-box input {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  width: 100%;
+  font-size: 0.8rem;
+  font-family: 'Courier New', monospace;
+  box-sizing: border-box;
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+}
+
+.tag-search-box input:focus {
+  border-color: var(--ak-accent);
+  outline: none;
+}
+
+.tag-no-match {
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  color: var(--vp-c-text-3);
+  padding: 0.3rem 0.8rem;
 }
 
 /* ======= 筛选标签（工业风切角） ======= */
