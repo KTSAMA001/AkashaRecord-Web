@@ -5,7 +5,7 @@ tags:
   - knowledge
   - rendering-pipeline
   - draw-call
-status: ''
+status: "\U0001F4D8 有效"
 description: 渲染管线知识
 source: 《Unity Shader 入门精要》（冯乐乐著）
 recordDate: '2026-01-30'
@@ -24,8 +24,9 @@ credibility: ⭐⭐⭐⭐⭐ (经典著作 + 广泛认可)
 <div class="record-meta-block">
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Unity Shader 入门精要》（冯乐乐著）</span></div>
-<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2016 年（书籍出版）</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2016 年（书籍出版）</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">经典著作 + 广泛认可</span></span></div>
 </div>
 
@@ -94,8 +95,10 @@ DrawCall 图元 → 顶点着色器 → 曲面细分着色器 → 几何着色�
 
 
 <div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">OpenGL 官方规范、关于 SRP/URP 的研究</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">官方规范 + 实践验证</span></span></div>
 </div>
 
@@ -142,10 +145,12 @@ VAO (管理者)
 ---
 
 <a id="vertex-shader"></a>
-## 顶点着色器（Vertex Shader）
-
+##收录日期**：2026-02-01
 
 <div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Unity Shader 入门精要》（冯乐乐著）</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Unity Shader 入门精要》（冯乐乐著）</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">经典著作 + 广泛认可</span></span></div>
@@ -170,10 +175,12 @@ VAO (管理者)
 ---
 
 <a id="fragment-shader"></a>
-## 片元着色器（Fragment Shader）
-
+##收录日期**：2026-02-01
 
 <div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Unity Shader 入门精要》（冯乐乐著）</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Unity Shader 入门精要》（冯乐乐著）</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">经典著作 + 广泛认可</span></span></div>
@@ -203,8 +210,10 @@ VAO (管理者)
 
 
 <div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Unity Shader 入门精要》（冯乐乐著）、Unity 官方文档</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">经典著作 + 官方文档</span></span></div>
 </div>
 
@@ -224,10 +233,12 @@ VAO (管理者)
 ---
 
 <a id="per-fragment-operations"></a>
-## 逐片元操作（Per-Fragment Operations）
-
+##收录日期**：2026-02-01
 
 <div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Unity Shader 入门精要》（冯乐乐著）</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Unity Shader 入门精要》（冯乐乐著）</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">经典著作 + 广泛认可</span></span></div>
@@ -250,8 +261,10 @@ VAO (管理者)
 
 
 <div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - Optimizing draw calls、TA 工程实践经验整理</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">官方文档 + 实践验证</span></span></div>
 </div>
 
@@ -270,10 +283,12 @@ VAO (管理者)
 ---
 
 <a id="cbuffer"></a>
-## CBUFFER 与 SRP Batcher
-
+##收录日期**：2026-02-01
 
 <div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方博客 - SRP Batcher: Speed up your rendering、关于 SRP/URP 的研究</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方博客 - SRP Batcher: Speed up your rendering、关于 SRP/URP 的研究</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">官方博客 + 实践验证</span></span></div>
@@ -295,10 +310,12 @@ CBUFFER（Constant Buffer）可以理解为 GPU 侧的“常量数据块”，�
 ---
 
 <a id="shader-variants"></a>
-## Shader 变体（Variants）与关键字（Keywords）
-
+##收录日期**：2026-02-01
 
 <div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - Shader variants and keywords、TA 工程实践经验整理</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - Shader variants and keywords、TA 工程实践经验整理</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">官方文档 + 实践验证</span></span></div>
@@ -318,10 +335,12 @@ Shader 变体是“同一个 shader 因关键字组合不同而生成的多份�
 ---
 
 <a id="srp-urp"></a>
-## SRP/URP 与 Renderer Feature
-
+##收录日期**：2026-02-01
 
 <div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - Universal Render Pipeline、关于 SRP/URP 的研究</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - Universal Render Pipeline、关于 SRP/URP 的研究</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">官方文档 + 实践验证</span></span></div>
@@ -346,8 +365,10 @@ Shader 变体是“同一个 shader 因关键字组合不同而生成的多份�
 
 
 <div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - CommandBuffer、关于 SRP/URP 的研究</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">官方文档 + 实践验证</span></span></div>
 </div>
 
@@ -368,8 +389,10 @@ CommandBuffer（命令缓冲）可以理解为“把要做的 GPU 绘制/状态�
 
 
 <div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Real-Time Rendering》、图形学基础课程</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">权威著作 + 学术标准</span></span></div>
 </div>
 
@@ -392,10 +415,12 @@ CommandBuffer（命令缓冲）可以理解为“把要做的 GPU 绘制/状态�
 ---
 
 <a id="pbr-brdf"></a>
-## PBR / BRDF 基本要点
-
+##收录日期**：2026-02-01
 
 <div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Physically Based Rendering》、《Real-Time Rendering》</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">《Physically Based Rendering》、《Real-Time Rendering》</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">权威著作 + 学术标准</span></span></div>
@@ -416,10 +441,12 @@ CommandBuffer（命令缓冲）可以理解为“把要做的 GPU 绘制/状态�
 ---
 
 <a id="tbdr-overdraw"></a>
-## 移动端：TBDR 与 Overdraw
-
+##收录日期**：2026-02-01
 
 <div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">ARM/Qualcomm GPU 官方文档、图形学/移动端渲染笔记</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">ARM/Qualcomm GPU 官方文档、图形学/移动端渲染笔记</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">厂商文档 + 实践验证</span></span></div>
@@ -439,10 +466,12 @@ CommandBuffer（命令缓冲）可以理解为“把要做的 GPU 绘制/状态�
 ---
 
 <a id="opaque-transparent"></a>
-## 不透明/透明：排序与代价
-
+##收录日期**：2026-02-01
 
 <div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档、《Unity Shader 入门精要》</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=rendering-pipeline" class="meta-tag">渲染管线</a> <a href="/records/?tags=draw-call" class="meta-tag">Draw Call</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档、《Unity Shader 入门精要》</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">官方文档 + 经典著作</span></span></div>

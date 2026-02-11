@@ -58,8 +58,12 @@ function analyzeAkashaChanges(payload) {
 
   // 检查是否有 data/ 目录下的文件变更（这些才会发布到网站）
   // 也包括 references/INDEX.md（影响分类索引生成）
+  // 以及 record-template.md（Schema 定义）和 tag-registry.md（标签元数据）
   const publishedFiles = [...allFiles].filter(f =>
-    f.startsWith('data/') || f === 'references/INDEX.md'
+    f.startsWith('data/') ||
+    f === 'references/INDEX.md' ||
+    f === 'references/templates/record-template.md' ||
+    f === 'references/tag-registry.md'
   )
 
   console.log(`  📋 变更文件 ${allFiles.size} 个，其中影响网站的 ${publishedFiles.length} 个`)
@@ -71,8 +75,8 @@ function analyzeAkashaChanges(payload) {
     return 'content'
   }
 
-  // 只改了 SKILL.md / references/workflows/ / templates/ 等非发布文件
-  console.log('  📋 变更仅涉及非发布文件（SKILL.md/workflows/templates等），跳过构建')
+  // 只改了 SKILL.md / references/workflows/ 等非发布文件
+  console.log('  📋 变更仅涉及非发布文件（SKILL.md/workflows等），跳过构建')
   return 'skip'
 }
 

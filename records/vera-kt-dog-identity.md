@@ -8,7 +8,10 @@ tags:
 status: "\U0001F4D8 有效"
 description: 薇拉的身份设定
 source: KTSAMA的事实公告
+recordDate: '2026-02-01'
 sourceDate: '2026-02-01'
+updateDate: '2026-02-01'
+credibility: ⭐⭐⭐⭐⭐
 ---
 # 薇拉的身份设定
 
@@ -17,11 +20,7 @@ sourceDate: '2026-02-01'
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=social" class="meta-tag">社交</a> <a href="/records/?tags=reference" class="meta-tag">参考</a> <a href="/records/?tags=vera" class="meta-tag">薇拉</a> <a href="/records/?tags=identity" class="meta-tag">身份设定</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA的事实公告</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-01</span></div>
-</div>
-
-**收藏日期**：2026-02-01
-
-<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span></span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>

@@ -1,29 +1,33 @@
 ---
-title: Unity 其他无法归类的经验
+title: Unity 中 Layer 与 Render Layer 的核心区别与使用场景
 tags:
   - unity
   - experience
   - rendering
 status: ✅ 已验证
-description: Unity 其他无法归类的经验
+description: Unity 中 Layer 与 Render Layer 的核心区别与使用场景
 source: Technical_Artist_Technotes/TA零散知识
 recordDate: '2026-01-31'
+sourceDate: '2026-01-31'
+credibility: ⭐⭐⭐⭐ (实践验证)
 ---
-# Unity 其他无法归类的经验
+# Unity 中 Layer 与 Render Layer 的核心区别与使用场景
 
-> Unity 其他无法归类的经验
+> Unity 中 Layer（游戏层）与 Render Layer（渲染层）的核心区别、各自用途，以及在 SRP 中如何正确使用它们进行渲染筛选。
 > 
-> 包含：项目配置、构建发布、平台适配、第三方插件等
+> 涉及：Layer Mask、Rendering Layer Mask、Renderer Feature 中的筛选配置等。
 
 ---
 ## Layer 与 Render Layer 的区别
 
 
 <div class="record-meta-block">
-<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-31</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=rendering" class="meta-tag">渲染</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Technical_Artist_Technotes/TA零散知识</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
 </div>
 
 

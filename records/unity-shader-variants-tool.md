@@ -8,7 +8,10 @@ tags:
   - editor
 status: ✅ 已验证
 description: Unity 中 Shader 相关经验
+source: KTSAMA 实践经验
 recordDate: '2026-01-29'
+sourceDate: '2026-01-29'
+credibility: ⭐⭐⭐⭐ (实践验证)
 ---
 # Unity 中 Shader 相关经验
 
@@ -22,9 +25,12 @@ recordDate: '2026-01-29'
 
 
 <div class="record-meta-block">
-<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-29</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=shader" class="meta-tag">着色器</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=shader-variants" class="meta-tag">Shader 变体</a> <a href="/records/?tags=editor" class="meta-tag">编辑器</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-29</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-29</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
 </div>
 
 

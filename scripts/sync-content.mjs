@@ -7,6 +7,7 @@
  * 2. 解析 record-template.md 获取 Schema (字段定义/状态定义/Emoji映射)
  * 3. 解析 references/INDEX.md 获取权威元数据 (文件清单 + 标签)
  * 4. 复制 data/*.md 到 content/records/，注入 Frontmatter、修正链接、Emoji→SVG
+ * 4b. 复制 data/ 下的图片等静态资源到 content/records/，保持相对路径
  * 5. 生成 content/records/index.md
  * 6. 生成 public/api/stats.json、tags.json、tag-meta.json 和 meta-schema.json
  */
@@ -35,6 +36,39 @@ const AKASHA_REPO = GITHUB_MIRROR && !fs.existsSync(LOCAL_SOURCE)
   ? AKASHA_REPO_ORIGIN.replace('https://github.com/', GITHUB_MIRROR)
   : AKASHA_REPO_ORIGIN
 const AKASHA_LOCAL = path.join(PROJECT_ROOT, '.akasha-repo')
+
+// 支持同步的图片/静态资源扩展名
+const ASSET_EXTENSIONS = new Set([
+  '.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.bmp', '.ico', '.avif',
+])
+
+/**
+ * 递归复制图片等静态资源文件，保持相对目录结构
+ * @param {string} srcDir - 源目录（如 .akasha-repo/data）
+ * @param {string} destDir - 目标目录（如 content/records）
+ * @returns {number} 复制的文件数量
+ */
+function copyAssetFiles(srcDir, destDir) {
+  if (!fs.existsSync(srcDir)) return 0
+
+  let count = 0
+  const entries = fs.readdirSync(srcDir, { withFileTypes: true })
+
+  for (const entry of entries) {
+    const srcPath = path.join(srcDir, entry.name)
+    const destPath = path.join(destDir, entry.name)
+
+    if (entry.isDirectory()) {
+      fs.mkdirSync(destPath, { recursive: true })
+      count += copyAssetFiles(srcPath, destPath)
+    } else if (ASSET_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+      fs.copyFileSync(srcPath, destPath)
+      count++
+    }
+  }
+
+  return count
+}
 
 function syncRepo() {
   try {
@@ -204,7 +238,13 @@ function fixLinks(content) {
   
   // 2. 处理旧的分类路径 ../../knowledge/graphics/xxx.md -> ./xxx.md
   content = content.replace(/\]\(\.\.\/.*?\/([^\/]+?)\.md\)/g, '](./$1.md)')
-  
+
+  // 2b. 处理旧的分类路径中的图片引用 ../../knowledge/graphics/image.png -> ./image.png
+  content = content.replace(
+    /\]\(\.\.\/.*?\/([^\/]+?\.(png|jpg|jpeg|gif|svg|webp|bmp|avif))\)/gi,
+    '](./$1)'
+  )
+
   // 3. 移除 .md 后缀 (VitePress cleanUrls)
   content = content.replace(/\]\(\.\/([^\)]+)\.md\)/g, '](./$1)')
 
@@ -590,6 +630,13 @@ async function main() {
     }
   }
   console.log(`✅ 已处理 ${copyCount} 个记录文件`)
+
+  // 复制图片等静态资源文件（保持 data/ 下的相对目录结构）
+  const dataDir = path.join(AKASHA_LOCAL, 'data')
+  const assetCount = copyAssetFiles(dataDir, path.join(CONTENT_DIR, 'records'))
+  if (assetCount > 0) {
+    console.log(`🖼️  已复制 ${assetCount} 个图片/资源文件`)
+  }
 
   // 生成数据和页面
   generateStats(records)

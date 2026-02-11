@@ -9,8 +9,10 @@ tags:
   - post-processing
 status: ✅ 已验证
 description: 非真实感渲染 (Non-Photorealistic Rendering) 相关经验
+source: KTSAMA 实践经验
 recordDate: '2026-02-07'
 sourceDate: '2024-08-08'
+credibility: ⭐⭐⭐⭐ (实践验证)
 version: Unity 2022.3+ / URP 14.0+
 ---
 # 非真实感渲染 (Non-Photorealistic Rendering) 相关经验
@@ -25,10 +27,12 @@ version: Unity 2022.3+ / URP 14.0+
 
 
 <div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=shader" class="meta-tag">着色器</a> <a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=npr" class="meta-tag">NPR 渲染</a> <a href="/records/?tags=renderer-feature" class="meta-tag">Renderer Feature</a> <a href="/records/?tags=post-processing" class="meta-tag">后处理</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=shader" class="meta-tag">着色器</a> <a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=npr" class="meta-tag">NPR 渲染</a> <a href="/records/?tags=renderer-feature" class="meta-tag">Renderer Feature</a> <a href="/records/?tags=post-processing" class="meta-tag">后处理</a></span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Unity 2022.3+ / URP 14.0+</span></div>
 </div>
 
@@ -116,12 +120,12 @@ public override void AddRenderPasses(...)
 
 **相关经验**：
 
-- [URP Renderer Feature 开发要点](./urp.md#urp-renderer-feature-开发要点) — 通用 RenderFeature 模式
-- [URP 中 GrabPass 替代方案](./urp.md#grab-color-renderfeature) — 依赖 GrabColor 功能
+- [URP Renderer Feature 开发要点](./urp-renderer-feature-guide) — 通用 RenderFeature 模式
+- [URP 中 GrabPass 替代方案](./urp-grabpass-alternative.md#grab-color-renderfeature) — 依赖 GrabColor 功能
 
 **理论基础**：
 
-- [Renderer Feature 的要点](./knowledge/unity/urp.md#renderer-feature-的要点)
+- [Renderer Feature 的要点](./urp-srp-architecture.md#renderer-feature-的要点)
 
 ---
 
@@ -132,7 +136,9 @@ public override void AddRenderPasses(...)
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=shader" class="meta-tag">着色器</a> <a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=npr" class="meta-tag">NPR 渲染</a> <a href="/records/?tags=renderer-feature" class="meta-tag">Renderer Feature</a> <a href="/records/?tags=post-processing" class="meta-tag">后处理</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity_URP_Learning</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">代码验证</span></span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Unity 2022.3+ / URP 14.0+</span></div>
 </div>
 

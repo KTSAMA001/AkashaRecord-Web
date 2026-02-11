@@ -6,7 +6,7 @@ tags:
   - knowledge
   - urp
   - srp
-status: ''
+status: "\U0001F4D8 有效"
 description: URP / SRP 知识
 source: Unity 官方文档 - Scriptable Render Pipeline
 recordDate: '2026-01-30'
@@ -24,8 +24,9 @@ credibility: ⭐⭐⭐⭐⭐ (官方文档)
 <div class="record-meta-block">
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=urp" class="meta-tag">URP</a> <a href="/records/?tags=srp" class="meta-tag">SRP</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - Scriptable Render Pipeline</span></div>
-<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">-</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">-</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">官方文档</span></span></div>
 </div>
 
@@ -43,6 +44,7 @@ credibility: ⭐⭐⭐⭐⭐ (官方文档)
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - Universal Render Pipeline、URP 源码分析</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">-</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">官方文档 + 源码验证</span></span></div>
 </div>
 
@@ -62,6 +64,7 @@ credibility: ⭐⭐⭐⭐⭐ (官方文档)
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=urp" class="meta-tag">URP</a> <a href="/records/?tags=srp" class="meta-tag">SRP</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - URP-analysis/urp-analysis.md</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2020-11-05</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">源码分析 + 实践验证</span></span></div>
 </div>
@@ -174,6 +177,7 @@ public static void RenderSingleCamera(ScriptableRenderContext context, Camera ca
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=urp" class="meta-tag">URP</a> <a href="/records/?tags=srp" class="meta-tag">SRP</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">TaTa 仓库 - URP-analysis/urp-analysis.md</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2020-11-05</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">源码分析 + 实践验证</span></span></div>
 </div>
@@ -275,6 +279,7 @@ public override void Setup(ScriptableRenderContext context, ref RenderingData re
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=graphics" class="meta-tag">图形学</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=urp" class="meta-tag">URP</a> <a href="/records/?tags=srp" class="meta-tag">SRP</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - Custom Renderer Feature、URP 工程实践</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">-</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-30</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">官方文档 + 实践验证</span></span></div>
 </div>
@@ -294,6 +299,7 @@ public override void Setup(ScriptableRenderContext context, ref RenderingData re
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Unity 官方文档 - CommandBuffer、URP 源码分析</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">-</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /></span> <span class="star-desc">官方文档 + 源码验证</span></span></div>
 </div>
 

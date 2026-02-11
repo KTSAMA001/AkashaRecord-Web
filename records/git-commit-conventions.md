@@ -6,7 +6,10 @@ tags:
   - conventional-commits
 status: ✅ 已验证
 description: Git 团队协作工作流相关经验
+source: KTSAMA 实践经验
 recordDate: '2026-01-30'
+sourceDate: '2026-01-30'
+credibility: ⭐⭐⭐⭐ (实践验证)
 ---
 # Git 团队协作工作流相关经验
 
@@ -20,9 +23,12 @@ recordDate: '2026-01-30'
 
 
 <div class="record-meta-block">
-<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-30</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=git" class="meta-tag">Git</a> <a href="/records/?tags=reference" class="meta-tag">参考</a> <a href="/records/?tags=conventional-commits" class="meta-tag">提交规范</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-30</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
 </div>
 
 **参考**：[conventionalcommits.org](https://www.conventionalcommits.org/)

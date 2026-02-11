@@ -5,9 +5,12 @@ tags:
   - csharp
   - experience
   - architecture
-status: ''
+status: ⚠️ 待验证
 description: Unity 中的 C# 脚本编程相关经验
+source: KTSAMA 实践经验
 recordDate: '2026-01-28'
+sourceDate: '2026-01-28'
+credibility: ⭐⭐⭐ (待验证)
 ---
 # Unity 中的 C# 脚本编程相关经验
 
@@ -23,8 +26,12 @@ recordDate: '2026-01-28'
 
 
 <div class="record-meta-block">
-<div class="meta-item"><span class="meta-label">日期</span><span class="meta-value">2026-01-28</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=csharp" class="meta-tag">C#</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=architecture" class="meta-tag">架构设计</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-28</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-28</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--warning"><img class="inline-icon inline-icon--status" src="/icons/status-pending.svg" alt="待验证" /> 待验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">待验证</span></span></div>
 </div>
 
 **问题/场景**：

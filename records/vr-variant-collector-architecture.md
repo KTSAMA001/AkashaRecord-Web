@@ -5,17 +5,28 @@ tags:
   - shader
   - architecture
   - shader-variants
-status: ''
-description: 请在 VS Code 中点击右上角的 **"Open Preview to the Side"** (快捷键 `Ctrl+K V`) 查看图形化渲染效果。
+status: "\U0001F4D8 有效"
+description: VR 变体收集器 - 架构与流程图解
+source: KTSAMA 实践经验
+recordDate: '2026-02-08'
+updateDate: '2025-12-12'
+credibility: ⭐⭐⭐⭐ (项目文档)
 ---
 # VR 变体收集器 - 架构与流程图解
 
-**标签**：#unity #shader #architecture #shader-variants
+
+<div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=shader" class="meta-tag">着色器</a> <a href="/records/?tags=architecture" class="meta-tag">架构设计</a> <a href="/records/?tags=shader-variants" class="meta-tag">Shader 变体</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-08</span></div>
+<div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2025-12-12</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">项目文档</span></span></div>
+</div>
+
 
 > **说明**：本文档包含 Mermaid 图表源码。
 > 请在 VS Code 中点击右上角的 **"Open Preview to the Side"** (快捷键 `Ctrl+K V`) 查看图形化渲染效果。
-> 
-> **最后更新**：2025-12-12
 
 ---
 

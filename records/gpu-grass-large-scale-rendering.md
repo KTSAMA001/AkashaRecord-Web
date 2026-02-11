@@ -9,8 +9,10 @@ tags:
   - performance
 status: ✅ 已验证
 description: 大规模渲染 (Large-Scale Rendering) 相关经验
+source: KTSAMA 实践经验
 recordDate: '2026-02-07'
 sourceDate: '2024-08-08'
+credibility: ⭐⭐⭐⭐ (实践验证)
 version: Unity 2022.3+ / URP 14.0+
 ---
 # 大规模渲染 (Large-Scale Rendering) 相关经验
@@ -25,10 +27,12 @@ version: Unity 2022.3+ / URP 14.0+
 
 
 <div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=shader" class="meta-tag">着色器</a> <a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=compute-shader" class="meta-tag">计算着色器</a> <a href="/records/?tags=urp" class="meta-tag">URP</a> <a href="/records/?tags=performance" class="meta-tag">性能优化</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-07</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2024-08-08</span></div>
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=shader" class="meta-tag">着色器</a> <a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=compute-shader" class="meta-tag">计算着色器</a> <a href="/records/?tags=urp" class="meta-tag">URP</a> <a href="/records/?tags=performance" class="meta-tag">性能优化</a></span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Unity 2022.3+ / URP 14.0+</span></div>
 </div>
 
@@ -122,6 +126,6 @@ Graphics.DrawMeshInstancedProcedural(
 
 **理论基础**：
 
-- [ComputeShader 基础概念](./knowledge/graphics/compute-shader.md#compute-shader-basics)
-- [GPU 视锥剔除](./knowledge/graphics/compute-shader.md#gpu-frustum-culling)
-- [PBR BRDF 模型](./knowledge/graphics/pbr.md#cook-torrance-brdf)
+- [ComputeShader 基础概念](./compute-shader-gpu-parallel.md#compute-shader-basics)
+- [GPU 视锥剔除](./compute-shader-gpu-parallel.md#gpu-frustum-culling)
+- [PBR BRDF 模型](./pbr-brdf-theory.md#cook-torrance-brdf)

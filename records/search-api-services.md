@@ -7,8 +7,10 @@ tags:
   - serp
 status: ✅ 已验证
 description: 搜索 API 服务对比
+source: KTSAMA 实践经验
 recordDate: '2026-02-01'
 sourceDate: '2026-02-01'
+credibility: ⭐⭐⭐⭐ (实践验证)
 ---
 # 搜索 API 服务对比
 
@@ -17,7 +19,9 @@ sourceDate: '2026-02-01'
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=search-api" class="meta-tag">搜索 API</a> <a href="/records/?tags=serp" class="meta-tag">SERP</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
 </div>
 
 **适用场景**：MCP 服务、AI Agent、SEO 分析、数据采集
