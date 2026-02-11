@@ -7,7 +7,7 @@
  * 2. 解析 record-template.md 获取 Schema (字段定义/状态定义/Emoji映射)
  * 3. 解析 references/INDEX.md 获取权威元数据 (文件清单 + 标签)
  * 4. 复制 data/*.md 到 content/records/，注入 Frontmatter、修正链接、Emoji→SVG
- * 4b. 复制 data/ 下的图片等静态资源到 content/records/，保持相对路径
+ * 4b. 复制 data/ 和 assets/ 下的图片等静态资源到 content/records/
  * 5. 生成 content/records/index.md
  * 6. 生成 public/api/stats.json、tags.json、tag-meta.json 和 meta-schema.json
  */
@@ -66,6 +66,35 @@ function copyAssetFiles(srcDir, destDir) {
       count += copyAssetFiles(srcPath, destPath)
     } else if (ASSET_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
       fs.copyFileSync(srcPath, destPath)
+      count++
+    }
+  }
+
+  return count
+}
+
+/**
+ * 递归复制图片文件，将子目录结构扁平化到目标目录
+ * 用于将 assets/{record-name}/image.png 复制到 records/image.png
+ * （因为 fixLinks 会把 ../assets/subdir/file.png 转为 ./file.png）
+ * @param {string} srcDir - 源目录（如 .akasha-repo/assets）
+ * @param {string} destDir - 目标目录（如 content/records）
+ * @returns {number} 复制的文件数量
+ */
+function copyAssetFilesFlat(srcDir, destDir) {
+  if (!fs.existsSync(srcDir)) return 0
+
+  let count = 0
+  const entries = fs.readdirSync(srcDir, { withFileTypes: true })
+
+  for (const entry of entries) {
+    const srcPath = path.join(srcDir, entry.name)
+
+    if (entry.isDirectory()) {
+      // 递归进入子目录，但输出仍然扁平到 destDir
+      count += copyAssetFilesFlat(srcPath, destDir)
+    } else if (ASSET_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+      fs.copyFileSync(srcPath, path.join(destDir, entry.name))
       count++
     }
   }
@@ -636,7 +665,14 @@ async function main() {
 
   // 复制图片等静态资源文件（保持 data/ 下的相对目录结构）
   const dataDir = path.join(AKASHA_LOCAL, 'data')
-  const assetCount = copyAssetFiles(dataDir, path.join(CONTENT_DIR, 'records'))
+  const recordsDestDir = path.join(CONTENT_DIR, 'records')
+  let assetCount = copyAssetFiles(dataDir, recordsDestDir)
+
+  // 复制 assets/ 目录下的图片（扁平化子目录结构到 records/）
+  // 源 markdown 引用 ../assets/subdir/file.png，fixLinks 转为 ./file.png
+  const assetsDir = path.join(AKASHA_LOCAL, 'assets')
+  assetCount += copyAssetFilesFlat(assetsDir, recordsDestDir)
+
   if (assetCount > 0) {
     console.log(`🖼️  已复制 ${assetCount} 个图片/资源文件`)
   }
