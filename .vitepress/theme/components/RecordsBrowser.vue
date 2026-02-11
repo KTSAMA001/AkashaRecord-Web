@@ -228,10 +228,10 @@ function displayName(tag: string): string {
           {{ displayName(tag.name) }}
           <span class="count">{{ tag.count }}</span>
         </button>
-        <span v-if="tagSearchQuery && filteredTags.length === 0" class="tag-no-match">
-          未找到匹配的标签
-        </span>
       </div>
+      <span v-if="tagSearchQuery && filteredTags.length === 0" class="tag-no-match">
+        未找到匹配的标签
+      </span>
     </div>
 
     <!-- 结果统计 -->
