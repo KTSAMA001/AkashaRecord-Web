@@ -245,11 +245,11 @@ function displayName(tag: string): string {
       </div>
       <div class="tag-groups" :class="{ expanded: tagsExpanded }">
         <div v-for="group in groupedTags" :key="group.key" class="tag-group">
-          <button class="group-header" @click="toggleGroup(group.key)">
+          <button class="group-header" :aria-expanded="!collapsedGroups.has(group.key)" @click="toggleGroup(group.key)">
             <span class="group-icon" :style="{ '-webkit-mask-image': `url(/icons/${group.key}.svg)`, 'mask-image': `url(/icons/${group.key}.svg)` }" />
             <span class="group-label">{{ group.label }}</span>
             <span class="group-count">{{ group.tags.length }}</span>
-            <span class="group-toggle">{{ collapsedGroups.has(group.key) ? '▶' : '▼' }}</span>
+            <span class="group-toggle" aria-hidden="true">{{ collapsedGroups.has(group.key) ? '▶' : '▼' }}</span>
           </button>
           <div class="group-tags" v-show="!collapsedGroups.has(group.key)">
             <button 
