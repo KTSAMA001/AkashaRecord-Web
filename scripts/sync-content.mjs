@@ -42,6 +42,9 @@ const ASSET_EXTENSIONS = new Set([
   '.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.bmp', '.ico', '.avif',
 ])
 
+// 生成用于正则匹配的图片扩展名模式（从 ASSET_EXTENSIONS 动态生成，保持单一来源）
+const ASSET_EXT_PATTERN = [...ASSET_EXTENSIONS].map(e => e.slice(1)).join('|')
+
 /**
  * 递归复制图片等静态资源文件，保持相对目录结构
  * @param {string} srcDir - 源目录（如 .akasha-repo/data）
@@ -241,7 +244,7 @@ function fixLinks(content) {
 
   // 2b. 处理旧的分类路径中的图片引用 ../../knowledge/graphics/image.png -> ./image.png
   content = content.replace(
-    /\]\(\.\.\/.*?\/([^\/]+?\.(png|jpg|jpeg|gif|svg|webp|bmp|avif))\)/gi,
+    new RegExp(`\\]\\(\\.\\.\\/.*?\\/([^\\/]+?\\.(${ASSET_EXT_PATTERN}))\\)`, 'gi'),
     '](./$1)'
   )
 
