@@ -38,9 +38,13 @@ const loading = ref(true)
 const tagsExpanded = ref(false)
 const cardVisible = ref(false)
 const collapsedGroups = ref<Set<string>>(new Set())
-const viewMode = ref<ViewMode>(
-  (typeof localStorage !== 'undefined' && localStorage.getItem('ak-view-mode') as ViewMode) || 'grid'
-)
+
+function loadViewMode(): ViewMode {
+  if (typeof localStorage === 'undefined') return 'grid'
+  const stored = localStorage.getItem('ak-view-mode')
+  return stored === 'list' ? 'list' : 'grid'
+}
+const viewMode = ref<ViewMode>(loadViewMode())
 
 function setViewMode(mode: ViewMode) {
   viewMode.value = mode
@@ -371,9 +375,9 @@ function displayName(tag: string): string {
         :key="record.link" 
         :href="record.link"
         class="list-row card-enter"
-        :style="{ '--enter-delay': `${Math.min(idx * 30, 400)}ms` }"
+        :style="{ '--enter-delay': `${Math.min(idx * 30, 400)}ms`, '--list-icon-url': `url(${getRecordIcon(record)})` }"
       >
-        <span class="list-icon" :style="{ '-webkit-mask-image': `url(${getRecordIcon(record)})`, 'mask-image': `url(${getRecordIcon(record)})` }" />
+        <span class="list-icon" />
         <span 
           v-if="record.status" 
           class="status-dot" 
@@ -382,7 +386,7 @@ function displayName(tag: string): string {
         ></span>
         <span class="list-title">{{ record.title }}</span>
         <span class="list-tags" v-if="record.tags">
-          <span class="list-tag" v-for="t in record.tags.slice(0, 3)" :key="t">{{ displayName(t) }}</span>
+          <span class="list-tag" v-for="(t, ti) in record.tags.slice(0, 3)" :key="`${t}-${ti}`">{{ displayName(t) }}</span>
         </span>
         <span class="list-path">{{ record.link }}</span>
         <span class="list-arrow">→</span>
@@ -723,6 +727,8 @@ function displayName(tag: string): string {
   width: 18px;
   height: 18px;
   flex-shrink: 0;
+  -webkit-mask-image: var(--list-icon-url);
+  mask-image: var(--list-icon-url);
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
