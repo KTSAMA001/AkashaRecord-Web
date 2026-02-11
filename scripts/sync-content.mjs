@@ -79,9 +79,10 @@ function copyAssetFiles(srcDir, destDir) {
  * （因为 fixLinks 会把 ../assets/subdir/file.png 转为 ./file.png）
  * @param {string} srcDir - 源目录（如 .akasha-repo/assets）
  * @param {string} destDir - 目标目录（如 content/records）
+ * @param {Set<string>} [seen] - 已复制的文件名（检测冲突用）
  * @returns {number} 复制的文件数量
  */
-function copyAssetFilesFlat(srcDir, destDir) {
+function copyAssetFilesFlat(srcDir, destDir, seen = new Set()) {
   if (!fs.existsSync(srcDir)) return 0
 
   let count = 0
@@ -91,9 +92,12 @@ function copyAssetFilesFlat(srcDir, destDir) {
     const srcPath = path.join(srcDir, entry.name)
 
     if (entry.isDirectory()) {
-      // 递归进入子目录，但输出仍然扁平到 destDir
-      count += copyAssetFilesFlat(srcPath, destDir)
+      count += copyAssetFilesFlat(srcPath, destDir, seen)
     } else if (ASSET_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+      if (seen.has(entry.name)) {
+        console.warn(`  ⚠️ 资源文件名冲突: ${entry.name}（来自 ${srcPath}），已被覆盖`)
+      }
+      seen.add(entry.name)
       fs.copyFileSync(srcPath, path.join(destDir, entry.name))
       count++
     }
