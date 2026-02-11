@@ -28,6 +28,7 @@ interface StatusDef {
 
 const tags = ref<TagData[]>([])
 const tagMeta = ref<Record<string, { label: string; icon: string }>>({})
+const categoryConfig = ref<Record<string, { label: string; order: number }>>({})
 const statusDefs = ref<StatusDef[]>([])
 const selectedTags = ref<Set<string>>(new Set())
 const searchQuery = ref('')
@@ -35,20 +36,6 @@ const loading = ref(true)
 const tagsExpanded = ref(false)
 const cardVisible = ref(false)
 const collapsedGroups = ref<Set<string>>(new Set())
-
-/** 图标分类 → 分组显示名 + 排序权重 */
-const categoryConfig: Record<string, { label: string; order: number }> = {
-  unity:   { label: 'UNITY_ENGINE',  order: 0 },
-  shader:  { label: 'GRAPHICS',     order: 1 },
-  chip:    { label: 'AI_TECH',      order: 2 },
-  code:    { label: 'CODING',       order: 3 },
-  network: { label: 'WEB_INFRA',    order: 4 },
-  wrench:  { label: 'TOOLS',        order: 5 },
-  book:    { label: 'KNOWLEDGE',    order: 6 },
-  monitor: { label: 'DESIGN',       order: 7 },
-  spark:   { label: 'MISC',         order: 8 },
-  doc:     { label: 'DOCS',         order: 9 },
-}
 
 interface TagGroup {
   key: string
@@ -64,13 +51,14 @@ const groupedTags = computed<TagGroup[]>(() => {
     if (!groups.has(icon)) groups.set(icon, [])
     groups.get(icon)!.push(tag)
   }
+  const cfg = categoryConfig.value
   return Array.from(groups.entries())
     .map(([key, items]) => ({
       key,
-      label: categoryConfig[key]?.label || key.toUpperCase(),
+      label: cfg[key]?.label || key.toUpperCase(),
       tags: items.sort((a, b) => b.count - a.count),
     }))
-    .sort((a, b) => (categoryConfig[a.key]?.order ?? 99) - (categoryConfig[b.key]?.order ?? 99))
+    .sort((a, b) => (cfg[a.key]?.order ?? 99) - (cfg[b.key]?.order ?? 99))
 })
 
 function toggleGroup(key: string) {
@@ -137,7 +125,23 @@ onMounted(async () => {
       fetch('/api/meta-schema.json'),
     ])
     if (tagsRes.ok) tags.value = await tagsRes.json()
-    if (metaRes.ok) tagMeta.value = await metaRes.json()
+    if (metaRes.ok) {
+      const metaData = await metaRes.json()
+      // 兼容新旧格式：新格式 { tags, categories }，旧格式直接是标签映射
+      if (metaData.tags && typeof metaData.tags === 'object' && !Array.isArray(metaData.tags)) {
+        tagMeta.value = metaData.tags
+        // 加载分类配置
+        if (Array.isArray(metaData.categories)) {
+          const cfg: Record<string, { label: string; order: number }> = {}
+          for (const cat of metaData.categories) {
+            cfg[cat.key] = { label: cat.label, order: cat.order }
+          }
+          categoryConfig.value = cfg
+        }
+      } else {
+        tagMeta.value = metaData
+      }
+    }
     if (schemaRes.ok) {
       const schema = await schemaRes.json()
       statusDefs.value = schema.statuses || []
