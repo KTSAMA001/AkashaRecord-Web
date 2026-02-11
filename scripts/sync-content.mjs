@@ -595,25 +595,13 @@ function generateTags(records, tagMeta) {
   const sortedTags = Array.from(tagMap.values()).sort((a, b) => b.count - a.count)
   fs.writeFileSync(path.join(API_DIR, 'tags.json'), JSON.stringify(sortedTags, null, 2))
 
-  // 生成 tag-meta.json（含 categories：从 icon 字段自动归纳分组）
+  // 生成 tag-meta.json
   const metaObj = {}
   for (const [tag, info] of tagMeta) {
     metaObj[tag] = info
   }
-
-  // 自动从标签元数据中提取分类：按 icon 分组，按该分组内标签总数排序
-  const iconGroups = new Map() // icon -> totalCount
-  for (const tagData of sortedTags) {
-    const icon = tagMeta.get(tagData.name)?.icon || 'spark'
-    iconGroups.set(icon, (iconGroups.get(icon) || 0) + tagData.count)
-  }
-  const categories = Array.from(iconGroups.entries())
-    .sort((a, b) => b[1] - a[1])
-    .map(([icon], idx) => ({ key: icon, label: icon.toUpperCase(), order: idx }))
-
-  const output = { tags: metaObj, categories }
-  fs.writeFileSync(path.join(API_DIR, 'tag-meta.json'), JSON.stringify(output, null, 2))
-  console.log(`💾 已生成 tag-meta.json (${tagMeta.size} 条标签, ${categories.length} 个分类)`)
+  fs.writeFileSync(path.join(API_DIR, 'tag-meta.json'), JSON.stringify(metaObj, null, 2))
+  console.log(`💾 已生成 tag-meta.json (${tagMeta.size} 条)`)
 }
 
 function generatePages(records) {

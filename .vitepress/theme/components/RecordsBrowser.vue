@@ -30,14 +30,12 @@ type ViewMode = 'grid' | 'list'
 
 const tags = ref<TagData[]>([])
 const tagMeta = ref<Record<string, { label: string; icon: string }>>({})
-const categoryConfig = ref<Record<string, { label: string; order: number }>>({})
 const statusDefs = ref<StatusDef[]>([])
 const selectedTags = ref<Set<string>>(new Set())
 const searchQuery = ref('')
 const loading = ref(true)
 const tagsExpanded = ref(false)
 const cardVisible = ref(false)
-const collapsedGroups = ref<Set<string>>(new Set())
 
 function loadViewMode(): ViewMode {
   if (typeof localStorage === 'undefined') return 'grid'
@@ -51,37 +49,6 @@ function setViewMode(mode: ViewMode) {
   if (typeof localStorage !== 'undefined') {
     localStorage.setItem('ak-view-mode', mode)
   }
-}
-
-interface TagGroup {
-  key: string
-  label: string
-  tags: TagData[]
-}
-
-/** 将标签按 icon 分类分组 */
-const groupedTags = computed<TagGroup[]>(() => {
-  const groups = new Map<string, TagData[]>()
-  for (const tag of tags.value) {
-    const icon = tagMeta.value[tag.name]?.icon || 'spark'
-    if (!groups.has(icon)) groups.set(icon, [])
-    groups.get(icon)!.push(tag)
-  }
-  const cfg = categoryConfig.value
-  return Array.from(groups.entries())
-    .map(([key, items]) => ({
-      key,
-      label: cfg[key]?.label || key.toUpperCase(),
-      tags: items.sort((a, b) => b.count - a.count),
-    }))
-    .sort((a, b) => (cfg[a.key]?.order ?? 99) - (cfg[b.key]?.order ?? 99))
-})
-
-function toggleGroup(key: string) {
-  const next = new Set(collapsedGroups.value)
-  if (next.has(key)) next.delete(key)
-  else next.add(key)
-  collapsedGroups.value = next
 }
 
 // 卡片入场动画控制：筛选变化时重置动画
@@ -141,23 +108,7 @@ onMounted(async () => {
       fetch('/api/meta-schema.json'),
     ])
     if (tagsRes.ok) tags.value = await tagsRes.json()
-    if (metaRes.ok) {
-      const metaData = await metaRes.json()
-      // 兼容新旧格式：新格式 { tags, categories }，旧格式直接是标签映射
-      if (metaData.tags && typeof metaData.tags === 'object' && !Array.isArray(metaData.tags)) {
-        tagMeta.value = metaData.tags
-        // 加载分类配置
-        if (Array.isArray(metaData.categories)) {
-          const cfg: Record<string, { label: string; order: number }> = {}
-          for (const cat of metaData.categories) {
-            cfg[cat.key] = { label: cat.label, order: cat.order }
-          }
-          categoryConfig.value = cfg
-        }
-      } else {
-        tagMeta.value = metaData
-      }
-    }
+    if (metaRes.ok) tagMeta.value = await metaRes.json()
     if (schemaRes.ok) {
       const schema = await schemaRes.json()
       statusDefs.value = schema.statuses || []
@@ -243,7 +194,7 @@ function displayName(tag: string): string {
   <div class="records-browser">
     <!-- 筛选工具栏 -->
     <div class="filter-bar">
-      <div class="filter-actions-top">
+      <div class="tag-cloud" :class="{ expanded: tagsExpanded }">
         <button 
           class="filter-tag" 
           :class="{ active: selectedTags.size === 0 }"
@@ -251,8 +202,20 @@ function displayName(tag: string): string {
         >
           ALL
         </button>
+        <button 
+          v-for="tag in tags" 
+          :key="tag.name"
+          class="filter-tag"
+          :class="{ active: selectedTags.has(tag.name) }"
+          @click="toggleTag(tag.name)"
+        >
+          {{ displayName(tag.name) }}
+          <span class="count">{{ tag.count }}</span>
+        </button>
+      </div>
+      <div class="filter-actions">
         <button class="expand-btn" @click="tagsExpanded = !tagsExpanded">
-          {{ tagsExpanded ? '▲ COLLAPSE' : '▼ EXPAND_ALL' }}
+          {{ tagsExpanded ? '▲ COLLAPSE' : '▼ MORE_TAGS' }}
         </button>
         <!-- 搜索框 -->
         <div class="search-box">
@@ -282,28 +245,6 @@ function displayName(tag: string): string {
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="0.5" y="1" width="13" height="2.5" rx="0.5" stroke="currentColor"/><rect x="0.5" y="5.75" width="13" height="2.5" rx="0.5" stroke="currentColor"/><rect x="0.5" y="10.5" width="13" height="2.5" rx="0.5" stroke="currentColor"/></svg>
           </button>
-        </div>
-      </div>
-      <div class="tag-groups" :class="{ expanded: tagsExpanded }">
-        <div v-for="group in groupedTags" :key="group.key" class="tag-group">
-          <button class="group-header" :aria-expanded="!collapsedGroups.has(group.key)" @click="toggleGroup(group.key)">
-            <span class="group-icon" :style="{ '-webkit-mask-image': `url(/icons/${group.key}.svg)`, 'mask-image': `url(/icons/${group.key}.svg)` }" />
-            <span class="group-label">{{ group.label }}</span>
-            <span class="group-count">{{ group.tags.length }}</span>
-            <span class="group-toggle" aria-hidden="true">{{ collapsedGroups.has(group.key) ? '▶' : '▼' }}</span>
-          </button>
-          <div class="group-tags" v-show="!collapsedGroups.has(group.key)">
-            <button 
-              v-for="tag in group.tags" 
-              :key="tag.name"
-              class="filter-tag"
-              :class="{ active: selectedTags.has(tag.name) }"
-              @click="toggleTag(tag.name)"
-            >
-              {{ displayName(tag.name) }}
-              <span class="count">{{ tag.count }}</span>
-            </button>
-          </div>
         </div>
       </div>
     </div>
@@ -408,100 +349,37 @@ function displayName(tag: string): string {
   margin-bottom: 1.5rem;
 }
 
-.filter-actions-top {
+.tag-cloud {
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 0.8rem;
   flex-wrap: wrap;
-}
-
-.tag-groups {
-  max-height: 16rem;
-  overflow: hidden;
+  gap: 0.4rem;
+  max-height: none;
+  overflow: visible;
   transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
 }
 
-.tag-groups.expanded {
+.tag-cloud:not(.expanded) {
+  max-height: 12rem;
+  overflow: hidden;
+}
+
+.tag-cloud.expanded {
   max-height: none;
   overflow: visible;
 }
 
 @media (max-width: 640px) {
-  .tag-groups:not(.expanded) {
-    max-height: 12rem;
+  .tag-cloud:not(.expanded) {
+    max-height: 10rem;
   }
 }
 
-.tag-group {
-  border: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg-soft);
-  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
-}
-
-.group-header {
+.filter-actions {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 0.35rem 0.8rem;
-  background: none;
-  border: none;
-  border-bottom: 1px dashed var(--vp-c-divider);
-  cursor: pointer;
-  font-family: 'Courier New', monospace;
-  font-size: 0.72rem;
-  color: var(--vp-c-text-3);
-  letter-spacing: 1px;
-  transition: color 0.25s;
-}
-
-.group-header:hover {
-  color: var(--ak-accent);
-}
-
-.group-icon {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  background-color: var(--ak-accent);
-  opacity: 0.7;
-}
-
-.group-label {
-  flex: 1;
-  text-align: left;
-}
-
-.group-count {
-  font-size: 0.65rem;
-  opacity: 0.5;
-}
-
-.group-toggle {
-  font-size: 0.6rem;
-  opacity: 0.4;
-  transition: opacity 0.25s;
-}
-
-.group-header:hover .group-toggle {
-  opacity: 0.8;
-}
-
-.group-tags {
-  display: flex;
+  gap: 0.8rem;
+  margin-top: 0.6rem;
   flex-wrap: wrap;
-  gap: 0.35rem;
-  padding: 0.4rem 0.6rem;
 }
 
 .expand-btn {
