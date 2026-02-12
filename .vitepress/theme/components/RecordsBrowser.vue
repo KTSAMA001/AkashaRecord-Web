@@ -35,14 +35,17 @@ const loading = ref(true)
 const tagsExpanded = ref(false)
 const cardVisible = ref(false)
 
-/** 根据搜索词过滤标签按钮（匹配中文标签名或英文 key） */
+/** 判断标签是否匹配搜索词（匹配中文标签名或英文 key） */
+function isTagMatch(tagName: string, query: string): boolean {
+  const label = (tagMeta.value[tagName]?.label || '').toLowerCase()
+  return tagName.toLowerCase().includes(query) || label.includes(query)
+}
+
+/** 根据搜索词过滤标签按钮 */
 const filteredTags = computed(() => {
   const q = searchQuery.value.trim().toLowerCase()
   if (!q) return tags.value
-  return tags.value.filter(tag => {
-    const label = (tagMeta.value[tag.name]?.label || '').toLowerCase()
-    return tag.name.toLowerCase().includes(q) || label.includes(q)
-  })
+  return tags.value.filter(tag => isTagMatch(tag.name, q))
 })
 
 /** 搜索词匹配的标签名集合（用于记录匹配判定） */
@@ -51,30 +54,32 @@ const matchedTagNames = computed(() => {
   if (!q) return new Set<string>()
   const matched = new Set<string>()
   for (const tag of tags.value) {
-    const label = (tagMeta.value[tag.name]?.label || '').toLowerCase()
-    if (tag.name.toLowerCase().includes(q) || label.includes(q)) {
-      matched.add(tag.name)
-    }
+    if (isTagMatch(tag.name, q)) matched.add(tag.name)
   }
   return matched
 })
 
-/** 获取单条记录的匹配原因（用于 UI 展示） */
-function getMatchReasons(record: FileInfo): string[] {
+/** 每条记录的匹配原因（预计算，避免模板中重复调用） */
+const matchReasonsMap = computed(() => {
   const q = searchQuery.value.trim().toLowerCase()
-  if (!q) return []
-  const reasons: string[] = []
-  if (record.title.toLowerCase().includes(q)) {
-    reasons.push('标题匹配')
+  const map = new Map<string, string[]>()
+  if (!q) return map
+  const mTags = matchedTagNames.value
+  for (const record of filteredRecords.value) {
+    const reasons: string[] = []
+    if (record.title.toLowerCase().includes(q)) {
+      reasons.push('标题匹配')
+    }
+    if (record.tags && record.tags.some(t => mTags.has(t))) {
+      const matched = record.tags
+        .filter(t => mTags.has(t))
+        .map(t => tagMeta.value[t]?.label || t)
+      reasons.push(`标签匹配: ${matched.join(', ')}`)
+    }
+    if (reasons.length) map.set(record.link, reasons)
   }
-  if (record.tags && record.tags.some(t => matchedTagNames.value.has(t))) {
-    const matched = record.tags
-      .filter(t => matchedTagNames.value.has(t))
-      .map(t => tagMeta.value[t]?.label || t)
-    reasons.push(`标签匹配: ${matched.join(', ')}`)
-  }
-  return reasons
-}
+  return map
+})
 
 // 卡片入场动画控制：筛选变化时重置动画
 watch([selectedTags, searchQuery], async () => {
@@ -321,8 +326,8 @@ function displayName(tag: string): string {
         <div class="card-body">
           <h4 class="title">{{ record.title }}</h4>
           <div class="code-path" :title="record.link">{{ record.link }}</div>
-          <div v-if="searchQuery.trim() && getMatchReasons(record).length" class="match-reasons">
-            <span v-for="reason in getMatchReasons(record)" :key="reason" class="match-badge">{{ reason }}</span>
+          <div v-if="searchQuery.trim() && matchReasonsMap.get(record.link)?.length" class="match-reasons">
+            <span v-for="reason in matchReasonsMap.get(record.link)" :key="reason" class="match-badge">{{ reason }}</span>
           </div>
         </div>
         <div class="card-footer">
