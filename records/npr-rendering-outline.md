@@ -91,7 +91,7 @@ float3 result = lerp(screenColor, _EdgeColor, outline);
 public override void Create()
 {
     _volumeStack = VolumeManager.instance.stack;
-    ssol = _volumeStack.GetComponent<SSOutLineVolume>();
+    ssol = _volumeStack.GetComponent&lt;SSOutLineVolume&gt;();
     setting.ssol = ssol;
 }
 

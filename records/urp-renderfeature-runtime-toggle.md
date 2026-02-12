@@ -48,7 +48,7 @@ public struct RenderFeatureToggle
 [ExecuteAlways]
 public class RenderFeatureToggler : MonoBehaviour
 {
-    [SerializeField] private List<RenderFeatureToggle> renderFeatures;
+    [SerializeField] private List&lt;RenderFeatureToggle&gt; renderFeatures;
     [SerializeField] private UniversalRenderPipelineAsset pipelineAsset;
 
     private void Update()

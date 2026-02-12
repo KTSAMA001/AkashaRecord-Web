@@ -120,7 +120,7 @@ dnf makecache
 
 直接运行 `npx vitepress dev` 时，npx 可能使用全局缓存中的旧版/残缺 VitePress（路径指向 `~/.npm/_npx/...`），其 `optimizeDeps` 配置与本地 `node_modules` 不匹配，导致客户端 JS 无法加载（白屏）。
 
-诊断方法：`curl -6 http://localhost:<port>/` 查看 HTML 中的 `<script>` 路径，如果指向 `/@fs/Users/.../.npm/_npx/...` 就说明用的是 npx 缓存版本。
+诊断方法：`curl -6 http://localhost:&lt;port&gt;/` 查看 HTML 中的 `&lt;script&gt;` 路径，如果指向 `/@fs/Users/.../.npm/_npx/...` 就说明用的是 npx 缓存版本。
 
 **解决**：
 - 使用 `npm run dev`（通过 package.json scripts 调用，自动用本地版本）
@@ -188,7 +188,7 @@ const AKASHA_REPO = GITHUB_MIRROR
 
 单独注册 `<Mermaid code="...">` 全局组件不够——标准的 ` ```mermaid ` 代码块不会被拦截。
 
-**方案**：在 VitePress `markdown.config` 中重写 `fence` 规则，拦截 `info === 'mermaid'` 的代码块，将内容 Base64 编码后传给 `<MermaidRenderer>` 组件。
+**方案**：在 VitePress `markdown.config` 中重写 `fence` 规则，拦截 `info === 'mermaid'` 的代码块，将内容 Base64 编码后传给 `&lt;MermaidRenderer&gt;` 组件。
 
 注意 `atob()` 不支持 UTF-8 多字节字符（中文），解码时必须用 `TextDecoder`：
 
@@ -228,7 +228,7 @@ webhook 服务使用 express 监听 3721 端口，接收 GitHub push 事件后�
 **备注**：
 
 - 诊断 403/404 时，优先看：
-	- `/www/wwwlogs/<domain>.error.log`
+	- `/www/wwwlogs/&lt;domain&gt;.error.log`
 	- `ls -l` 验证 dist 内是否存在 `index.html`
 - 如果某路径既可能是“目录”也可能是“同名 html”（cleanUrls 场景），`try_files` 顺序会影响行为；但最稳妥还是让目录真实存在 `index.html`。
 

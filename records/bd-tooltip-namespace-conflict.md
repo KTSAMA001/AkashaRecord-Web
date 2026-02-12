@@ -53,9 +53,9 @@ public float myValue;
 ```csharp
 public enum DirectionType
 {
-    /// <summary>前方</summary>
+    /// &lt;summary&gt;前方</summary>
     Forward,
-    /// <summary>后方</summary>
+    /// &lt;summary&gt;后方</summary>
     Back
 }
 ```

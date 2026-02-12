@@ -62,7 +62,7 @@ Unity 中 `Renderer.material` 和 `Renderer.materials` 属性用于访问渲染�
 ```csharp
 void TestMaterialBehavior()
 {
-    var renderer = GetComponent<Renderer>();
+    var renderer = GetComponent&lt;Renderer&gt;();
     
     // 测试数组副本行为
     Material[] mats1 = renderer.materials;  // 触发实例化（如果是首次）
@@ -79,7 +79,7 @@ void TestMaterialBehavior()
 void OnDestroy()
 {
     // 需要手动销毁实例化的材质
-    var renderer = GetComponent<Renderer>();
+    var renderer = GetComponent&lt;Renderer&gt;();
     foreach (var mat in renderer.materials)
     {
         Destroy(mat);

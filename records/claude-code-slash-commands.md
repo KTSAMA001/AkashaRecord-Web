@@ -62,7 +62,7 @@ Claude Code 有哪些内置斜杠命令？每个命令的具体作用是什么�
 | `/pr-comments` | 查看拉取请求注释 | Git 集成 |
 | `/privacy-settings` | 查看和更新您的隐私设置 | 隐私 |
 | `/release-notes` | 查看发布说明 | 版本信息 |
-| `/rename <name>` | 重命名当前会话以便于识别 | 会话管理 |
+| `/rename &lt;name&gt;` | 重命名当前会话以便于识别 | 会话管理 |
 | `/remote-env` | 配置远程会话环境（claude.ai 订阅者） | 远程会话 |
 | `/resume [session]` | 按 ID 或名称恢复对话，或打开会话选择器 | 会话管理 |
 | `/review` | 请求代码审查 | 代码质量 |
@@ -85,7 +85,7 @@ Claude Code 有哪些内置斜杠命令？每个命令的具体作用是什么�
 ```
 /clear        - 清除对话历史
 /resume [id]  - 恢复对话
-/rename <name> - 重命名当前会话
+/rename &lt;name&gt; - 重命名当前会话
 /export [file]  - 导出当前对话
 /exit         - 退出 REPL
 ```

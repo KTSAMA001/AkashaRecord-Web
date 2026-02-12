@@ -83,7 +83,7 @@ web_archive_mcp/
 {
   "servers": {
     "web_archive_mcp": {
-      "command": "<venv>/Scripts/python.exe",
+      "command": "&lt;venv&gt;/Scripts/python.exe",
       "args": ["server.py"],
       "transport": "stdio",
       "workingDirectory": "<项目路径>"
@@ -209,7 +209,7 @@ mhtml_content = result.get("data")
 
 ```python
 def _extract_title(html: str) -> str:
-    # 优先级: <title> > <h1> > <h2> > og:title > meta[name=title] > "Untitled Page"
+    # 优先级: &lt;title&gt; > &lt;h1&gt; > &lt;h2&gt; > og:title > meta[name=title] > "Untitled Page"
 ```
 
 ### 6.5 文件名安全化
