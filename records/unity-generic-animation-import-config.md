@@ -53,7 +53,7 @@ version: Unity 2020.3+
 
 1. 切换到 **Animation** 标签页。
 2. 向下滚动到最底部，找到 **Motion** 区域。
-3. **Root Motion Node**：将其下拉菜单设为 **`&lt;None&gt;`**。
+3. **Root Motion Node**：将其下拉菜单设为 **`<None>`**。
    - **原理**：设为 None 后，Unity 会基于整体质心（Center of Mass）计算运动，从而解除对特定骨骼的"死锁"，让上方隐藏的 `Root Transform` 选项瞬间出现。
 4. 点击 **Apply**。
 
@@ -90,7 +90,7 @@ version: Unity 2020.3+
 
 | 遇到问题 | 检查细节 | 解决方案 |
 |---------|---------|---------|
-| Bake 选项不出来 | Root Motion Node 被报错卡死 | Motion → Root Motion Node 设为 `&lt;None&gt;` |
+| Bake 选项不出来 | Root Motion Node 被报错卡死 | Motion → Root Motion Node 设为 `<None>` |
 | 勾了位移还是滑步 | 存在双重位移 | Mask → 取消勾选根骨骼 (root) |
 | Loop Match 亮红灯 | 首尾速度不一致 | Animation 窗口中将 Z 轴位移曲线设为 Linear（线性） |
 | 角色越走越歪 | 旋转没烘焙 | Root Transform Rotation → 勾选 Bake Into Pose |

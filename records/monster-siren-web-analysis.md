@@ -92,7 +92,7 @@ credibility: ⭐⭐⭐⭐ (实地分析/逆向研究)
 
 **2. SVG Glitch 故障遮罩原理**
 ```html
-&lt;defs&gt;
+<defs>
   <!-- 定义不规则裁剪区域 -->
   <clipPath id="mask-glitch-1">
     <polygon points="-41,103 546,103 587,0 0,0"></polygon>

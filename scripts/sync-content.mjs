@@ -285,11 +285,48 @@ function fixLinks(content) {
   content = content.replace(/\]\(\.\/([^\)]+)\.md\)/g, '](./$1)')
 
   // 4. 转义 C# 泛型防止 Vue 解析错误 <T>
-  content = content.replace(/<([a-zA-Z0-9_, ]+)>/g, (match, p1) => {
-    // 简单 heuristic: 如果是纯字母数字组合，可能是泛型，转义
-    // 排除 HTML 标签将在 Markdown 渲染层处理，这里只处理明显的代码泛型
-    return `&lt;${p1}&gt;`
-  })
+  //    必须跳过围栏代码块（```...```）和行内代码（`...`）中的内容
+  //    同时跳过已知的 HTML 标签（如 summary, details, br, img, div, span 等）
+  const HTML_TAGS = new Set([
+    'a', 'abbr', 'address', 'area', 'article', 'aside', 'audio',
+    'b', 'base', 'bdi', 'bdo', 'blockquote', 'body', 'br', 'button',
+    'canvas', 'caption', 'cite', 'code', 'col', 'colgroup',
+    'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt',
+    'em', 'embed',
+    'fieldset', 'figcaption', 'figure', 'footer', 'form',
+    'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html',
+    'i', 'iframe', 'img', 'input', 'ins',
+    'kbd', 'label', 'legend', 'li', 'link',
+    'main', 'map', 'mark', 'menu', 'meta', 'meter',
+    'nav', 'noscript',
+    'object', 'ol', 'optgroup', 'option', 'output',
+    'p', 'param', 'picture', 'pre', 'progress',
+    'q', 'rp', 'rt', 'ruby',
+    's', 'samp', 'script', 'section', 'select', 'slot', 'small', 'source', 'span',
+    'strong', 'style', 'sub', 'summary', 'sup', 'svg',
+    'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time',
+    'title', 'tr', 'track',
+    'u', 'ul', 'var', 'video', 'wbr',
+    // SVG elements
+    'defs', 'g', 'path', 'rect', 'circle', 'line', 'polyline', 'polygon', 'text', 'tspan',
+  ])
+
+  // 按围栏代码块分割，只对非代码块部分进行转义
+  const parts = content.split(/(```[\s\S]*?```)/g)
+  content = parts.map(part => {
+    // 围栏代码块内容不转义
+    if (part.startsWith('```')) return part
+
+    // 非代码块部分：跳过行内代码后转义剩余的泛型
+    return part.replace(/(`.+?`)|<([a-zA-Z0-9_, ]+)>/g, (match, inlineCode, tagContent) => {
+      // 行内代码：原样保留
+      if (inlineCode) return inlineCode
+      // 已知 HTML 标签：原样保留
+      if (HTML_TAGS.has(tagContent.toLowerCase().trim())) return match
+      // 其他（C# 泛型等）：转义
+      return `&lt;${tagContent}&gt;`
+    })
+  }).join('')
 
   return content
 }
