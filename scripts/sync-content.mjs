@@ -285,11 +285,15 @@ function fixLinks(content) {
   content = content.replace(/\]\(\.\/([^\)]+)\.md\)/g, '](./$1)')
 
   // 4. 转义 C# 泛型防止 Vue 解析错误 <T>
-  content = content.replace(/<([a-zA-Z0-9_, ]+)>/g, (match, p1) => {
-    // 简单 heuristic: 如果是纯字母数字组合，可能是泛型，转义
-    // 排除 HTML 标签将在 Markdown 渲染层处理，这里只处理明显的代码泛型
-    return `&lt;${p1}&gt;`
-  })
+  //    跳过围栏代码块、行内代码和数学公式（$...$, $$...$$）
+  const segments = content.split(/(```[\s\S]*?```|\$\$[\s\S]*?\$\$|\$[^$\n]+?\$|`[^`]+`)/g)
+  content = segments.map((seg, i) => {
+    // 奇数索引是被分隔符匹配的内容（代码块/数学公式），保持原样
+    if (i % 2 === 1) return seg
+    return seg.replace(/<([a-zA-Z0-9_, ]+)>/g, (match, p1) => {
+      return `&lt;${p1}&gt;`
+    })
+  }).join('')
 
   return content
 }

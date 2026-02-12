@@ -166,8 +166,8 @@ using Unity.Collections;
 using Unity.Jobs;
 
 // 1. 创建命令数组
-NativeArray&lt;RaycastCommand&gt; commands = new NativeArray&lt;RaycastCommand&gt;(rayCount, Allocator.TempJob);
-NativeArray&lt;RaycastHit&gt; results = new NativeArray&lt;RaycastHit&gt;(rayCount, Allocator.TempJob);
+NativeArray<RaycastCommand> commands = new NativeArray<RaycastCommand>(rayCount, Allocator.TempJob);
+NativeArray<RaycastHit> results = new NativeArray<RaycastHit>(rayCount, Allocator.TempJob);
 
 // 2. 填充命令
 for (int i = 0; i < rayCount; i++)

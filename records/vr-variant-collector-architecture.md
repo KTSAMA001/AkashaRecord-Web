@@ -227,7 +227,7 @@ flowchart LR
 VRVariantCollectorCore
 ├── 字段
 │   ├── _context : CollectionContext      // 运行时状态
-│   └── _cachedMaterialPaths : List&lt;string&gt;  // 材质路径缓存
+│   └── _cachedMaterialPaths : List<string>  // 材质路径缓存
 │
 ├── 公开方法
 │   └── RunCollection()                   // 主入口，返回 IEnumerator

@@ -1052,3 +1052,26 @@ body::after {
     content: '：';
   }
 }
+
+/* ======= 数学公式（MathJax）======= */
+mjx-container {
+  display: inline-block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+mjx-container[display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container > svg {
+  vertical-align: middle;
+}
+
+.dark mjx-container > svg {
+  color: var(--vp-c-text-1);
+}
