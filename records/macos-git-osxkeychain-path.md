@@ -1,5 +1,5 @@
 ---
-title: 'macOS Git osxkeychain Credential Helper 路径问题 {#osxkeychain-path}'
+title: macOS Git osxkeychain Credential Helper 路径问题
 tags:
   - git
   - experience
@@ -7,7 +7,7 @@ tags:
   - docker
   - credential
 status: ✅ 已验证
-description: 'macOS Git osxkeychain Credential Helper 路径问题 {#osxkeychain-path}'
+description: macOS Git osxkeychain Credential Helper 路径问题
 source: KTSAMA 实践经验
 credibility: ⭐⭐⭐⭐ (实践验证)6-02-05
 version: Git 2.x+ (Homebrew)

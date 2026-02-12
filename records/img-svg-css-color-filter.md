@@ -1,12 +1,12 @@
 ---
-title: 'img 标签的 SVG 无法继承 CSS color，需用 filter 着色 {#img-svg-color-filter}'
+title: img 标签的 SVG 无法继承 CSS color，需用 filter 着色
 tags:
   - tools
   - web
   - experience
   - vitepress
 status: ✅ 已验证
-description: 'img 标签的 SVG 无法继承 CSS color，需用 filter 着色 {#img-svg-color-filter}'
+description: img 标签的 SVG 无法继承 CSS color，需用 filter 着色
 source: KTSAMA 实践经验
 recordDate: '2026-02-07'
 ---

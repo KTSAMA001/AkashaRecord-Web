@@ -1,5 +1,5 @@
 ---
-title: 'RenderFeature 运行时开关控制 {#renderfeature-toggler}'
+title: RenderFeature 运行时开关控制
 tags:
   - shader
   - unity
@@ -8,7 +8,7 @@ tags:
   - srp-batcher
   - renderer-feature
 status: ✅ 已验证
-description: 'RenderFeature 运行时开关控制 {#renderfeature-toggler}'
+description: RenderFeature 运行时开关控制
 source: Unity_URP_Learning
 recordDate: '2026-02-07'
 sourceDate: '2024-08-08'

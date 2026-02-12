@@ -1,12 +1,12 @@
 ---
-title: 'VitePress VPFeature 图标 HTML 结构（无 .icon 包裹层） {#vpfeature-icon-structure}'
+title: VitePress VPFeature 图标 HTML 结构（无 .icon 包裹层）
 tags:
   - tools
   - web
   - experience
   - vitepress
 status: ✅ 已验证
-description: 'VitePress VPFeature 图标 HTML 结构（无 .icon 包裹层） {#vpfeature-icon-structure}'
+description: VitePress VPFeature 图标 HTML 结构（无 .icon 包裹层）
 source: KTSAMA 实践经验
 recordDate: '2026-02-07'
 ---

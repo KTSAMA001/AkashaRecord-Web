@@ -1,12 +1,12 @@
 ---
-title: '侧边栏自定义高亮竖条与文字间距 {#sidebar-padding-left}'
+title: 侧边栏自定义高亮竖条与文字间距
 tags:
   - tools
   - web
   - experience
   - vitepress
 status: ✅ 已验证
-description: '侧边栏自定义高亮竖条与文字间距 {#sidebar-padding-left}'
+description: 侧边栏自定义高亮竖条与文字间距
 source: KTSAMA 实践经验
 recordDate: '2026-02-07'
 ---

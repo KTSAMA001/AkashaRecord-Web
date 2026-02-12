@@ -484,22 +484,24 @@ function ensureFrontmatter(content, record, extractedMeta, schema = null) {
   
   const data = fileMatter.data || {}
 
+  // 去除 {#anchor} 后缀（仅用于正文标题锚点，不应出现在 frontmatter 纯文本字段中）
+  const cleanHeading = (s) => s?.replace(/\s*\{#[^}]+\}$/g, '').trim() || null
+
   // 强制覆盖/补全关键元数据（INDEX.md 权威源）
   // 标题优先级：INDEX.md desc（权威） > 正文 h1 > 正文 h2 > 文件名
   if (!data.title || data.title.endsWith('.md')) {
     const h1Match = fileMatter.content.match(/^#\s+(.+)$/m)
     const h2Match = fileMatter.content.match(/^##\s+(.+)$/m)
-    const cleanHeading = (s) => s?.replace(/\s*\{#[^}]+\}$/, '').trim()  // 去除 {#anchor}
     // desc 有效性检查：跳过图片备注、操作说明等非标题内容
     const isValidDesc = (s) => s && !s.startsWith('📷') && !s.startsWith('请在') && !s.includes('**图片资源**')
-    data.title = (isValidDesc(record.desc) ? record.desc : null)
+    data.title = cleanHeading(isValidDesc(record.desc) ? record.desc : null)
       || cleanHeading(h1Match?.[1])
       || cleanHeading(h2Match?.[1])
       || record.title.replace(/\.md$/, '')
   }
   data.tags = record.tags
   data.status = record.status
-  data.description = data.description || record.desc
+  data.description = cleanHeading(data.description || record.desc)
 
   // 从正文首个元数据块补充丰富字段（Schema-Driven）
   if (extractedMeta && schema?.fields) {

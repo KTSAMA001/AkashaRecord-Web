@@ -1,5 +1,5 @@
 ---
-title: 'Git 对象损坏（loose object corrupt）修复 {#git-object-corrupt}'
+title: Git 对象损坏（loose object corrupt）修复
 tags:
   - git
   - experience
@@ -7,7 +7,7 @@ tags:
   - docker
   - credential
 status: ⚠️ 解决方案已验证，根因待查
-description: 'Git 对象损坏（loose object corrupt）修复 {#git-object-corrupt}'
+description: Git 对象损坏（loose object corrupt）修复
 source: KTSAMA 实践经验
 credibility: ⭐⭐⭐ (解决方案有效)
 version: Git 2.x+

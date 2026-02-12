@@ -1,5 +1,5 @@
 ---
-title: 'URP 中 GrabPass 替代方案 (GrabColor RenderFeature) {#grab-color-renderfeature}'
+title: URP 中 GrabPass 替代方案 (GrabColor RenderFeature)
 tags:
   - shader
   - unity
@@ -8,7 +8,7 @@ tags:
   - srp-batcher
   - renderer-feature
 status: ✅ 已验证
-description: 'URP 中 GrabPass 替代方案 (GrabColor RenderFeature) {#grab-color-renderfeature}'
+description: URP 中 GrabPass 替代方案 (GrabColor RenderFeature)
 source: Unity_URP_Learning
 recordDate: '2026-02-07'
 sourceDate: '2024-08-08'

@@ -1,5 +1,5 @@
 ---
-title: 'Docker 容器内 Git PAT 凭据持久化配置 {#docker-git-credential}'
+title: Docker 容器内 Git PAT 凭据持久化配置
 tags:
   - git
   - experience
@@ -7,7 +7,7 @@ tags:
   - docker
   - credential
 status: ✅ 已验证
-description: 'Docker 容器内 Git PAT 凭据持久化配置 {#docker-git-credential}'
+description: Docker 容器内 Git PAT 凭据持久化配置
 source: KTSAMA 实践经验
 recordDate: '2026-02-05'
 sourceDate: '2026-02-05'

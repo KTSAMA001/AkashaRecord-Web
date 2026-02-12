@@ -1,12 +1,12 @@
 ---
-title: 'BD 节点条件显示的替代方案 {#bd-showif-workaround}'
+title: BD 节点条件显示的替代方案
 tags:
   - unity
   - experience
   - editor
   - behavior-designer
 status: ✅ 已验证
-description: 'BD 节点条件显示的替代方案 {#bd-showif-workaround}'
+description: BD 节点条件显示的替代方案
 source: KTSAMA 实践经验
 recordDate: '2026-02-03'
 credibility: ⭐⭐⭐⭐ (实践验证)

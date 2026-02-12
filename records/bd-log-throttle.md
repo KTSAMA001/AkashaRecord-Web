@@ -1,12 +1,12 @@
 ---
-title: 'BD 节点日志频率控制 {#bd-log-throttle}'
+title: BD 节点日志频率控制
 tags:
   - unity
   - experience
   - editor
   - behavior-designer
 status: ✅ 已验证
-description: 'BD 节点日志频率控制 {#bd-log-throttle}'
+description: BD 节点日志频率控制
 source: KTSAMA 实践经验
 recordDate: '2026-02-03'
 credibility: ⭐⭐⭐⭐ (实践验证)

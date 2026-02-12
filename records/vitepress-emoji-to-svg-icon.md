@@ -1,12 +1,12 @@
 ---
-title: '全站 Emoji 替换为 SVG 图标的完整流程 {#emoji-to-svg}'
+title: 全站 Emoji 替换为 SVG 图标的完整流程
 tags:
   - tools
   - web
   - experience
   - vitepress
 status: ✅ 已验证
-description: '全站 Emoji 替换为 SVG 图标的完整流程 {#emoji-to-svg}'
+description: 全站 Emoji 替换为 SVG 图标的完整流程
 source: KTSAMA 实践经验
 recordDate: '2026-02-07'
 credibility: ⭐⭐⭐⭐ (实践验证)
