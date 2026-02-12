@@ -31,19 +31,54 @@ const tagMeta = ref<Record<string, { label: string; icon: string }>>({})
 const statusDefs = ref<StatusDef[]>([])
 const selectedTags = ref<Set<string>>(new Set())
 const searchQuery = ref('')
-const tagSearchQuery = ref('')
 const loading = ref(true)
 const tagsExpanded = ref(false)
 const cardVisible = ref(false)
 
-/** 根据搜索词过滤标签按钮（匹配中文标签名或英文 key） */
+/** 判断标签是否匹配搜索词（匹配中文标签名或英文 key） */
+function isTagMatch(tagName: string, query: string): boolean {
+  const label = (tagMeta.value[tagName]?.label || '').toLowerCase()
+  return tagName.toLowerCase().includes(query) || label.includes(query)
+}
+
+/** 根据搜索词过滤标签按钮 */
 const filteredTags = computed(() => {
-  const q = tagSearchQuery.value.trim().toLowerCase()
+  const q = searchQuery.value.trim().toLowerCase()
   if (!q) return tags.value
-  return tags.value.filter(tag => {
-    const label = (tagMeta.value[tag.name]?.label || '').toLowerCase()
-    return tag.name.toLowerCase().includes(q) || label.includes(q)
-  })
+  return tags.value.filter(tag => isTagMatch(tag.name, q))
+})
+
+/** 搜索词匹配的标签名集合（用于记录匹配判定） */
+const matchedTagNames = computed(() => {
+  const q = searchQuery.value.trim().toLowerCase()
+  if (!q) return new Set<string>()
+  const matched = new Set<string>()
+  for (const tag of tags.value) {
+    if (isTagMatch(tag.name, q)) matched.add(tag.name)
+  }
+  return matched
+})
+
+/** 每条记录的匹配原因（预计算，避免模板中重复调用） */
+const matchReasonsMap = computed(() => {
+  const q = searchQuery.value.trim().toLowerCase()
+  const map = new Map<string, string[]>()
+  if (!q) return map
+  const mTags = matchedTagNames.value
+  for (const record of filteredRecords.value) {
+    const reasons: string[] = []
+    if (record.title.toLowerCase().includes(q)) {
+      reasons.push('标题匹配')
+    }
+    if (record.tags && record.tags.some(t => mTags.has(t))) {
+      const matched = record.tags
+        .filter(t => mTags.has(t))
+        .map(t => tagMeta.value[t]?.label || t)
+      reasons.push(`标签匹配: ${matched.join(', ')}`)
+    }
+    if (reasons.length) map.set(record.link, reasons)
+  }
+  return map
 })
 
 // 卡片入场动画控制：筛选变化时重置动画
@@ -89,7 +124,14 @@ const filteredRecords = computed(() => {
 
   if (searchQuery.value.trim()) {
     const q = searchQuery.value.toLowerCase()
-    records = records.filter(r => r.title.toLowerCase().includes(q))
+    const mTags = matchedTagNames.value
+    records = records.filter(r => {
+      // 标题匹配
+      if (r.title.toLowerCase().includes(q)) return true
+      // 标签匹配：记录拥有的标签与搜索词匹配
+      if (r.tags && r.tags.some(t => mTags.has(t))) return true
+      return false
+    })
   }
 
   return records
@@ -194,19 +236,12 @@ function displayName(tag: string): string {
         <button class="expand-btn" @click="tagsExpanded = !tagsExpanded">
           {{ tagsExpanded ? '▲ COLLAPSE' : '▼ MORE_TAGS' }}
         </button>
-        <div class="tag-search-box">
-          <input 
-            v-model="tagSearchQuery" 
-            type="text" 
-            placeholder="搜索标签..."
-          />
-        </div>
-        <!-- 记录搜索框 -->
-        <div class="search-box">
+      <!-- 统一搜索框（同时搜索标签和记录） -->
+        <div class="search-box unified-search">
           <input 
             v-model="searchQuery" 
             type="text" 
-            placeholder="搜索记录..."
+            placeholder="搜索标签或记录..."
           />
         </div>
       </div>
@@ -229,7 +264,7 @@ function displayName(tag: string): string {
           <span class="count">{{ tag.count }}</span>
         </button>
       </div>
-      <span v-if="tagSearchQuery && filteredTags.length === 0" class="tag-no-match">
+      <span v-if="searchQuery && filteredTags.length === 0" class="tag-no-match">
         未找到匹配的标签
       </span>
     </div>
@@ -237,6 +272,12 @@ function displayName(tag: string): string {
     <!-- 结果统计 -->
     <div class="status-bar">
       <span>// FOUND {{ filteredRecords.length }} RECORDS</span>
+      <span v-if="searchQuery.trim()" class="match-info">
+        SEARCH: "{{ searchQuery.trim() }}"
+        <template v-if="matchedTagNames.size > 0">
+          | 匹配标签: {{ [...matchedTagNames].map(t => displayName(t)).join(', ') }}
+        </template>
+      </span>
       <span v-if="selectedTags.size > 0">FILTER: [{{ [...selectedTags].map(t => displayName(t)).join(' + ') }}]</span>
       <!-- 状态图例 -->
       <div class="status-legend">
@@ -285,6 +326,9 @@ function displayName(tag: string): string {
         <div class="card-body">
           <h4 class="title">{{ record.title }}</h4>
           <div class="code-path" :title="record.link">{{ record.link }}</div>
+          <div v-if="searchQuery.trim() && matchReasonsMap.get(record.link)?.length" class="match-reasons">
+            <span v-for="reason in matchReasonsMap.get(record.link)" :key="reason" class="match-badge">{{ reason }}</span>
+          </div>
         </div>
         <div class="card-footer">
           <span class="view-btn">VIEW_LOG</span>
@@ -358,27 +402,11 @@ function displayName(tag: string): string {
   border-color: var(--vp-c-brand-1);
 }
 
-/* ======= 标签搜索框 ======= */
-.tag-search-box {
-  min-width: 120px;
-  max-width: 200px;
-}
-
-.tag-search-box input {
-  padding: 0.35rem 0.7rem;
-  border: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-1);
-  width: 100%;
-  font-size: 0.85rem;
-  font-family: 'Courier New', monospace;
-  box-sizing: border-box;
-  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
-}
-
-.tag-search-box input:focus {
-  border-color: var(--vp-c-brand-1);
-  outline: none;
+/* ======= 统一搜索框 ======= */
+.unified-search {
+  flex: 1;
+  min-width: 160px;
+  max-width: 320px;
 }
 
 .tag-no-match {
@@ -442,9 +470,7 @@ function displayName(tag: string): string {
 }
 
 .search-box {
-  flex: 1;
   min-width: 120px;
-  max-width: 240px;
 }
 
 .search-box input {
@@ -462,6 +488,29 @@ function displayName(tag: string): string {
 .search-box input:focus {
   border-color: var(--vp-c-brand-1);
   outline: none;
+}
+
+/* ======= 匹配信息 ======= */
+.match-info {
+  font-size: 0.75rem;
+  color: var(--ak-accent);
+}
+
+.match-reasons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 0.4rem;
+}
+
+.match-badge {
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  padding: 1px 6px;
+  border: 1px solid var(--ak-accent-dim);
+  color: var(--ak-accent);
+  background: color-mix(in srgb, var(--ak-accent) 8%, transparent);
+  clip-path: polygon(0 0, calc(100% - 3px) 0, 100% 3px, 100% 100%, 3px 100%, 0 calc(100% - 3px));
 }
 
 .status-bar {
