@@ -307,9 +307,9 @@ function displayName(tag: string): string {
 
     <!-- 记录列表（交错淡入） -->
     <div v-else class="grid-container" :class="{ 'cards-visible': cardVisible }">
-      <a 
-        v-for="(record, idx) in filteredRecords" 
-        :key="record.link" 
+      <a
+        v-for="(record, idx) in filteredRecords"
+        :key="record.link"
         :href="record.link"
         class="record-card card-enter"
         :style="{ '--enter-delay': `${Math.min(idx * 50, 600)}ms` }"
@@ -451,7 +451,7 @@ function displayName(tag: string): string {
 .filter-tag:hover {
   border-color: var(--vp-c-brand-1);
   color: var(--vp-c-brand-1);
-  transform: translateX(2px);
+  transform: translateX(4px);
 }
 
 .filter-tag:hover::before {
@@ -462,6 +462,7 @@ function displayName(tag: string): string {
   background: var(--vp-c-brand-1);
   color: white;
   border-color: var(--vp-c-brand-1);
+  transform: translateX(4px);
 }
 
 .filter-tag .count {
@@ -769,7 +770,7 @@ function displayName(tag: string): string {
 /* 卡片入场交错动画 */
 .card-enter {
   opacity: 0;
-  transform: translateY(16px);
+  margin-top: 16px;
 }
 
 .cards-visible .card-enter {
@@ -780,7 +781,7 @@ function displayName(tag: string): string {
 @keyframes cardFadeIn {
   to {
     opacity: 1;
-    transform: translateY(0);
+    margin-top: 0;
   }
 }
 
