@@ -12,7 +12,7 @@ description: 3D 动画重定向与根运动算法解析：旋转复用、位移�
 source: 专题报告
 recordDate: '2026-02-13'
 sourceDate: '2026-02-13'
-updateDate: '2026-02-13'
+updateDate: '2026-02-16'
 credibility: ⭐⭐⭐⭐
 version: Unity 通用
 ---
@@ -61,14 +61,10 @@ version: Unity 通用
 必须使用**乘法（缩放）**，严禁使用减法（固定偏移）。
 
 *   **缩放公式**：
-    ```
-    ScaleFactor = TargetLegLength / SourceLegLength
-    ```
-X, Z)**：`TargetPosition_xz = SourcePosition_xz * ScaleFactor`。
-    *   **垂直位移 (Y)**：同样乘以 `ScaleFactor`，保证跳跃高度或走路起伏符合体型。
-        ```
-        D = S * Scale
-        ```tPosition_{xz} = SourcePosition_{xz} \times ScaleFactor$。
+    $$ ScaleFactor = \frac{TargetLegLength}{SourceLegLength} $$
+
+*   **应用逻辑**：
+    *   **水平位移 ($X, Z$)**：$TargetPosition_{xz} = SourcePosition_{xz} \times ScaleFactor$。
     *   **垂直位移 ($Y$)**：同样乘以 $ScaleFactor$，保证跳跃高度或走路起伏符合体型。
         $$ D = S \times Scale $$
 
@@ -107,7 +103,7 @@ X, Z)**：`TargetPosition_xz = SourcePosition_xz * ScaleFactor`。
 
 **Q：验证案例：如果 A、B 躯干一样，B 的腿长是 A 的 0.5 倍，能否仅通过根运动位移 x0.5 解决？**
 
-**可以，且效果完美。`L = θ * r`
+**可以，且效果完美。**
 
 *   基于弧长公式 $L = \theta \times r$，半径减半，角度不变，弧长（步幅）自然减半。
 *   **注意**：垂直方向的起伏（Y轴）也必须 x0.5，否则小短腿会有极其夸张的蹲伏动作。
@@ -124,9 +120,9 @@ X, Z)**：`TargetPosition_xz = SourcePosition_xz * ScaleFactor`。
 
 **Q：为什么需要一个“标准中间骨骼”（Intermediate Skeleton）？不能直接映射吗？**
 
-中间骨骼（如 Unity Humanoid）解决了 `N * M` 的复杂度问题：
+中间骨骼（如 Unity Humanoid）解决了 $N \times M$ 的复杂度问题：
 
-1.  **解耦**：所有动画源和目标角色都只与中间层交互，复杂度降为 `N + M`。
+1.  **解耦**：所有动画源和目标角色都只与中间层交互，复杂度降为 $N + M$。
 2.  **归一化**：抹平了骨骼命名（Bip01 vs Hips）、坐标轴朝向（Y-up vs Z-up）的差异。
 3.  **姿态校准**：强制统一 T-Pose，解决了源数据与目标数据初始姿态（T-Pose vs A-Pose）不一致的问题。
 
@@ -135,7 +131,7 @@ X, Z)**：`TargetPosition_xz = SourcePosition_xz * ScaleFactor`。
 **Q：Unity 的 Humanoid 重定向具体是如何落实上述理论的？**
 
 1.  **垂直缩放**：通过 **Hips Height (臀部高度)** 决定。
-    *   公式：`Factor = TargetHipsHeight / SourceHipsHeight`。
+    *   公式：$Factor = \frac{TargetHipsHeight}{SourceHipsHeight}$。
 2.  **水平步幅**：通过 **Human Scale (人体缩放系数)** 隐式控制。
     *   Unity 会将根运动位移矢量乘以该系数。
 3.  **旋转处理**：引入 **Muscle Space (肌肉空间)**。
@@ -151,3 +147,55 @@ X, Z)**：`TargetPosition_xz = SourcePosition_xz * ScaleFactor`。
 ### 验证记录
 
 - [2026-02-13] 基于内部报告整理归档，内容经过理论推演与 Unity 引擎机制验证。
+- [2026-02-16] 进行网络资料交叉验证，核心原理与工业标准技术得到官方文档和社区实践确认。部分推断性内容（Mixamo机制、Sea of Thieves IPG）标注为合理推断。
+
+### 技术验证说明
+
+经 2026-02-16 网络资料交叉验证，本文档技术内容准确性评估如下：
+
+| 验证项目 | 准确性 | 说明 |
+|---------|-------|------|
+| 核心数学原理（缩放公式、旋转复用） | ✅ 完全准确 | 业内标准做法，多引擎文档确认 |
+| Unity Humanoid 实现机制 | ✅ 基本准确 | 官方文档确认 Muscle Space、Hips 作为 Root |
+| Stride Warping / Distance Matching | ✅ 完全准确 | UE5 官方 Pose Warping 系统核心功能 |
+| 四足动物重定向难点与解法 | ✅ 完全准确 | 学术论文与开源工具验证 |
+| Mixamo 预签名 URL 机制 | ⚠️ 合理推断 | 基于云存储通用机制推断，缺乏官方文档 |
+| Sea of Thieves IPG 案例 | ⚠️ 部分验证 | IPG 系统存在，技术细节为行业实践推断 |
+
+### 参考资料与延伸阅读
+
+#### 官方文档
+
+- [Animation Retargeting in Unreal Engine](https://dev.epicgames.com/documentation/en-us/unreal-engine/animation-retargeting-in-unreal-engine) - Epic Games 官方重定向文档
+- [IK Rig Animation Retargeting in Unreal Engine](https://dev.epicgames.com/documentation/en-us/unreal-engine/ik-rig-animation-retargeting-in-unreal-engine) - UE5 IK Rig 系统文档
+- [Pose Warping in Unreal Engine](https://dev.epicgames.com/documentation/en-us/unreal-engine/pose-warping-in-unreal-engine) - Stride Warping 官方说明
+- [Retargeting of Humanoid animations - Unity Manual](https://docs.unity3d.com/2023.2/Documentation/Manual/Retargeting.html) - Unity Humanoid 重定向
+- [How Root Motion works - Unity Manual](https://docs.unity3d.com/6000.3/Documentation/Manual/RootMotion.html) - Root Transform 计算原理
+- [Mecanim Humanoids - Unity Blog](https://unity.com/blog/engine-platform/mecanim-humanoids) - Muscle Space 概念详解
+
+#### 技术文章与教程
+
+- [Animation Retargeting - Wicked Engine](https://wickedengine.net/2022/09/animation/retargeting/) - 世界空间重定向算法详解
+- [Animation Retargeting - Flax Engine](https://docs.flaxengine.com/manual/animation/animation/retargeting.html) - Reference Pose 计算方法
+- [Adapting Lyra Animation to Your UE5 Game](https://www.unrealengine.com/en-US/tech-blog/adapting-lyra-animation-to-your-ue5-game) - Lyra 动画系统适配指南
+- [Retargeting Algorithm - retargeting-threejs](https://github.com/upf-gti/retargeting-threejs/blob/main/docs/Algorithm.md) - Three.js 开源重定向算法
+
+#### 四足动物与 IK
+
+- [Quadruped Animation Retargeting (QAR) Tools](https://github.com/ATawzer/quadraped-animation-retargeting) - Blender 四足动物重定向工具
+- [Spatio-Temporal Motion Retargeting for Quadruped Robots](https://arxiv.org/html/2404.11557v1) - 四足机器人运动重定向论文
+
+#### Foot IK 与滑步问题
+
+- [How to Stop Foot Sliding - Unity Tutorial](https://www.youtube.com/watch?v=_zMZJ8EFq04) - Foot IK 解决滑步教程
+- [Solving Foot Sliding and IK Issues](https://www.youtube.com/watch?v=LM06-K1F-is) - 重定向滑步问题解决
+
+#### 云存储与资源分发
+
+- [AWS S3 Presigned URLs](https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html) - 预签名 URL 机制
+- [Google Cloud Signed URLs](https://docs.cloud.google.com/storage/docs/access-control/signed-urls) - 云存储签名 URL
+
+#### 案例参考
+
+- [Infinite Pirate Generator - Sea of Thieves Wiki](https://seaofthieves.fandom.com/wiki/Infinite_Pirate_Generator) - IPG 系统介绍
+- [Sea of Thieves Character Art - Polycount](https://polycount.com/discussion/199554/sea-of-thieves-character-art) - 角色美术技术讨论
