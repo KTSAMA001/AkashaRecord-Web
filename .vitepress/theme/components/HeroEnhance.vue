@@ -3,14 +3,17 @@
  * Hero 区增强组件
  * 注入到 home-hero-info-after slot，添加终端风格装饰行与滚动指示器
  */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+
+// 版本号（动态获取）
+const version = ref('...')
 
 // 装饰性终端行（逐行 fade-in）
-const terminalLines = [
+const terminalLines = computed(() => [
   '> CLASSIFICATION: OPEN_ACCESS',
-  '> SYSTEM: AKASHA_RECORD v2.1',
+  `> SYSTEM: AKASHA_RECORD ${version.value}`,
   '> STATUS: OPERATIONAL',
-]
+])
 
 // 控制入场动画
 const visible = ref(false)
@@ -19,7 +22,18 @@ const visible = ref(false)
 const showScroll = ref(true)
 let scrollHandler: (() => void) | null = null
 
-onMounted(() => {
+onMounted(async () => {
+  // 获取版本号
+  try {
+    const res = await fetch('/api/version.json')
+    if (res.ok) {
+      const json = await res.json()
+      version.value = `v${json.version}`
+    }
+  } catch {
+    version.value = 'v?'
+  }
+
   // 延迟触发入场动画
   requestAnimationFrame(() => {
     visible.value = true

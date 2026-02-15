@@ -6,6 +6,7 @@
 import { ref, onMounted, computed } from 'vue'
 
 const totalRecords = ref(0)
+const version = ref('...')
 const isVisible = ref(false)
 const dashboardRef = ref<HTMLElement | null>(null)
 
@@ -15,11 +16,15 @@ const formattedTotal = computed(() => {
 })
 
 onMounted(async () => {
-  // 获取统计数据
+  // 获取统计数据和版本号
   try {
-    const res = await fetch('/api/stats.json')
-    if (res.ok) {
-      const json = await res.json()
+    const [statsRes, versionRes] = await Promise.all([
+      fetch('/api/stats.json'),
+      fetch('/api/version.json')
+    ])
+
+    if (statsRes.ok) {
+      const json = await statsRes.json()
       // 简单的数字动画效果
       const target = json.total || 0
       let start = 0
@@ -35,6 +40,11 @@ onMounted(async () => {
         }
       }
       window.requestAnimationFrame(step)
+    }
+
+    if (versionRes.ok) {
+      const json = await versionRes.json()
+      version.value = `V.${json.version}`
     }
   } catch {
     // 失败静默处理
@@ -63,7 +73,7 @@ onMounted(async () => {
         <span class="header-title">SYSTEM_MONITOR</span>
       </div>
       <div class="header-line"></div>
-      <div class="header-right">V.2.1.0</div>
+      <div class="header-right">{{ version }}</div>
     </div>
 
     <div class="terminal-content">

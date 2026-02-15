@@ -688,6 +688,14 @@ async function main() {
   generateTags(records, tagMeta)
   generatePages(records)
 
+  // 生成 version.json（从 package.json 读取，避免硬编码）
+  const packageJson = JSON.parse(fs.readFileSync(path.join(PROJECT_ROOT, 'package.json'), 'utf-8'))
+  fs.writeFileSync(
+    path.join(API_DIR, 'version.json'),
+    JSON.stringify({ version: packageJson.version }, null, 2)
+  )
+  console.log(`📌 已生成 version.json (v${packageJson.version})`)
+
   // 生成 meta-schema.json（Phase 2 新增）
   fs.mkdirSync(API_DIR, { recursive: true })
   fs.writeFileSync(
