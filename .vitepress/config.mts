@@ -124,5 +124,17 @@ export default defineConfig({
 
   // 清理 URL
   cleanUrls: true,
+
+  // Vite 配置
+  vite: {
+    // SSR 构建时将 mermaid 打包进 bundle（mermaid 包含浏览器 API，不能作为 external）
+    ssr: {
+      noExternal: ['mermaid'],
+    },
+    // 开发模式预构建 mermaid，加速启动
+    optimizeDeps: {
+      include: ['mermaid'],
+    },
+  },
 })
 
