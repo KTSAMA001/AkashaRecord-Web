@@ -1,16 +1,16 @@
 ---
-title: 3D美少女智能家具创业想法
+title: 3D智能家具创意
 tags:
   - idea
   - smart-furniture
 status: "\U0001F4A1 灵感记录"
-description: 3D美少女智能家具创业想法
+description: 3D智能家具创意
 source: 留枫微风的创业提案
 recordDate: '2026-02-02'
 sourceDate: '2026-02-02'
 credibility: ⭐⭐⭐
 ---
-# 3D美少女智能家具创业想法
+# 3D智能家具创意
 
 
 <div class="record-meta-block">
