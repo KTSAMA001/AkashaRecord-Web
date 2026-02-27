@@ -89,7 +89,7 @@ onMounted(async () => {
           <span class="bar-rank">{{ String(idx + 1).padStart(2, '0') }}</span>
           <a :href="`/records/?tags=${tag.name}`" class="bar-name">{{ displayName(tag.name) }}</a>
         </div>
-        <div class="bar-track">
+        <div class="bar-track" role="meter" :aria-valuenow="tag.count" :aria-valuemin="0" :aria-valuemax="maxCount" :aria-label="`${displayName(tag.name)}: ${tag.count} 条记录, ${percentage(tag.count)}%`">
           <div
             class="bar-fill"
             :style="{ '--target-width': barWidth(tag.count) }"
