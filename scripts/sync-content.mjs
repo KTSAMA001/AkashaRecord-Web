@@ -537,6 +537,17 @@ function generateStats(records) {
     }
   }
 
+  // 统计所有标签的分布（用于首页标签分布可视化）
+  const tagCounts = {}
+  for (const r of records) {
+    for (const tag of r.tags) {
+      tagCounts[tag] = (tagCounts[tag] || 0) + 1
+    }
+  }
+  stats.tagDistribution = Object.entries(tagCounts)
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count)
+
   fs.mkdirSync(API_DIR, { recursive: true })
   fs.writeFileSync(path.join(API_DIR, 'stats.json'), JSON.stringify(stats, null, 2))
 }

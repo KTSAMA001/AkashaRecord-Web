@@ -1,29 +1,30 @@
 ---
-title: Unity BlendTree 下动画驱动音效同步（脚步声等）常见方案汇总
+title: Unity BlendTree 下动画驱动音效同步（脚步声等）常见方案汇总（补充 Animation Curves 主流方案）
 tags:
   - unity
   - knowledge
+  - experience
   - animation
   - blend-tree
   - audio
-status: "\U0001F4D8 有效"
-description: Unity BlendTree 下动画驱动音效同步（脚步声等）常见方案汇总
-source: 多来源（Unity Manual / Unity Forum & Discussions / 第三方博客；详见“来源链接”）
+status: ✅ 已验证
+description: Unity BlendTree 下动画驱动音效同步（脚步声等）常见方案汇总（补充 Animation Curves 主流方案）
+source: 多来源（Unity Manual / Unity Forum & Discussions / 第三方博客 / YouTube 教程；详见“来源链接”）
 recordDate: '2026-02-04'
-sourceDate: 2021-04-12（CodeAndWeb）/ 其他未标注
-updateDate: '2026-02-04'
-credibility: ⭐⭐⭐（社区共识为主，部分有官方手册支撑）
+sourceDate: 2021-04-12（CodeAndWeb）/ 2024-05-19（YouTube）/ 其他未标注
+updateDate: '2026-02-27'
+credibility: ⭐⭐⭐⭐（多来源交叉验证，Animation Curves 方案有官方 API 支撑 + 社区广泛实践 + 项目实测）
 ---
 # Unity BlendTree 下动画驱动音效同步（脚步声等）常见方案汇总
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=animation" class="meta-tag">动画</a> <a href="/records/?tags=blend-tree" class="meta-tag">BlendTree</a> <a href="/records/?tags=audio" class="meta-tag">音频</a></span></div>
-<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">多来源（Unity Manual / Unity Forum & Discussions / 第三方博客；详见“来源链接”）</span></div>
-<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2021-04-12（CodeAndWeb）/ 其他未标注</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=animation" class="meta-tag">动画</a> <a href="/records/?tags=blend-tree" class="meta-tag">BlendTree</a> <a href="/records/?tags=audio" class="meta-tag">音频</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">多来源（Unity Manual / Unity Forum & Discussions / 第三方博客 / YouTube 教程；详见“来源链接”）</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2021-04-12（CodeAndWeb）/ 2024-05-19（YouTube）/ 其他未标注</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-04</span></div>
-<div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-04</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">社区共识为主，部分有官方手册支撑</span></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
+<div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-27</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">多来源交叉验证，Animation Curves 方案有官方 API 支撑 + 社区广泛实践 + 项目实测</span></span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 </div>
 
 
@@ -44,9 +45,16 @@ credibility: ⭐⭐⭐（社区共识为主，部分有官方手册支撑）
 - **动画驱动（Animation-driven）**：把事件/曲线放在动画资产上，运行时按动画真实关键帧触发。
 - **运动/物理驱动（Movement/Physics-driven）**：放弃与动画帧严格绑定，改为基于速度、步频、IK/接触检测来驱动音效。
 
+#### Animation Curves 方案（当前主流）
+- 在每个 AnimationClip 上添加同名自定义曲线（如 `FootstepL` / `FootstepR`），脚触地时给高值，离地时给低值。
+- BlendTree 会像混合骨骼动画一样，自动按权重混合这些曲线值；运行时通过 `Animator.GetFloat("FootstepL")` 读取的是“混合后的落脚信号”。
+- 触发判定可用“阈值穿越”或“过零触发”；在曲线存在低幅抖动时，推荐 **过零触发 + 零值死区**（`abs(v) < eps => 0`）以减少误触发。
+- 关键前提：AnimatorController 中必须存在与曲线同名的 float 参数，否则 `GetFloat` 读不到值。
+
 ### 关键点
 
 - Animation Event 通常被认为是“最直接、最不容易错”的方案：事件跟随 Clip 的真实时间轴。
+- 但在 BlendTree 下，Animation Event 的常见问题是“多 Clip 同时触发导致重复播放”；社区近年更倾向用 **Animation Curves 驱动信号触发**（阈值穿越或过零触发）作为稳健方案。
 - BlendTree 下 Animation Event 可能出现 **重复触发**（多个子 Clip 权重都不低时），社区常见的抑制手段：
   - **权重阈值过滤**：只响应权重 > $\epsilon$（例如 0.2）的事件。
   - **主导 Clip 策略**：只响应权重最高的那个 Clip 的事件/脚步。
@@ -60,6 +68,29 @@ credibility: ⭐⭐⭐（社区共识为主，部分有官方手册支撑）
 
 - **动画事件**：在 Walk/Run 各自的 Clip 上标记 LeftFoot/RightFoot 事件。
 - **主导 Clip**：运行时只使用权重最高的 Clip 作为脚步来源（避免混合期“双响”）。
+
+- **Animation Curves + 过零触发（实践验证）**：
+
+```csharp
+// 假设 AnimatorController 已添加同名 float 参数：FootstepL
+float current = animator.GetFloat("FootstepL");
+const float zeroDeadZone = 0.0001f;
+if (Mathf.Abs(current) < zeroDeadZone)
+{
+  current = 0f;
+}
+
+bool crossedZero =
+  (lastFootstepL > 0f && current < 0f) ||
+  (lastFootstepL < 0f && current > 0f);
+
+if (crossedZero)
+{
+  PlayFootstepAudio();
+}
+
+lastFootstepL = current;
+```
 
 ### 来源链接
 
@@ -78,6 +109,10 @@ credibility: ⭐⭐⭐（社区共识为主，部分有官方手册支撑）
 
 - 第三方博客（包含“BlendTree 下同步脚步声”的专题文章）
   - https://www.codeandweb.com/blog/2021/04/12/synchronizing-footstep-sounds-with-blend-trees-in-unity
+
+- YouTube（社区实践教程）
+  - https://www.youtube.com/watch?v=ojdd22mP5cE
+  - Footstep Sounds on a Third Person Character w/ BlendTrees | Animation Curves | Unity Tutorial（Game Development Beyond the Basics，2024-05-19）
 
 - 访问受限说明（本次检索中遇到的常见限制，便于后续换渠道补全）
   - GameDev.SE / StackOverflow / Reddit 可能出现 403（反爬/登录限制），需要改用浏览器或企业网络环境补查。
@@ -124,4 +159,6 @@ credibility: ⭐⭐⭐（社区共识为主，部分有官方手册支撑）
 
 ### 与经验关联（可选）
 
-- 实践验证：待补充（可在后续落地 `MonsterAnimatorAudioManager` 改造后补一条经验记录并互链）
+- 2026-02-27：在 `MonsterAnimatorAudioManager` 的 BlendTree 音效改造中，使用 `BlendTreeWeightDebugger` 实测发现“权重主导 Clip”方案在过渡区与均分区存在根本缺陷（如 idle 58% + walk 34% 仍在移动、50/50 双向、25%×4 中心场景）。
+- 结论：仅靠 `GetCurrentAnimatorClipInfo` 权重无法稳定反映真实落脚相位；社区与实践一致推荐转向 Animation Curves 驱动。
+- 2026-02-27（补充）：在独立测试脚本 `CurveTriggerLogTester` 与正式脚本改造验证中，采用 **过零触发 + 零值死区（0.0001）** 能稳定输出触发日志，适配当前项目曲线数据形态。
