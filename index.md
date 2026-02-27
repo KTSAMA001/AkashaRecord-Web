@@ -10,3 +10,4 @@ hero:
 ---
 
 <Dashboard />
+<TagDistribution />

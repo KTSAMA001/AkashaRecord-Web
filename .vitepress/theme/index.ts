@@ -11,6 +11,7 @@ import StatusBadge from './components/StatusBadge.vue'
 import Mermaid from './components/Mermaid.vue'
 import MermaidRenderer from './components/MermaidRenderer.vue'
 import CategoryGrid from './components/CategoryGrid.vue'
+import TagDistribution from './components/TagDistribution.vue'
 import ThemePicker from './components/ThemePicker.vue'
 import HeroEnhance from './components/HeroEnhance.vue'
 import NProgress from 'nprogress'
@@ -33,6 +34,7 @@ export default {
     app.component('Mermaid', Mermaid)
     app.component('MermaidRenderer', MermaidRenderer)
     app.component('CategoryGrid', CategoryGrid)
+    app.component('TagDistribution', TagDistribution)
 
     // NProgress 路由进度条
     if (typeof window !== 'undefined') {
