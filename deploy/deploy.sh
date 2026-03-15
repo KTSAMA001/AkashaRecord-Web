@@ -195,7 +195,7 @@ module.exports = {
 };
 EOF
 
-# 限制 ecosystem 文件权限（包含 GITHUB_TOKEN）
+# 限制 ecosystem 文件权限（包含认证凭据）
 chmod 600 "${INSTALL_DIR}/ecosystem.config.cjs"
 
 # 停止旧进程（如果存在）
