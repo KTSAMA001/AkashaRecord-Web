@@ -21,7 +21,8 @@ INSTALL_DIR="/www/wwwroot/${PROJECT_NAME}"
 REPO_URL="https://github.com/KTSAMA001/AkashaRecord-Web.git"
 NODE_VERSION="18"  # Node.js 主版本号
 WEBHOOK_PORT=3721
-GITHUB_TOKEN="${GITHUB_TOKEN:-}"  # GitHub Token（私有仓库必须设置）
+GITHUB_TOKEN="${GITHUB_TOKEN:-}"      # GitHub Token（私有仓库认证方式一）
+DEPLOY_KEY_PATH="${DEPLOY_KEY_PATH:-}" # Deploy Key 私钥路径（私有仓库认证方式二，推荐）
 
 # ====== 颜色 ======
 RED='\033[0;31m'
@@ -125,12 +126,21 @@ cd "${INSTALL_DIR}"
 npm install --production=false
 
 # 同步阿卡西记录内容 & 构建
-if [ -z "${GITHUB_TOKEN}" ]; then
-  log_warn "未设置 GITHUB_TOKEN，如果阿卡西记录仓库为私有则同步会失败"
-  log_warn "设置方法：export GITHUB_TOKEN=ghp_xxxx && bash deploy/deploy.sh"
+if [ -n "${DEPLOY_KEY_PATH}" ]; then
+  if [ ! -f "${DEPLOY_KEY_PATH}" ]; then
+    log_error "DEPLOY_KEY_PATH 指定的文件不存在: ${DEPLOY_KEY_PATH}"
+    exit 1
+  fi
+  log_ok "使用 Deploy Key 认证: ${DEPLOY_KEY_PATH}"
+elif [ -n "${GITHUB_TOKEN}" ]; then
+  log_ok "使用 GITHUB_TOKEN 认证"
+else
+  log_warn "未设置 DEPLOY_KEY_PATH 或 GITHUB_TOKEN，如果阿卡西记录仓库为私有则同步会失败"
+  log_warn "设置方法一（推荐）：export DEPLOY_KEY_PATH=/root/.ssh/akasha_deploy_key && bash deploy/deploy.sh"
+  log_warn "设置方法二：export GITHUB_TOKEN=ghp_xxxx && bash deploy/deploy.sh"
 fi
 log_info "同步阿卡西记录内容..."
-GITHUB_TOKEN="${GITHUB_TOKEN}" node scripts/sync-content.mjs
+GITHUB_TOKEN="${GITHUB_TOKEN}" DEPLOY_KEY_PATH="${DEPLOY_KEY_PATH}" node scripts/sync-content.mjs
 
 log_info "构建 VitePress 站点..."
 npx vitepress build
@@ -174,6 +184,7 @@ module.exports = {
       WEBHOOK_PORT: ${WEBHOOK_PORT},
       PROJECT_DIR: '${INSTALL_DIR}',
       GITHUB_TOKEN: '${GITHUB_TOKEN}',
+      DEPLOY_KEY_PATH: '${DEPLOY_KEY_PATH}',
     },
     max_memory_restart: '200M',
     error_file: '/www/wwwlogs/akasha-webhook-error.log',

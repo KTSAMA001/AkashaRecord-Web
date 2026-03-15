@@ -27,22 +27,52 @@ const API_DIR = path.join(PUBLIC_DIR, 'api')
 // 阿卡西记录配置
 const GITHUB_MIRROR = process.env.GITHUB_MIRROR || ''
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || ''
+const DEPLOY_KEY_PATH = process.env.DEPLOY_KEY_PATH || ''
 // 优先使用本地已存在的 AgentSkill 路径作为源（开发环境）
 const LOCAL_SOURCE = '/Users/ktsama/.claude/skills/AgentSkill-Akasha-KT'
 const AKASHA_REPO_ORIGIN = fs.existsSync(LOCAL_SOURCE) 
   ? LOCAL_SOURCE 
   : 'https://github.com/KTSAMA001/AgentSkill-Akasha-KT.git'
 
+// SSH URL（用于 Deploy Key 认证）
+const AKASHA_REPO_SSH = 'git@github.com:KTSAMA001/AgentSkill-Akasha-KT.git'
+
 let AKASHA_REPO = GITHUB_MIRROR && !fs.existsSync(LOCAL_SOURCE)
   ? AKASHA_REPO_ORIGIN.replace('https://github.com/', GITHUB_MIRROR)
   : AKASHA_REPO_ORIGIN
 
-// 私有仓库认证：将 GITHUB_TOKEN 注入 HTTPS URL
-if (GITHUB_TOKEN && AKASHA_REPO.startsWith('https://')) {
+// 私有仓库认证：Deploy Key (SSH) 优先于 GITHUB_TOKEN (HTTPS)
+if (DEPLOY_KEY_PATH && !fs.existsSync(LOCAL_SOURCE)) {
+  AKASHA_REPO = AKASHA_REPO_SSH
+} else if (GITHUB_TOKEN && AKASHA_REPO.startsWith('https://')) {
   AKASHA_REPO = AKASHA_REPO.replace('https://', `https://${GITHUB_TOKEN}@`)
 }
 
 const AKASHA_LOCAL = path.join(PROJECT_ROOT, '.akasha-repo')
+
+/**
+ * 构建 git 命令的 execSync 选项（注入 Deploy Key 的 GIT_SSH_COMMAND）
+ */
+function gitExecOpts(extra = {}) {
+  const opts = { stdio: 'pipe', ...extra }
+  if (DEPLOY_KEY_PATH) {
+    opts.env = {
+      ...process.env,
+      ...(extra.env || {}),
+      GIT_SSH_COMMAND: `ssh -i "${DEPLOY_KEY_PATH}" -o StrictHostKeyChecking=accept-new`,
+    }
+  }
+  return opts
+}
+
+/**
+ * 获取当前认证方式的日志标签
+ */
+function authLabel() {
+  if (DEPLOY_KEY_PATH) return ' (Deploy Key)'
+  if (GITHUB_TOKEN) return ' (Token认证)'
+  return ''
+}
 
 /**
  * 清理错误信息中的 Token，避免泄露到日志
@@ -130,22 +160,22 @@ function syncRepo() {
       execSync(`git remote set-url origin "${AKASHA_REPO}"`, { cwd: AKASHA_LOCAL, stdio: 'pipe' })
     } catch {}
 
-    console.log(`📥 拉取 .akasha-repo... ${GITHUB_MIRROR ? '(Mirror)' : ''}${GITHUB_TOKEN ? ' (Token认证)' : ''}`)
+    console.log(`📥 拉取 .akasha-repo... ${GITHUB_MIRROR ? '(Mirror)' : ''}${authLabel()}`)
     try {
       execSync('git checkout . && git clean -fd', { cwd: AKASHA_LOCAL, stdio: 'pipe' })
-      execSync('git pull --ff-only', { cwd: AKASHA_LOCAL, stdio: 'pipe', timeout: 60000 })
+      execSync('git pull --ff-only', gitExecOpts({ cwd: AKASHA_LOCAL, timeout: 60000 }))
     } catch (e) {
       console.warn('⚠️ Pull failed, trying fetch+reset...')
       try {
-        execSync('git fetch origin && git reset --hard origin/main', { cwd: AKASHA_LOCAL, stdio: 'pipe' })
+        execSync('git fetch origin && git reset --hard origin/main', gitExecOpts({ cwd: AKASHA_LOCAL }))
       } catch (e2) {
         console.warn(`⚠️ Sync failed, using local cache. ${sanitizeError(e2.message)}`)
       }
     }
   } else {
-    console.log(`📦 Cloning .akasha-repo...${GITHUB_TOKEN ? ' (Token认证)' : ''}`)
+    console.log(`📦 Cloning .akasha-repo...${authLabel()}`)
     try {
-      execSync(`git clone --depth 1 ${AKASHA_REPO} "${AKASHA_LOCAL}"`, { stdio: 'pipe' })
+      execSync(`git clone --depth 1 ${AKASHA_REPO} "${AKASHA_LOCAL}"`, gitExecOpts())
     } catch (e) {
       throw new Error(`❌ 克隆仓库失败: ${sanitizeError(e.message)}`)
     }

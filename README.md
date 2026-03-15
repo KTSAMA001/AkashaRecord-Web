@@ -98,7 +98,26 @@ AkashaRecord-Web/
    npm install
    ```
 
-4. **配置私有仓库访问**（如果阿卡西记录仓库为私有）
+4. **配置私有仓库访问**（如果阿卡西记录仓库为私有，二选一）
+
+   **方式一：Deploy Key（推荐，权限仅限单个仓库）**
+   ```bash
+   # 在服务器上生成专用 SSH 密钥
+   ssh-keygen -t ed25519 -f /root/.ssh/akasha_deploy_key -N "" -C "akasha-deploy"
+
+   # 查看公钥，复制输出内容
+   cat /root/.ssh/akasha_deploy_key.pub
+
+   # 前往 GitHub 仓库 → Settings → Deploy keys → Add deploy key
+   # Title: Akasha Web Server
+   # Key: 粘贴上面的公钥
+   # 不需要勾选 Allow write access（只需读取权限）
+
+   # 设置环境变量
+   export DEPLOY_KEY_PATH=/root/.ssh/akasha_deploy_key
+   ```
+
+   **方式二：GitHub Token（权限范围较广）**
    ```bash
    # 生成 GitHub Personal Access Token（需要 repo 权限）
    # 前往 https://github.com/settings/tokens 创建
@@ -124,8 +143,12 @@ AkashaRecord-Web/
 ```bash
 cd /www/wwwroot/AkashaRecord-Web
 
-# 如果阿卡西记录仓库为私有，需要先设置 Token
-export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
+# 如果阿卡西记录仓库为私有，需要先设置认证（二选一）
+# 方式一（推荐）：Deploy Key
+export DEPLOY_KEY_PATH=/root/.ssh/akasha_deploy_key
+
+# 方式二：GitHub Token
+# export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
 
 bash deploy/deploy.sh
 ```
