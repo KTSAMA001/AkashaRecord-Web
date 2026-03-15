@@ -522,18 +522,28 @@ function ensureFrontmatter(content, record, extractedMeta, schema = null) {
   return matter.stringify(fileMatter.content, data)
 }
 
-function generateStats(records) {
+function generateStats(records, tagMeta) {
   const stats = {
     total: records.length,
     byDomain: {},
+    byDimension: { domain: {}, type: {}, specialty: {}, custom: {} },
     recent: [] // TODO: Git log logic could be re-added here if needed
   }
 
-  // 统计 Domain 标签 (首个标签作为 Domain)
+  // 使用维度信息统计（Phase 3 重构）
   for (const r of records) {
-    if (r.tags.length > 0) {
-      const domain = r.tags[0]
-      stats.byDomain[domain] = (stats.byDomain[domain] || 0) + 1
+    for (const tag of r.tags) {
+      const meta = tagMeta.get(tag)
+      const dimension = meta?.dimension || 'custom'
+
+      // 按维度分类统计
+      stats.byDimension[dimension][tag] = (stats.byDimension[dimension][tag] || 0) + 1
+
+      // byDomain 保留为第一个 domain 标签（向后兼容）
+      if (dimension === 'domain' && !r._domainTagged) {
+        stats.byDomain[tag] = (stats.byDomain[tag] || 0) + 1
+        r._domainTagged = true
+      }
     }
   }
 
@@ -545,7 +555,15 @@ function generateStats(records) {
     }
   }
   stats.tagDistribution = Object.entries(tagCounts)
-    .map(([name, count]) => ({ name, count }))
+    .map(([name, count]) => {
+      const meta = tagMeta.get(name)
+      return {
+        name,
+        count,
+        label: meta?.label || name,
+        dimension: meta?.dimension || 'custom'
+      }
+    })
     .sort((a, b) => b.count - a.count)
 
   fs.mkdirSync(API_DIR, { recursive: true })
@@ -554,7 +572,7 @@ function generateStats(records) {
 
 /**
  * 解析 tag-registry.md 标签注册表
- * 返回: Map<string, { label: string, icon: string }>
+ * 返回: Map<string, { label: string, icon: string, dimension: string, desc: string }>
  */
 function parseTagRegistry() {
   const registryPath = path.join(AKASHA_LOCAL, 'references', 'tag-registry.md')
@@ -571,18 +589,21 @@ function parseTagRegistry() {
   for (const line of lines) {
     if (!line.startsWith('|') || line.includes('---') || line.includes('| 标签')) continue
     const cols = line.split('|').map(c => c.trim())
-    if (cols.length < 4) continue
+    // 新格式: | 标签 | 显示名 | 图标 | 维度 | 说明 |
+    if (cols.length < 6) continue
 
-    const tagCol = cols[1]  // #tag-name
-    const label = cols[2]   // 中文名
-    const icon = cols[3]    // 图标名
+    const tagCol = cols[1]     // #tag-name
+    const label = cols[2]      // 中文名
+    const icon = cols[3]       // 图标名
+    const dimension = cols[4]  // 维度: domain/type/specialty/custom
+    const desc = cols[5]       // 说明
 
     if (!tagCol.startsWith('#')) continue
     const tag = tagCol.slice(1) // 去掉 #
-    meta.set(tag, { label, icon })
+    meta.set(tag, { label, icon, dimension: dimension || 'custom', desc: desc || '' })
   }
 
-  console.log(`🏷️  解析到 ${meta.size} 个标签元数据`)
+  console.log(`🏷️  解析到 ${meta.size} 个标签元数据（含维度信息）`)
   return meta
 }
 
@@ -608,13 +629,13 @@ function generateTags(records, tagMeta) {
   const sortedTags = Array.from(tagMap.values()).sort((a, b) => b.count - a.count)
   fs.writeFileSync(path.join(API_DIR, 'tags.json'), JSON.stringify(sortedTags, null, 2))
 
-  // 生成 tag-meta.json
+  // 生成 tag-meta.json（Phase 3: 包含维度和说明）
   const metaObj = {}
   for (const [tag, info] of tagMeta) {
     metaObj[tag] = info
   }
   fs.writeFileSync(path.join(API_DIR, 'tag-meta.json'), JSON.stringify(metaObj, null, 2))
-  console.log(`💾 已生成 tag-meta.json (${tagMeta.size} 条)`)
+  console.log(`💾 已生成 tag-meta.json (${tagMeta.size} 条，含维度信息)`)
 }
 
 function generatePages(records) {
@@ -695,7 +716,7 @@ async function main() {
   }
 
   // 生成数据和页面
-  generateStats(records)
+  generateStats(records, tagMeta)
   generateTags(records, tagMeta)
   generatePages(records)
 
