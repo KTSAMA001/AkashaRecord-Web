@@ -587,7 +587,10 @@ function parseTagRegistry() {
   const lines = content.split('\n')
 
   for (const line of lines) {
-    if (!line.startsWith('|') || line.includes('---') || line.includes('| 标签')) continue
+    // 跳过表头行（精确匹配）
+    if (line.includes("| 标签 | 显示名 | 图标 | 维度 | 说明 |")) continue
+    if (!line.startsWith('|') || line.includes('---')) continue
+
     const cols = line.split('|').map(c => c.trim())
     // 新格式: | 标签 | 显示名 | 图标 | 维度 | 说明 |
     if (cols.length < 6) continue
