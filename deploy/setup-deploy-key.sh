@@ -53,6 +53,13 @@ else
   log_ok "密钥已生成: ${KEY_PATH}"
 fi
 
+# 预填 GitHub 主机密钥到 known_hosts（防止首次连接的 MITM 风险）
+if ! ssh-keygen -F github.com > /dev/null 2>&1; then
+  log_info "添加 GitHub SSH 主机密钥到 known_hosts..."
+  ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null
+  log_ok "GitHub 主机密钥已添加"
+fi
+
 # ====== Step 2: 显示公钥 ======
 echo ""
 log_info "Step 2: 复制下方公钥内容"
