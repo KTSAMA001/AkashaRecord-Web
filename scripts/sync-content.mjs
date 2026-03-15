@@ -44,6 +44,13 @@ if (GITHUB_TOKEN && AKASHA_REPO.startsWith('https://')) {
 
 const AKASHA_LOCAL = path.join(PROJECT_ROOT, '.akasha-repo')
 
+/**
+ * 清理错误信息中的 Token，避免泄露到日志
+ */
+function sanitizeError(msg) {
+  return GITHUB_TOKEN ? msg.replaceAll(GITHUB_TOKEN, '***') : msg
+}
+
 // 支持同步的图片/静态资源扩展名
 const ASSET_EXTENSIONS = new Set([
   '.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.bmp', '.ico', '.avif',
@@ -132,12 +139,16 @@ function syncRepo() {
       try {
         execSync('git fetch origin && git reset --hard origin/main', { cwd: AKASHA_LOCAL, stdio: 'pipe' })
       } catch (e2) {
-        console.warn('⚠️ Sync failed, using local cache.')
+        console.warn(`⚠️ Sync failed, using local cache. ${sanitizeError(e2.message)}`)
       }
     }
   } else {
     console.log(`📦 Cloning .akasha-repo...${GITHUB_TOKEN ? ' (Token认证)' : ''}`)
-    execSync(`git clone --depth 1 ${AKASHA_REPO} "${AKASHA_LOCAL}"`, { stdio: 'pipe' })
+    try {
+      execSync(`git clone --depth 1 ${AKASHA_REPO} "${AKASHA_LOCAL}"`, { stdio: 'pipe' })
+    } catch (e) {
+      throw new Error(`❌ 克隆仓库失败: ${sanitizeError(e.message)}`)
+    }
   }
 }
 
@@ -748,6 +759,6 @@ async function main() {
 }
 
 main().catch(e => {
-  console.error(e)
+  console.error(sanitizeError(e.message || String(e)))
   process.exit(1)
 })

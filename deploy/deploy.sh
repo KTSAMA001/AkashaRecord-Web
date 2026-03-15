@@ -184,6 +184,9 @@ module.exports = {
 };
 EOF
 
+# 限制 ecosystem 文件权限（包含 GITHUB_TOKEN）
+chmod 600 "${INSTALL_DIR}/ecosystem.config.cjs"
+
 # 停止旧进程（如果存在）
 pm2 delete akasha-webhook 2>/dev/null || true
 
