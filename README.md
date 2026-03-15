@@ -100,29 +100,31 @@ AkashaRecord-Web/
 
 4. **配置私有仓库访问**（如果阿卡西记录仓库为私有，二选一）
 
-   **方式一：Deploy Key（推荐，权限仅限单个仓库）**
+   **方式一：Deploy Key（推荐）** — 一键配置脚本：
    ```bash
-   # 在服务器上生成专用 SSH 密钥
-   ssh-keygen -t ed25519 -f /root/.ssh/akasha_deploy_key -N "" -C "akasha-deploy"
-
-   # 查看公钥，复制输出内容
-   cat /root/.ssh/akasha_deploy_key.pub
-
-   # 前往 GitHub 仓库 → Settings → Deploy keys → Add deploy key
-   # Title: Akasha Web Server
-   # Key: 粘贴上面的公钥
-   # 不需要勾选 Allow write access（只需读取权限）
-
-   # 设置环境变量
-   export DEPLOY_KEY_PATH=/root/.ssh/akasha_deploy_key
+   bash deploy/setup-deploy-key.sh
    ```
+   脚本会自动完成：生成 SSH 密钥 → 引导你添加到 GitHub → 验证连通性 → 测试克隆。
 
-   **方式二：GitHub Token（权限范围较广）**
+   > 如果你想手动配置，步骤如下：
+   > 1. 在服务器上生成密钥：`ssh-keygen -t ed25519 -f /root/.ssh/akasha_deploy_key -N "" -C "akasha-deploy"`
+   > 2. 复制公钥：`cat /root/.ssh/akasha_deploy_key.pub`
+   > 3. 打开 [AgentSkill-Akasha-KT → Settings → Deploy keys](https://github.com/KTSAMA001/AgentSkill-Akasha-KT/settings/keys/new)，添加公钥（不需要勾选 Write access）
+   > 4. 设置环境变量：`export DEPLOY_KEY_PATH=/root/.ssh/akasha_deploy_key`
+
+   **方式二：GitHub Token**
    ```bash
-   # 生成 GitHub Personal Access Token（需要 repo 权限）
-   # 前往 https://github.com/settings/tokens 创建
+   # 前往 https://github.com/settings/tokens 创建 Personal Access Token（需要 repo 权限）
    export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
    ```
+
+   > **Deploy Key vs Token 对比**
+   > | | Deploy Key | GitHub Token |
+   > |---|---|---|
+   > | 权限范围 | 仅限单个仓库（只读） | 所有仓库（可读写） |
+   > | 安全性 | ✅ 更安全 | ⚠️ 泄露风险更大 |
+   > | 有效期 | 永久 | 可设置过期时间 |
+   > | 配置方式 | SSH 密钥对 | 环境变量 |
 
 ### 配置域名与 SSL
 
