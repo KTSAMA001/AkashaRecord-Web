@@ -148,7 +148,7 @@ async function runBuild(mode = 'full') {
             execSync(`git reset --hard origin/${b}`, { cwd: PROJECT_DIR, stdio: 'inherit', timeout: 30000 })
             resetOk = true
             break
-          } catch {}
+          } catch { /* branch不存在，尝试下一个 */ }
         }
         if (!resetOk) throw new Error('No matching remote branch found')
       }

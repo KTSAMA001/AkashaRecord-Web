@@ -177,7 +177,7 @@ function syncRepo() {
             console.log(`  ✅ 已重置到 origin/${branch}`)
             resetOk = true
             break
-          } catch {}
+          } catch { /* branch不存在，尝试下一个 */ }
         }
         if (!resetOk) throw new Error('No matching remote branch found')
       } catch (e2) {
