@@ -26,15 +26,22 @@ const API_DIR = path.join(PUBLIC_DIR, 'api')
 
 // 阿卡西记录配置
 const GITHUB_MIRROR = process.env.GITHUB_MIRROR || ''
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN || ''
 // 优先使用本地已存在的 AgentSkill 路径作为源（开发环境）
 const LOCAL_SOURCE = '/Users/ktsama/.claude/skills/AgentSkill-Akasha-KT'
 const AKASHA_REPO_ORIGIN = fs.existsSync(LOCAL_SOURCE) 
   ? LOCAL_SOURCE 
   : 'https://github.com/KTSAMA001/AgentSkill-Akasha-KT.git'
 
-const AKASHA_REPO = GITHUB_MIRROR && !fs.existsSync(LOCAL_SOURCE)
+let AKASHA_REPO = GITHUB_MIRROR && !fs.existsSync(LOCAL_SOURCE)
   ? AKASHA_REPO_ORIGIN.replace('https://github.com/', GITHUB_MIRROR)
   : AKASHA_REPO_ORIGIN
+
+// 私有仓库认证：将 GITHUB_TOKEN 注入 HTTPS URL
+if (GITHUB_TOKEN && AKASHA_REPO.startsWith('https://')) {
+  AKASHA_REPO = AKASHA_REPO.replace('https://', `https://${GITHUB_TOKEN}@`)
+}
+
 const AKASHA_LOCAL = path.join(PROJECT_ROOT, '.akasha-repo')
 
 // 支持同步的图片/静态资源扩展名
@@ -116,7 +123,7 @@ function syncRepo() {
       execSync(`git remote set-url origin "${AKASHA_REPO}"`, { cwd: AKASHA_LOCAL, stdio: 'pipe' })
     } catch {}
 
-    console.log(`📥 拉取 .akasha-repo... ${GITHUB_MIRROR ? '(Mirror)' : ''}`)
+    console.log(`📥 拉取 .akasha-repo... ${GITHUB_MIRROR ? '(Mirror)' : ''}${GITHUB_TOKEN ? ' (Token认证)' : ''}`)
     try {
       execSync('git checkout . && git clean -fd', { cwd: AKASHA_LOCAL, stdio: 'pipe' })
       execSync('git pull --ff-only', { cwd: AKASHA_LOCAL, stdio: 'pipe', timeout: 60000 })
@@ -129,7 +136,7 @@ function syncRepo() {
       }
     }
   } else {
-    console.log(`📦 Cloning .akasha-repo...`)
+    console.log(`📦 Cloning .akasha-repo...${GITHUB_TOKEN ? ' (Token认证)' : ''}`)
     execSync(`git clone --depth 1 ${AKASHA_REPO} "${AKASHA_LOCAL}"`, { stdio: 'pipe' })
   }
 }

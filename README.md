@@ -98,6 +98,13 @@ AkashaRecord-Web/
    npm install
    ```
 
+4. **配置私有仓库访问**（如果阿卡西记录仓库为私有）
+   ```bash
+   # 生成 GitHub Personal Access Token（需要 repo 权限）
+   # 前往 https://github.com/settings/tokens 创建
+   export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
+   ```
+
 ### 配置域名与 SSL
 
 1. **DNS 解析**
@@ -116,6 +123,10 @@ AkashaRecord-Web/
 
 ```bash
 cd /www/wwwroot/AkashaRecord-Web
+
+# 如果阿卡西记录仓库为私有，需要先设置 Token
+export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
+
 bash deploy/deploy.sh
 ```
 

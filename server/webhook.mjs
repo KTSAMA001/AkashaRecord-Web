@@ -11,6 +11,7 @@
  *   WEBHOOK_SECRET  - GitHub Webhook Secret（可选，推荐设置）
  *   WEBHOOK_PORT    - 监听端口（默认 3721）
  *   PROJECT_DIR     - 项目根目录（默认自动检测）
+ *   GITHUB_TOKEN    - GitHub Personal Access Token（私有仓库必须设置）
  */
 
 import express from 'express'

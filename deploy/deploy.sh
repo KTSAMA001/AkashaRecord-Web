@@ -21,6 +21,7 @@ INSTALL_DIR="/www/wwwroot/${PROJECT_NAME}"
 REPO_URL="https://github.com/KTSAMA001/AkashaRecord-Web.git"
 NODE_VERSION="18"  # Node.js 主版本号
 WEBHOOK_PORT=3721
+GITHUB_TOKEN="${GITHUB_TOKEN:-}"  # GitHub Token（私有仓库必须设置）
 
 # ====== 颜色 ======
 RED='\033[0;31m'
@@ -124,8 +125,12 @@ cd "${INSTALL_DIR}"
 npm install --production=false
 
 # 同步阿卡西记录内容 & 构建
+if [ -z "${GITHUB_TOKEN}" ]; then
+  log_warn "未设置 GITHUB_TOKEN，如果阿卡西记录仓库为私有则同步会失败"
+  log_warn "设置方法：export GITHUB_TOKEN=ghp_xxxx && bash deploy/deploy.sh"
+fi
 log_info "同步阿卡西记录内容..."
-node scripts/sync-content.mjs
+GITHUB_TOKEN="${GITHUB_TOKEN}" node scripts/sync-content.mjs
 
 log_info "构建 VitePress 站点..."
 npx vitepress build
@@ -168,6 +173,7 @@ module.exports = {
       NODE_ENV: 'production',
       WEBHOOK_PORT: ${WEBHOOK_PORT},
       PROJECT_DIR: '${INSTALL_DIR}',
+      GITHUB_TOKEN: '${GITHUB_TOKEN}',
     },
     max_memory_restart: '200M',
     error_file: '/www/wwwlogs/akasha-webhook-error.log',
