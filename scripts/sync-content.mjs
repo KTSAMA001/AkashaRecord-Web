@@ -167,7 +167,19 @@ function syncRepo() {
     } catch (e) {
       console.warn('⚠️ Pull failed, trying fetch+reset...')
       try {
-        execSync('git fetch origin && git reset --hard origin/main', gitExecOpts({ cwd: AKASHA_LOCAL }))
+        execSync('git fetch origin', gitExecOpts({ cwd: AKASHA_LOCAL }))
+        // 尝试多个可能的默认分支名（兼容旧部署使用 publish 分支）
+        const branches = ['main', 'publish', 'master']
+        let resetOk = false
+        for (const branch of branches) {
+          try {
+            execSync(`git reset --hard origin/${branch}`, gitExecOpts({ cwd: AKASHA_LOCAL, stdio: 'pipe' }))
+            console.log(`  ✅ 已重置到 origin/${branch}`)
+            resetOk = true
+            break
+          } catch {}
+        }
+        if (!resetOk) throw new Error('No matching remote branch found')
       } catch (e2) {
         console.warn(`⚠️ Sync failed, using local cache. ${sanitizeError(e2.message)}`)
       }

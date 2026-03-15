@@ -109,7 +109,7 @@ if [ -d "${INSTALL_DIR}" ]; then
   git pull --ff-only || {
     log_warn "pull 失败，尝试 reset..."
     git fetch origin
-    git reset --hard origin/main || git reset --hard origin/master
+    git reset --hard origin/main || git reset --hard origin/publish || git reset --hard origin/master
   }
 else
   log_info "克隆项目仓库..."

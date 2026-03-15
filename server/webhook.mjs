@@ -136,11 +136,21 @@ async function runBuild(mode = 'full') {
         })
       } catch (pullErr) {
         console.warn('⚠️ git pull 失败，尝试 fetch + reset...')
-        execSync('git fetch origin && git reset --hard origin/main', {
+        execSync('git fetch origin', {
           cwd: PROJECT_DIR,
           stdio: 'inherit',
           timeout: 60000,
         })
+        // 尝试多个可能的默认分支名（兼容旧部署）
+        let resetOk = false
+        for (const b of ['main', 'publish', 'master']) {
+          try {
+            execSync(`git reset --hard origin/${b}`, { cwd: PROJECT_DIR, stdio: 'inherit', timeout: 30000 })
+            resetOk = true
+            break
+          } catch {}
+        }
+        if (!resetOk) throw new Error('No matching remote branch found')
       }
 
       // Step 1: 安装/更新依赖（package.json 可能变更）
@@ -216,7 +226,7 @@ app.post('/webhook', (req, res) => {
     console.log(`  提交: ${commitMsg}`)
 
     // 只处理主分支
-    if (branch === 'master' || branch === 'main') {
+    if (branch === 'master' || branch === 'main' || branch === 'publish') {
       // 判断来源仓库，决定构建策略
       if (repoName === AKASHA_REPO_NAME) {
         // 阿卡西记录仓库 → 分析变更文件决定是否需要构建
