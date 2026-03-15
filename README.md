@@ -53,6 +53,7 @@ AkashaRecord-Web/
 │   └── webhook.mjs        # GitHub Webhook 接收服务
 ├── deploy/                # 部署配置
 │   ├── deploy.sh          # 一键部署脚本
+│   ├── setup-deploy-key.sh # Deploy Key 配置助手
 │   └── nginx.conf        # Nginx 配置模板
 ├── docs/                  # 文档目录
 │   ├── akasha-web-architecture-analysis.md
@@ -69,6 +70,36 @@ AkashaRecord-Web/
 ├── package.json          # 项目配置
 └── README.md            # 项目说明
 ```
+
+## 数据同步原理
+
+本站点从私有仓库 [AgentSkill-Akasha-KT](https://github.com/KTSAMA001/AgentSkill-Akasha-KT) 同步数据，流程如下：
+
+```
+GitHub (AgentSkill-Akasha-KT)
+    │ push 事件
+    ▼
+Webhook 服务 (server/webhook.mjs, PM2 常驻)
+    │ 分析变更文件，决定是否需要重新构建
+    ▼
+同步脚本 (scripts/sync-content.mjs)
+    │ git clone / git pull 私有仓库到 .akasha-repo/
+    │ 解析 Markdown → 生成导航、标签、API 数据
+    ▼
+VitePress 构建 → 静态站点更新
+```
+
+**认证方式**（二选一，用于访问私有仓库）：
+
+| | Deploy Key（推荐） | GitHub Token |
+|---|---|---|
+| 原理 | SSH 密钥对，通过 `GIT_SSH_COMMAND` 注入 | Token 嵌入 HTTPS URL |
+| 权限 | 仅限单个仓库（只读） | 所有仓库（可读写） |
+| 安全性 | ✅ 更安全，泄露影响小 | ⚠️ 泄露可访问所有仓库 |
+| 有效期 | 永久（除非手动删除） | 可设置过期时间 |
+| 服务器配置 | `DEPLOY_KEY_PATH=/root/.ssh/akasha_deploy_key` | `GITHUB_TOKEN=ghp_xxx` |
+
+> 两种方式完全兼容。如果同时设置，Deploy Key 优先。旧部署使用 GITHUB_TOKEN 的无需修改，新部署推荐用 Deploy Key。
 
 ## 服务器部署
 
@@ -196,6 +227,25 @@ curl http://127.0.0.1:3721/webhook/health
 
 # 手动触发构建
 curl -X POST http://127.0.0.1:3721/webhook/rebuild
+```
+
+### 从旧版本升级
+
+如果服务器上已有旧版本部署（使用 `GITHUB_TOKEN`），更新代码后 **无需任何操作**，原有 Token 认证方式继续有效。
+
+**可选：迁移到 Deploy Key（更安全）**
+
+```bash
+cd /www/wwwroot/AkashaRecord-Web
+
+# 1. 配置 Deploy Key
+bash deploy/setup-deploy-key.sh
+
+# 2. 重新部署（会自动写入 PM2 ecosystem 配置）
+export DEPLOY_KEY_PATH=/root/.ssh/akasha_deploy_key
+bash deploy/deploy.sh
+
+# 迁移完成后，可以到 GitHub Settings → Tokens 中删除旧 Token
 ```
 
 ## License
