@@ -1,12 +1,12 @@
 ---
-title: Unity 跨项目功能迁移的编译验证经验：必须同时编译运行时和 Editor 程序集
+title: Unity 跨项目功能迁移的编译验证经验
 tags:
   - unity
   - editor
   - csharp
   - experience
 status: ✅ 已验证
-description: Unity 跨项目功能迁移的编译验证经验：必须同时编译运行时和 Editor 程序集
+description: Unity 跨项目功能迁移的编译验证经验
 source: 实践总结
 recordDate: '2026-02-25'
 credibility: ⭐⭐⭐

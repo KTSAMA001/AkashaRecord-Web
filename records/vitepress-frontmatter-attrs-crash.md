@@ -1,12 +1,12 @@
 ---
-title: 解决 markdown-it-attrs 插件因 Frontmatter 中包含自定义 ID 导致构建失败的问题
+title: VitePress 构建失败：markdown-it-attrs 与 Frontmatter 冲突
 tags:
   - vitepress
   - bug
   - experience
   - web
 status: ✅ 已验证
-description: 解决 markdown-it-attrs 插件因 Frontmatter 中包含自定义 ID 导致构建失败的问题
+description: VitePress 构建失败：markdown-it-attrs 与 Frontmatter 冲突
 source: 实践总结
 recordDate: '2026-02-13'
 credibility: ⭐⭐⭐⭐⭐
@@ -44,8 +44,8 @@ Error: markdown-it-attrs: Error in pattern 'end of block' at ...
     - 提取后 Frontmatter：`title: Title {#custom-id}`
 2.  **插件冲突**：`markdown-it-attrs` 插件用于解析 `{}` 形式的属性。当它在 Frontmatter 的元数据字段（如 title）中遇到这种语法时，与 VitePress 的内部解析流程发生冲突，导致正则表达式匹配失败并抛出异常。
 3.  **合法性对比**：
-    - <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> **正文中**：`# My Header {#my-id}` 是合法的，插件能正确转换。
-    - <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> **Frontmatter 中**：`title: My Header {#my-id}` 是危险的，应仅包含纯文本。
+    - ✅ **正文中**：`# My Header {#my-id}` 是合法的，插件能正确转换。
+    - ❌ **Frontmatter 中**：`title: My Header {#my-id}` 是危险的，应仅包含纯文本。
 
 #### 解决方案
 修改同步脚本（`scripts/sync-content.mjs`），在写入 Frontmatter 前，使用正则表达式清洗标题文本，移除 Markdown 扩展语法。

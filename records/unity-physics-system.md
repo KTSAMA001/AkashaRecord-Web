@@ -35,11 +35,11 @@ credibility: ⭐⭐⭐⭐⭐ (官方文档)
 
 | 碰撞体类型 | 性能消耗 | 说明 |
 |-----------|---------|------|
-| **SphereCollider** | <img class="inline-icon inline-icon--green" src="/icons/indicator-green.svg" alt="🟢" /> 最低 | 最简单高效，适用于圆形物体和通用交互 |
-| **CapsuleCollider** | <img class="inline-icon inline-icon--green" src="/icons/indicator-green.svg" alt="🟢" /> 较低 | 比 Sphere 稍复杂，但仍高效。适合角色、柱状物体 |
-| **BoxCollider** | <img class="inline-icon inline-icon--yellow" src="/icons/indicator-yellow.svg" alt="🟡" /> 中等偏低 | 高效灵活，适合方形/块状物体。比 Sphere/Capsule 略耗资源 |
-| **Convex MeshCollider** | <img class="inline-icon inline-icon--orange" src="/icons/indicator-orange.svg" alt="🟠" /> 较高 | 比 Primitive 碰撞体耗资源多。需凸面网格，可附加到非 Kinematic Rigidbody |
-| **Non-Convex MeshCollider** | <img class="inline-icon inline-icon--red" src="/icons/indicator-red.svg" alt="🔴" /> 最高 | 最耗资源。仅用于静态、不移动且需精确碰撞面的几何体 |
+| **SphereCollider** | 🟢 最低 | 最简单高效，适用于圆形物体和通用交互 |
+| **CapsuleCollider** | 🟢 较低 | 比 Sphere 稍复杂，但仍高效。适合角色、柱状物体 |
+| **BoxCollider** | 🟡 中等偏低 | 高效灵活，适合方形/块状物体。比 Sphere/Capsule 略耗资源 |
+| **Convex MeshCollider** | 🟠 较高 | 比 Primitive 碰撞体耗资源多。需凸面网格，可附加到非 Kinematic Rigidbody |
+| **Non-Convex MeshCollider** | 🔴 最高 | 最耗资源。仅用于静态、不移动且需精确碰撞面的几何体 |
 
 ### 核心要点
 
@@ -130,19 +130,19 @@ if (Physics.Raycast(ray, out RaycastHit hit, 100f))
 | API | 返回结果 | 内存分配 | 适用场景 |
 |-----|---------|---------|---------|
 | `Physics.Raycast` | 最近一个命中 | 无 | 只需检测是否命中或最近目标 |
-| `Physics.RaycastAll` | 所有命中（数组） | <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 每次调用分配新数组 | 需要所有命中结果（不频繁调用） |
-| `Physics.RaycastNonAlloc` | 所有命中（预分配数组） | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 无 GC | 频繁调用需要多个结果 |
-| `RaycastCommand` | 批量处理 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 使用 NativeArray | 大量射线检测（Job System） |
+| `Physics.RaycastAll` | 所有命中（数组） | ⚠️ 每次调用分配新数组 | 需要所有命中结果（不频繁调用） |
+| `Physics.RaycastNonAlloc` | 所有命中（预分配数组） | ✅ 无 GC | 频繁调用需要多个结果 |
+| `RaycastCommand` | 批量处理 | ✅ 使用 NativeArray | 大量射线检测（Job System） |
 
 ### 性能优化要点
 
 #### 1. 使用 NonAlloc 版本避免 GC
 
 ```csharp
-// <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 避免：每帧分配新数组
+// ❌ 避免：每帧分配新数组
 RaycastHit[] hits = Physics.RaycastAll(ray, 100f);
 
-// <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 推荐：预分配数组复用
+// ✅ 推荐：预分配数组复用
 private RaycastHit[] _hitBuffer = new RaycastHit[10];
 
 void FixedUpdate()
@@ -166,8 +166,8 @@ using Unity.Collections;
 using Unity.Jobs;
 
 // 1. 创建命令数组
-NativeArray&lt;RaycastCommand&gt; commands = new NativeArray&lt;RaycastCommand&gt;(rayCount, Allocator.TempJob);
-NativeArray&lt;RaycastHit&gt; results = new NativeArray&lt;RaycastHit&gt;(rayCount, Allocator.TempJob);
+NativeArray<RaycastCommand> commands = new NativeArray<RaycastCommand>(rayCount, Allocator.TempJob);
+NativeArray<RaycastHit> results = new NativeArray<RaycastHit>(rayCount, Allocator.TempJob);
 
 // 2. 填充命令
 for (int i = 0; i < rayCount; i++)

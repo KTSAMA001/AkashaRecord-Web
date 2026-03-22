@@ -7,9 +7,9 @@ tags:
   - claude-code
 status: ✅ 已验证
 description: Claude Code 完整指南
-source: KTSAMA 实践经验
+source: KTSAMA 实践经验 + 官方文档
 recordDate: '2026-01-30'
-sourceDate: '2026-01-30'
+updateDate: '2026-03-10'
 credibility: ⭐⭐⭐⭐ (实践验证)
 ---
 # Claude Code 完整指南
@@ -17,9 +17,9 @@ credibility: ⭐⭐⭐⭐ (实践验证)
 
 <div class="record-meta-block">
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=ai" class="meta-tag">AI</a> <a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=reference" class="meta-tag">参考</a> <a href="/records/?tags=claude-code" class="meta-tag">Claude Code</a></span></div>
-<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验 + 官方文档</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-30</span></div>
-<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-03-10</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
 </div>
@@ -280,14 +280,14 @@ flowchart LR
 
 | 场景 | Claude Code | VS Code Copilot | 推荐选择 |
 |------|-------------|-----------------|----------|
-| 新建项目骨架 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 擅长 | <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 较弱 | Claude Code |
-| 重构代码 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 全局理解 | <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 单文件 | Claude Code |
-| 修复 bug | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 上下文丰富 | <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 需复制 | Claude Code |
-| 实时代码补全 | <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 需手动 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 实时 | Copilot |
-| 快速生成函数 | <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 需切换 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 就在 IDE | Copilot |
-| 处理 Git 冲突 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 直接操作 | <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 不支持 | Claude Code |
-| 生成文档 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 理解项目 | <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 局部理解 | Claude Code |
-| 学习新框架 | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 项目级讲解 | <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 片段式 | Claude Code |
+| 新建项目骨架 | ✅ 擅长 | ⚠️ 较弱 | Claude Code |
+| 重构代码 | ✅ 全局理解 | ⚠️ 单文件 | Claude Code |
+| 修复 bug | ✅ 上下文丰富 | ⚠️ 需复制 | Claude Code |
+| 实时代码补全 | ⚠️ 需手动 | ✅ 实时 | Copilot |
+| 快速生成函数 | ⚠️ 需切换 | ✅ 就在 IDE | Copilot |
+| 处理 Git 冲突 | ✅ 直接操作 | ❌ 不支持 | Claude Code |
+| 生成文档 | ✅ 理解项目 | ⚠️ 局部理解 | Claude Code |
+| 学习新框架 | ✅ 项目级讲解 | ⚠️ 片段式 | Claude Code |
 
 ### 七、安装与配置
 

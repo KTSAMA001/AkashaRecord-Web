@@ -108,16 +108,16 @@ openai.BadRequestError: Error code: 400 - {'error': {'code': '1214', 'message': 
 
 这是一个已知的 Bug，详见 [GitHub Issue #1243](https://github.com/AstrBotDevs/AstrBot/issues/1243)。
 
-> <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> **注意**：虽然官方声称在 v3.5.3.2+ 已修复，但用户反馈在 v4.13.x 仍然遇到此问题，可能存在其他触发路径或边缘情况。
+> ⚠️ **注意**：虽然官方声称在 v3.5.3.2+ 已修复，但用户反馈在 v4.13.x 仍然遇到此问题，可能存在其他触发路径或边缘情况。
 
 ### 原因二：智谱AI（GLM-4）特有的消息格式要求 🆕 **已确认：用户使用 GLM-4.7**
 
 **智谱AI 对 messages 参数有严格的格式要求**，这与 OpenAI 兼容 API 存在差异：
 
-#### <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 错误情况 1：只有 system 消息
+#### ❌ 错误情况 1：只有 system 消息
 智谱AI **不允许 messages 列表中只有 `role: system` 的消息**：
 ```json
-// <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 错误：会触发 1214 错误
+// ❌ 错误：会触发 1214 错误
 {
   "messages": [
     {"role": "system", "content": "你是一个助手。"}
@@ -125,17 +125,17 @@ openai.BadRequestError: Error code: 400 - {'error': {'code': '1214', 'message': 
 }
 ```
 
-#### <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 错误情况 2：assistant 消息格式不规范（Function Calling 场景）
+#### ❌ 错误情况 2：assistant 消息格式不规范（Function Calling 场景）
 **assistant 消息必须 `content` 与 `tool_calls` 至少有其一，不能都为空**：
 ```json
-// <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 错误：content 和 tool_calls 都没有
+// ❌ 错误：content 和 tool_calls 都没有
 {"role": "assistant", "content": ""}
 
-// <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 错误：content 为空且没有 tool_calls
+// ❌ 错误：content 为空且没有 tool_calls
 {"role": "assistant"}
 ```
 
-#### <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 正确的消息格式
+#### ✅ 正确的消息格式
 
 ##### 基本对话（必须有 user 消息）
 ```json

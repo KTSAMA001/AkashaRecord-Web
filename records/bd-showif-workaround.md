@@ -82,7 +82,7 @@ public class MyAction : ProfilingAction
 
 | 日期 | 验证者 | 结果 |
 |------|--------|------|
-| 2026-02-03 | KT | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> Header 分组在 BD Inspector 中正常显示 |
+| 2026-02-03 | KT | ✅ Header 分组在 BD Inspector 中正常显示 |
 
 ### 理论基础
 

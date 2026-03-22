@@ -1,5 +1,5 @@
 ---
-title: 3D 动画重定向与根运动算法解析：旋转复用、位移缩放与 Stride Warping
+title: 3D 动画重定向与根运动算法解析 (Animation Retargeting & Root Motion)
 tags:
   - unity
   - animation
@@ -8,7 +8,7 @@ tags:
   - animation-retarget
   - knowledge
 status: "\U0001F4D8 有效"
-description: 3D 动画重定向与根运动算法解析：旋转复用、位移缩放与 Stride Warping
+description: 3D 动画重定向与根运动算法解析 (Animation Retargeting & Root Motion)
 source: 专题报告
 recordDate: '2026-02-13'
 sourceDate: '2026-02-13'
@@ -20,7 +20,7 @@ version: Unity 通用
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=animation" class="meta-tag">动画</a> <a href="/records/?tags=math" class="meta-tag">数学</a> <a href="/records/?tags=root-motion" class="meta-tag">root-motion</a> <a href="/records/?tags=animation-retarget" class="meta-tag">动画重定向</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=animation" class="meta-tag">动画</a> <a href="/records/?tags=math" class="meta-tag">数学</a> <a href="/records/?tags=root-motion" class="meta-tag">Root Motion</a> <a href="/records/?tags=animation-retarget" class="meta-tag">动画重定向</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">专题报告</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-13</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-13</span></div>

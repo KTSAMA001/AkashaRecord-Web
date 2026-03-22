@@ -37,22 +37,22 @@ credibility: ⭐⭐⭐⭐ (实践验证)
 
 **核心原则**：ASE Shader 图不应直接引用具体 hlsl 文件，功能细节应封装到各自的节点组中。
 
-- <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 将复杂功能（如 SH 光照、RimLight、LatLong 特效）拆分为独立的 ASE 节点组（SubGraph）
-- <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 每个节点组负责单一功能，对外暴露必要参数
-- <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 主 Shader 图只负责组合各节点组，而非实现具体逻辑
+- ✅ 将复杂功能（如 SH 光照、RimLight、LatLong 特效）拆分为独立的 ASE 节点组（SubGraph）
+- ✅ 每个节点组负责单一功能，对外暴露必要参数
+- ✅ 主 Shader 图只负责组合各节点组，而非实现具体逻辑
 
 ### 2. SH 光照参数外置
 
 **原因**：让节点可以灵活控制光照来源，提高通用性。
 
 `hlsl
-// <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 之前：在 shader 内联获取 L0
+// ❌ 之前：在 shader 内联获取 L0
 float3 BakerySH(float3 normalWorld, float2 lightmapUV) {
     BakerySH_float(float3(unity_SHAr.w, unity_SHAg.w, unity_SHAb.w), normalWorld, lightmapUV, sh); 
     return sh;
 }
 
-// <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 之后：L0 从外部节点传入，更灵活
+// ✅ 之后：L0 从外部节点传入，更灵活
 float3 UnitySHAr() {
     return float3(unity_SHAr.w, unity_SHAg.w, unity_SHAb.w);
 }
@@ -62,10 +62,10 @@ float3 UnitySHAr() {
 ### 3. Include 路径使用相对路径
 
 `hlsl
-// <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 绝对路径：项目迁移后会失效
+// ❌ 绝对路径：项目迁移后会失效
 #include "Assets/CommonFunctionModule/.../BakeryDecodeLightmap.hlsl"
 
-// <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 相对路径：更具可移植性
+// ✅ 相对路径：更具可移植性
 #include "../../../../CommonFunctionModule/.../BakeryDecodeLightmap.hlsl"
 `
 
@@ -74,7 +74,7 @@ float3 UnitySHAr() {
 减少 Shader 变体数量，显著降低编译时间和内存占用：
 
 `hlsl
-// <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 不必要时移除这些变体声明
+// ❌ 不必要时移除这些变体声明
 #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
 #pragma multi_compile_fragment _ _ADDITIONAL_LIGHT_SHADOWS
 #pragma multi_compile _ _FORWARD_PLUS

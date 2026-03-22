@@ -84,8 +84,8 @@ buffer.SetData(dataArray);
 computeShader.SetBuffer(kernelIndex, "BufferName", buffer);
 
 // GPU 端 (ComputeShader)
-StructuredBuffer&lt;GrassInfo&gt; GrassInfos;         // 只读
-AppendStructuredBuffer&lt;GrassInfo&gt; CullResult;   // 追加写入
+StructuredBuffer<GrassInfo> GrassInfos;         // 只读
+AppendStructuredBuffer<GrassInfo> CullResult;   // 追加写入
 ```
 
 #### AppendStructuredBuffer
@@ -93,7 +93,7 @@ AppendStructuredBuffer&lt;GrassInfo&gt; CullResult;   // 追加写入
 用于**动态追加结果**的特殊 Buffer 类型（如剔除后的可见列表）：
 
 ```hlsl
-AppendStructuredBuffer&lt;GrassInfo&gt; CullResult;
+AppendStructuredBuffer<GrassInfo> CullResult;
 
 [numthreads(640, 1, 1)]
 void FrustumCulling(uint3 id : SV_DispatchThreadID)

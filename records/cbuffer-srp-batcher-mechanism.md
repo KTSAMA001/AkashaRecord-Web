@@ -73,15 +73,15 @@ GPU 执行渲染时从 CBUFFER 读取属性
 
 ### 4. URP 中的 SRP Batcher 条件
 
-- <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 使用同一个 Shader
-- <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 所有材质属性都在 CBUFFER 中声明
-- <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 多 Pass Shader 无法被 SRP Batcher 合批
-- <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> Texture 类型无法放入 CBUFFER（需使用图集技术）
+- ✅ 使用同一个 Shader
+- ✅ 所有材质属性都在 CBUFFER 中声明
+- ❌ 多 Pass Shader 无法被 SRP Batcher 合批
+- ❌ Texture 类型无法放入 CBUFFER（需使用图集技术）
 
 **关键代码**：
 
 ```hlsl
-// <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 正确：属性在 CBUFFER 中，支持 SRP Batcher
+// ✅ 正确：属性在 CBUFFER 中，支持 SRP Batcher
 Properties
 {
     _Color ("Color", Color) = (1,1,1,1)

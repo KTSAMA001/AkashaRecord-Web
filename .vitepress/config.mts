@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar, generateNav } from './utils/sidebar'
+import emojiToSvgPlugin from './theme/markdown-emoji-svg'
 
 export default defineConfig({
   // 站点基础信息
@@ -94,7 +95,11 @@ export default defineConfig({
     // 支持数学公式
     math: true,
     // Mermaid 图表支持：将 ```mermaid 代码块转为 <MermaidRenderer> 组件
+    // Emoji→SVG 转换插件：在 token 流层面替换，自动跳过代码块和行内代码
     config: (md) => {
+      // Emoji → SVG 插件（token 流层面，自动跳过代码块和行内代码）
+      md.use(emojiToSvgPlugin)
+
       const defaultFence = md.renderer.rules.fence!.bind(md.renderer.rules)
       md.renderer.rules.fence = (tokens, idx, options, env, self) => {
         const token = tokens[idx]

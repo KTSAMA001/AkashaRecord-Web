@@ -1,5 +1,5 @@
 ---
-title: KiraFramework Unity 游戏开发框架深度分析：事件系统、UI管理、MVVM架构、代码生成系统
+title: KiraFramework Unity 游戏开发框架分析
 tags:
   - unity
   - csharp
@@ -8,7 +8,7 @@ tags:
   - mvvm
   - knowledge
 status: "\U0001F4D8 有效"
-description: KiraFramework Unity 游戏开发框架深度分析：事件系统、UI管理、MVVM架构、代码生成系统
+description: KiraFramework Unity 游戏开发框架分析
 source: '[项目代码分析 - 实践总结]'
 recordDate: '2026-02-16'
 sourceDate: '2026-02-16'
@@ -153,10 +153,10 @@ stateDiagram-v2
 ##### 3. MVVM架构
 
 当前完成度约 60%：
-- <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> ViewModelBase（属性变更通知）
-- <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> Model 属性标记
-- <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> View 层绑定系统
-- <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 运行时绑定组件
+- ✅ ViewModelBase（属性变更通知）
+- ✅ Model 属性标记
+- ❌ View 层绑定系统
+- ❌ 运行时绑定组件
 
 ##### 4. 代码生成系统
 
@@ -265,7 +265,7 @@ public class PlayerLevel : MonoBehaviour
 }
 ```
 
-**<img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 框架能做的：**
+**✅ 框架能做的：**
 
 | 能力 | 描述 | 你可以这样做 |
 |------|------|-------------|
@@ -275,16 +275,16 @@ public class PlayerLevel : MonoBehaviour
 | **代码生成** | 配置驱动的类型安全 | 修改配置后一键生成代码，再也不怕字符串拼写错误 |
 | **MVVM数据绑定** | 数据与UI分离 | 玩家血量变化时，UI自动更新，无需手动刷新 |
 
-**<img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> 框架不能做的：**
+**❌ 框架不能做的：**
 
 | 局限 | 说明 | 影响程度 |
 |------|------|---------|
-| MVVM View层缺失 | 有ViewModel但没View绑定，需要手动写绑定代码 | <img class="inline-icon inline-icon--red" src="/icons/indicator-red.svg" alt="🔴" /> 严重 |
-| 没有资源热更新 | 使用Resources.Load，无法运行时下载资源 | <img class="inline-icon inline-icon--yellow" src="/icons/indicator-yellow.svg" alt="🟡" /> 中等 |
-| 没有网络模块 | 需要自己实现HTTP/WebSocket通信 | <img class="inline-icon inline-icon--yellow" src="/icons/indicator-yellow.svg" alt="🟡" /> 中等 |
-| 没有存档系统 | 只有数据绑定，没有实际的序列化/存储实现 | <img class="inline-icon inline-icon--yellow" src="/icons/indicator-yellow.svg" alt="🟡" /> 中等 |
-| 没有对象池 | 需要自己实现通用的对象池管理 | <img class="inline-icon inline-icon--green" src="/icons/indicator-green.svg" alt="🟢" /> 轻微 |
-| 没有测试框架 | 没有单元测试基础设施 | <img class="inline-icon inline-icon--green" src="/icons/indicator-green.svg" alt="🟢" /> 轻微 |
+| MVVM View层缺失 | 有ViewModel但没View绑定，需要手动写绑定代码 | 🔴 严重 |
+| 没有资源热更新 | 使用Resources.Load，无法运行时下载资源 | 🟡 中等 |
+| 没有网络模块 | 需要自己实现HTTP/WebSocket通信 | 🟡 中等 |
+| 没有存档系统 | 只有数据绑定，没有实际的序列化/存储实现 | 🟡 中等 |
+| 没有对象池 | 需要自己实现通用的对象池管理 | 🟢 轻微 |
+| 没有测试框架 | 没有单元测试基础设施 | 🟢 轻微 |
 
 #### 五、实际应用场景示例
 
@@ -320,7 +320,7 @@ flowchart TB
 **框架帮你做的：**
 ```csharp
 // 打开背包
-UIManager.Show&lt;BagPanel&gt;();
+UIManager.Show<BagPanel>();
 
 // 通知物品变化
 FireEvent<KiraEventKey.Bag.ItemChanged>(new ItemChangedArgs { ItemId = 1001 });
@@ -444,13 +444,13 @@ flowchart LR
 
 | 优先级 | 问题 | 严重程度 | 建议措施 |
 |--------|------|---------|---------|
-| <img class="inline-icon inline-icon--red" src="/icons/indicator-red.svg" alt="🔴" /> 高 | MVVM View层未实现 | 严重 | 实现ViewBase和绑定系统 |
-| <img class="inline-icon inline-icon--red" src="/icons/indicator-red.svg" alt="🔴" /> 高 | 运行时绑定系统缺失 | 严重 | 开发Binding组件 |
-| <img class="inline-icon inline-icon--yellow" src="/icons/indicator-yellow.svg" alt="🟡" /> 中 | 使用 Resources.Load 而非 Addressables | 中等 | 迁移到Addressables |
-| <img class="inline-icon inline-icon--yellow" src="/icons/indicator-yellow.svg" alt="🟡" /> 中 | 缺少单元测试框架 | 中等 | 集成Unity Test Framework |
-| <img class="inline-icon inline-icon--yellow" src="/icons/indicator-yellow.svg" alt="🟡" /> 中 | 缺少DI容器 | 中等 | 考虑引入VContainer |
-| <img class="inline-icon inline-icon--green" src="/icons/indicator-green.svg" alt="🟢" /> 低 | 异步支持不足 | 轻微 | 添加async/await支持 |
-| <img class="inline-icon inline-icon--green" src="/icons/indicator-green.svg" alt="🟢" /> 低 | 文档不完善 | 轻微 | 补充API文档 |
+| 🔴 高 | MVVM View层未实现 | 严重 | 实现ViewBase和绑定系统 |
+| 🔴 高 | 运行时绑定系统缺失 | 严重 | 开发Binding组件 |
+| 🟡 中 | 使用 Resources.Load 而非 Addressables | 中等 | 迁移到Addressables |
+| 🟡 中 | 缺少单元测试框架 | 中等 | 集成Unity Test Framework |
+| 🟡 中 | 缺少DI容器 | 中等 | 考虑引入VContainer |
+| 🟢 低 | 异步支持不足 | 轻微 | 添加async/await支持 |
+| 🟢 低 | 文档不完善 | 轻微 | 补充API文档 |
 
 #### 八、综合评分
 

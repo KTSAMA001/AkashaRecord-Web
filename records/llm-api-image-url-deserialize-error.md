@@ -5,7 +5,7 @@ tags:
   - experience
   - astrbot
   - bug
-status: ⚠️ 待调查
+status: ✅ 已解决
 description: 'LLM API image_url 字段反序列化错误 - "unknown variant `image_url`, expected `text`"'
 source: KTSAMA 实践经验
 recordDate: '2026-02-16'

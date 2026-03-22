@@ -65,7 +65,7 @@ git config --global credential.helper /opt/homebrew/opt/git/libexec/git-core/git
 git push origin main
 ```
 
-**<img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 注意事项**：
+**⚠️ 注意事项**：
 
 - **不要随意清除 Keychain 凭据**：会导致所有使用该凭据的仓库认证失败
 - PAT 需要 `repo` 权限才能 push

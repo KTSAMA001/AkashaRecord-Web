@@ -1,5 +1,5 @@
 ---
-title: Web Archive MCP 实现蓝图 — FastMCP + Playwright (Edge) 网页归档服务完整设计与复现指南
+title: Web Archive MCP — 实现蓝图
 tags:
   - mcp
   - python
@@ -8,7 +8,7 @@ tags:
   - web
   - tools
 status: ✅ 已验证
-description: Web Archive MCP 实现蓝图 — FastMCP + Playwright (Edge) 网页归档服务完整设计与复现指南
+description: Web Archive MCP — 实现蓝图
 source: '实践总结 — `d:\AI\MCPs\web_archive_mcp`'
 recordDate: '2025-02-12'
 updateDate: '2025-02-12'
@@ -83,7 +83,7 @@ web_archive_mcp/
 {
   "servers": {
     "web_archive_mcp": {
-      "command": "&lt;venv&gt;/Scripts/python.exe",
+      "command": "<venv>/Scripts/python.exe",
       "args": ["server.py"],
       "transport": "stdio",
       "workingDirectory": "<项目路径>"
@@ -98,10 +98,10 @@ web_archive_mcp/
 
 | 工具名 | 默认 headless | 生成 ZIP | 说明 |
 |--------|:------------:|:--------:|------|
-| `save_as_markdown` | `True` | <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> | 主力工具 — 抓取并保存 Markdown + 源码 |
-| `archive_web_page` | `True` | <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> | 兼容旧版别名 → 内部调用 `save_as_markdown` |
-| `save_as_mhtml` | `False` | <img class="inline-icon inline-icon--cross" src="/icons/mark-cross.svg" alt="❌" /> | 以 MHTML 单文件保存（保留布局） |
-| `save_as_zip` | `False` | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> | 全部产物打包 ZIP（防加密策略影响） |
+| `save_as_markdown` | `True` | ❌ | 主力工具 — 抓取并保存 Markdown + 源码 |
+| `archive_web_page` | `True` | ❌ | 兼容旧版别名 → 内部调用 `save_as_markdown` |
+| `save_as_mhtml` | `False` | ❌ | 以 MHTML 单文件保存（保留布局） |
+| `save_as_zip` | `False` | ✅ | 全部产物打包 ZIP（防加密策略影响） |
 
 **共享参数**：
 
@@ -209,7 +209,7 @@ mhtml_content = result.get("data")
 
 ```python
 def _extract_title(html: str) -> str:
-    # 优先级: &lt;title&gt; > &lt;h1&gt; > &lt;h2&gt; > og:title > meta[name=title] > "Untitled Page"
+    # 优先级: <title> > <h1> > <h2> > og:title > meta[name=title] > "Untitled Page"
 ```
 
 ### 6.5 文件名安全化

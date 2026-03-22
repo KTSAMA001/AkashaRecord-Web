@@ -1,12 +1,12 @@
 ---
-title: 阿卡西记录可视化网站：VitePress + Schema-Driven 架构，统一搜索与工业风 UI
+title: 阿卡西记录可视化网站
 tags:
   - tools
   - web
   - reference
   - akasha
 status: "\U0001F4D8 有效"
-description: 阿卡西记录可视化网站：VitePress + Schema-Driven 架构，统一搜索与工业风 UI
+description: 阿卡西记录可视化网站
 source: 用户 KTSAMA 提供
 recordDate: '2026-02-07'
 sourceDate: '2026-02-07'

@@ -1,5 +1,5 @@
 ---
-title: KINEMATION Retarget Pro 动画重定向插件全面分析（v4.2.1）
+title: KINEMATION Retarget Pro 插件全面分析
 tags:
   - unity
   - animation
@@ -9,7 +9,7 @@ tags:
   - ik
   - scriptable-object
 status: ✅ 已验证
-description: KINEMATION Retarget Pro 动画重定向插件全面分析（v4.2.1）
+description: KINEMATION Retarget Pro 插件全面分析
 source: '实践分析 + 官方文档 (https://kinemation.gitbook.io/retarget-pro) + 源码阅读'
 recordDate: '2026-02-10'
 updateDate: '2026-02-10'

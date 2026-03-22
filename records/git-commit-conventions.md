@@ -42,11 +42,11 @@ credibility: ⭐⭐⭐⭐ (实践验证)
 ### 基本格式
 
 ```
-&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+<type>(<scope>): <subject>
 
-&lt;body&gt;
+<body>
 
-&lt;footer&gt;
+<footer>
 ```
 
 ### Type 类型（必需）
@@ -98,7 +98,7 @@ feat(skills): 添加投射物自动回收逻辑
 feat(api): 移除已废弃的 API
 
 BREAKING CHANGE: 移除了 Entity.GetFeature() 方法，
-请改用 Entity.FindFeature&lt;T&gt;()
+请改用 Entity.FindFeature<T>()
 
 Closes #123
 ```

@@ -42,8 +42,8 @@ version: Git 2.x+
 
 ```bash
 # 创建凭据文件并限制权限
-touch /path/to/mounted/.git-credentials
-chmod 600 /path/to/mounted/.git-credentials
+touch <挂载路径>/.git-credentials
+chmod 600 <挂载路径>/.git-credentials
 ```
 
 ### 2. 容器内配置凭据存储
@@ -53,7 +53,7 @@ chmod 600 /path/to/mounted/.git-credentials
 git config --global credential.helper "store --file /container/path/.git-credentials"
 
 # 确保远程地址干净（无 token）
-git remote set-url origin https://github.com/&lt;user&gt;/&lt;repo&gt;.git
+git remote set-url origin https://github.com/<user>/<repo>.git
 ```
 
 ### 3. 首次推送
@@ -73,7 +73,7 @@ git push origin main
 
 **验证记录**：
 
-- [2026-02-05] AstrBot 容器内实践验证成功
+- [2026-02-05] Docker 容器内实践验证成功
 
 **相关经验**：
 

@@ -285,11 +285,17 @@ function fixLinks(content) {
   content = content.replace(/\]\(\.\/([^\)]+)\.md\)/g, '](./$1)')
 
   // 4. 转义 C# 泛型防止 Vue 解析错误 <T>
-  content = content.replace(/<([a-zA-Z0-9_, ]+)>/g, (match, p1) => {
-    // 简单 heuristic: 如果是纯字母数字组合，可能是泛型，转义
-    // 排除 HTML 标签将在 Markdown 渲染层处理，这里只处理明显的代码泛型
+  //    提取代码块，只对正文执行转义，避免破坏代码高亮
+  const codeBlocks = []
+  content = content.replace(/```[\s\S]*?```/g, (match) => {
+    codeBlocks.push(match)
+    return `__CODE_BLOCK_${codeBlocks.length - 1}__`
+  })
+  // 匹配 <T>, <int>, <PassData>, <T1, T2> 等（* 允许单字母泛型）
+  content = content.replace(/<([a-zA-Z][a-zA-Z0-9_, ]*)>/g, (match, p1) => {
     return `&lt;${p1}&gt;`
   })
+  content = content.replace(/__CODE_BLOCK_(\d+)__/g, (_, i) => codeBlocks[i])
 
   return content
 }
@@ -688,9 +694,8 @@ async function main() {
       let content = fs.readFileSync(src, 'utf-8')
       content = fixLinks(content)
       const { content: transformed, firstMeta } = transformMetaBlocks(content, tagMeta, schema)
-      // Emoji → SVG 转换（处理正文中的装饰性 Emoji）
-      content = transformEmoji(transformed, schema)
-      content = ensureFrontmatter(content, r, firstMeta, schema)
+      // Emoji → SVG 转换已移至 VitePress markdown-it 插件（token 流层面，自动跳过代码块）
+      content = ensureFrontmatter(transformed, r, firstMeta, schema)
       // 回填真实标题到 record 对象（供 generateTags 使用）
       try {
         const fm = matter(content)

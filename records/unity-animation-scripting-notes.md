@@ -1,5 +1,5 @@
 ---
-title: Unity 动画与脚本开发核心知识清单：Root Motion、Animator API 与优化
+title: Unity 动画与脚本开发核心知识清单
 tags:
   - unity
   - animation
@@ -8,7 +8,7 @@ tags:
   - knowledge
   - root-motion
 status: ✅ 已验证
-description: Unity 动画与脚本开发核心知识清单：Root Motion、Animator API 与优化
+description: Unity 动画与脚本开发核心知识清单
 source: 实践总结
 recordDate: '2026-02-09'
 updateDate: '2026-02-09'
@@ -19,7 +19,7 @@ version: Unity 2021+
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=animation" class="meta-tag">动画</a> <a href="/records/?tags=csharp" class="meta-tag">C#</a> <a href="/records/?tags=performance" class="meta-tag">性能优化</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=root-motion" class="meta-tag">root-motion</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=animation" class="meta-tag">动画</a> <a href="/records/?tags=csharp" class="meta-tag">C#</a> <a href="/records/?tags=performance" class="meta-tag">性能优化</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=root-motion" class="meta-tag">Root Motion</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">实践总结</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-09</span></div>
 <div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-09</span></div>

@@ -1,12 +1,12 @@
 ---
-title: Generic 动画导入配置完整流程：解决滑步、UI 消失与双重位移（Rig→Motion→Bake→Mask）
+title: Unity Generic 动画导入配置完整流程：解决滑步、UI 消失与双重位移
 tags:
   - unity
   - animation
   - root-motion
   - experience
 status: ⚠️ 待验证
-description: Generic 动画导入配置完整流程：解决滑步、UI 消失与双重位移（Rig→Motion→Bake→Mask）
+description: Unity Generic 动画导入配置完整流程：解决滑步、UI 消失与双重位移
 source: 实践总结 + Unity 官方文档验证
 recordDate: '2026-02-10'
 updateDate: '2026-02-10'
@@ -17,7 +17,7 @@ version: Unity 2020.3+
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=animation" class="meta-tag">动画</a> <a href="/records/?tags=root-motion" class="meta-tag">root-motion</a> <a href="/records/?tags=experience" class="meta-tag">经验</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=animation" class="meta-tag">动画</a> <a href="/records/?tags=root-motion" class="meta-tag">Root Motion</a> <a href="/records/?tags=experience" class="meta-tag">经验</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">实践总结 + Unity 官方文档验证</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-10</span></div>
 <div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-10</span></div>
@@ -44,7 +44,7 @@ version: Unity 2020.3+
      - 若是独立模型 → 选 **Create From This Model**。
      - 若是独立动画文件 → 选 **Copy From Other Avatar** 并指向该角色的 Avatar。
    - **Root Node**：选择根骨骼（如 `root`）。
-     - <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 注意：如果选了之后 Animation 页报错或选项不出来，可以暂时设为 **None**。
+     - ⚠️ 注意：如果选了之后 Animation 页报错或选项不出来，可以暂时设为 **None**。
 3. 点击 **Apply**。
 
 #### 第二步：Motion（解锁 UI 面板）—— 最关键的一步

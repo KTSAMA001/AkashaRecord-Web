@@ -8,6 +8,7 @@ tags:
 status: ✅ 已验证
 description: Claude Code 作为 Agent 框架接入多种模型 (LLM Gateway)
 recordDate: '2026-01-31'
+updateDate: '2026-03-10'
 credibility: ⭐⭐⭐⭐ (实践验证)
 ---
 # Claude Code 作为 Agent 框架接入多种模型 (LLM Gateway)
@@ -15,6 +16,7 @@ credibility: ⭐⭐⭐⭐ (实践验证)
 
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
+<div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-03-10</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=ai" class="meta-tag">AI</a> <a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=reference" class="meta-tag">参考</a> <a href="/records/?tags=claude-code" class="meta-tag">Claude Code</a></span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
@@ -28,6 +30,14 @@ credibility: ⭐⭐⭐⭐ (实践验证)
 **解决方案/结论**：
 
 **Claude Code 本质上是一个 Agent 框架**，不绑定特定模型，通过配置 `ANTHROPIC_BASE_URL` 等环境变量可接入不同的后端 API。
+
+### 最新 Claude 模型系列 (2026-03)
+
+| 模型 | API ID | 定价 (input/output per MTok) | 上下文 | 最大输出 | 特性 |
+|------|--------|------------------------------|--------|----------|------|
+| **Opus 4.6** | `claude-opus-4-6` | $5 / $25 | 200K / 1M (beta) | 128K | 自适应思考、旗舰模型 |
+| **Sonnet 4.6** | `claude-sonnet-4-6` | $3 / $15 | 200K / 1M (beta) | 64K | 自适应思考、速度智能平衡 |
+| **Haiku 4.5** | `claude-haiku-4-5-20251001` | $1 / $5 | 200K | 64K | 最快速度、成本最优 |
 
 ### 官方支持的提供商
 

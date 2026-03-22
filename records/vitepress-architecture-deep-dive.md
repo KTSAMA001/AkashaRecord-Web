@@ -1,12 +1,12 @@
 ---
-title: 阿卡西记录 Web 项目架构深度解析：完整技术架构、核心流程、组件系统、数据流与部署方案
+title: 阿卡西记录 Web 项目架构深度解析
 tags:
   - web
   - vitepress
-  - reference
   - architecture
+  - reference
 status: "\U0001F4D8 有效"
-description: 阿卡西记录 Web 项目架构深度解析：完整技术架构、核心流程、组件系统、数据流与部署方案
+description: 阿卡西记录 Web 项目架构深度解析
 source: '[AkashaRecord-Web 项目](https://github.com/KTSAMA001/AkashaRecord-Web) - 架构分析与文档'
 recordDate: '2026-02-16'
 credibility: ⭐⭐⭐⭐⭐
@@ -309,7 +309,7 @@ server {
       {
         "title": "Unity 动画脚本化笔记",
         "link": "/records/unity-animation-scripting-notes",
-        "status": "：<img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 已验证",
+        "status": "：✅ 已验证",
         "tags": ["unity", "animation", "script"]
       }
     ]
@@ -329,7 +329,7 @@ server {
   ],
   "statuses": [
     {
-      "emoji": "<img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" />",
+      "emoji": "✅",
       "label": "已验证",
       "color": "success",
       "svg": "check-circle"

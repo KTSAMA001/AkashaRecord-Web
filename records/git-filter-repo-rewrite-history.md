@@ -60,7 +60,7 @@ git filter-repo --mailmap mailmap.txt --force
 
 ### 4. 重新添加远程仓库
 
-> <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> `git-filter-repo` 会自动移除 `origin` 远程，防止误推送
+> ⚠️ `git-filter-repo` 会自动移除 `origin` 远程，防止误推送
 
 ```powershell
 git remote add origin https://github.com/<用户名>/<仓库名>.git
@@ -72,7 +72,7 @@ git remote add origin https://github.com/<用户名>/<仓库名>.git
 git push origin main --force
 ```
 
-> <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> **警告**：强制推送会覆盖远程历史，协作仓库需提前通知所有成员！
+> ⚠️ **警告**：强制推送会覆盖远程历史，协作仓库需提前通知所有成员！
 
 ### 完整脚本示例
 

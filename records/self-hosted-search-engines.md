@@ -145,7 +145,7 @@ search:
   default_lang: "zh-CN"
 ```
 
-**<img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> 注意**：
+**⚠️ 注意**：
 - SearXNG 依赖第三方搜索引擎，同样受反爬影响
 - 高频使用会被封 IP，建议配合代理池
 - 不适合作为稳定的 API 服务

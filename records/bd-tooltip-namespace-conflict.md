@@ -53,9 +53,9 @@ public float myValue;
 ```csharp
 public enum DirectionType
 {
-    /// &lt;summary&gt;前方</summary>
+    /// <summary>前方</summary>
     Forward,
-    /// &lt;summary&gt;后方</summary>
+    /// <summary>后方</summary>
     Back
 }
 ```
@@ -64,7 +64,7 @@ public enum DirectionType
 
 | 日期 | 验证者 | 结果 |
 |------|--------|------|
-| 2026-02-03 | KT | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 方案1在项目中验证通过 |
+| 2026-02-03 | KT | ✅ 方案1在项目中验证通过 |
 
 ### 理论基础
 

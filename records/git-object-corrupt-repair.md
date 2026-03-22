@@ -53,7 +53,7 @@ zlib压缩( "blob " + 文件大小 + "\0" + 文件原始内容 )
 - 文件系统损坏
 - Git 进程异常终止
 
-> <img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> **待查**：本次案例的实际触发原因未能确定，仅验证了修复方法有效。
+> ⚠️ **待查**：本次案例的实际触发原因未能确定，仅验证了修复方法有效。
 
 **解决方案**：
 
@@ -94,7 +94,7 @@ git fetch origin
 git reset --hard origin/dev
 ```
 
-<img class="inline-icon inline-icon--warning" src="/icons/status-pending.svg" alt="⚠️" /> **实测结论**：此方案在对象已损坏/删除的情况下**通常无效**。
+⚠️ **实测结论**：此方案在对象已损坏/删除的情况下**通常无效**。
 - `git fetch` 和 `git reset` 都需要读取本地对象来计算差异
 - 损坏的对象会导致这些命令本身报错终止
 - 只有在损坏对象恰好不在当前操作路径上时才可能成功

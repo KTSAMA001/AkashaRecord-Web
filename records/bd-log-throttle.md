@@ -75,4 +75,4 @@ public class MyConditional : ProfilingConditional
 
 | 日期 | 验证者 | 结果 |
 |------|--------|------|
-| 2026-02-03 | KT | <img class="inline-icon inline-icon--check" src="/icons/mark-check.svg" alt="✅" /> 日志频率正常控制，不再刷屏 |
+| 2026-02-03 | KT | ✅ 日志频率正常控制，不再刷屏 |

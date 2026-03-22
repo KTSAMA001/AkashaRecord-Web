@@ -76,7 +76,7 @@ public class CullingSystem : JobComponentSystem
 
     protected override void OnCreate()
     {
-        EntityCommandBufferSystem = World.GetExistingSystem&lt;EndSimulationEntityCommandBufferSystem&gt;();
+        EntityCommandBufferSystem = World.GetExistingSystem<EndSimulationEntityCommandBufferSystem>();
     }
 
     protected override JobHandle OnUpdate(JobHandle inputDeps)
@@ -84,7 +84,7 @@ public class CullingSystem : JobComponentSystem
         if(CullingManager.CullIndexList.Count > 0)
         {
             var EntityCommandBuffer = EntityCommandBufferSystem.CreateCommandBuffer().ToConcurrent();
-            NativeArray&lt;int&gt; totalTileID = new NativeArray&lt;int&gt;(totalCount, Allocator.Persistent);
+            NativeArray<int> totalTileID = new NativeArray<int>(totalCount, Allocator.Persistent);
             
             var jobhandle = Entities.ForEach((Entity en, int nativeThreadIndex, ref GeneraGrassTile GrassTile) => {
                 for(int i = 0; i < totalCount; i++)
@@ -111,7 +111,7 @@ public class CullingSystem : JobComponentSystem
 
 ```csharp
 // 比传统 for 循环快约 2ms（数千个值）
-NativeArray&lt;float3&gt;.Copy(posList.ToArray(), 0, totalPos, startOff, InstanceCount);
+NativeArray<float3>.Copy(posList.ToArray(), 0, totalPos, startOff, InstanceCount);
 ```
 
 **3. 使用 FrozenRenderSceneTag 优化 Hybrid 性能**
