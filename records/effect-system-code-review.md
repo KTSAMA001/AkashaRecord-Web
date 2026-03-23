@@ -78,7 +78,7 @@ EffectSystem/
 
 #### 2.1 策略模式 + 模块化组合
 
-- **EffectStrategyBase**（ScriptableObject）作为策略基类，持有 `List&lt;IEffectModule&gt;` 模块列表
+- **EffectStrategyBase**（ScriptableObject）作为策略基类，持有 `List<IEffectModule>` 模块列表
 - 使用 `[SerializeReference]` 实现多态序列化，同一策略可组合不同模块
 - **ModularEffectStrategy** 是空壳容器，行为完全由配置的模块决定
 - 新建效果只需 `Create → Effect System → Modular Effect Strategy`，然后在 Inspector 中添加模块
@@ -152,7 +152,7 @@ bool running = EffectManager.Instance.IsEffectRunning(gameObject, "Dissolve");
 |------|------|------|
 | **每帧 foreach + null 检查** | `EffectStrategyBase.ApplyEffectAsync` 和 `EffectManager.ExecuteEffectAsync` 都在 Update 循环中遍历 modules | 考虑预先过滤掉 null 模块，使用数组替代 List 减少迭代开销 |
 | **PropertyAnimation.Apply 内重复查 ID 缓存** | 每个 FloatAnimation/ColorAnimation/VectorAnimation 都有独立的 `GetPropertyID` 方法 | 将 `GetPropertyID` 提取到 PropertyAnimation 基类，消除代码重复 |
-| **FilterMaterials 每次创建新 List** | `MaterialModule.FilterMaterials` 每次调用都 `new List&lt;Material&gt;()` 和 `.ToArray()` | 可使用对象池或预分配列表 |
+| **FilterMaterials 每次创建新 List** | `MaterialModule.FilterMaterials` 每次调用都 `new List<Material>()` 和 `.ToArray()` | 可使用对象池或预分配列表 |
 | **GetRequiredPropertyIDs 每次创建新 List 和 HashSet** | `MaterialModule.GetRequiredPropertyIDs` 和 `EffectStrategyBase.GetRequiredPropertyIDs` | 考虑缓存或使用 stackalloc/ArrayPool |
 | **renderer.materials 触发材质实例化** | `CollectMaterialInstances` 中 `renderer.materials` 隐式创建材质拷贝 | 这是 Unity 的设计决策（修改材质需要实例），但注意重复调用会重复创建 |
 | **EffectManager 双重 Update 循环** | `EffectStrategyBase.ApplyEffectAsync` 和 `EffectManager.ExecuteEffectAsync` 存在冗余的模块遍历逻辑 | 两条执行路径（基类直接调用 vs Manager 调用）应统一 |

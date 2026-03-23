@@ -120,7 +120,7 @@ dnf makecache
 
 直接运行 `npx vitepress dev` 时，npx 可能使用全局缓存中的旧版/残缺 VitePress（路径指向 `~/.npm/_npx/...`），其 `optimizeDeps` 配置与本地 `node_modules` 不匹配，导致客户端 JS 无法加载（白屏）。
 
-诊断方法：`curl -6 http://localhost:&lt;port&gt;/` 查看 HTML 中的 `<script>` 路径，如果指向 `/@fs/Users/.../.npm/_npx/...` 就说明用的是 npx 缓存版本。
+诊断方法：`curl -6 http://localhost:<port>/` 查看 HTML 中的 `<script>` 路径，如果指向 `/@fs/Users/.../.npm/_npx/...` 就说明用的是 npx 缓存版本。
 
 **解决**：
 - 使用 `npm run dev`（通过 package.json scripts 调用，自动用本地版本）

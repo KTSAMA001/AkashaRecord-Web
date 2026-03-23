@@ -285,11 +285,16 @@ function fixLinks(content) {
   content = content.replace(/\]\(\.\/([^\)]+)\.md\)/g, '](./$1)')
 
   // 4. 转义 C# 泛型防止 Vue 解析错误 <T>
-  //    提取代码块和行内 HTML 标签，只对正文执行转义，避免破坏代码高亮和 HTML 渲染
+  //    提取代码块和行内代码，只对正文执行转义，避免破坏代码高亮和行内代码显示
   const codeBlocks = []
   content = content.replace(/```[\s\S]*?```/g, (match) => {
     codeBlocks.push(match)
     return `__CODE_BLOCK_${codeBlocks.length - 1}__`
+  })
+  const inlineCode = []
+  content = content.replace(/`[^`]+`/g, (match) => {
+    inlineCode.push(match)
+    return `__INLINE_CODE_${inlineCode.length - 1}__`
   })
   // 匹配 <T>, <int>, <PassData>, <T1, T2> 等（* 允许单字母泛型）
   // 跳过常见 HTML 标签，避免将合法 HTML 转义为纯文本
@@ -319,6 +324,7 @@ function fixLinks(content) {
     if (HTML_TAGS.has(p1.toLowerCase())) return match
     return `&lt;${p1}&gt;`
   })
+  content = content.replace(/__INLINE_CODE_(\d+)__/g, (_, i) => inlineCode[i])
   content = content.replace(/__CODE_BLOCK_(\d+)__/g, (_, i) => codeBlocks[i])
 
   return content
