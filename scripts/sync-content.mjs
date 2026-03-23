@@ -285,14 +285,38 @@ function fixLinks(content) {
   content = content.replace(/\]\(\.\/([^\)]+)\.md\)/g, '](./$1)')
 
   // 4. 转义 C# 泛型防止 Vue 解析错误 <T>
-  //    提取代码块，只对正文执行转义，避免破坏代码高亮
+  //    提取代码块和行内 HTML 标签，只对正文执行转义，避免破坏代码高亮和 HTML 渲染
   const codeBlocks = []
   content = content.replace(/```[\s\S]*?```/g, (match) => {
     codeBlocks.push(match)
     return `__CODE_BLOCK_${codeBlocks.length - 1}__`
   })
   // 匹配 <T>, <int>, <PassData>, <T1, T2> 等（* 允许单字母泛型）
+  // 跳过常见 HTML 标签，避免将合法 HTML 转义为纯文本
+  const HTML_TAGS = new Set([
+    'a','abbr','address','area','article','aside','audio',
+    'b','base','bdi','bdo','blockquote','body','br','button',
+    'canvas','caption','cite','code','col','colgroup',
+    'data','datalist','dd','del','details','dfn','dialog','div','dl','dt',
+    'em','embed',
+    'fieldset','figcaption','figure','footer','form',
+    'h1','h2','h3','h4','h5','h6','head','header','hgroup','hr','html',
+    'i','iframe','img','input','ins',
+    'kbd',
+    'label','legend','li','link',
+    'main','map','mark','menu','meta','meter',
+    'nav','noscript',
+    'object','ol','optgroup','option','output',
+    'p','param','picture','pre','progress',
+    'q',
+    'rp','rt','ruby',
+    's','samp','script','section','select','slot','small','source','span','strong','style','sub','summary','sup',
+    'table','tbody','td','template','textarea','tfoot','th','thead','time','title','tr','track',
+    'u','ul',
+    'var','video','wbr'
+  ])
   content = content.replace(/<([a-zA-Z][a-zA-Z0-9_, ]*)>/g, (match, p1) => {
+    if (HTML_TAGS.has(p1.toLowerCase())) return match
     return `&lt;${p1}&gt;`
   })
   content = content.replace(/__CODE_BLOCK_(\d+)__/g, (_, i) => codeBlocks[i])
