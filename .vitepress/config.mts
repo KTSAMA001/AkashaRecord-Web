@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import { generateSidebar, generateNav } from './utils/sidebar'
 import emojiToSvgPlugin from './theme/markdown-emoji-svg'
+import genericEscapePlugin from './theme/markdown-generic-escape'
 
 export default defineConfig({
   // 站点基础信息
@@ -99,6 +100,8 @@ export default defineConfig({
     config: (md) => {
       // Emoji → SVG 插件（token 流层面，自动跳过代码块和行内代码）
       md.use(emojiToSvgPlugin)
+      // C# 泛型转义插件（将 <T> 等 html_inline token 转为安全的 text token）
+      md.use(genericEscapePlugin)
 
       const defaultFence = md.renderer.rules.fence!.bind(md.renderer.rules)
       md.renderer.rules.fence = (tokens, idx, options, env, self) => {
