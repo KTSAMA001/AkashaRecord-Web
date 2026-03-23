@@ -66,7 +66,7 @@ git push origin main
 
 **关键点**：
 
-- 远程地址应为无 token 的 HTTPS：`https://github.com/&lt;user&gt;/&lt;repo&gt;.git`
+- 远程地址应为无 token 的 HTTPS：`https://github.com/<user>/<repo>.git`
 - 凭据文件放在挂载卷（宿主机持久化）
 - 凭据文件权限建议 `600`
 - 已暴露的 PAT 应立即撤销，重新生成

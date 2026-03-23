@@ -284,18 +284,9 @@ function fixLinks(content) {
   // 3. 移除 .md 后缀 (VitePress cleanUrls)
   content = content.replace(/\]\(\.\/([^\)]+)\.md\)/g, '](./$1)')
 
-  // 4. 转义 C# 泛型防止 Vue 解析错误 <T>
-  //    提取代码块，只对正文执行转义，避免破坏代码高亮
-  const codeBlocks = []
-  content = content.replace(/```[\s\S]*?```/g, (match) => {
-    codeBlocks.push(match)
-    return `__CODE_BLOCK_${codeBlocks.length - 1}__`
-  })
-  // 匹配 <T>, <int>, <PassData>, <T1, T2> 等（* 允许单字母泛型）
-  content = content.replace(/<([a-zA-Z][a-zA-Z0-9_, ]*)>/g, (match, p1) => {
-    return `&lt;${p1}&gt;`
-  })
-  content = content.replace(/__CODE_BLOCK_(\d+)__/g, (_, i) => codeBlocks[i])
+  // 4. C# 泛型 <T> 的处理已移至 markdown-it 插件（markdown-generic-escape.ts）
+  //    在 token 流层面将非 HTML 的 html_inline 标签转为转义文本，
+  //    自动跳过代码块和行内代码，无需在此修改源文件内容。
 
   return content
 }

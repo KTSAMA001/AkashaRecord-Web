@@ -66,7 +66,7 @@ Unity 员工在官方帖说明 strict 模式查找逻辑为：取材质关键词
 |------|----------|----------------|----------------------|--------------|
 | A. URP Deferred 内部 shader 在 strict 下报错 | `Hidden/Universal Render Pipeline/StencilDeferred ... variant ... not found` | `UUM-58537`，**Fixed** | Found: `2022.3.15f1`；Fixed: `2022.3.19f1` | **不同问题**，已在较早 2022.3 补丁修复 |
 | B. Dynamic Branches 与 strict 兼容问题 | 开启 strict + dynamic branch 时 magenta / 变体失败 | `UUM-34873`，**Fixed** | Found: `2022.2.18f1`；Fixed in `2022.3.X` | **不同问题**，是 dynamic branch 路径 |
-| C. Standard Shader 在 strict 下报 `&lt;no keywords&gt;` 变体缺失 | `Shader Standard ... variant not found` | `UUM-47817`，**Won't Fix** | Found: `2022.3.8f1` 等 | 与本问题同属“strict 下请求组合与变体产物不一致”问题族 |
+| C. Standard Shader 在 strict 下报 `<no keywords>` 变体缺失 | `Shader Standard ... variant not found` | `UUM-47817`，**Won't Fix** | Found: `2022.3.8f1` 等 | 与本问题同属“strict 下请求组合与变体产物不一致”问题族 |
 | D. `multi_compile(_local)` 组无 `_` 入口导致组合不存在 | strict 下持续报缺失，关闭 strict 后画面正常 | 论坛答复 + `IN-53232`（社区反馈 Won't Fix） | 在 2022.3 线上持续可见 | **本记录核心问题** |
 
 #### 覆盖到 Unity 2022.3.39f1 的结论

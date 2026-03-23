@@ -105,7 +105,7 @@ credibility: ⭐⭐⭐ (待验证)
 **备注**：
 
 - 2D 游戏使用 A* Pathfinding 时，AIPath 的 Orientation 必须设为 YAxisForward
-- Feature 访问 Owner 其他 Feature 时使用 GetFeature&lt;T&gt;()，自动处理缓存
+- Feature 访问 Owner 其他 Feature 时使用 GetFeature<T>()，自动处理缓存
 - 使用 Odin Inspector 的 SerializeReference 实现策略模式的序列化
 - Entity 标签使用 Flags 枚举支持多选（如同时 Attackable + Boss）
 

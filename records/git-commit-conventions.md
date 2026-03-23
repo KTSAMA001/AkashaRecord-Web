@@ -154,6 +154,6 @@ conventional-changelog -p angular -i CHANGELOG.md -s
 
 **备注**：
 
-此规范广泛应用于开源项目（Angular、React、Vue 等），适合团队协作项目。对于个人项目，也可以采用简化版，只保留 `&lt;type&gt;: &lt;subject&gt;` 格式。
+此规范广泛应用于开源项目（Angular、React、Vue 等），适合团队协作项目。对于个人项目，也可以采用简化版，只保留 `<type>: <subject>` 格式。
 
 ---
