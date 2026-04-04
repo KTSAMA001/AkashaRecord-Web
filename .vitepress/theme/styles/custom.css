@@ -230,10 +230,11 @@
 
 /* ======= 表格（工业风增强） ======= */
 .vp-doc table {
+  display: block;
   width: 100%;
   border-collapse: collapse;
   border-radius: 0;
-  overflow: hidden;
+  overflow-x: auto;
 }
 
 .vp-doc table th {
