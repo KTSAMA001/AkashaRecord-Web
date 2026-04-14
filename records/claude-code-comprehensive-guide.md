@@ -1,12 +1,12 @@
 ---
-title: Claude Code 完整指南
+title: Claude Code 完整指南（五平台、1M上下文、Agent Teams、Hooks、Plugins、Subagents）
 tags:
   - claude-code
   - reference
   - tools
   - knowledge
 status: ✅ 已验证
-description: Claude Code 完整指南
+description: Claude Code 完整指南（五平台、1M上下文、Agent Teams、Hooks、Plugins、Subagents）
 source: 官方文档 + 实践经验
 recordDate: '2026-01-30'
 sourceDate: '2026-04-02'
