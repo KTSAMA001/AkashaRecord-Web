@@ -44,6 +44,9 @@ const ASSET_EXTENSIONS = new Set([
 
 // 生成用于正则匹配的图片扩展名模式（从 ASSET_EXTENSIONS 动态生成，保持单一来源）
 const ASSET_EXT_PATTERN = [...ASSET_EXTENSIONS].map(e => e.slice(1)).join('|')
+const LEGACY_META_KEY_ALIASES = new Map([
+  ['创建时间', '收录日期'],
+])
 
 /**
  * 递归复制图片等静态资源文件，保持相对目录结构
@@ -291,6 +294,90 @@ function fixLinks(content) {
   return content
 }
 
+function normalizeTagList(tags) {
+  if (Array.isArray(tags)) {
+    return tags
+      .map(tag => String(tag).trim().replace(/^#/, ''))
+      .filter(Boolean)
+  }
+
+  if (typeof tags === 'string') {
+    return tags
+      .split(/[\s,，]+/)
+      .map(tag => tag.trim().replace(/^#/, ''))
+      .filter(Boolean)
+  }
+
+  return []
+}
+
+function normalizeStatus(status) {
+  if (typeof status !== 'string') return ''
+  return status.replace(/^([\p{Emoji}\u200d\uFE0F]+)\s*/u, '$1 ').trim()
+}
+
+function normalizeMetaKey(key, schema = null) {
+  const rawKey = key.trim()
+  const aliasKey = LEGACY_META_KEY_ALIASES.get(rawKey) || rawKey
+
+  if (!schema?.fields) return aliasKey
+
+  const matched = schema.fields.find(field =>
+    field.fieldName === aliasKey
+    || field.alias === aliasKey
+    || field.fieldName === rawKey
+    || field.alias === rawKey
+  )
+
+  return matched?.fieldName || aliasKey
+}
+
+function parseMetaLine(line, schema = null) {
+  const trimmed = line.trim()
+  if (!trimmed) return null
+
+  let match = trimmed.match(/^\*\*(.+?)\*\*[：:]\s*(.*)$/)
+  if (!match) {
+    match = trimmed.match(/^>\s*([^：:]+)[：:]\s*(.*)$/)
+  }
+  if (!match) return null
+
+  return {
+    key: normalizeMetaKey(match[1], schema),
+    value: match[2].replace(/\s{2,}$/, '').trim(),
+  }
+}
+
+function extractDocumentMeta(content, schema = null) {
+  let fileMatter
+  try {
+    fileMatter = matter(content)
+  } catch {
+    fileMatter = { data: {}, content }
+  }
+
+  const body = fileMatter.content || content
+  const metaMap = new Map()
+  let inMetaBlock = false
+
+  for (const line of body.split('\n')) {
+    const meta = parseMetaLine(line, schema)
+    if (meta && (!schema?.metaKeys || schema.metaKeys.has(meta.key))) {
+      metaMap.set(meta.key, meta.value)
+      inMetaBlock = true
+      continue
+    }
+    if (inMetaBlock) break
+  }
+
+  const frontmatterTags = normalizeTagList(fileMatter.data?.tags)
+
+  return {
+    tags: frontmatterTags.length ? frontmatterTags : normalizeTagList(metaMap.get('标签')),
+    status: normalizeStatus(fileMatter.data?.status || metaMap.get('状态')),
+  }
+}
+
 /* =============================================
  * Emoji → SVG 转换引擎
  * ============================================= */
@@ -336,7 +423,7 @@ function escapeRegExp(str) {
  * 识别正文中的元数据块并转换为结构化 HTML
  * Schema-Driven: 使用 schema.metaKeys 识别, schema.fields 的 renderType 驱动渲染
  *
- * 规则：连续 2+ 行匹配 **KEY**：VALUE（KEY ∈ metaKeys）视为一个元数据块。
+ * 规则：连续 2+ 行匹配 **KEY**：VALUE 或 > KEY：VALUE（KEY ∈ metaKeys）视为一个元数据块。
  * 返回 { content, firstMeta }，firstMeta 为首个块的字段数组（用于丰富 frontmatter）。
  */
 function transformMetaBlocks(content, tagMeta = new Map(), schema = null) {
@@ -377,9 +464,9 @@ function transformMetaBlocks(content, tagMeta = new Map(), schema = null) {
       const trimmed = raw.trim()
       if (!trimmed) break // 空行终止
 
-      const m = trimmed.match(/^\*\*(.+?)\*\*[：:]\s*(.*)$/)
-      if (m && metaKeys.has(m[1])) {
-        blockFields.push({ key: m[1], value: m[2].replace(/\s{2,}$/, '').trim() })
+      const meta = parseMetaLine(trimmed, schema)
+      if (meta && metaKeys.has(meta.key)) {
+        blockFields.push(meta)
         i++
       } else {
         break
@@ -467,10 +554,10 @@ function transformMetaBlocks(content, tagMeta = new Map(), schema = null) {
 /**
  * 注入 Frontmatter
  * @param {string} content  - markdown 正文（已经过 transformMetaBlocks）
- * @param {object} record   - INDEX.md 中的权威元数据
+ * @param {object} record   - INDEX.md 中的预览/回退元数据
  * @param {object[]|null} extractedMeta - 正文首个元数据块的字段数组
  */
-function ensureFrontmatter(content, record, extractedMeta, schema = null) {
+function ensureFrontmatter(content, record, extractedMeta, schema = null, documentMeta = null) {
   let fileMatter;
   try {
     fileMatter = matter(content);
@@ -484,8 +571,13 @@ function ensureFrontmatter(content, record, extractedMeta, schema = null) {
   // 去除 {#anchor} 后缀（仅用于正文标题锚点，不应出现在 frontmatter 纯文本字段中）
   const cleanHeading = (s) => s?.replace(/\s*\{#[^}]+\}$/g, '').trim() || null
 
-  // 强制覆盖/补全关键元数据（INDEX.md 权威源）
-  // 标题优先级：INDEX.md desc（权威） > 正文 h1 > 正文 h2 > 文件名
+  const documentTags = normalizeTagList(documentMeta?.tags)
+  const existingTags = normalizeTagList(data.tags)
+  const documentStatus = normalizeStatus(documentMeta?.status)
+  const existingStatus = normalizeStatus(data.status)
+
+  // 补全关键元数据：优先使用文档自身，INDEX.md 仅作回退/预览
+  // 标题优先级：INDEX.md desc（当前回退） > 正文 h1 > 正文 h2 > 文件名
   if (!data.title || data.title.endsWith('.md')) {
     const h1Match = fileMatter.content.match(/^#\s+(.+)$/m)
     const h2Match = fileMatter.content.match(/^##\s+(.+)$/m)
@@ -496,8 +588,8 @@ function ensureFrontmatter(content, record, extractedMeta, schema = null) {
       || cleanHeading(h2Match?.[1])
       || record.title.replace(/\.md$/, '')
   }
-  data.tags = record.tags
-  data.status = record.status
+  data.tags = documentTags.length ? documentTags : (existingTags.length ? existingTags : record.tags)
+  data.status = documentStatus || existingStatus || record.status
   data.description = cleanHeading(data.description || record.desc)
 
   // 从正文首个元数据块补充丰富字段（Schema-Driven）
@@ -679,19 +771,45 @@ async function main() {
 
   // 复制文件
   let copyCount = 0
+  const metadataAudit = { tagOverrides: 0, tagFallbacks: 0, statusOverrides: 0 }
   for (const r of records) {
     const src = path.join(AKASHA_LOCAL, 'data', r.filename)
     if (fs.existsSync(src)) {
       let content = fs.readFileSync(src, 'utf-8')
+      const documentMeta = extractDocumentMeta(content, schema)
+      const indexTags = normalizeTagList(r.tags)
+      const documentTags = normalizeTagList(documentMeta.tags)
+      const indexStatus = normalizeStatus(r.status)
+      const documentStatus = normalizeStatus(documentMeta.status)
+
+      if (documentTags.length) {
+        if (documentTags.join('|') !== indexTags.join('|')) {
+          metadataAudit.tagOverrides++
+        }
+      } else {
+        metadataAudit.tagFallbacks++
+      }
+      if (documentStatus && documentStatus !== indexStatus) {
+        metadataAudit.statusOverrides++
+      }
+
       content = fixLinks(content)
       const { content: transformed, firstMeta } = transformMetaBlocks(content, tagMeta, schema)
       // Emoji → SVG 转换已移至 VitePress markdown-it 插件（token 流层面，自动跳过代码块）
-      content = ensureFrontmatter(transformed, r, firstMeta, schema)
+      content = ensureFrontmatter(transformed, r, firstMeta, schema, documentMeta)
       // 回填真实标题到 record 对象（供 generateTags 使用）
       try {
         const fm = matter(content)
         if (fm.data?.title && !fm.data.title.endsWith('.md')) {
           r.title = fm.data.title
+        }
+        const resolvedTags = normalizeTagList(fm.data?.tags)
+        if (resolvedTags.length) {
+          r.tags = resolvedTags
+        }
+        const resolvedStatus = normalizeStatus(fm.data?.status)
+        if (resolvedStatus) {
+          r.status = resolvedStatus
         }
       } catch {}
       fs.writeFileSync(path.join(CONTENT_DIR, 'records', r.filename), content)
@@ -699,6 +817,7 @@ async function main() {
     }
   }
   console.log(`✅ 已处理 ${copyCount} 个记录文件`)
+  console.log(`🧪 元数据审计: ${metadataAudit.tagOverrides} 个标签以文档为准，${metadataAudit.tagFallbacks} 个标签回退 INDEX，${metadataAudit.statusOverrides} 个状态以文档为准`)
 
   // 复制图片等静态资源文件（保持 data/ 下的相对目录结构）
   const dataDir = path.join(AKASHA_LOCAL, 'data')

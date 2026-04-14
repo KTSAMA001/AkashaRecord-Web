@@ -6,7 +6,7 @@ tags:
   - fbx
   - experience
   - troubleshooting
-status: ⚠️ 待验证
+status: ⚠️ 待验证（待美术实际测试）
 description: 3ds Max 蒙皮后法线异常问题调查（待美术验证）
 source: 智谱 MCP 搜索 + 社区讨论（Autodesk Forum / Unity Discussion）
 recordDate: '2026-03-12'

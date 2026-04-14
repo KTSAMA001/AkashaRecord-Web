@@ -7,11 +7,16 @@ tags:
   - 持久化
 status: ✅ 已验证
 description: Git 配置跟随仓库持久化
+recordDate: '2026-03-09'
 ---
 # Git 配置跟随仓库持久化
 
-> 创建时间：2026-03-09
-> 标签：#git #docker #配置管理 #持久化
+
+<div class="record-meta-block">
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-09</span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=git" class="meta-tag">Git</a> <a href="/records/?tags=docker" class="meta-tag">Docker</a> <a href="/records/?tags=%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86" class="meta-tag">配置管理</a> <a href="/records/?tags=%E6%8C%81%E4%B9%85%E5%8C%96" class="meta-tag">持久化</a></span></div>
+</div>
+
 
 ## 问题场景
 
