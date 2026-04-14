@@ -348,6 +348,7 @@ function extractDocumentMeta(content, schema = null) {
   try {
     fileMatter = matter(content)
   } catch {
+    // 文档自身 frontmatter 损坏时仍需继续回退到正文元数据，避免同步中断
     fileMatter = { data: {}, content }
   }
 
@@ -372,7 +373,7 @@ function extractDocumentMeta(content, schema = null) {
   }
 }
 
-function areStringArraysEqual(a = [], b = []) {
+function areArraysEqual(a = [], b = []) {
   return a.length === b.length && a.every((value, index) => value === b[index])
 }
 
@@ -777,7 +778,7 @@ async function main() {
       const documentTags = normalizeTagList(documentMeta.tags)
 
       if (documentTags.length) {
-        if (!areStringArraysEqual(documentTags, indexTags)) {
+        if (!areArraysEqual(documentTags, indexTags)) {
           metadataAudit.tagOverrides++
         }
       } else {
