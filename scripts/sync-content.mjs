@@ -311,11 +311,6 @@ function normalizeTagList(tags) {
   return []
 }
 
-function normalizeStatus(status) {
-  if (typeof status !== 'string') return ''
-  return status.replace(/^([\p{Emoji}\u200d\uFE0F]+)\s*/u, '$1 ').trim()
-}
-
 function normalizeMetaKey(key, schema = null) {
   const rawKey = key.trim()
   const aliasKey = LEGACY_META_KEY_ALIASES.get(rawKey) || rawKey
@@ -374,8 +369,11 @@ function extractDocumentMeta(content, schema = null) {
 
   return {
     tags: frontmatterTags.length ? frontmatterTags : normalizeTagList(metaMap.get('标签')),
-    status: normalizeStatus(fileMatter.data?.status || metaMap.get('状态')),
   }
+}
+
+function areStringArraysEqual(a = [], b = []) {
+  return a.length === b.length && a.every((value, index) => value === b[index])
 }
 
 /* =============================================
@@ -573,8 +571,6 @@ function ensureFrontmatter(content, record, extractedMeta, schema = null, docume
 
   const documentTags = normalizeTagList(documentMeta?.tags)
   const existingTags = normalizeTagList(data.tags)
-  const documentStatus = normalizeStatus(documentMeta?.status)
-  const existingStatus = normalizeStatus(data.status)
 
   // 补全关键元数据：优先使用文档自身，INDEX.md 仅作回退/预览
   // 标题优先级：INDEX.md desc（当前回退） > 正文 h1 > 正文 h2 > 文件名
@@ -589,7 +585,7 @@ function ensureFrontmatter(content, record, extractedMeta, schema = null, docume
       || record.title.replace(/\.md$/, '')
   }
   data.tags = documentTags.length ? documentTags : (existingTags.length ? existingTags : record.tags)
-  data.status = documentStatus || existingStatus || record.status
+  data.status = data.status || record.status
   data.description = cleanHeading(data.description || record.desc)
 
   // 从正文首个元数据块补充丰富字段（Schema-Driven）
@@ -771,7 +767,7 @@ async function main() {
 
   // 复制文件
   let copyCount = 0
-  const metadataAudit = { tagOverrides: 0, tagFallbacks: 0, statusOverrides: 0 }
+  const metadataAudit = { tagOverrides: 0, tagFallbacks: 0 }
   for (const r of records) {
     const src = path.join(AKASHA_LOCAL, 'data', r.filename)
     if (fs.existsSync(src)) {
@@ -779,18 +775,13 @@ async function main() {
       const documentMeta = extractDocumentMeta(content, schema)
       const indexTags = normalizeTagList(r.tags)
       const documentTags = normalizeTagList(documentMeta.tags)
-      const indexStatus = normalizeStatus(r.status)
-      const documentStatus = normalizeStatus(documentMeta.status)
 
       if (documentTags.length) {
-        if (documentTags.join('|') !== indexTags.join('|')) {
+        if (!areStringArraysEqual(documentTags, indexTags)) {
           metadataAudit.tagOverrides++
         }
       } else {
         metadataAudit.tagFallbacks++
-      }
-      if (documentStatus && documentStatus !== indexStatus) {
-        metadataAudit.statusOverrides++
       }
 
       content = fixLinks(content)
@@ -807,17 +798,13 @@ async function main() {
         if (resolvedTags.length) {
           r.tags = resolvedTags
         }
-        const resolvedStatus = normalizeStatus(fm.data?.status)
-        if (resolvedStatus) {
-          r.status = resolvedStatus
-        }
       } catch {}
       fs.writeFileSync(path.join(CONTENT_DIR, 'records', r.filename), content)
       copyCount++
     }
   }
   console.log(`✅ 已处理 ${copyCount} 个记录文件`)
-  console.log(`🧪 元数据审计: ${metadataAudit.tagOverrides} 个标签以文档为准，${metadataAudit.tagFallbacks} 个标签回退 INDEX，${metadataAudit.statusOverrides} 个状态以文档为准`)
+  console.log(`🧪 元数据审计: ${metadataAudit.tagOverrides} 个标签以文档为准，${metadataAudit.tagFallbacks} 个标签回退 INDEX`)
 
   // 复制图片等静态资源文件（保持 data/ 下的相对目录结构）
   const dataDir = path.join(AKASHA_LOCAL, 'data')
