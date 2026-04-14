@@ -805,7 +805,7 @@ async function main() {
     }
   }
   console.log(`✅ 已处理 ${copyCount} 个记录文件`)
-  console.log(`🧪 元数据审计: ${metadataAudit.tagOverrides} 个标签以文档为准，${metadataAudit.tagFallbacks} 个标签回退 INDEX`)
+  console.log(`🧪 元数据审计: ${metadataAudit.tagOverrides} 个标签以文档为准，${metadataAudit.tagFallbacks} 个标签回退到 INDEX`)
 
   // 复制图片等静态资源文件（保持 data/ 下的相对目录结构）
   const dataDir = path.join(AKASHA_LOCAL, 'data')
