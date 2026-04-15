@@ -1,5 +1,5 @@
 ---
-title: Shader 调试 Alpha→RGB 时 sRGB 伽马偏差（分段函数 + DXT5 压缩 + 暗部量化三因素叠加）
+title: Shader 调试：Alpha 通道输出到 RGB 时的 sRGB 伽马偏差
 tags:
   - shader
   - urp

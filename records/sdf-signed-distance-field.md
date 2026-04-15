@@ -1,5 +1,5 @@
 ---
-title: SDF（有向距离场）知识
+title: SDF 基本概念
 tags:
   - graphics
   - knowledge

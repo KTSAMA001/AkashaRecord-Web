@@ -1,5 +1,5 @@
 ---
-title: 渲染管线知识
+title: 渲染管线三大阶段
 tags:
   - graphics
   - knowledge

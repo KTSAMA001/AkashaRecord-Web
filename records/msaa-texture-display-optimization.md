@@ -1,5 +1,5 @@
 ---
-title: MSAA 与纹理显示效果优化 — 纹理边缘对齐对抗锯齿的影响（含 7 张对比截图）
+title: MSAA 与纹理显示效果优化 — 纹理边缘对齐对抗锯齿的影响
 tags:
   - unity
   - graphics

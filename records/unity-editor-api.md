@@ -1,5 +1,5 @@
 ---
-title: Unity Editor 开发知识
+title: '[CustomEditor] 对子类的继承支持'
 tags:
   - unity
   - knowledge

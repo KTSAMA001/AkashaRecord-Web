@@ -1,5 +1,5 @@
 ---
-title: Git 团队协作工作流相关经验
+title: Git 提交消息规范 - Conventional Commits
 tags:
   - git
   - reference

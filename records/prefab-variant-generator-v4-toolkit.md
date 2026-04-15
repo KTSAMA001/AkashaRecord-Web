@@ -1,5 +1,5 @@
 ---
-title: PrefabVariantGeneratorV4 工具本体说明（定位、执行模型、端口机制、扩展规范）
+title: PrefabVariantGeneratorV4 工具本体说明
 tags:
   - unity
   - tools

@@ -1,5 +1,5 @@
 ---
-title: Amplify Shader Editor 的架构、序列化协议、模板系统、多 Pass 机制与 Shader Function 实现解析
+title: Amplify Shader Editor 架构与实现机制解析
 tags:
   - unity
   - shader

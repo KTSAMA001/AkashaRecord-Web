@@ -1,5 +1,5 @@
 ---
-title: 法线空间变换矩阵（逆转置矩阵原理 + GLSL/ASE 用法速查）
+title: 法线空间变换矩阵（Normal Space Transformation Matrix）
 tags:
   - graphics
   - shader

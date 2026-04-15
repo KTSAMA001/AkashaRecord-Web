@@ -1,5 +1,5 @@
 ---
-title: HLSL 着色器语言相关经验
+title: Shader 变体（Shader Variants）详解
 tags:
   - shader
   - experience

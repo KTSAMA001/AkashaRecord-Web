@@ -1,5 +1,5 @@
 ---
-title: Markdown to Word 转换器实现详解（python-docx + Pygments + Mermaid/PlantUML）
+title: Markdown to Word 转换器实现详解
 tags:
   - python
   - tools

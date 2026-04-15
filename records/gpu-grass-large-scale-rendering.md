@@ -1,5 +1,5 @@
 ---
-title: 大规模渲染 (Large-Scale Rendering) 相关经验
+title: GPU ComputeShader 草渲染与视锥剔除
 tags:
   - shader
   - unity

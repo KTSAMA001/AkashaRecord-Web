@@ -1,5 +1,5 @@
 ---
-title: 严格变体匹配下 Shader Graph Enum 关键字报 variant not found（引擎已知行为，Won't Fix）
+title: Unity 严格变体匹配下 Shader Graph Enum 关键字报"variant not found"
 tags:
   - unity
   - shader

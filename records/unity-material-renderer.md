@@ -1,5 +1,5 @@
 ---
-title: Unity 渲染相关知识
+title: Renderer.material 与 Renderer.materials 的实例化行为
 tags:
   - unity
   - knowledge

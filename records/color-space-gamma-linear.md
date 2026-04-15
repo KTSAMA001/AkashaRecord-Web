@@ -1,5 +1,5 @@
 ---
-title: 色彩空间知识
+title: Gamma 与 Linear 色彩空间基础
 tags:
   - graphics
   - knowledge

@@ -1,5 +1,5 @@
 ---
-title: 'python-docx Emoji 显示问题解决方案（w:hAnsi 字体属性）'
+title: python-docx Emoji 显示问题解决方案
 tags:
   - python
   - docx

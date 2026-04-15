@@ -1,5 +1,5 @@
 ---
-title: URP / SRP 知识
+title: SRP（Scriptable Render Pipeline）是什么
 tags:
   - unity
   - graphics

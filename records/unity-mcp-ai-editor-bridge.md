@@ -1,5 +1,5 @@
 ---
-title: Unity MCP AI 驱动编辑器操控（7100★，35+工具）
+title: Unity MCP — AI 驱动编辑器操控工具
 tags:
   - unity
   - mcp

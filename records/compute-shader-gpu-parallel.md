@@ -1,5 +1,5 @@
 ---
-title: GPU 通用计算 (GPGPU) 相关原理与概念
+title: ComputeShader 基础概念
 tags:
   - graphics
   - shader

@@ -1,5 +1,5 @@
 ---
-title: Behavior Designer 行为树插件的技术规范、API 和原理
+title: BehaviorDesigner Task Attributes 系统
 tags:
   - unity
   - knowledge

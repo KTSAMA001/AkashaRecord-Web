@@ -1,5 +1,5 @@
 ---
-title: Unity AI Navigation 知识
+title: 多场景独立烘焙与运行时连接机制
 tags:
   - unity
   - knowledge

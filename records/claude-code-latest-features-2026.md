@@ -1,7 +1,5 @@
 ---
-title: >-
-  Claude Code 最新功能 (2026-03)：Plugin System、Agent Teams、1M Context、Adaptive
-  Thinking
+title: Claude Code 最新功能 (2026-03)
 tags:
   - ai
   - tools

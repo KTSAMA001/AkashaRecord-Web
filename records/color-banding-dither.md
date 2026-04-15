@@ -1,5 +1,5 @@
 ---
-title: 色带（Color Banding）与抖动（Dithering）知识
+title: Color Banding（色带）是什么
 tags:
   - graphics
   - knowledge

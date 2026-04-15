@@ -1,5 +1,5 @@
 ---
-title: 3ds Max 蒙皮后法线异常问题调查（待美术验证）
+title: 3ds Max 蒙皮后法线异常问题调查
 tags:
   - unity
   - 3dsmax

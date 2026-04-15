@@ -1,5 +1,5 @@
 ---
-title: '`/config` 设置界面各配置项说明（~/.claude.json，非 settings.json）'
+title: Claude Code /config 设置界面配置项说明
 tags:
   - claude-code
   - reference

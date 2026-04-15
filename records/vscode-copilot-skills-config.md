@@ -1,5 +1,5 @@
 ---
-title: GitHub Copilot 使用相关经验
+title: VS Code Copilot 与 Claude Code 共享 Skills 仓库
 tags:
   - vscode
   - tools

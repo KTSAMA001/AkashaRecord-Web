@@ -1,5 +1,5 @@
 ---
-title: ClaudeMem MCP 工具修复（Smart工具 + Memory工具 inputSchema）
+title: ClaudeMem MCP 工具修复记录
 tags:
   - tools
   - windows

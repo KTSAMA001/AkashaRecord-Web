@@ -1,5 +1,5 @@
 ---
-title: 双璃通信架构演进（v3.2轮询→v4.0纯API直连，零文件队列）
+title: 双璃通信架构演进（v3.2 轮询 → v4.0 纯 API）
 tags:
   - openclaw
   - astrbot

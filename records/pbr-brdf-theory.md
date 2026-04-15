@@ -1,5 +1,5 @@
 ---
-title: 基于物理的渲染（Physically Based Rendering）相关原理与概念
+title: Cook-Torrance BRDF 模型
 tags:
   - graphics
   - knowledge

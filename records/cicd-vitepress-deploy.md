@@ -1,5 +1,5 @@
 ---
-title: 持续集成/持续部署相关经验
+title: VitePress（静态站）在宝塔 Nginx 部署：403/404、路径迁移、Webhook 自动更新踩坑记录
 tags:
   - tools
   - experience

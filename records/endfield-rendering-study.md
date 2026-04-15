@@ -1,5 +1,5 @@
 ---
-title: 终末地角色渲染技术分析（shader效果解读、渲染管线、GitHub原图）
+title: 终末地—渲染学习
 tags:
   - rendering
   - shader

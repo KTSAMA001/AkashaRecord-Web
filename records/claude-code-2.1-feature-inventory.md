@@ -1,5 +1,5 @@
 ---
-title: Claude Code 2.1.81 完整功能清单（15 大能力域）
+title: Claude Code 2.1 功能全览
 tags:
   - claude-code
   - reference

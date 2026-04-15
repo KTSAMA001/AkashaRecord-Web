@@ -1,5 +1,5 @@
 ---
-title: Agent Skills 规范
+title: Agent Skills 概述
 tags:
   - ai
   - knowledge

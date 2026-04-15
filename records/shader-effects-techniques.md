@@ -1,5 +1,5 @@
 ---
-title: 具体特效实现相关经验
+title: 遮挡透视效果实现方案
 tags:
   - shader
   - experience

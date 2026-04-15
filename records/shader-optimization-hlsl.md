@@ -1,5 +1,5 @@
 ---
-title: Shader 性能优化相关经验
+title: 根据索引获取向量分量（无分支优化）
 tags:
   - shader
   - experience
