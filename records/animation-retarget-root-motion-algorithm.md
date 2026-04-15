@@ -8,7 +8,9 @@ tags:
   - animation-retarget
   - knowledge
 status: "\U0001F4D8 有效"
-description: 3D 动画重定向与根运动算法解析 (Animation Retargeting & Root Motion)
+description: >-
+  系统解析了不同比例模型复用同一套动画且不产生滑步（Foot Sliding）的核心算法与数学原理，涵盖从资源分发机制到根运动（Root
+  Motion）的缩放计算，以及四足动物的 Stride Warping 适配方案和 Unity 底层实现机制。
 source: 专题报告
 recordDate: '2026-02-13'
 sourceDate: '2026-02-13'
@@ -32,7 +34,6 @@ version: Unity 通用
 
 
 ### 概要
-
 系统解析了不同比例模型复用同一套动画且不产生滑步（Foot Sliding）的核心算法与数学原理，涵盖从资源分发机制到根运动（Root Motion）的缩放计算，以及四足动物的 Stride Warping 适配方案和 Unity 底层实现机制。
 
 ### 内容
@@ -145,5 +146,4 @@ version: Unity 通用
 - [动画重定向技术分析和 Unity 中的应用](./animation-retarget-technology-unity) - 骨骼映射与参考姿势原理
 
 ### 验证记录
-
 - [2026-02-13] 基于内部报告整理归档，内容经过理论推演与 Unity 引擎机制验证。

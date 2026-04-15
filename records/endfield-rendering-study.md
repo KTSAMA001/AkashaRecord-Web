@@ -7,7 +7,9 @@ tags:
   - knowledge
   - zhihu
 status: "\U0001F4D8 有效"
-description: 终末地角色渲染技术分析（shader效果解读、渲染管线、GitHub原图）
+description: >-
+  系统分析了《终末地》项目的角色渲染流程，以脸部渲染为核心深入解读 shader
+  效果实现，涵盖渲染管线整体梳理、角色渲染细节、特殊效果说明等。附有大量渲染对比图和 AI 绘制的流程图，原图在 GitHub 上可查。
 source: '[知乎 - 稻草人](https://zhuanlan.zhihu.com/p/2013370672647268314)'
 recordDate: '2026-03-31'
 sourceDate: 编辑于 2026-03-23（福建）
@@ -29,7 +31,6 @@ version: 通用渲染技术（终末地项目实践）
 
 
 ### 概要
-
 系统分析了《终末地》项目的角色渲染流程，以脸部渲染为核心深入解读 shader 效果实现，涵盖渲染管线整体梳理、角色渲染细节、特殊效果说明等。附有大量渲染对比图和 AI 绘制的流程图，原图在 GitHub 上可查。
 
 ### 内容
@@ -1097,5 +1098,4 @@ output     = color * tint
 - [原文 - 知乎](https://zhuanlan.zhihu.com/p/2013370672647268314)
 
 ### 验证记录
-
 - [2026-03-31] 璃使用 playwright+stealth 抓取全文+图片，保存到阿卡西记录

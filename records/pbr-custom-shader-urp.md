@@ -17,6 +17,10 @@ version: Unity 2022.3+ / URP 14.0+
 ---
 # 基于物理的渲染 (Physically Based Rendering) 相关经验
 
+### 概要
+基于物理的渲染 (Physically Based Rendering) 相关经验
+
+
 > 基于物理的渲染 (Physically Based Rendering) 相关经验
 >
 > 包含：自定义 PBR Shader、BRDF 实现、IBL、材质工作流等
@@ -92,8 +96,7 @@ for (int i = 0; i < _index; i++)       // 亮度轴
 - [Unity_URP_Learning/PBR](https://github.com/KTSAMA001/Unity_URP_Learning/tree/main/Assets/Products/PBR) - 完整源码
 - [LearnOpenGL PBR Theory](https://learnopengl.com/PBR/Theory) - PBR 理论参考
 
-**验证记录**：
-
+### 验证记录
 - [2026-02-07] 从 Unity_URP_Learning 仓库整合，项目实际运行验证
 
 **理论基础**：

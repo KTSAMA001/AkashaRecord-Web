@@ -8,7 +8,9 @@ tags:
   - ai
   - knowledge
 status: ⚠️ 待验证
-description: Unity MCP AI 驱动编辑器操控（7100★，35+工具）
+description: >-
+  让 LLM（Claude、Cursor、VS Code Copilot 等）通过 MCP 协议直接操控 Unity Editor，实现自然语言创建
+  GameObject、编辑材质、管理场景、编写脚本等操作。
 source: GitHub CoplayDev/unity-mcp（MIT 开源，7100★）
 recordDate: '2026-03-16'
 sourceDate: 2026-03-16（最新推送）
@@ -32,7 +34,6 @@ version: Unity 2021.3 LTS+
 
 
 ### 概要
-
 让 LLM（Claude、Cursor、VS Code Copilot 等）通过 MCP 协议直接操控 Unity Editor，实现自然语言创建 GameObject、编辑材质、管理场景、编写脚本等操作。
 
 ### 架构
@@ -132,7 +133,6 @@ Claude Desktop、Claude Code、Cursor、VS Code Copilot、Windsurf、Cline、Gem
 - [ACM 论文](https://doi.org/10.1145/3757376.3771417) — SA Technical Communications '25
 
 ### 验证记录
-
 - [2026-03-16] 初次记录，来源：GitHub 调研，标注 ⚠️待验证
 
 ---

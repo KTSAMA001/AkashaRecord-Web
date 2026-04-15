@@ -6,7 +6,7 @@ tags:
   - performance
   - experience
 status: ✅ 已验证
-description: SRP Batcher 参数开销分析
+description: 相同 Shader 不同材质的参数绑定开销分析，基于 RenderDoc 抓帧验证。
 source: 实践总结 + RenderDoc 抓帧
 recordDate: '2026-03-05'
 credibility: ⭐⭐⭐⭐
@@ -25,8 +25,7 @@ version: Unity 2020.3+ / DX 平台
 </div>
 
 
-## 概要
-
+### 概要
 相同 Shader 不同材质的参数绑定开销分析，基于 RenderDoc 抓帧验证。
 
 ## 内容
@@ -58,6 +57,5 @@ version: Unity 2020.3+ / DX 平台
 3. 不必担心参数数量，但要注意纹理切换
 
 ### 验证记录
-
 - [2025-06-30] RenderDoc 抓帧分析验证
 - [2026-03-05] 从长期记录提取到阿卡西

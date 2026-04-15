@@ -6,7 +6,7 @@ tags:
   - material
   - experience
 status: ✅ 已验证
-description: 角色/怪物材质统一管理
+description: 多种 Shader 之间的宏开关和参数切换需要统一管理，否则会导致配置混乱。
 source: 实践总结
 recordDate: '2026-03-05'
 credibility: ⭐⭐⭐⭐
@@ -25,8 +25,7 @@ version: Unity 2020.3+
 </div>
 
 
-## 概要
-
+### 概要
 多种 Shader 之间的宏开关和参数切换需要统一管理，否则会导致配置混乱。
 
 ## 内容
@@ -72,6 +71,5 @@ public interface IMaterialManager
 - 考虑运行时材质实例的生命周期管理
 
 ### 验证记录
-
 - [2025-03-31] 项目实践验证
 - [2026-03-05] 从长期记录提取到阿卡西

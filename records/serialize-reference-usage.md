@@ -6,7 +6,7 @@ tags:
   - serialization
   - experience
 status: ✅ 已验证
-description: SerializeReference 多态序列化
+description: '使用 `[SerializeReference]` 特性实现接口或抽象类的多态序列化，支持在 Inspector 中配置不同类型的实现。'
 source: 实践总结
 recordDate: '2026-03-05'
 credibility: ⭐⭐⭐⭐
@@ -16,7 +16,7 @@ version: Unity 2020.1+
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=csharp" class="meta-tag">C#</a> <a href="/records/?tags=serialization" class="meta-tag">serialization</a> <a href="/records/?tags=experience" class="meta-tag">经验</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=csharp" class="meta-tag">C#</a> <a href="/records/?tags=serialization" class="meta-tag">序列化</a> <a href="/records/?tags=experience" class="meta-tag">经验</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">实践总结</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-05</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
@@ -25,8 +25,7 @@ version: Unity 2020.1+
 </div>
 
 
-## 概要
-
+### 概要
 使用 `[SerializeReference]` 特性实现接口或抽象类的多态序列化，支持在 Inspector 中配置不同类型的实现。
 
 ## 内容
@@ -88,6 +87,5 @@ public class AnimalManager : MonoBehaviour
 - 方便管理和扩展
 
 ### 验证记录
-
 - [2025-02-24] 实际项目使用验证
 - [2026-03-05] 从长期记录提取到阿卡西

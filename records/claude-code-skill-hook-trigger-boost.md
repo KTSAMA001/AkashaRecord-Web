@@ -6,7 +6,10 @@ tags:
   - hook
   - experience
 status: ✅ 已验证
-description: Claude Code Skill 触发模式与 Hook 提升自动触发率
+description: >-
+  Claude Code Skill 的主动式/被动式触发模式由 frontmatter 控制，但主动式 skill 自动触发率仅 ~20%。通过
+  `UserPromptSubmit` hook 注入 forced eval 指令可提升至 ~84%。操作级别的行为区分（如查询自动/记录询问）需通过
+  SKILL.md 内部规则实现，frontmatter 无法做到。
 source: 实践总结 + 社区研究（Scott Spence 200+ 测试）
 recordDate: '2026-03-25'
 sourceDate: '2026-03-25'
@@ -28,7 +31,6 @@ version: Claude Code 2.1.x+
 
 
 ### 概要
-
 Claude Code Skill 的主动式/被动式触发模式由 frontmatter 控制，但主动式 skill 自动触发率仅 ~20%。通过 `UserPromptSubmit` hook 注入 forced eval 指令可提升至 ~84%。操作级别的行为区分（如查询自动/记录询问）需通过 SKILL.md 内部规则实现，frontmatter 无法做到。
 
 ### 内容
@@ -155,5 +157,4 @@ description: 知识库管理技能
 - [claude-code-latest-features-2026.md](./claude-code-latest-features-2026) - Claude Code 最新功能
 
 ### 验证记录
-
 - [2026-03-25] 初次记录，来源：实践配置阿卡西记录 skill + 社区研究

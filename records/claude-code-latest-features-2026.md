@@ -6,9 +6,8 @@ tags:
   - reference
   - claude-code
 status: ✅ 已验证
-description: >-
-  Claude Code 最新功能 (2026-03)：Plugin System、Agent Teams、1M Context、Adaptive
-  Thinking
+description: Claude Code 最新功能 (2026-03)
+source: Claude Code 官方发布说明 / 官方文档
 recordDate: '2026-03-10'
 credibility: ⭐⭐⭐⭐ (官方文档)
 ---
@@ -18,12 +17,17 @@ credibility: ⭐⭐⭐⭐ (官方文档)
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-10</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=ai" class="meta-tag">AI</a> <a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=reference" class="meta-tag">参考</a> <a href="/records/?tags=claude-code" class="meta-tag">Claude Code</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Claude Code 官方发布说明 / 官方文档</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">官方文档</span></span></div>
 </div>
 
 
 **问题/场景**：
+
+
+### 概要
+Claude Code 最新功能 (2026-03)
 
 了解 Claude Code 2026 年最新发布的功能和改进。
 
@@ -109,6 +113,5 @@ credibility: ⭐⭐⭐⭐ (官方文档)
 - [Claude Opus 4.6 发布](https://www.anthropic.com/news/claude-opus-4-6)
 - [Claude Code 插件文档](https://docs.claude.com/en/docs/claude-code/plugins)
 
-**验证记录**：
-
+### 验证记录
 - [2026-03-10] 来源：官方 CHANGELOG + 博客

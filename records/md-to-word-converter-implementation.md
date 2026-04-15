@@ -7,7 +7,10 @@ tags:
   - docx
   - markdown
 status: ✅ 已验证
-description: Markdown to Word 转换器实现详解（python-docx + Pygments + Mermaid/PlantUML）
+description: >-
+  基于 Python 的 Markdown 转 Word (.docx) 文档转换器，支持代码语法高亮、Mermaid/PlantUML
+  图表渲染、表格转换、图片嵌入等功能。核心使用 `python-docx` + `markdown` + `Pygments` +
+  `BeautifulSoup4` 技术栈。
 source: 实践总结
 recordDate: '2026-03-13'
 credibility: ⭐⭐⭐⭐
@@ -16,7 +19,7 @@ credibility: ⭐⭐⭐⭐
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=python" class="meta-tag">Python</a> <a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=docx" class="meta-tag">docx</a> <a href="/records/?tags=markdown" class="meta-tag">markdown</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=python" class="meta-tag">Python</a> <a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=docx" class="meta-tag">Word 文档</a> <a href="/records/?tags=markdown" class="meta-tag">Markdown</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">实践总结</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-13</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
@@ -25,7 +28,6 @@ credibility: ⭐⭐⭐⭐
 
 
 ### 概要
-
 基于 Python 的 Markdown 转 Word (.docx) 文档转换器，支持代码语法高亮、Mermaid/PlantUML 图表渲染、表格转换、图片嵌入等功能。核心使用 `python-docx` + `markdown` + `Pygments` + `BeautifulSoup4` 技术栈。
 
 ### 技术架构
@@ -268,6 +270,5 @@ converter = MarkdownToWordConverter(options={
 - [PlantUML API](https://plantuml.com/zh/)
 
 ### 验证记录
-
 - [2026-03-13] 初次记录，基于项目源码分析
 - [2026-03-13] 实际转换测试成功，输出 99KB docx 文件

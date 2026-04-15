@@ -3,7 +3,6 @@ title: KT_Core 框架架构设计经验总结
 tags:
   - unity
   - csharp
-  - experience
   - architecture
 status: ⚠️ 待验证
 description: Unity 中的 C# 脚本编程相关经验
@@ -13,6 +12,10 @@ sourceDate: '2026-01-28'
 credibility: ⭐⭐⭐ (待验证)
 ---
 # Unity 中的 C# 脚本编程相关经验
+
+### 概要
+Unity 中的 C# 脚本编程相关经验
+
 
 > Unity 中的 C# 脚本编程相关经验
 > 
@@ -26,7 +29,7 @@ credibility: ⭐⭐⭐ (待验证)
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=csharp" class="meta-tag">C#</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=architecture" class="meta-tag">架构设计</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=csharp" class="meta-tag">C#</a> <a href="/records/?tags=architecture" class="meta-tag">架构设计</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-28</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-28</span></div>
@@ -109,3 +112,6 @@ credibility: ⭐⭐⭐ (待验证)
 - 使用 Odin Inspector 的 SerializeReference 实现策略模式的序列化
 - Entity 标签使用 Flags 枚举支持多选（如同时 Attackable + Boss）
 
+
+### 验证记录
+- [2026-04-15] 结构修复：补齐模板必填章节，未改动原结论。

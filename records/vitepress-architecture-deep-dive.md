@@ -4,9 +4,10 @@ tags:
   - web
   - vitepress
   - architecture
-  - reference
 status: "\U0001F4D8 有效"
-description: 阿卡西记录 Web 项目架构深度解析
+description: >-
+  AkashaRecord-Web 是阿卡西记录知识库的 Web 前端展示平台，采用 VitePress 构建静态站点，辅以 Express Webhook
+  服务实现自动构建。本文档提供了完整的技术架构、核心流程、组件系统、数据流与部署方案解析。
 source: '[AkashaRecord-Web 项目](https://github.com/KTSAMA001/AkashaRecord-Web) - 架构分析与文档'
 recordDate: '2026-02-16'
 credibility: ⭐⭐⭐⭐⭐
@@ -16,7 +17,7 @@ version: VitePress v2.2.0
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=web" class="meta-tag">Web 开发</a> <a href="/records/?tags=vitepress" class="meta-tag">VitePress</a> <a href="/records/?tags=architecture" class="meta-tag">架构设计</a> <a href="/records/?tags=reference" class="meta-tag">参考</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=web" class="meta-tag">Web 开发</a> <a href="/records/?tags=vitepress" class="meta-tag">VitePress</a> <a href="/records/?tags=architecture" class="meta-tag">架构设计</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value"><a href="https://github.com/KTSAMA001/AkashaRecord-Web" target="_blank" rel="noopener">AkashaRecord-Web 项目</a> - 架构分析与文档</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-16</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
@@ -28,7 +29,6 @@ version: VitePress v2.2.0
 ---
 
 ### 概要
-
 AkashaRecord-Web 是阿卡西记录知识库的 Web 前端展示平台，采用 VitePress 构建静态站点，辅以 Express Webhook 服务实现自动构建。本文档提供了完整的技术架构、核心流程、组件系统、数据流与部署方案解析。
 
 ---
@@ -415,5 +415,4 @@ const filteredRecords = computed(() => {
 ---
 
 ### 验证记录
-
 - 2026-02-16 初次记录，来源：[架构分析文档]

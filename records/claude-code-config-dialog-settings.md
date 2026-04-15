@@ -5,7 +5,9 @@ tags:
   - reference
   - tools
 status: ✅ 已验证
-description: '`/config` 设置界面各配置项说明（~/.claude.json，非 settings.json）'
+description: >-
+  `/config` 命令打开的设置界面（存储于 `~/.claude.json`，**非** `settings.json`）中各配置项的作用说明。与
+  `settings.json`（权限、hooks、环境变量等）是两套独立的配置系统。
 source: 实际使用环境截图 + 官方文档
 recordDate: '2026-03-28'
 sourceDate: '2026-03-28'
@@ -27,7 +29,6 @@ version: Claude Code v2.1.x
 
 
 ### 概要
-
 `/config` 命令打开的设置界面（存储于 `~/.claude.json`，**非** `settings.json`）中各配置项的作用说明。与 `settings.json`（权限、hooks、环境变量等）是两套独立的配置系统。
 
 ### 内容
@@ -90,10 +91,9 @@ version: Claude Code v2.1.x
 
 ### 相关记录
 
-- [claude-code-2.1-feature-inventory.md](./claude-code-2.1-feature-inventory) - Claude Code 2.1 功能清单（15 大能力域）
+- [claude-code-2-1-feature-inventory.md](./claude-code-2-1-feature-inventory) - Claude Code 2.1 功能清单（15 大能力域）
 - [claude-code-comprehensive-guide.md](./claude-code-comprehensive-guide) - Claude Code 完整指南
 - [claude-code-slash-commands.md](./claude-code-slash-commands) - 斜杠命令列表
 
 ### 验证记录
-
 - [2026-03-28] 初次记录，来源：实际使用环境 `/config` 截图确认 + 官方文档交叉验证

@@ -6,7 +6,7 @@ tags:
   - experience
   - cross-platform
 status: ✅ 已验证
-description: PyInstaller 打包 Python 为 Windows EXE 完整指南
+description: 在 Linux 环境下为 Windows 打包 Python 程序的踩坑记录，包含 bat 脚本生成、资源文件打包、路径兼容等关键问题。
 source: 实践总结 - 2026-03-05
 recordDate: '2026-03-05'
 sourceDate: '2026-03-05'
@@ -17,7 +17,7 @@ version: PyInstaller 6.0+
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=python" class="meta-tag">Python</a> <a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=cross-platform" class="meta-tag">cross-platform</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=python" class="meta-tag">Python</a> <a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=cross-platform" class="meta-tag">跨平台</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">实践总结 - 2026-03-05</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-05</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-03-05</span></div>
@@ -28,7 +28,6 @@ version: PyInstaller 6.0+
 
 
 ### 概要
-
 在 Linux 环境下为 Windows 打包 Python 程序的踩坑记录，包含 bat 脚本生成、资源文件打包、路径兼容等关键问题。
 
 ### 内容
@@ -154,7 +153,6 @@ save_path = Path.cwd() / "saves" / "game.sav"
 - [sys._MEIPASS 说明](https://pyinstaller.org/en/stable/runtime-information.html)
 
 ### 验证记录
-
 - [2026-03-05] 初次记录，来源：璃的故事游戏打包实践
 - [2026-03-05] KT 确认 EXE 可正常运行
 

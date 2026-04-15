@@ -7,7 +7,7 @@ tags:
   - skybox
   - experience
 status: ✅ 已验证
-description: URP SkyBox 注意事项
+description: URP 天空盒不能使用 URP 格式 Shader，必须使用 Built-in 管线写法。
 source: 实践总结
 recordDate: '2026-03-05'
 credibility: ⭐⭐⭐⭐
@@ -17,7 +17,7 @@ version: Unity 2022.3+ / URP 14+
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=urp" class="meta-tag">URP</a> <a href="/records/?tags=shader" class="meta-tag">着色器</a> <a href="/records/?tags=skybox" class="meta-tag">skybox</a> <a href="/records/?tags=experience" class="meta-tag">经验</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=urp" class="meta-tag">URP</a> <a href="/records/?tags=shader" class="meta-tag">着色器</a> <a href="/records/?tags=skybox" class="meta-tag">天空盒</a> <a href="/records/?tags=experience" class="meta-tag">经验</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">实践总结</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-05</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
@@ -26,8 +26,7 @@ version: Unity 2022.3+ / URP 14+
 </div>
 
 
-## 概要
-
+### 概要
 URP 天空盒不能使用 URP 格式 Shader，必须使用 Built-in 管线写法。
 
 ## 内容
@@ -50,6 +49,5 @@ URP 天空盒不能使用 URP 格式 Shader，必须使用 Built-in 管线写法
 - 不要尝试将 URP 格式的 Shader 直接用于天空盒
 
 ### 验证记录
-
 - [2026-01-20] 实际测试验证，远裁切面调整后观察到球体弧形
 - [2026-03-05] 从长期记录提取到阿卡西

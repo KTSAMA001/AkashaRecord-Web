@@ -6,7 +6,7 @@ tags:
   - excel
   - experience
 status: ✅ 已验证
-description: Excel ID 一键导出枚举
+description: 将 Excel 表格中的数据 ID 一键导出为 C# 枚举，避免在预制体上手动填写 ID 导致的资源冗余和查找困难。
 source: 实践总结
 recordDate: '2026-03-05'
 credibility: ⭐⭐⭐⭐
@@ -16,7 +16,7 @@ version: Unity 2020.3+
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=excel" class="meta-tag">excel</a> <a href="/records/?tags=experience" class="meta-tag">经验</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=excel" class="meta-tag">Excel</a> <a href="/records/?tags=experience" class="meta-tag">经验</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">实践总结</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-05</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
@@ -25,8 +25,7 @@ version: Unity 2020.3+
 </div>
 
 
-## 概要
-
+### 概要
 将 Excel 表格中的数据 ID 一键导出为 C# 枚举，避免在预制体上手动填写 ID 导致的资源冗余和查找困难。
 
 ## 内容
@@ -74,6 +73,5 @@ version: Unity 2020.3+
 - 枚举名称要符合 C# 命名规范
 
 ### 验证记录
-
 - [2025-03-07] 实际项目验证
 - [2026-03-05] 从长期记录提取到阿卡西

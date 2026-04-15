@@ -1,9 +1,10 @@
 ---
 title: 3D智能家具创意
 tags:
+  - design
   - idea
   - smart-furniture
-status: "\U0001F4A1 灵感记录"
+status: "\U0001F4A1 构想中"
 description: 3D智能家具创意
 source: 留枫微风的创业提案
 recordDate: '2026-02-02'
@@ -14,7 +15,7 @@ credibility: ⭐⭐⭐
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=idea" class="meta-tag">灵感</a> <a href="/records/?tags=smart-furniture" class="meta-tag">智能家具</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=design" class="meta-tag">设计</a> <a href="/records/?tags=idea" class="meta-tag">灵感</a> <a href="/records/?tags=smart-furniture" class="meta-tag">智能家具</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">留枫微风的创业提案</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-02</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-02</span></div>
@@ -22,6 +23,10 @@ credibility: ⭐⭐⭐
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-concept.svg" alt="构想中" /> 构想中</span></div>
 </div>
 
+
+
+### 概要
+3D智能家具创意
 
 ### 定义/概念
 
@@ -68,4 +73,7 @@ credibility: ⭐⭐⭐
 - 提倡者强调"不用AI，简单指令即可"，降低了技术门槛
 - KT要求记录此想法作为灵感参考
 
----
+
+### 验证记录
+- [2026-04-15] 结构修复：补齐模板必填章节，未改动原结论。
+- [2026-04-15] 原状态“灵感记录”已按固定枚举归一到“构想中”。

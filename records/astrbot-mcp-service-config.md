@@ -29,6 +29,10 @@ version: AstrBot v4.13.2+
 
 **问题/场景**：
 
+
+### 概要
+AstrBot 集成 MCP 服务经验
+
 在 AstrBot 容器中集成 MCP 工具服务，需解决网络、依赖、工具命名冲突等问题。
 
 **解决方案/结论**：
@@ -56,7 +60,7 @@ version: AstrBot v4.13.2+
 **参考链接**：
 - [AstrBot 官方文档](https://github.com/AstrBot/AstrBot)
 
-**验证记录**：
+### 验证记录
 - [2026-02-01] MCP 工具服务在 AstrBot 容器内成功集成，工具可用
 
 **相关经验**：

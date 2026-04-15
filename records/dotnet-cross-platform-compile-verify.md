@@ -6,7 +6,7 @@ tags:
   - tools
   - experience
 status: ✅ 已验证
-description: .NET 跨平台编译环境验证
+description: 验证在 Linux arm64 容器中部署的 .NET SDK 能否成功编译 macOS arm64 跨平台应用。
 source: 实践总结 - OpenClaw 容器环境部署验证
 recordDate: '2026-02-27'
 credibility: ⭐⭐⭐⭐ (实地部署验证)
@@ -26,7 +26,6 @@ version: .NET SDK 8.0+
 
 
 ### 概要
-
 验证在 Linux arm64 容器中部署的 .NET SDK 能否成功编译 macOS arm64 跨平台应用。
 
 ### 内容
@@ -102,7 +101,6 @@ xattr -cr .
 4. **Avalonia 版本**：11.x 版本支持 .NET 8，注意包版本兼容性
 
 ### 验证记录
-
 - [2026-02-27] 初次验证，来源：OpenClaw 容器环境部署测试
   - 编译环境：Debian 12 arm64 + .NET SDK 8.0.403
   - 目标平台：macOS arm64
@@ -110,8 +108,8 @@ xattr -cr .
 
 ### 相关记录
 
-- [.NET SDK 环境部署](./dotnet-sdk-setup) - 环境安装步骤
-- [Avalonia UI 跨平台开发](./avalonia-ui-cross-platform) - 框架使用指南
+- .NET SDK 环境部署 - 相关记录待补录，当前先保留主题说明
+- Avalonia UI 跨平台开发 - 相关记录待补录，当前先保留主题说明
 
 ### 结论
 
