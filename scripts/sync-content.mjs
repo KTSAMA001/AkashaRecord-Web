@@ -44,7 +44,7 @@ const ASSET_EXTENSIONS = new Set([
 
 // 生成用于正则匹配的图片扩展名模式（从 ASSET_EXTENSIONS 动态生成，保持单一来源）
 const ASSET_EXT_PATTERN = [...ASSET_EXTENSIONS].map(e => e.slice(1)).join('|')
-const LEGACY_META_KEY_ALIASES = new Map([
+const META_KEY_ALIASES = new Map([
   ['创建时间', '收录日期'],
 ])
 
@@ -313,7 +313,7 @@ function normalizeTagList(tags) {
 
 function normalizeMetaKey(key, schema = null) {
   const rawKey = key.trim()
-  const aliasKey = LEGACY_META_KEY_ALIASES.get(rawKey) || rawKey
+  const aliasKey = META_KEY_ALIASES.get(rawKey) || rawKey
 
   if (!schema?.fields) return aliasKey
 
@@ -327,6 +327,9 @@ function normalizeMetaKey(key, schema = null) {
   return matched?.fieldName || aliasKey
 }
 
+/**
+ * 清理 heading 文本中的 VitePress 锚点后缀（如 {#anchor}），避免写入 frontmatter。
+ */
 function cleanHeadingText(text) {
   return text?.replace(/\s*\{#[^}]+\}$/g, '').trim() || null
 }
