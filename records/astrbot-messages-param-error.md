@@ -5,7 +5,7 @@ tags:
   - experience
   - astrbot
   - bug
-status: ⚠️ 部分解决（v4.13.2 仍有报告）
+status: "\U0001F504 待更新"
 description: AstrBot "messages 参数非法" 错误
 source: KTSAMA 实践经验
 recordDate: '2026-02-02'
@@ -23,11 +23,15 @@ version: AstrBot v3.5.x ~ v4.13.2
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-02</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-02</span></div>
 <div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-02-02</span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--warning"><img class="inline-icon inline-icon--status" src="/icons/status-pending.svg" alt="待验证" /> 待验证</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--warning"><img class="inline-icon inline-icon--status" src="/icons/status-update.svg" alt="待更新" /> 待更新</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">AstrBot v3.5.x ~ v4.13.2</span></div>
 </div>
 
+
+
+### 概要
+AstrBot "messages 参数非法" 错误
 
 ### 问题现象
 在执行某些操作或生成回复后，AstrBot 返回错误：
@@ -290,7 +294,7 @@ docker logs astrbot --tail 500 | grep -A 20 "1214"
 
 ---
 
-## 验证记录
+### 验证记录
 - [x] 2026-02-02 通过官方文档和 GitHub Issues 确认工具调用截断问题
 - [x] 2026-02-02 确认智谱AI对消息格式有特殊要求（来自社区报告和开发文档）
 - [x] 2026-02-02 收到 v4.13.2 版本的完整错误堆栈跟踪，已记录
@@ -338,3 +342,5 @@ docker logs astrbot --tail 500 | grep -A 20 "1214"
 ## 相关经验
 - [AstrBot 集成 MCP 服务经验](./astrbot-mcp-service-config)
 - [MCP 协议与 Agent 服务开发经验](./mcp-protocol-agent-dev)
+
+- [2026-04-15] 原状态“部分解决（v4.13.2 仍有报告）”说明问题未完全收敛，暂按待更新处理。

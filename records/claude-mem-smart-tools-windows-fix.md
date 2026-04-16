@@ -1,5 +1,5 @@
 ---
-title: ClaudeMem MCP 工具修复（Smart工具 + Memory工具 inputSchema）
+title: ClaudeMem MCP 工具修复记录
 tags:
   - tools
   - windows
@@ -7,7 +7,7 @@ tags:
   - experience
   - bug
 status: ✅ 已验证
-description: ClaudeMem MCP 工具修复（Smart工具 + Memory工具 inputSchema）
+description: ClaudeMem 插件的 MCP 工具在 Windows 上存在两类问题：Smart 工具解析失败和 Memory 工具参数传递失败。
 source: 实践总结 + 源码分析
 recordDate: '2026-03-12'
 updateDate: '2026-03-12'
@@ -18,7 +18,7 @@ version: claude-mem 10.5.5 (Windows)
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=windows" class="meta-tag">windows</a> <a href="/records/?tags=mcp" class="meta-tag">MCP 协议</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=bug" class="meta-tag">Bug</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=windows" class="meta-tag">Windows</a> <a href="/records/?tags=mcp" class="meta-tag">MCP 协议</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=bug" class="meta-tag">Bug</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">实践总结 + 源码分析</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-12</span></div>
 <div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-03-12</span></div>
@@ -29,7 +29,6 @@ version: claude-mem 10.5.5 (Windows)
 
 
 ### 概要
-
 ClaudeMem 插件的 MCP 工具在 Windows 上存在两类问题：Smart 工具解析失败和 Memory 工具参数传递失败。
 
 ### 内容
@@ -163,7 +162,6 @@ ls "$LOCALAPPDATA/tree-sitter/lib/"
 - **MCP 服务器重启**：修改 `mcp-server.cjs` 后需要重启 MCP 服务器才能生效
 
 ### 验证记录
-
 - [2026-03-12] 初次记录 Smart 工具修复，方案错误（`.node` 文件不能被 CLI 加载）
 - [2026-03-12] 确认 Smart 工具原始 `-p` 参数方案正确，tree-sitter 使用 DLL 缓存
 - [2026-03-12] 发现 Memory 工具 `search`/`timeline` 的 inputSchema.properties 为空导致参数无法传递

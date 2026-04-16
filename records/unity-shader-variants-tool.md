@@ -1,5 +1,5 @@
 ---
-title: Unity 中 Shader 相关经验
+title: VR Shader 变体收集器开发复盘
 tags:
   - unity
   - shader
@@ -14,6 +14,10 @@ sourceDate: '2026-01-29'
 credibility: ⭐⭐⭐⭐ (实践验证)
 ---
 # Unity 中 Shader 相关经验
+
+### 概要
+Unity 中 Shader 相关经验
+
 
 > Unity 中 Shader 相关经验
 >
@@ -59,3 +63,7 @@ credibility: ⭐⭐⭐⭐ (实践验证)
 
 **详细文档**：
 - [VR变体收集器完整架构文档](./vr-variant-collector-architecture)
+
+
+### 验证记录
+- [2026-04-15] 结构修复：补齐模板必填章节，未改动原结论。

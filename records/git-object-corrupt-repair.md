@@ -2,31 +2,36 @@
 title: Git 对象损坏（loose object corrupt）修复
 tags:
   - git
-  - experience
-  - pat
   - docker
+  - experience
+  - troubleshooting
   - credential
-status: ⚠️ 解决方案已验证，根因待查
-description: Git 对象损坏（loose object corrupt）修复
+status: "\U0001F504 待更新"
+description: 当 Git loose object 损坏时，可以从正常仓库重新写回缺失对象完成修复；但本案例的真实触发根因尚未确认，因此该记录仍需继续更新。
 source: KTSAMA 实践经验
-credibility: ⭐⭐⭐ (解决方案有效)
+recordDate: '2026-02-05'
+sourceDate: '2026-02-05'
+credibility: ⭐⭐⭐ (修复方案已验证，根因未确认)
 version: Git 2.x+
 ---
 # Git 对象损坏（loose object corrupt）修复 {#git-object-corrupt}
 
 
 <div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=git" class="meta-tag">Git</a> <a href="/records/?tags=docker" class="meta-tag">Docker</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=troubleshooting" class="meta-tag">故障排查</a> <a href="/records/?tags=credential" class="meta-tag">凭证管理</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--warning"><img class="inline-icon inline-icon--status" src="/icons/status-pending.svg" alt="待验证" /> 待验证</span></div>
-<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">解决方案有效</span></span></div>
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=git" class="meta-tag">Git</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=pat" class="meta-tag">PAT 令牌</a> <a href="/records/?tags=docker" class="meta-tag">Docker</a> <a href="/records/?tags=credential" class="meta-tag">凭证管理</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--warning"><img class="inline-icon inline-icon--status" src="/icons/status-pending.svg" alt="待验证" /> 待验证</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-05</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-05</span></div>
+<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--warning"><img class="inline-icon inline-icon--status" src="/icons/status-update.svg" alt="待更新" /> 待更新</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">修复方案已验证，根因未确认</span></span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Git 2.x+</span></div>
 </div>
 
 
-**问题/场景**：
+### 概要
+当 Git loose object 损坏时，可以从正常仓库重新写回缺失对象完成修复；但本案例的真实触发根因尚未确认，因此该记录仍需继续更新。
 
+**问题/场景**：
 Git 操作时报错：
 ```
 error: inflate: data stream error (incorrect header check)
@@ -120,8 +125,7 @@ git clone <仓库地址> repo
 | `hash-object -w` | 正确方式：读取文件 → 加头 → 压缩 → 写入对象库 |
 | 同内容同哈希 | 相同内容的文件在任何位置执行 `hash-object` 结果一致 |
 
-**验证记录**：
-
+### 验证记录
 - [2026-02-05] 同事仓库损坏，通过 `git hash-object -w` 从正常仓库导出文件重建对象，成功修复
 
 **相关经验**：

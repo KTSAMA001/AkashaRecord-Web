@@ -1,13 +1,14 @@
 ---
-title: 双璃通信架构演进（v3.2轮询→v4.0纯API直连，零文件队列）
+title: 双璃通信架构演进（v3.2 轮询 → v4.0 纯 API）
 tags:
-  - openclaw
-  - astrbot
   - docker
   - architecture
-  - experience
+  - astrbot
+  - openclaw
 status: ✅ 已验证
-description: 双璃通信架构演进（v3.2轮询→v4.0纯API直连，零文件队列）
+description: >-
+  OpenClaw（璃）与 AstrBot（星璃）之间的双璃通信经过三次架构迭代：v3.2 高频轮询 → v3.3 事件驱动 → v4.0 纯 API
+  直连。最终方案零文件队列、零 cron 轮询、零 watchdog，双向通过 HTTP API 实时投递。
 source: 实践总结
 recordDate: '2026-03-26'
 sourceDate: 2026-03-22 ~ 2026-03-26
@@ -19,7 +20,7 @@ version: 'OpenClaw 2026.3.13+, AstrBot openclaw_bridge v4.0'
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=openclaw" class="meta-tag">openclaw</a> <a href="/records/?tags=astrbot" class="meta-tag">AstrBot</a> <a href="/records/?tags=docker" class="meta-tag">Docker</a> <a href="/records/?tags=architecture" class="meta-tag">架构设计</a> <a href="/records/?tags=experience" class="meta-tag">经验</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=docker" class="meta-tag">Docker</a> <a href="/records/?tags=architecture" class="meta-tag">架构设计</a> <a href="/records/?tags=astrbot" class="meta-tag">AstrBot</a> <a href="/records/?tags=openclaw" class="meta-tag">OpenClaw</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">实践总结</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-26</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-03-22 ~ 2026-03-26</span></div>
@@ -31,7 +32,6 @@ version: 'OpenClaw 2026.3.13+, AstrBot openclaw_bridge v4.0'
 
 
 ### 概要
-
 OpenClaw（璃）与 AstrBot（星璃）之间的双璃通信经过三次架构迭代：v3.2 高频轮询 → v3.3 事件驱动 → v4.0 纯 API 直连。最终方案零文件队列、零 cron 轮询、零 watchdog，双向通过 HTTP API 实时投递。
 
 ### 内容
@@ -142,7 +142,6 @@ with urllib.request.urlopen(req, timeout=60) as resp:
 - 无
 
 ### 验证记录
-
 - [2026-03-22] 初次记录：v3.2 轮询模式建立
 - [2026-03-26] 更新 v3.3：事件驱动优化，launchd WatchPaths + watchdog mtime
 - [2026-03-26] 重大更新 v4.0：纯 API 直连，移除全部文件队列机制。双向端到端测试通过（Docker 内 → 宿主机 OpenClaw /v1/responses 返回 200，宿主机 → AstrBot /api/v1/chat SSE 流正常）

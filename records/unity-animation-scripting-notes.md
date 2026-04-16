@@ -8,7 +8,9 @@ tags:
   - knowledge
   - root-motion
 status: ✅ 已验证
-description: Unity 动画与脚本开发核心知识清单
+description: >-
+  一份适合做技术笔记的关联知识点清单，涵盖 Unity 开发中的动画核心机制、API
+  特性、脚本控制方案以及数学基础。已按核心机制、API特性、替代方案分类整理。
 source: 实践总结
 recordDate: '2026-02-09'
 updateDate: '2026-02-09'
@@ -30,7 +32,6 @@ version: Unity 2021+
 
 
 ### 概要
-
 一份适合做技术笔记的关联知识点清单，涵盖 Unity 开发中的动画核心机制、API 特性、脚本控制方案以及数学基础。已按核心机制、API特性、替代方案分类整理。
 
 ### 内容
@@ -114,5 +115,4 @@ private void OnAnimatorMove()
 ```
 
 ### 验证记录
-
 - [2026-02-09] 初次记录，内容基于用户提供的 Unity 开发经验总结。

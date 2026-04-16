@@ -1,5 +1,5 @@
 ---
-title: Unity AI Navigation 知识
+title: 多场景独立烘焙与运行时连接机制
 tags:
   - unity
   - knowledge
@@ -13,6 +13,10 @@ sourceDate: '2026-02-05'
 credibility: ⭐⭐⭐⭐ (官方文档+实践验证)
 ---
 # Unity AI Navigation 知识
+
+### 概要
+Unity AI Navigation 知识
+
 
 本文档记录 Unity AI Navigation (NavMesh) 系统相关的技术规范、机制和原理。
 
@@ -76,4 +80,6 @@ credibility: ⭐⭐⭐⭐ (官方文档+实践验证)
 - [Building a NavMesh at Runtime](https://docs.unity3d.com/Manual/nav-BuildingNavMesh.html) - 运行时构建 NavMesh
 - [NavMesh Components (GitHub)](https://github.com/Unity-Technologies/NavMeshComponents) - Unity NavMesh Components 官方仓库
 
----
+
+### 验证记录
+- [2026-04-15] 结构修复：补齐模板必填章节，未改动原结论。

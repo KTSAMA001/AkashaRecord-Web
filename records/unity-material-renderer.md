@@ -1,5 +1,5 @@
 ---
-title: Unity 渲染相关知识
+title: Renderer.material 与 Renderer.materials 的实例化行为
 tags:
   - unity
   - knowledge
@@ -13,6 +13,10 @@ sourceDate: '2026-01-31'
 credibility: ⭐⭐⭐⭐⭐(官方)
 ---
 # Unity 渲染相关知识
+
+### 概要
+Unity 渲染相关知识
+
 
 ## Renderer.material 与 Renderer.materials 的实例化行为
 
@@ -112,4 +116,6 @@ void OnDestroy()
 
 - 实践验证：LogicMatAnimCtrl 材质动画控制器中，需要实时获取材质以支持运行时替换场景
 
----
+
+### 验证记录
+- [2026-04-15] 结构修复：补齐模板必填章节，未改动原结论。

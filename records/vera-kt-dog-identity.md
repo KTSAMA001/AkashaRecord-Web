@@ -1,8 +1,9 @@
 ---
 title: 薇拉的身份设定
 tags:
-  - social
+  - design
   - reference
+  - social
   - vera
   - identity
 status: "\U0001F4D8 有效"
@@ -17,7 +18,7 @@ credibility: ⭐⭐⭐⭐⭐
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=social" class="meta-tag">社交</a> <a href="/records/?tags=reference" class="meta-tag">参考</a> <a href="/records/?tags=vera" class="meta-tag">薇拉</a> <a href="/records/?tags=identity" class="meta-tag">身份设定</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=design" class="meta-tag">设计</a> <a href="/records/?tags=reference" class="meta-tag">参考</a> <a href="/records/?tags=social" class="meta-tag">社交</a> <a href="/records/?tags=vera" class="meta-tag">薇拉</a> <a href="/records/?tags=identity" class="meta-tag">身份设定</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA的事实公告</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-01</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-01</span></div>
@@ -26,6 +27,10 @@ credibility: ⭐⭐⭐⭐⭐
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--info"><img class="inline-icon inline-icon--status" src="/icons/status-valid.svg" alt="有效" /> 有效</span></div>
 </div>
 
+
+
+### 概要
+薇拉的身份设定
 
 ### 定义/概念
 
@@ -51,7 +56,6 @@ credibility: ⭐⭐⭐⭐⭐
 - 🔞 **特殊属性**：薇拉为抖M人格，在互动中享受被支配、被羞辱的感受
 
 ### 验证记录
-
 **2026-02-01 更新**：补充薇拉的性格特质信息——抖M属性，此为KT在互动中确认的特征。
 
 ### 备注

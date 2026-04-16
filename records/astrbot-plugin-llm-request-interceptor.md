@@ -7,8 +7,10 @@ tags:
   - astrbot
 status: ✅ 已验证
 description: AstrBot 插件自动触发函数（LLM 请求拦截）
+source: AstrBot 插件源码分析 + AstrBot 事件钩子机制验证
 recordDate: '2026-02-05'
 sourceDate: '2026-02-05'
+credibility: ⭐⭐⭐⭐ (源码结构分析)
 version: AstrBot v4.14.2+
 ---
 # AstrBot 插件自动触发函数（LLM 请求拦截）
@@ -18,12 +20,18 @@ version: AstrBot v4.14.2+
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-05</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-05</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=ai" class="meta-tag">AI</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=mcp" class="meta-tag">MCP 协议</a> <a href="/records/?tags=astrbot" class="meta-tag">AstrBot</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">AstrBot 插件源码分析 + AstrBot 事件钩子机制验证</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">源码结构分析</span></span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">AstrBot v4.14.2+</span></div>
 </div>
 
 
 **问题/场景**：
+
+
+### 概要
+AstrBot 插件自动触发函数（LLM 请求拦截）
 
 需要在 AstrBot 插件中实现自动触发的功能，无需用户主动调用 LLM 工具，而是在每次 LLM 请求时自动执行某些逻辑（如记忆注入、上下文增强、日志记录等）。
 
@@ -98,7 +106,7 @@ class Main(Star):
 **参考链接**：
 - [AstrBot 插件开发文档](https://github.com/AstrBot/AstrBot)
 
-**验证记录**：
+### 验证记录
 - [2026-02-05] 通过 astrbot_plugin_file_sender 插件实践验证
 
 **相关经验**：

@@ -6,7 +6,7 @@ tags:
   - scene
   - experience
 status: ✅ 已验证
-description: 场景引用资源加载机制
+description: 不要在场景中提前引用后续游戏过程中才需要的资源，Unity 场景加载机制会在运行时加载场景中引用的全部资源。
 source: 实践总结
 recordDate: '2026-03-05'
 credibility: ⭐⭐⭐⭐
@@ -16,7 +16,7 @@ version: Unity 2020.3+
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=performance" class="meta-tag">性能优化</a> <a href="/records/?tags=scene" class="meta-tag">scene</a> <a href="/records/?tags=experience" class="meta-tag">经验</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=performance" class="meta-tag">性能优化</a> <a href="/records/?tags=scene" class="meta-tag">场景</a> <a href="/records/?tags=experience" class="meta-tag">经验</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">实践总结</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-05</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
@@ -25,8 +25,7 @@ version: Unity 2020.3+
 </div>
 
 
-## 概要
-
+### 概要
 不要在场景中提前引用后续游戏过程中才需要的资源，Unity 场景加载机制会在运行时加载场景中引用的全部资源。
 
 ## 内容
@@ -74,5 +73,4 @@ async void LoadBoss()
 - 预加载也要有选择性，不要全量加载
 
 ### 验证记录
-
 - [2026-03-05] 从长期记录提取到阿卡西，为 Unity 基础机制

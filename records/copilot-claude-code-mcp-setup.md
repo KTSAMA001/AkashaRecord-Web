@@ -8,7 +8,10 @@ tags:
   - ai
   - experience
 status: ⚠️ 待验证
-description: Copilot 调用 Claude Code 作为子 Agent 的 MCP 配置
+description: >-
+  通过 `@steipete/claude-code-mcp` 将 Claude Code CLI 包装为 MCP server，注册到 VS Code
+  用户级 `mcp.json`，使 GitHub Copilot（Agent 模式）在执行任务时可直接调用 `claude_code`
+  工具，将复杂子任务委派给 Claude Code 完成。
 source: 实践总结 + GitHub steipete/claude-code-mcp
 recordDate: '2026-04-01'
 credibility: ⭐⭐⭐⭐
@@ -26,7 +29,6 @@ credibility: ⭐⭐⭐⭐
 
 
 ### 概要
-
 通过 `@steipete/claude-code-mcp` 将 Claude Code CLI 包装为 MCP server，注册到 VS Code 用户级 `mcp.json`，使 GitHub Copilot（Agent 模式）在执行任务时可直接调用 `claude_code` 工具，将复杂子任务委派给 Claude Code 完成。
 
 ### 前置条件
@@ -102,3 +104,7 @@ credibility: ⭐⭐⭐⭐
 - steipete/claude-code-mcp: https://github.com/steipete/claude-code-mcp
 - VS Code MCP 配置官方文档: https://code.visualstudio.com/docs/copilot/customization/mcp-servers
 - Claude Code MCP 官方文档: https://code.claude.com/docs/en/mcp
+
+
+### 验证记录
+- [2026-04-15] 结构修复：补齐模板必填章节，未改动原结论。

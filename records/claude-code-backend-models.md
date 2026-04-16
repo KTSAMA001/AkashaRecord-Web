@@ -7,6 +7,7 @@ tags:
   - claude-code
 status: ✅ 已验证
 description: Claude Code 作为 Agent 框架接入多种模型 (LLM Gateway)
+source: Claude Code 官方文档 / 发布说明 / 实践验证
 recordDate: '2026-01-31'
 updateDate: '2026-03-10'
 credibility: ⭐⭐⭐⭐ (实践验证)
@@ -18,12 +19,17 @@ credibility: ⭐⭐⭐⭐ (实践验证)
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-31</span></div>
 <div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-03-10</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=ai" class="meta-tag">AI</a> <a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=reference" class="meta-tag">参考</a> <a href="/records/?tags=claude-code" class="meta-tag">Claude Code</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Claude Code 官方文档 / 发布说明 / 实践验证</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
 </div>
 
 
 **问题/场景**：
+
+
+### 概要
+Claude Code 作为 Agent 框架接入多种模型 (LLM Gateway)
 
 想了解 Claude Code 是否可以作为"中转层"，连接 IDE 后使用 GLM 或其他非 Anthropic 模型，以及具体支持哪些模型提供商。
 
@@ -93,6 +99,5 @@ credibility: ⭐⭐⭐⭐ (实践验证)
 - [Claude Code on Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock) - AWS Bedrock 配置
 - [智谱 GLM Coding Plan](https://docs.bigmodel.cn/cn/guide/develop/claude) - 智谱 AI Claude 兼容 API
 
-**验证记录**：
-
+### 验证记录
 - [2026-01-31] 初次记录，来源：官方文档 + 实践验证。已成功通过智谱 API 使用 GLM-4.7 模型。

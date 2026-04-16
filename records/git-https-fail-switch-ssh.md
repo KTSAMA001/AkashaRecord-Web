@@ -7,26 +7,33 @@ tags:
   - docker
   - credential
 status: ✅ 已验证
-description: Git HTTPS 拉取失败，改用 SSH 协议解决
+description: >-
+  已存在仓库通过 HTTPS 拉取持续失败，但改为 SSH
+  远程地址后可立即恢复。该类问题通常与网络链路、代理干扰或认证通道稳定性有关，而不是仓库内容本身损坏。
 source: KTSAMA 实践经验
-credibility: ⭐⭐⭐⭐ (实践验证)01-30
+recordDate: '2026-01-30'
+sourceDate: '2026-01-30'
+credibility: ⭐⭐⭐⭐ (实践验证)
 version: Git 2.x+
 ---
 # Git HTTPS 拉取失败，改用 SSH 协议解决
 
 
 <div class="record-meta-block">
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=git" class="meta-tag">Git</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=pat" class="meta-tag">PAT 令牌</a> <a href="/records/?tags=docker" class="meta-tag">Docker</a> <a href="/records/?tags=credential" class="meta-tag">凭证管理</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
+<div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-30</span></div>
+<div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-01-30</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=git" class="meta-tag">Git</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=pat" class="meta-tag">PAT 令牌</a> <a href="/records/?tags=docker" class="meta-tag">Docker</a> <a href="/records/?tags=credential" class="meta-tag">凭证管理</a></span></div>
-<div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">Git 2.x+</span></div>
 </div>
 
 
-**问题/场景**：
+### 概要
+已存在仓库通过 HTTPS 拉取持续失败，但改为 SSH 远程地址后可立即恢复。该类问题通常与网络链路、代理干扰或认证通道稳定性有关，而不是仓库内容本身损坏。
 
+**问题/场景**：
 在已存在的 Git 仓库执行 `git pull` 或 `git fetch` 时报错：
 - `fatal: unable to access 'https://xxx.git/': Recv failure: Connection was aborted`
 - `fatal: unable to access 'https://xxx.git/': Recv failure: Connection was reset`
@@ -70,7 +77,6 @@ git pull
 git stash pop
 ```
 
-**验证记录**：
-
+### 验证记录
 - [2026-01-30] 初次记录，来源：实践总结。在公司内网 GitLab 仓库遇到此问题，HTTPS 持续失败，改 SSH 后立即解决。
 - [2026-01-30] 再次验证：如果不处理本地修改直接 Pull 可能会失败，建议配合 Stash 使用。

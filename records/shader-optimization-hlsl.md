@@ -1,5 +1,5 @@
 ---
-title: Shader 性能优化相关经验
+title: 根据索引获取向量分量（无分支优化）
 tags:
   - shader
   - experience
@@ -14,6 +14,10 @@ credibility: ⭐⭐⭐⭐ (实践验证)
 version: Unity 2020+ / HLSL generic
 ---
 # Shader 性能优化相关经验
+
+### 概要
+Shader 性能优化相关经验
+
 
 > Shader 性能优化相关经验
 > 
@@ -103,8 +107,7 @@ float GetVectorComponent_Matrix(float3 v, int index)
 | 数学运算法 | 7+ | ✅ 完全保证 | ⭐⭐ |
 | 矩阵转置法 | 5+ | ✅ 完全保证 | ⭐⭐ |
 
-**验证记录**：
-
+### 验证记录
 - [2026-01-30] 初次记录，来源：实践总结与 Web 搜索分析
 
 **备注**：
@@ -211,8 +214,7 @@ float3 IndexToAxis_Compare(int index)
 | 矩阵索引 | 1-2 | ✅ 完全保证 | ⭐⭐⭐⭐⭐ |
 | 比较乘法 | 3 | ✅ 完全保证 | ⭐⭐⭐⭐⭐ |
 
-**验证记录**：
-
+### 验证记录
 - [2026-01-30] 初次记录，来源：实践总结与 Web 搜索分析
 
 **相关经验**：

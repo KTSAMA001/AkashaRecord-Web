@@ -1,5 +1,5 @@
 ---
-title: SDF（有向距离场）知识
+title: SDF 基本概念
 tags:
   - graphics
   - knowledge
@@ -12,6 +12,10 @@ sourceDate: '2020-12-18'
 credibility: ⭐⭐⭐⭐ (技术博客 + 实践验证)
 ---
 # SDF（有向距离场）知识
+
+### 概要
+SDF（有向距离场）知识
+
 
 本文档记录 SDF（Signed Distance Field，有向距离场）的原理与应用。
 
@@ -300,4 +304,6 @@ col.a = smoothstep(0.5, 0.5 - _SmoothDelta, a1);
 
 - 相关经验：可在实际项目中验证 SDF 字体、SDF 阴影等效果
 
----
+
+### 验证记录
+- [2026-04-15] 结构修复：补齐模板必填章节，未改动原结论。

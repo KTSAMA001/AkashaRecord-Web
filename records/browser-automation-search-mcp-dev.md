@@ -7,8 +7,10 @@ tags:
   - experience
   - web
   - tools
-status: ⚠️ 待验证（MCP部分未完成）
-description: 浏览器自动化搜索 MCP 开发记录
+status: ⚠️ 待验证
+description: >-
+  开发浏览器自动化搜索工具，目标是替代智谱MCP的搜索功能。实现了基于 Playwright
+  的搜索功能，可打开浏览器、执行搜索并获取结果。MCP封装部分因Python版本问题暂停。
 source: 实践总结
 recordDate: '2026-03-04'
 sourceDate: '2026-03-04'
@@ -30,7 +32,6 @@ version: Python 3.12+ / Playwright 1.58+
 
 
 ### 概要
-
 开发浏览器自动化搜索工具，目标是替代智谱MCP的搜索功能。实现了基于 Playwright 的搜索功能，可打开浏览器、执行搜索并获取结果。MCP封装部分因Python版本问题暂停。
 
 ### 内容
@@ -130,5 +131,6 @@ async def search_bing(query: str, max_results: int = 8):
 - [web-archive-mcp-blueprint.md](./web-archive-mcp-blueprint) - Web Archive MCP实现蓝图
 
 ### 验证记录
-
 - [2026-03-04] 初次记录，Bing搜索功能已验证可用，MCP封装待完成
+
+- [2026-04-15] 原状态备注“MCP部分未完成”已移入验证记录。

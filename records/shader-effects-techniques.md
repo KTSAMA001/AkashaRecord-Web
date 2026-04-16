@@ -1,5 +1,5 @@
 ---
-title: 具体特效实现相关经验
+title: 遮挡透视效果实现方案
 tags:
   - shader
   - experience
@@ -13,6 +13,10 @@ credibility: ⭐⭐⭐⭐ (实践验证)
 version: Unity 2022.3+ / URP 14.0+
 ---
 # 具体特效实现相关经验
+
+### 概要
+具体特效实现相关经验
+
 
 > 具体特效实现相关经验
 > 
@@ -64,8 +68,7 @@ version: Unity 2022.3+ / URP 14.0+
 
 - [Unity_URP_Learning/OcclusionVision](https://github.com/KTSAMA001/Unity_URP_Learning/tree/main/Assets/Products/OcclusionVision) - 完整源码（含设计文档 .docx）
 
-**验证记录**：
-
+### 验证记录
 - [2026-02-07] 从 Unity_URP_Learning 仓库整合，附带设计方案文档
 
 ---

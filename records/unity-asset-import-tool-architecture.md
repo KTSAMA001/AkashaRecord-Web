@@ -9,7 +9,10 @@ tags:
   - fbx
   - texture
 status: ✅ 已验证
-description: Unity 编辑器资源导入工具架构（配置驱动 + AssetPostprocessor 自动化）
+description: >-
+  基于 ScriptableObject 配置驱动 + AssetPostprocessor
+  自动执行的资源批量导入管理框架，分为模型处理和纹理处理两大平行子系统。支持文件夹级别的规则配置、单资源豁免机制、资源移动自动重新导入、模块化后处理扩展，以及
+  Project 窗口/Inspector 的可视化增强。
 source: 实地代码分析
 recordDate: '2026-03-31'
 credibility: ⭐⭐⭐⭐（实地分析）
@@ -19,7 +22,7 @@ version: Unity 2021+
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=custom-editor" class="meta-tag">自定义编辑器</a> <a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=architecture" class="meta-tag">架构设计</a> <a href="/records/?tags=scriptable-object" class="meta-tag">ScriptableObject</a> <a href="/records/?tags=fbx" class="meta-tag">fbx</a> <a href="/records/?tags=texture" class="meta-tag">texture</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=custom-editor" class="meta-tag">自定义编辑器</a> <a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=architecture" class="meta-tag">架构设计</a> <a href="/records/?tags=scriptable-object" class="meta-tag">ScriptableObject</a> <a href="/records/?tags=fbx" class="meta-tag">FBX</a> <a href="/records/?tags=texture" class="meta-tag">纹理</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">实地代码分析</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-31</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
@@ -29,7 +32,6 @@ version: Unity 2021+
 
 
 ### 概要
-
 基于 ScriptableObject 配置驱动 + AssetPostprocessor 自动执行的资源批量导入管理框架，分为模型处理和纹理处理两大平行子系统。支持文件夹级别的规则配置、单资源豁免机制、资源移动自动重新导入、模块化后处理扩展，以及 Project 窗口/Inspector 的可视化增强。
 
 ### 内容
@@ -203,7 +205,6 @@ public interface IPostprocessModule
 - [Odin Inspector - SerializedScriptableObject](https://odininspector.com/documentation/sirenix.odinInspector.editor/serializedscriptableobject)
 
 ### 验证记录
-
 - [2026-03-31] 初次记录，来源：完整阅读项目 AssetsTool 全部 13 个源文件的实地代码分析
 
 ---

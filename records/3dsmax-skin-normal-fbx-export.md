@@ -1,5 +1,5 @@
 ---
-title: 3ds Max 蒙皮后法线异常问题调查（待美术验证）
+title: 3ds Max 蒙皮后法线异常问题调查
 tags:
   - unity
   - 3dsmax
@@ -7,7 +7,7 @@ tags:
   - experience
   - troubleshooting
 status: ⚠️ 待验证
-description: 3ds Max 蒙皮后法线异常问题调查（待美术验证）
+description: 美术在做模型资产时法线正常（硬边效果），但动画绑定后法线被打乱。通过网络搜索汇总了可能的原因和解决方案，**待美术验证后更新状态**。
 source: 智谱 MCP 搜索 + 社区讨论（Autodesk Forum / Unity Discussion）
 recordDate: '2026-03-12'
 sourceDate: '2026-03-12'
@@ -18,7 +18,7 @@ version: '3ds Max 2015+, Unity 2020+'
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=3dsmax" class="meta-tag">3dsmax</a> <a href="/records/?tags=fbx" class="meta-tag">fbx</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=troubleshooting" class="meta-tag">故障排查</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=3dsmax" class="meta-tag">3ds Max</a> <a href="/records/?tags=fbx" class="meta-tag">FBX</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=troubleshooting" class="meta-tag">故障排查</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">智谱 MCP 搜索 + 社区讨论（Autodesk Forum / Unity Discussion）</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-12</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-03-12</span></div>
@@ -29,7 +29,6 @@ version: '3ds Max 2015+, Unity 2020+'
 
 
 ### 概要
-
 美术在做模型资产时法线正常（硬边效果），但动画绑定后法线被打乱。通过网络搜索汇总了可能的原因和解决方案，**待美术验证后更新状态**。
 
 ### 问题原因
@@ -87,5 +86,6 @@ version: '3ds Max 2015+, Unity 2020+'
 - [animation-retarget-technology-unity.md](./animation-retarget-technology-unity) - 动画重定向技术
 
 ### 验证记录
-
 - [2026-03-12] 初次记录，来源：智谱 MCP 搜索结果，待实际验证
+
+- [2026-04-15] 原状态备注“待美术实际测试”已移入验证记录，等待美术实测。

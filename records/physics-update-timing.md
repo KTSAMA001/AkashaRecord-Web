@@ -5,7 +5,7 @@ tags:
   - physics
   - experience
 status: ✅ 已验证
-description: 物理碰撞更新时机
+description: 需要物理碰撞/触发检测的物体，应在 FixedUpdate 而非 LateUpdate 中更新位置，否则检测位置是上一帧的位置。
 source: 实践总结
 recordDate: '2026-03-05'
 credibility: ⭐⭐⭐⭐
@@ -24,8 +24,7 @@ version: Unity 2020.3+
 </div>
 
 
-## 概要
-
+### 概要
 需要物理碰撞/触发检测的物体，应在 FixedUpdate 而非 LateUpdate 中更新位置，否则检测位置是上一帧的位置。
 
 ## 内容
@@ -78,6 +77,5 @@ void FixedUpdate()
 - 可考虑插值来平滑显示
 
 ### 验证记录
-
 - [2025-02-24] 实际调试发现问题并验证解决方案
 - [2026-03-05] 从长期记录提取到阿卡西

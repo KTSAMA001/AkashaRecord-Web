@@ -1,5 +1,5 @@
 ---
-title: HLSL 着色器语言相关经验
+title: Shader 变体（Shader Variants）详解
 tags:
   - shader
   - experience
@@ -13,6 +13,10 @@ sourceDate: '2026-01-31'
 credibility: ⭐⭐⭐⭐ (实践验证)
 ---
 # HLSL 着色器语言相关经验
+
+### 概要
+HLSL 着色器语言相关经验
+
 
 > HLSL 着色器语言相关经验
 > 
@@ -132,6 +136,5 @@ N 个 multi_compile 声明 → 2^N 个变体
 
 在 Amplify Shader Editor 中，使用 **Static Switch** 节点实现变体控制。
 
-**验证记录**：
-
+### 验证记录
 - [2026-01-31] 从 Technical_Artist_Technotes 整理提取

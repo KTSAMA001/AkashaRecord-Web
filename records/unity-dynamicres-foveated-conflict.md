@@ -6,7 +6,9 @@ tags:
   - bug
   - experience
 status: ⚠️ 待验证
-description: Unity 动态分辨率与注视点渲染冲突
+description: >-
+  在 Unity 2022.3.39f1 版本中，动态分辨率（Dynamic Resolution）不能与注视点渲染（Foveated
+  Rendering）同时启用。
 source: 实践总结
 recordDate: '2026-03-05'
 credibility: ⭐⭐⭐
@@ -16,7 +18,7 @@ version: Unity 2022.3.39f1
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=vr" class="meta-tag">vr</a> <a href="/records/?tags=bug" class="meta-tag">Bug</a> <a href="/records/?tags=experience" class="meta-tag">经验</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=vr" class="meta-tag">VR</a> <a href="/records/?tags=bug" class="meta-tag">Bug</a> <a href="/records/?tags=experience" class="meta-tag">经验</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">实践总结</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-05</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--warning"><img class="inline-icon inline-icon--status" src="/icons/status-pending.svg" alt="待验证" /> 待验证</span></div>
@@ -25,8 +27,7 @@ version: Unity 2022.3.39f1
 </div>
 
 
-## 概要
-
+### 概要
 在 Unity 2022.3.39f1 版本中，动态分辨率（Dynamic Resolution）不能与注视点渲染（Foveated Rendering）同时启用。
 
 ## 内容
@@ -52,5 +53,4 @@ version: Unity 2022.3.39f1
 - 其他 Unity 版本可能有不同表现
 
 ### 验证记录
-
 - [2026-03-05] 从长期记录提取，待进一步验证

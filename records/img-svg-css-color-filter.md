@@ -9,6 +9,7 @@ status: ✅ 已验证
 description: img 标签的 SVG 无法继承 CSS color，需用 filter 着色
 source: KTSAMA 实践经验
 recordDate: '2026-02-07'
+credibility: ⭐⭐⭐⭐ (实践验证)
 ---
 # img 标签的 SVG 无法继承 CSS color，需用 filter 着色 {#img-svg-color-filter}
 
@@ -18,10 +19,15 @@ recordDate: '2026-02-07'
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=web" class="meta-tag">Web 开发</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=vitepress" class="meta-tag">VitePress</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">KTSAMA 实践经验</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">实践验证</span></span></div>
 </div>
 
 
 **问题/场景**：
+
+
+### 概要
+img 标签的 SVG 无法继承 CSS color，需用 filter 着色 {#img-svg-color-filter}
 
 SVG 内部使用 `stroke="currentColor"` 期望继承父元素的 CSS `color` 属性。但当 SVG 通过 img 标签加载时，`currentColor` 解析为默认黑色（`#000`），因为 img 标签创建了独立的文档上下文，**不继承**外部 CSS 属性。
 
@@ -47,6 +53,5 @@ filter: invert(48%) sepia(89%) saturate(1600%) hue-rotate(3deg) brightness(101%)
 3. `saturate` + `hue-rotate` 调整到目标色相
 4. `brightness` + `contrast` 微调明度
 
-**验证记录**：
-
+### 验证记录
 - 2026-02-07 Dashboard、CategoryGrid、VPFeature 三处图标均正常显示橙色

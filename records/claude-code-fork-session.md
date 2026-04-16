@@ -7,6 +7,7 @@ tags:
   - claude-code
 status: ✅ 已验证
 description: Claude Code Fork 会话功能 (Branching Conversation)
+source: Claude Code 官方文档
 recordDate: '2026-01-30'
 credibility: ⭐⭐⭐⭐ (官方文档)
 ---
@@ -16,12 +17,17 @@ credibility: ⭐⭐⭐⭐ (官方文档)
 <div class="record-meta-block">
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-01-30</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=ai" class="meta-tag">AI</a> <a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=reference" class="meta-tag">参考</a> <a href="/records/?tags=claude-code" class="meta-tag">Claude Code</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">Claude Code 官方文档</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
 <div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">官方文档</span></span></div>
 </div>
 
 
 **问题/场景**：
+
+
+### 概要
+Claude Code Fork 会话功能 (Branching Conversation)
 
 在复杂任务中想尝试不同的方案，但不希望丢失当前会话的进度，或者需要并行探索多种实现路径。
 
@@ -80,6 +86,5 @@ flowchart LR
 - [GitHub Issue: Clone/duplicate conversation](https://github.com/anthropics/claude-code/issues/12941)
 - [Changelog: Improved fork session hint](https://code.claude.com/docs/en/changelog)
 
-**验证记录**：
-
+### 验证记录
 - [2026-01-30] 来源：官方文档与 Release Note

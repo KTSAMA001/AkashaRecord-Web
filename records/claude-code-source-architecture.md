@@ -1,13 +1,14 @@
 ---
-title: Claude Code v2.1.88 源码架构深度分析（提示词/Agent/Tool/查询循环/权限管线）
+title: Claude Code 源码架构设计深度分析
 tags:
   - claude-code
-  - architecture
-  - knowledge
-  - agent-skills
   - mcp
+  - architecture
+  - agent-skills
 status: ✅ 已验证
-description: Claude Code v2.1.88 源码架构深度分析（提示词/Agent/Tool/查询循环/权限管线）
+description: >-
+  对 Claude Code 官方 CLI 工具的完整源码进行逆向分析，揭示其系统提示词设计、Agent 子系统、Tool
+  工具框架、查询循环与上下文管理、权限管线等核心架构。
 source: 源码逆向分析（v2.1.88 反编译源码）
 recordDate: '2026-04-02'
 sourceDate: '2026-04-02'
@@ -18,7 +19,7 @@ version: Claude Code v2.1.88
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=claude-code" class="meta-tag">Claude Code</a> <a href="/records/?tags=architecture" class="meta-tag">架构设计</a> <a href="/records/?tags=knowledge" class="meta-tag">知识</a> <a href="/records/?tags=agent-skills" class="meta-tag">Agent Skills</a> <a href="/records/?tags=mcp" class="meta-tag">MCP 协议</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=claude-code" class="meta-tag">Claude Code</a> <a href="/records/?tags=mcp" class="meta-tag">MCP 协议</a> <a href="/records/?tags=architecture" class="meta-tag">架构设计</a> <a href="/records/?tags=agent-skills" class="meta-tag">Agent Skills</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">源码逆向分析（v2.1.88 反编译源码）</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-04-02</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-04-02</span></div>
@@ -29,7 +30,6 @@ version: Claude Code v2.1.88
 
 
 ### 概要
-
 对 Claude Code 官方 CLI 工具的完整源码进行逆向分析，揭示其系统提示词设计、Agent 子系统、Tool 工具框架、查询循环与上下文管理、权限管线等核心架构。
 
 ### 内容
@@ -433,9 +433,8 @@ Async Generator 管道：yield MessageUpdate 给消费方增量消费。
 ### 相关记录
 
 - [Claude Code Skill 触发模式与 Hook 提升自动触发率](./claude-code-skill-hook-trigger-boost) - Hook 机制实现细节
-- [Claude Code 2.1 功能清单](./claude-code-2.1-feature-inventory) - 功能层面的清单
+- [Claude Code 2.1 功能清单](./claude-code-2-1-feature-inventory) - 功能层面的清单
 - [Claude Code 后端模型配置](./claude-code-backend-models) - API 客户端与模型选择
 
 ### 验证记录
-
 - [2026-04-02] 初次记录，来源：Claude Code v2.1.88 反编译源码直接分析（prompts.ts、systemPrompt.ts、query.ts、Tool.ts、tools.ts、permissions.ts、toolOrchestration.ts、toolExecution.ts、QueryEngine.ts、compact/prompt.ts、extractMemories/prompts.ts、undercover.ts、consolidationPrompt.ts、sideQuestion.ts、findRelevantMemories.ts、AgentTool 各子代理文件、coordinatorMode.ts）

@@ -1,5 +1,5 @@
 ---
-title: 'python-docx Emoji 显示问题解决方案（w:hAnsi 字体属性）'
+title: python-docx Emoji 显示问题解决方案
 tags:
   - python
   - docx
@@ -7,7 +7,10 @@ tags:
   - font
   - unicode
 status: ✅ 已验证
-description: 'python-docx Emoji 显示问题解决方案（w:hAnsi 字体属性）'
+description: >-
+  解决 python-docx 生成的 Word 文档中 emoji 显示为方框或方框带问号的问题。根因是 `run.font.name` 只设置 Word
+  XML 的 `w:ascii` 属性，而 emoji 字符（Unicode 补充平面，code point > 0xFFFF）需要通过 `w:hAnsi`
+  属性指定字体才能正确渲染。
 source: 实践总结 + 在线研究
 recordDate: '2026-03-13'
 credibility: ⭐⭐⭐⭐
@@ -17,7 +20,7 @@ version: python-docx 0.8.11+
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=python" class="meta-tag">Python</a> <a href="/records/?tags=docx" class="meta-tag">docx</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=font" class="meta-tag">font</a> <a href="/records/?tags=unicode" class="meta-tag">unicode</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=python" class="meta-tag">Python</a> <a href="/records/?tags=docx" class="meta-tag">Word 文档</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=font" class="meta-tag">字体</a> <a href="/records/?tags=unicode" class="meta-tag">Unicode</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">实践总结 + 在线研究</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-13</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
@@ -27,7 +30,6 @@ version: python-docx 0.8.11+
 
 
 ### 概要
-
 解决 python-docx 生成的 Word 文档中 emoji 显示为方框或方框带问号的问题。根因是 `run.font.name` 只设置 Word XML 的 `w:ascii` 属性，而 emoji 字符（Unicode 补充平面，code point > 0xFFFF）需要通过 `w:hAnsi` 属性指定字体才能正确渲染。
 
 ### 问题描述
@@ -164,6 +166,5 @@ def _set_style_font_for_emoji(self, style):
 - [Microsoft Typography - Segoe UI Emoji](https://learn.microsoft.com/en-us/typography/font-list/segoe-ui-emoji)
 
 ### 验证记录
-
 - [2026-03-13] 初次记录，基于 md-to-word skill 开发过程中的踩坑总结
 - [2026-03-13] 实际测试验证：emoji（😀❤️👍✅🔥等）在 Word 2019+ 正常显示为彩色表情

@@ -7,7 +7,7 @@ tags:
   - astc
   - experience
 status: ✅ 已验证
-description: ASTC 纹理压缩内存估算公式
+description: ASTC 压缩格式的内存估算公式，用于快速计算纹理占用内存。
 source: 实践总结
 recordDate: '2026-03-05'
 credibility: ⭐⭐⭐⭐
@@ -17,7 +17,7 @@ version: Unity 2020.3+ / 移动平台
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=texture" class="meta-tag">texture</a> <a href="/records/?tags=memory" class="meta-tag">memory</a> <a href="/records/?tags=astc" class="meta-tag">astc</a> <a href="/records/?tags=experience" class="meta-tag">经验</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=texture" class="meta-tag">纹理</a> <a href="/records/?tags=memory" class="meta-tag">内存</a> <a href="/records/?tags=astc" class="meta-tag">ASTC</a> <a href="/records/?tags=experience" class="meta-tag">经验</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">实践总结</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-05</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
@@ -26,8 +26,7 @@ version: Unity 2020.3+ / 移动平台
 </div>
 
 
-## 概要
-
+### 概要
 ASTC 压缩格式的内存估算公式，用于快速计算纹理占用内存。
 
 ## 内容
@@ -71,5 +70,4 @@ ASTC 压缩格式的内存估算公式，用于快速计算纹理占用内存。
 - PC 平台建议使用 BC 格式
 
 ### 验证记录
-
 - [2026-03-05] 从项目实践经验提取并脱敏记录

@@ -31,6 +31,10 @@ version: Unity 2022.3+ / URP 14.0+
 
 **问题/场景**：
 
+
+### 概要
+RenderFeature 运行时开关控制 {#renderfeature-toggler}
+
 在 URP 中需要运行时动态开关 RenderFeature（如调试时禁用某些后处理效果），默认 RenderFeature 只能在 Inspector 中手动勾选。
 
 **解决方案/结论**：
@@ -64,8 +68,7 @@ public class RenderFeatureToggler : MonoBehaviour
 - `ScriptableRendererFeature.SetActive(bool)` — URP 内置 API
 - `[ExecuteAlways]` — 确保在编辑器和运行时都生效
 
-**验证记录**：
-
+### 验证记录
 - [2026-02-07] 从 Unity_URP_Learning 仓库整合
 
 **相关经验**：

@@ -1,5 +1,5 @@
 ---
-title: Unity 中 Layer 与 Render Layer 的核心区别与使用场景
+title: Layer 与 Render Layer 的区别
 tags:
   - unity
   - experience
@@ -12,6 +12,10 @@ sourceDate: '2026-01-31'
 credibility: ⭐⭐⭐⭐ (实践验证)
 ---
 # Unity 中 Layer 与 Render Layer 的核心区别与使用场景
+
+### 概要
+Unity 中 Layer 与 Render Layer 的核心区别与使用场景
+
 
 > Unity 中 Layer（游戏层）与 Render Layer（渲染层）的核心区别、各自用途，以及在 SRP 中如何正确使用它们进行渲染筛选。
 > 
@@ -89,6 +93,5 @@ FilteringSettings filteringSettings = new FilteringSettings(
 2. 检查物体 Renderer 组件的 Rendering Layer Mask 设置
 3. 检查 Feature 的 Render Layer Mask 设置
 
-**验证记录**：
-
+### 验证记录
 - [2026-01-31] 从 Technical_Artist_Technotes 整理提取

@@ -7,8 +7,10 @@ tags:
   - astrbot
 status: ✅ 已验证
 description: AstrBot 插件文件上传到QQ实现
+source: web_archive_mcp_v2 插件源码分析 + OneBot v11 API 文档
 recordDate: '2026-02-04'
 sourceDate: '2026-02-04'
+credibility: ⭐⭐⭐⭐ (源码 + 官方文档交叉验证)
 version: 'AstrBot v4.13.2+, OneBot v11 (NapCat)'
 ---
 # AstrBot 插件文件上传到QQ实现
@@ -18,12 +20,18 @@ version: 'AstrBot v4.13.2+, OneBot v11 (NapCat)'
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-02-04</span></div>
 <div class="meta-item"><span class="meta-label">来源日期</span><span class="meta-value">2026-02-04</span></div>
 <div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=ai" class="meta-tag">AI</a> <a href="/records/?tags=experience" class="meta-tag">经验</a> <a href="/records/?tags=mcp" class="meta-tag">MCP 协议</a> <a href="/records/?tags=astrbot" class="meta-tag">AstrBot</a></span></div>
+<div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">web_archive_mcp_v2 插件源码分析 + OneBot v11 API 文档</span></div>
 <div class="meta-item"><span class="meta-label">状态</span><span class="meta-value meta-value--status meta-value--success"><img class="inline-icon inline-icon--status" src="/icons/status-verified.svg" alt="已验证" /> 已验证</span></div>
+<div class="meta-item"><span class="meta-label">可信度</span><span class="meta-value"><span class="star-rating"><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-filled.svg" alt="★" /><img class="inline-icon inline-icon--star" src="/icons/star-empty.svg" alt="☆" /></span> <span class="star-desc">源码 + 官方文档交叉验证</span></span></div>
 <div class="meta-item"><span class="meta-label">适用版本</span><span class="meta-value">AstrBot v4.13.2+, OneBot v11 (NapCat)</span></div>
 </div>
 
 
 **问题/场景**：
+
+
+### 概要
+AstrBot 插件文件上传到QQ实现
 
 在 AstrBot 插件中需要将本地文件发送到QQ群聊或私聊，需要通过 NapCat (OneBot v11) 的API接口实现。
 
@@ -83,10 +91,10 @@ except:
 ```
 
 **参考链接**：
-- [web_archive_mcp_v2 插件源码](/AstrBot/data/plugins/web_archive_mcp_v2/main.py)
+- web_archive_mcp_v2 插件源码（本地插件路径：AstrBot/data/plugins/web_archive_mcp_v2/main.py）
 - [OneBot v11 API 文档](https://11.onebot.dev/api/file.html)
 
-**验证记录**：
+### 验证记录
 - [2026-02-04] 通过 web_archive_mcp_v2 插件代码分析，确认文件上传实现方式
 
 **相关经验**：

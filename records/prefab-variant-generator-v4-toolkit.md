@@ -1,13 +1,14 @@
 ---
-title: PrefabVariantGeneratorV4 工具本体说明（定位、执行模型、端口机制、扩展规范）
+title: PrefabVariantGeneratorV4 工具本体说明
 tags:
   - unity
   - tools
   - architecture
   - custom-editor
-  - reference
 status: ✅ 已验证
-description: PrefabVariantGeneratorV4 工具本体说明（定位、执行模型、端口机制、扩展规范）
+description: >-
+  `PrefabVariantGeneratorV4` 是 Unity Editor 下的 DAG 节点式 Prefab 批处理工具。它以
+  `PipelineGraphData` 作为配置资产，按拓扑顺序执行各 Stage，支持分支派生、路径注入与多终端批量产物生成。
 source: 项目内工具文档与代码实现（实践归纳）
 recordDate: '2026-03-12'
 updateDate: '2026-03-12'
@@ -18,7 +19,7 @@ version: Unity Editor 2022.3+（PrefabVariantGeneratorV4）
 
 
 <div class="record-meta-block">
-<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=architecture" class="meta-tag">架构设计</a> <a href="/records/?tags=custom-editor" class="meta-tag">自定义编辑器</a> <a href="/records/?tags=reference" class="meta-tag">参考</a></span></div>
+<div class="meta-item meta-item--tags"><span class="meta-label">标签</span><span class="meta-value"><a href="/records/?tags=unity" class="meta-tag">Unity 引擎</a> <a href="/records/?tags=tools" class="meta-tag">工具</a> <a href="/records/?tags=architecture" class="meta-tag">架构设计</a> <a href="/records/?tags=custom-editor" class="meta-tag">自定义编辑器</a></span></div>
 <div class="meta-item"><span class="meta-label">来源</span><span class="meta-value">项目内工具文档与代码实现（实践归纳）</span></div>
 <div class="meta-item"><span class="meta-label">收录日期</span><span class="meta-value">2026-03-12</span></div>
 <div class="meta-item"><span class="meta-label">更新日期</span><span class="meta-value">2026-03-12</span></div>
@@ -29,7 +30,6 @@ version: Unity Editor 2022.3+（PrefabVariantGeneratorV4）
 
 
 ### 概要
-
 `PrefabVariantGeneratorV4` 是 Unity Editor 下的 DAG 节点式 Prefab 批处理工具。它以 `PipelineGraphData` 作为配置资产，按拓扑顺序执行各 Stage，支持分支派生、路径注入与多终端批量产物生成。
 
 ### 内容
@@ -118,6 +118,5 @@ var conn = graphData.GetConnectionToPort(guid, prefabInPort.Id);
 - [effect-system-code-review.md](./effect-system-code-review) - 代码审查时的架构边界表述参考
 
 ### 验证记录
-
 - [2026-03-12] 初次记录，来源：工具文档《PrefabVariantGeneratorV4-使用手册》《PrefabVariantGeneratorV4-架构详解》与当前代码实现交叉核对。
 - [2026-03-12] 验证：执行模型、端口机制、路径注入、Partner 双路径端口与图迁移逻辑均在代码中存在对应实现。

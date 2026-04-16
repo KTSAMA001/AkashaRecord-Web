@@ -1,5 +1,5 @@
 ---
-title: 大规模渲染 (Large-Scale Rendering) 相关经验
+title: GPU ComputeShader 草渲染与视锥剔除
 tags:
   - shader
   - unity
@@ -16,6 +16,10 @@ credibility: ⭐⭐⭐⭐ (实践验证)
 version: Unity 2022.3+ / URP 14.0+
 ---
 # 大规模渲染 (Large-Scale Rendering) 相关经验
+
+### 概要
+大规模渲染 (Large-Scale Rendering) 相关经验
+
 
 > 大规模渲染 (Large-Scale Rendering) 相关经验
 >
@@ -120,8 +124,7 @@ Graphics.DrawMeshInstancedProcedural(
 
 - [Unity_URP_Learning/ComputeShaderGrass](https://github.com/KTSAMA001/Unity_URP_Learning/tree/main/Assets/Products/ComputeShader/ComputeShaderGrass) - 完整源码
 
-**验证记录**：
-
+### 验证记录
 - [2026-02-07] 从 Unity_URP_Learning 仓库整合，包含多个迭代版本
 
 **理论基础**：

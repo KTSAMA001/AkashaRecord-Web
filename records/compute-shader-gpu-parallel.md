@@ -1,5 +1,5 @@
 ---
-title: GPU 通用计算 (GPGPU) 相关原理与概念
+title: ComputeShader 基础概念
 tags:
   - graphics
   - shader
@@ -14,6 +14,10 @@ sourceDate: '2024-08-08'
 credibility: ⭐⭐⭐⭐ (官方文档 + 实践验证)
 ---
 # GPU 通用计算 (GPGPU) 相关原理与概念
+
+### 概要
+GPU 通用计算 (GPGPU) 相关原理与概念
+
 
 > GPU 通用计算 (GPGPU) 相关原理与概念
 
@@ -198,4 +202,6 @@ if (mask <= _MaxDrawDistance)  // 带噪声的软边界距离剔除
 
 - [ComputeShader 基础概念](#compute-shader-basics)
 
----
+
+### 验证记录
+- [2026-04-15] 结构修复：补齐模板必填章节，未改动原结论。

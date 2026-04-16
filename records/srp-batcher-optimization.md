@@ -6,7 +6,7 @@ tags:
   - performance
   - experience
 status: ✅ 已验证
-description: SRP Batcher 场景优化要点
+description: SRP 管线下的场景优化建议，减少 DrawCall 和批次开销。
 source: 实践总结
 recordDate: '2026-03-05'
 credibility: ⭐⭐⭐⭐
@@ -25,8 +25,7 @@ version: Unity 2020.3+ / URP 10+
 </div>
 
 
-## 概要
-
+### 概要
 SRP 管线下的场景优化建议，减少 DrawCall 和批次开销。
 
 ## 内容
@@ -63,6 +62,5 @@ A: 可能是 Shader 种类过多，或者单次绘制达到上限
 A: 取决于内存预算，隔离可以减少运行时内存占用
 
 ### 验证记录
-
 - [2025-07-11] 实际项目优化验证
 - [2026-03-05] 从长期记录提取到阿卡西
