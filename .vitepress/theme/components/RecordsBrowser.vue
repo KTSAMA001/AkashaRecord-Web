@@ -26,6 +26,8 @@ interface StatusDef {
   svg: string
 }
 
+type SelectionMode = 'single' | 'multi'
+
 const CARD_MIN_WIDTH = 280
 const DEFAULT_CARD_HEIGHT = 180
 const DEFAULT_GRID_GAP = 24
@@ -35,6 +37,7 @@ const tags = ref<TagData[]>([])
 const tagMeta = ref<Record<string, { label: string; icon: string }>>({})
 const statusDefs = ref<StatusDef[]>([])
 const selectedTags = ref<Set<string>>(new Set())
+const selectionMode = ref<SelectionMode>('single')
 const searchQuery = ref('')
 const loading = ref(true)
 const tagsExpanded = ref(false)
@@ -287,16 +290,24 @@ onMounted(async () => {
       statusDefs.value = schema.statuses || []
     }
     
-    // 从 URL 参数初始化选中标签（支持逗号分隔多选）
+    // 从 URL 参数初始化选中标签（支持单选/多选和旧版 tag 参数）
     const params = new URLSearchParams(window.location.search)
+    const requestedMode = params.get('mode')
     const urlTags = params.get('tags')
     if (urlTags) {
       const names = urlTags.split(',').filter(n => tags.value.some(t => t.name === n))
-      if (names.length) selectedTags.value = new Set(names)
+      if (requestedMode === 'multi' || names.length > 1) {
+        selectionMode.value = 'multi'
+        selectedTags.value = new Set(names)
+      } else if (names.length) {
+        selectionMode.value = 'single'
+        selectedTags.value = new Set([names[0]])
+      }
     } else {
       // 兼容旧版单选参数
       const urlTag = params.get('tag')
       if (urlTag && tags.value.some(t => t.name === urlTag)) {
+        selectionMode.value = 'single'
         selectedTags.value = new Set([urlTag])
       }
     }
@@ -327,6 +338,12 @@ onUnmounted(() => {
 })
 
 function toggleTag(tagName: string) {
+  if (selectionMode.value === 'single') {
+    selectedTags.value = selectedTags.value.has(tagName) ? new Set() : new Set([tagName])
+    syncUrl()
+    return
+  }
+
   const next = new Set(selectedTags.value)
   if (next.has(tagName)) {
     next.delete(tagName)
@@ -342,9 +359,29 @@ function clearTags() {
   syncUrl()
 }
 
+function setSelectionMode(mode: SelectionMode) {
+  if (selectionMode.value === mode) return
+
+  selectionMode.value = mode
+
+  if (mode === 'single' && selectedTags.value.size > 1) {
+    const selected = [...selectedTags.value]
+    const keep = selected[selected.length - 1]
+    selectedTags.value = keep ? new Set([keep]) : new Set()
+  }
+
+  syncUrl()
+}
+
 function syncUrl() {
   const url = new URL(window.location.href)
   url.searchParams.delete('tag') // 清理旧参数
+  if (selectionMode.value === 'multi') {
+    url.searchParams.set('mode', 'multi')
+  } else {
+    url.searchParams.delete('mode')
+  }
+
   if (selectedTags.value.size > 0) {
     url.searchParams.set('tags', [...selectedTags.value].join(','))
   } else {
@@ -391,6 +428,26 @@ function displayName(tag: string): string {
         <button class="expand-btn" @click="tagsExpanded = !tagsExpanded">
           {{ tagsExpanded ? '▲ COLLAPSE' : '▼ MORE_TAGS' }}
         </button>
+        <div class="selection-mode" role="group" aria-label="标签选择模式">
+          <button
+            type="button"
+            class="mode-btn"
+            :class="{ active: selectionMode === 'single' }"
+            :aria-pressed="selectionMode === 'single'"
+            @click="setSelectionMode('single')"
+          >
+            SINGLE
+          </button>
+          <button
+            type="button"
+            class="mode-btn"
+            :class="{ active: selectionMode === 'multi' }"
+            :aria-pressed="selectionMode === 'multi'"
+            @click="setSelectionMode('multi')"
+          >
+            MULTI
+          </button>
+        </div>
       <!-- 统一搜索框（同时搜索标签和记录） -->
         <div class="search-box unified-search">
           <input 
@@ -561,6 +618,41 @@ function displayName(tag: string): string {
 .expand-btn:hover {
   color: var(--vp-c-brand-1);
   border-color: var(--vp-c-brand-1);
+}
+
+.selection-mode {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
+  clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 5px 100%, 0 calc(100% - 5px));
+}
+
+.mode-btn {
+  min-width: 64px;
+  padding: 0.25rem 0.6rem;
+  border: 0;
+  border-right: 1px solid var(--vp-c-divider);
+  background: transparent;
+  color: var(--vp-c-text-3);
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  line-height: 1.2;
+  transition: color 0.25s, background 0.25s;
+}
+
+.mode-btn:last-child {
+  border-right: 0;
+}
+
+.mode-btn:hover {
+  color: var(--vp-c-brand-1);
+}
+
+.mode-btn.active {
+  background: var(--vp-c-brand-1);
+  color: white;
 }
 
 /* ======= 统一搜索框 ======= */
