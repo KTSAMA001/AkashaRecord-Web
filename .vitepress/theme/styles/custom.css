@@ -571,6 +571,35 @@ body::after {
   background-attachment: fixed !important;
 }
 
+/* 记录终端滚动负载较高，避免 background-attachment: fixed 在滚动时重绘抖动。 */
+.records-terminal-page .VPContent {
+  position: relative;
+  isolation: isolate;
+  background-image: none !important;
+  background-attachment: scroll !important;
+}
+
+.records-terminal-page .VPContent::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, var(--ak-bg-dot) 1px, transparent 1px),
+    repeating-linear-gradient(0deg, var(--ak-grid-color), var(--ak-grid-color) 1px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(90deg, var(--ak-grid-color), var(--ak-grid-color) 1px, transparent 1px, transparent 60px);
+  background-size:
+    10px 10px,
+    60px 60px,
+    60px 60px;
+}
+
+.records-terminal-page .VPContent > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* ======= 暗角效果（首页 Vignette） ======= */
 .VPHome {
   position: relative !important;

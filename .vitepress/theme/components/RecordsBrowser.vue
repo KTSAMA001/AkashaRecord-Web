@@ -4,7 +4,7 @@
  * 记录总览浏览器：支持标签筛选、搜索和卡片展示
  * 状态颜色完全由 meta-schema.json 驱动，无硬编码
  */
-import { ref, computed, onMounted, watch, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 
 interface FileInfo {
   title: string
@@ -26,6 +26,11 @@ interface StatusDef {
   svg: string
 }
 
+const CARD_MIN_WIDTH = 280
+const DEFAULT_CARD_HEIGHT = 180
+const DEFAULT_GRID_GAP = 24
+const OVERSCAN_ROWS = 3
+
 const tags = ref<TagData[]>([])
 const tagMeta = ref<Record<string, { label: string; icon: string }>>({})
 const statusDefs = ref<StatusDef[]>([])
@@ -34,6 +39,17 @@ const searchQuery = ref('')
 const loading = ref(true)
 const tagsExpanded = ref(false)
 const cardVisible = ref(false)
+const gridRef = ref<HTMLElement | null>(null)
+const viewportTop = ref(0)
+const viewportHeight = ref(0)
+const gridTop = ref(0)
+const gridWidth = ref(0)
+const gridGap = ref(DEFAULT_GRID_GAP)
+const cardHeight = ref(DEFAULT_CARD_HEIGHT)
+const columnCount = ref(1)
+
+let resizeObserver: ResizeObserver | null = null
+let viewportFrame = 0
 
 /** 判断标签是否匹配搜索词（匹配中文标签名或英文 key） */
 function isTagMatch(tagName: string, query: string): boolean {
@@ -85,7 +101,13 @@ const matchReasonsMap = computed(() => {
 watch([selectedTags, searchQuery], async () => {
   cardVisible.value = false
   await nextTick()
+  refreshGridMetrics()
   requestAnimationFrame(() => { cardVisible.value = true })
+})
+
+watch(tagsExpanded, async () => {
+  await nextTick()
+  refreshGridMetrics()
 })
 
 // 获取所有去重的记录
@@ -137,7 +159,121 @@ const filteredRecords = computed(() => {
   return records
 })
 
+const rowStride = computed(() => cardHeight.value + gridGap.value)
+
+const totalRows = computed(() => {
+  return Math.ceil(filteredRecords.value.length / columnCount.value)
+})
+
+const virtualGridHeight = computed(() => {
+  if (totalRows.value === 0) return 0
+  return totalRows.value * cardHeight.value + Math.max(0, totalRows.value - 1) * gridGap.value
+})
+
+const startRow = computed(() => {
+  if (!gridTop.value) return 0
+
+  const raw = Math.floor((viewportTop.value - gridTop.value) / rowStride.value)
+  return Math.max(0, raw - OVERSCAN_ROWS)
+})
+
+const endRow = computed(() => {
+  if (!gridTop.value) return Math.min(totalRows.value, OVERSCAN_ROWS * 2 + 1)
+
+  const raw = Math.ceil((viewportTop.value + viewportHeight.value - gridTop.value) / rowStride.value)
+  return Math.min(totalRows.value, raw + OVERSCAN_ROWS)
+})
+
+const visibleRecords = computed(() => {
+  const startIndex = startRow.value * columnCount.value
+  const endIndex = Math.min(filteredRecords.value.length, endRow.value * columnCount.value)
+
+  return filteredRecords.value.slice(startIndex, endIndex).map((record, offset) => {
+    const index = startIndex + offset
+    const row = Math.floor(index / columnCount.value)
+    const column = index % columnCount.value
+    const columnWidth = getColumnWidth()
+
+    return {
+      record,
+      index,
+      style: {
+        top: `${row * rowStride.value}px`,
+        left: `${column * (columnWidth + gridGap.value)}px`,
+        width: `${columnWidth}px`,
+        '--enter-delay': `${Math.min(offset * 50, 600)}ms`,
+      },
+    }
+  })
+})
+
+const virtualGridStyle = computed(() => ({
+  height: `${virtualGridHeight.value}px`,
+}))
+
+function getColumnWidth() {
+  const columns = Math.max(1, columnCount.value)
+  if (!gridWidth.value) return CARD_MIN_WIDTH
+  return (gridWidth.value - gridGap.value * (columns - 1)) / columns
+}
+
+function readViewport() {
+  if (typeof window === 'undefined') return
+
+  viewportTop.value = window.scrollY
+  viewportHeight.value = window.innerHeight
+}
+
+function updateViewport() {
+  if (typeof window === 'undefined' || viewportFrame) return
+
+  viewportFrame = window.requestAnimationFrame(() => {
+    viewportFrame = 0
+    readViewport()
+  })
+}
+
+function updateGridMetrics() {
+  if (typeof window === 'undefined' || !gridRef.value) return
+
+  const rect = gridRef.value.getBoundingClientRect()
+  const styles = window.getComputedStyle(gridRef.value)
+  const gap = Number.parseFloat(styles.columnGap || styles.gap)
+  const width = gridRef.value.clientWidth
+  const measuredCard = gridRef.value.querySelector('.record-card') as HTMLElement | null
+  const measuredHeight = measuredCard?.getBoundingClientRect().height
+
+  gridTop.value = rect.top + window.scrollY
+  gridWidth.value = width
+  gridGap.value = Number.isFinite(gap) ? gap : DEFAULT_GRID_GAP
+  cardHeight.value = measuredHeight && measuredHeight > 0 ? measuredHeight : DEFAULT_CARD_HEIGHT
+  columnCount.value = Math.max(1, Math.floor((width + gridGap.value) / (CARD_MIN_WIDTH + gridGap.value)))
+}
+
+function refreshGridMetrics() {
+  readViewport()
+  updateGridMetrics()
+}
+
+function setupVirtualGrid() {
+  if (typeof window === 'undefined') return
+
+  refreshGridMetrics()
+
+  window.addEventListener('scroll', updateViewport, { passive: true })
+  window.addEventListener('resize', refreshGridMetrics)
+
+  if ('ResizeObserver' in window && gridRef.value) {
+    resizeObserver = new ResizeObserver(refreshGridMetrics)
+    resizeObserver.observe(gridRef.value)
+  }
+}
+
 onMounted(async () => {
+  if (typeof document !== 'undefined') {
+    document.body.classList.add('records-terminal-page')
+  }
+
   try {
     const [tagsRes, metaRes, schemaRes] = await Promise.all([
       fetch('/api/tags.json'),
@@ -167,8 +303,27 @@ onMounted(async () => {
   } finally {
     loading.value = false
     await nextTick()
+    setupVirtualGrid()
     cardVisible.value = true
   }
+})
+
+onUnmounted(() => {
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('scroll', updateViewport)
+    window.removeEventListener('resize', refreshGridMetrics)
+    if (viewportFrame) {
+      window.cancelAnimationFrame(viewportFrame)
+      viewportFrame = 0
+    }
+  }
+
+  if (typeof document !== 'undefined') {
+    document.body.classList.remove('records-terminal-page')
+  }
+
+  resizeObserver?.disconnect()
+  resizeObserver = null
 })
 
 function toggleTag(tagName: string) {
@@ -306,28 +461,34 @@ function displayName(tag: string): string {
     </div>
 
     <!-- 记录列表（交错淡入） -->
-    <div v-else class="grid-container" :class="{ 'cards-visible': cardVisible }">
+    <div
+      v-else
+      ref="gridRef"
+      class="grid-container virtual-grid"
+      :class="{ 'cards-visible': cardVisible }"
+      :style="virtualGridStyle"
+    >
       <a
-        v-for="(record, idx) in filteredRecords"
-        :key="record.link"
-        :href="record.link"
+        v-for="item in visibleRecords"
+        :key="item.record.link"
+        :href="item.record.link"
         class="record-card card-enter"
-        :style="{ '--enter-delay': `${Math.min(idx * 50, 600)}ms` }"
+        :style="item.style"
       >
         <div class="card-header">
-          <span class="card-icon" :style="{ '-webkit-mask-image': `url(${getRecordIcon(record)})`, 'mask-image': `url(${getRecordIcon(record)})` }" />
+          <span class="card-icon" :style="{ '-webkit-mask-image': `url(${getRecordIcon(item.record)})`, 'mask-image': `url(${getRecordIcon(item.record)})` }" />
           <span 
-            v-if="record.status" 
+            v-if="item.record.status" 
             class="status-dot" 
-            :class="getStatusColor(record.status)"
-            :title="record.status"
+            :class="getStatusColor(item.record.status)"
+            :title="item.record.status"
           ></span>
         </div>
         <div class="card-body">
-          <h4 class="title">{{ record.title }}</h4>
-          <div class="code-path" :title="record.link">{{ record.link }}</div>
-          <div v-if="searchQuery.trim() && matchReasonsMap.get(record.link)?.length" class="match-reasons">
-            <span v-for="reason in matchReasonsMap.get(record.link)" :key="reason" class="match-badge">{{ reason }}</span>
+          <h4 class="title">{{ item.record.title }}</h4>
+          <div class="code-path" :title="item.record.link">{{ item.record.link }}</div>
+          <div v-if="searchQuery.trim() && matchReasonsMap.get(item.record.link)?.length" class="match-reasons">
+            <span v-for="reason in matchReasonsMap.get(item.record.link)" :key="reason" class="match-badge">{{ reason }}</span>
           </div>
         </div>
         <div class="card-footer">
@@ -336,7 +497,7 @@ function displayName(tag: string): string {
         <span class="card-shine"></span>
       </a>
     </div>
-    
+
     <div v-if="!loading && filteredRecords.length === 0" class="empty-state">
       No records found.
     </div>
@@ -560,6 +721,11 @@ function displayName(tag: string): string {
   gap: 1.5rem;
 }
 
+.virtual-grid {
+  display: block;
+  position: relative;
+}
+
 /* ======= 记录卡片（工业风：切角 + 高亮条 + 微光 + hover 位移） ======= */
 .record-card {
   display: flex;
@@ -573,6 +739,15 @@ function displayName(tag: string): string {
   position: relative;
   overflow: hidden;
   clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  content-visibility: auto;
+  contain-intrinsic-size: 180px;
+}
+
+.virtual-grid .record-card {
+  position: absolute;
+  height: 180px;
+  box-sizing: border-box;
+  will-change: transform, opacity;
 }
 
 /* 左侧高亮条 */
