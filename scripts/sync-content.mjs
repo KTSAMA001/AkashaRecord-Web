@@ -320,6 +320,13 @@ function fixLinks(content) {
   // 1b. 记录页无论是否带尾斜杠，都应稳定访问关联附件。
   //     ../assets/... 在浏览器和 SPA 路由中可能解析到不同层级，统一改为 public/assets 的绝对路径。
   content = content.replace(/\]\((?:\.\/)?\.\.\/assets\//g, '](/assets/')
+
+  // 1c. HTML 附件不是 VitePress 页面，必须绕过客户端路由。
+  //     VitePress 会拦截同源 .html 链接做 SPA 跳转；target 属性可保留浏览器原生打开语义。
+  content = content.replace(
+    /\[([^\]]+)\]\((\/assets\/[^)\s]+?\.(?:html|htm)(?:[?#][^)]*)?)\)/gi,
+    '<a href="$2" target="_self" rel="noopener">$1</a>'
+  )
   
   // 2. 处理旧的分类路径 ../../knowledge/graphics/xxx.md -> ./xxx.md
   content = content.replace(/\]\(\.\.\/.*?\/([^\/]+?)\.md\)/g, '](./$1.md)')
