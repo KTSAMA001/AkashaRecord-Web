@@ -7,7 +7,8 @@
  * 2. 解析 record-template.md 获取 Schema (字段定义/状态定义/Emoji映射)
  * 3. 解析 references/INDEX.md 获取文件清单与回退元数据
  * 4. 复制 data/*.md 到 content/records/，以文档自身为准注入 Frontmatter、修正链接、Emoji→SVG
- * 4b. 复制 data/ 和 assets/ 下的图片等静态资源到 content/records/
+ * 4b. 复制 data/ 和 assets/ 下的图片到 content/records/
+ * 4c. 复制 assets/ 下的可下载/可打开附件到 public/assets/
  * 5. 生成 content/records/index.md
  * 6. 生成 public/api/stats.json、tags.json、tag-meta.json 和 meta-schema.json
  */
@@ -26,24 +27,35 @@ const API_DIR = path.join(PUBLIC_DIR, 'api')
 
 // 阿卡西记录配置
 const GITHUB_MIRROR = process.env.GITHUB_MIRROR || ''
-// 优先使用本地已存在的 AgentSkill 路径作为源（开发环境）
-const LOCAL_SOURCE = '/Users/ktsama/.claude/skills/AgentSkill-Akasha-KT'
-const AKASHA_REPO_ORIGIN = fs.existsSync(LOCAL_SOURCE) 
-  ? LOCAL_SOURCE 
-  : 'https://github.com/KTSAMA001/AgentSkill-Akasha-KT.git'
+// 本地开发时优先读当前 Codex 技能目录；AKASHA_SOURCE_DIR 可用于临时指定其他工作副本。
+const LOCAL_SOURCE_CANDIDATES = [
+  process.env.AKASHA_SOURCE_DIR,
+  '/Users/ktsama/.codex/skills/akasha-kt',
+  '/Users/ktsama/.claude/skills/AgentSkill-Akasha-KT',
+].filter(Boolean)
+const LOCAL_SOURCE = LOCAL_SOURCE_CANDIDATES.find(source =>
+  fs.existsSync(path.join(source, 'data'))
+)
+const AKASHA_REPO_ORIGIN = LOCAL_SOURCE || 'https://github.com/KTSAMA001/AgentSkill-Akasha-KT.git'
 
-const AKASHA_REPO = GITHUB_MIRROR && !fs.existsSync(LOCAL_SOURCE)
+const AKASHA_REPO = GITHUB_MIRROR && !LOCAL_SOURCE
   ? AKASHA_REPO_ORIGIN.replace('https://github.com/', GITHUB_MIRROR)
   : AKASHA_REPO_ORIGIN
 const AKASHA_LOCAL = path.join(PROJECT_ROOT, '.akasha-repo')
 
-// 支持同步的图片/静态资源扩展名
-const ASSET_EXTENSIONS = new Set([
+// Markdown 图片类资源仍复制到 content/records，供历史扁平化链接继续工作。
+const MARKDOWN_ASSET_EXTENSIONS = new Set([
   '.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.bmp', '.ico', '.avif',
 ])
 
-// 生成用于正则匹配的图片扩展名模式（从 ASSET_EXTENSIONS 动态生成，保持单一来源）
-const ASSET_EXT_PATTERN = [...ASSET_EXTENSIONS].map(e => e.slice(1)).join('|')
+// 关联附件按目录结构进入 public/assets；普通 HTML 链接不会被 VitePress 当作资源自动打包。
+const PUBLIC_ASSET_EXTENSIONS = new Set([
+  ...MARKDOWN_ASSET_EXTENSIONS,
+  '.html', '.htm',
+])
+
+// 生成用于正则匹配的图片扩展名模式（从 MARKDOWN_ASSET_EXTENSIONS 动态生成，保持单一来源）
+const ASSET_EXT_PATTERN = [...MARKDOWN_ASSET_EXTENSIONS].map(e => e.slice(1)).join('|')
 const META_KEY_ALIASES = new Map([
   ['创建时间', '收录日期'],
 ])
@@ -67,7 +79,7 @@ function copyAssetFiles(srcDir, destDir) {
     if (entry.isDirectory()) {
       fs.mkdirSync(destPath, { recursive: true })
       count += copyAssetFiles(srcPath, destPath)
-    } else if (ASSET_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+    } else if (MARKDOWN_ASSET_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
       fs.copyFileSync(srcPath, destPath)
       count++
     }
@@ -96,12 +108,42 @@ function copyAssetFilesFlat(srcDir, destDir, seen = new Set()) {
 
     if (entry.isDirectory()) {
       count += copyAssetFilesFlat(srcPath, destDir, seen)
-    } else if (ASSET_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+    } else if (MARKDOWN_ASSET_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
       if (seen.has(entry.name)) {
         console.warn(`  ⚠️ 资源文件名冲突: ${entry.name}（来自 ${srcPath}），已被覆盖`)
       }
       seen.add(entry.name)
       fs.copyFileSync(srcPath, path.join(destDir, entry.name))
+      count++
+    }
+  }
+
+  return count
+}
+
+/**
+ * 保持 assets/<record-name>/... 原目录结构复制到 public/assets。
+ * 记录中的 ../assets/... 链接会被规范化为 /assets/...，因此附件必须在 public 下稳定暴露。
+ * @param {string} srcDir - 源目录（如 .akasha-repo/assets）
+ * @param {string} destDir - 目标目录（如 public/assets）
+ * @returns {number} 复制的文件数量
+ */
+function copyPublicAssetFiles(srcDir, destDir) {
+  if (!fs.existsSync(srcDir)) return 0
+
+  let count = 0
+  const entries = fs.readdirSync(srcDir, { withFileTypes: true })
+
+  fs.mkdirSync(destDir, { recursive: true })
+
+  for (const entry of entries) {
+    const srcPath = path.join(srcDir, entry.name)
+    const destPath = path.join(destDir, entry.name)
+
+    if (entry.isDirectory()) {
+      count += copyPublicAssetFiles(srcPath, destPath)
+    } else if (PUBLIC_ASSET_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) {
+      fs.copyFileSync(srcPath, destPath)
       count++
     }
   }
@@ -274,6 +316,10 @@ function fixLinks(content) {
   
   // 1. 处理以 ../data/ 开头的 (已经是扁平的了，但可能在旧文件中还有残留)
   content = content.replace(/\]\(\.\.\/data\//g, '](./')
+
+  // 1b. 记录页无论是否带尾斜杠，都应稳定访问关联附件。
+  //     ../assets/... 在浏览器和 SPA 路由中可能解析到不同层级，统一改为 public/assets 的绝对路径。
+  content = content.replace(/\]\((?:\.\/)?\.\.\/assets\//g, '](/assets/')
   
   // 2. 处理旧的分类路径 ../../knowledge/graphics/xxx.md -> ./xxx.md
   content = content.replace(/\]\(\.\.\/.*?\/([^\/]+?)\.md\)/g, '](./$1.md)')
@@ -855,6 +901,14 @@ async function main() {
 
   if (assetCount > 0) {
     console.log(`🖼️  已复制 ${assetCount} 个图片/资源文件`)
+  }
+
+  // public/assets 是记录附件的稳定访问层，承载 HTML 演示这类 VitePress 不会自动打包的普通链接目标。
+  const publicAssetsDir = path.join(PUBLIC_DIR, 'assets')
+  fs.rmSync(publicAssetsDir, { recursive: true, force: true })
+  const publicAssetCount = copyPublicAssetFiles(assetsDir, publicAssetsDir)
+  if (publicAssetCount > 0) {
+    console.log(`📎 已复制 ${publicAssetCount} 个关联附件到 public/assets`)
   }
 
   // 生成数据和页面
